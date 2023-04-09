@@ -1,0 +1,190 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 2064,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 684,
+      "max": [
+        10.1766300201416,
+        9.44107437133789,
+        1.09100008010864
+      ],
+      "min": [
+        -0.176631927490234,
+        0.434836864471436,
+        5.96046447753906e-08
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 684,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 684,
+      "type": "VEC2"
+    }
+  ],
+  "asset": {
+    "generator": "Adobe Substance 3D Painter 7.4.1",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 8256,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 8208,
+      "byteOffset": 8256,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 8208,
+      "byteOffset": 16464,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 5472,
+      "byteOffset": 24672,
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 30144,
+      "uri": "Scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "LogoShader_baseColor.png"
+    },
+    {
+      "uri": "LogoShader_occlusionRoughnessMetallic.png"
+    },
+    {
+      "uri": "LogoShader_normal.png"
+    },
+    {
+      "uri": "LogoShader_emissive.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "OPAQUE",
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 3
+      },
+      "name": "LogoShader",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Logo",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 2,
+            "POSITION": 1,
+            "TEXCOORD_0": 3
+          },
+          "indices": 0,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "Logo",
+      "translation": [
+        -5.06491994857788,
+        -0.450754523277283,
+        -1.02255523204803
+      ]
+    },
+    {
+      "mesh": 0,
+      "name": "Logo"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9985,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    }
+  ]
+}
