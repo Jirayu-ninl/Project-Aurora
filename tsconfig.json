@@ -22,6 +22,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
+      "@aurora/*": ["aurora/*"],
+      "@aurora": ["aurora"],
       // "@config": ["app/config"],
       // "@app/*": ["app/*"],
       // "@libs/*": ["libs/*"],
@@ -30,10 +32,10 @@
       // "@database": ["app/database"],
       // "@store": ["app/store"],
       // "@auth/*": ["app/auth/*"],
-      // "contents/*": ["resources/contents/*"],
-      // "views/*": ["resources/views/*"],
+      "contents/*": ["resources/contents/*"],
+      "views/*": ["resources/views/*"],
       // "layouts/*": ["resources/views/layouts/*"],
-      // "pages/*": ["resources/views/pages/*"],
+      "pages/*": ["resources/views/pages/*"],
       "public/*": ["public/*"]
     }
   },

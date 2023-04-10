@@ -17,22 +17,22 @@ const nextConfig = {
       }),
     )
 
-    // config.resolve.alias['@app'] = path.join(__dirname, 'app')
+    config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
     // config.resolve.alias['@config'] = path.join(__dirname, 'app/config')
     // config.resolve.alias['@auth'] = path.join(__dirname, 'app/auth')
-    // config.resolve.alias['contents'] = path.join(
-    //   __dirname,
-    //   'resources/contents',
-    // )
-    // config.resolve.alias['views'] = path.join(__dirname, 'resources/views')
+    config.resolve.alias['contents'] = path.join(
+      __dirname,
+      'resources/contents',
+    )
+    config.resolve.alias['views'] = path.join(__dirname, 'resources/views')
     // config.resolve.alias['layouts'] = path.join(
     //   __dirname,
     //   'resources/views/layouts',
     // )
-    // config.resolve.alias['pages'] = path.join(
-    //   __dirname,
-    //   'resources/views/pages',
-    // )
+    config.resolve.alias['pages'] = path.join(
+      __dirname,
+      'resources/views/pages',
+    )
     // config.resolve.alias['@services'] = path.join(__dirname, 'app/services')
     // config.resolve.alias['@database'] = path.join(__dirname, 'app/database')
     // config.resolve.alias['@libs'] = path.join(__dirname, 'libs')
