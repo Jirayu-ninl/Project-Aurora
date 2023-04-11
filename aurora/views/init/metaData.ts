@@ -1,21 +1,23 @@
 import type { Metadata } from 'next'
 
-const titleDefault = 'TheIceJI - Jirayu Ninlapun Official Website'
-const url = 'https://TheIceJI.com'
-const descriptionDefault =
-  "I'm Jirayu Ninlapun, and I'm a Cinematic Art student at Bangkok University. I've worked as a Web Developer for three years and am an expert in Front-end and Web-animation."
-const author = 'Jirayu Ninlapun'
-const coverImgDefault = '/og.jpg'
-
-const DefaultMetaData: Metadata = {
-  metadataBase: new URL(url),
+const Init = (metaData: {
+  appName: string
+  title: string
+  url: string
+  description: string
+  coverImg: string
+  author: string
+  keywords: string | string[]
+  twitterID: string
+}): Metadata => ({
+  metadataBase: new URL(metaData.url),
   title: {
-    template: '%s | TheIceJi',
-    default: titleDefault,
+    template: '%s | ' + metaData.appName,
+    default: metaData.title,
   },
-  description: descriptionDefault,
-  applicationName: 'TheIceJi',
-  keywords: ['TheIceJi', 'Jirayu Ninlapun', 'Web Developer'],
+  description: metaData.description,
+  applicationName: metaData.appName,
+  keywords: metaData.keywords,
   viewport: {
     width: 'device-width',
     initialScale: 1,
@@ -23,11 +25,11 @@ const DefaultMetaData: Metadata = {
     userScalable: false,
     viewportFit: 'cover',
   },
-  authors: { name: author },
-  creator: author,
-  publisher: author,
+  authors: { name: metaData.author },
+  creator: metaData.author,
+  publisher: metaData.author,
   other: {
-    designer: author,
+    designer: metaData.author,
     language: 'english',
     distribution: 'web',
   },
@@ -38,33 +40,33 @@ const DefaultMetaData: Metadata = {
   manifest: '/manifest.json',
   openGraph: {
     title: {
-      template: '%s | TheIceJi',
-      default: titleDefault,
+      template: '%s | ' + metaData.appName,
+      default: metaData.title,
     },
-    siteName: 'TheIceJi',
-    description: descriptionDefault,
+    siteName: metaData.appName,
+    description: metaData.description,
     images: [
       {
-        url: coverImgDefault,
+        url: metaData.coverImg,
         width: 1200,
         height: 627,
       },
     ],
-    authors: ['TheIceJi'],
+    authors: [metaData.author],
     locale: 'en-US',
     // type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: {
-      template: '%s | TheIceJi',
-      default: titleDefault,
+      template: '%s | ' + metaData.appName,
+      default: metaData.title,
     },
-    description: descriptionDefault,
+    description: metaData.description,
     // siteId: '1467726470533754880',
-    creator: '@theiceji',
+    creator: metaData.twitterID,
     // creatorId: '1467726470533754880',
-    images: [coverImgDefault],
+    images: [metaData.coverImg],
   },
   icons: {
     icon: '/logo_white.svg',
@@ -89,7 +91,7 @@ const DefaultMetaData: Metadata = {
     },
   },
   appleWebApp: {
-    title: 'TheIceJi',
+    title: metaData.appName,
     statusBarStyle: 'black-translucent',
     startupImage: [
       '/assets/startup/apple-touch-startup-image-768x1004.png',
@@ -99,6 +101,6 @@ const DefaultMetaData: Metadata = {
       },
     ],
   },
-}
+})
 
-export default DefaultMetaData
+export default Init

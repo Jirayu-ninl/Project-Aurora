@@ -12,7 +12,6 @@ import Script from 'next/script'
 // import { SessionProvider } from 'next-auth/react'
 // import PageTransition from '@aurora/libs/animations/hooks/usePageTransition'
 
-import MetaData from '@/resources/contents/global/metaData'
 import { Tracker } from '@aurora/libs'
 import Config from '@app/config'
 
@@ -23,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'tailwindcss/tailwind.css'
 import './globals.css'
 
-export const metadata = { ...MetaData }
+export const metadata = { ...Config.metaData }
 
 type NextPageWithLayout = NextPage & {
   disableFooter?: boolean
