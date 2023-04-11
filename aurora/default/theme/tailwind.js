@@ -13,7 +13,7 @@ function withOpacity(variableName) {
 function DefaultConfig(Color) {
   return {
     content: [
-      './pages/**/**/**/*.{js,ts,jsx,tsx}',
+      './app/**/**/**/*.{js,ts,jsx,tsx}',
       './resources/views/**/**/**/**/*.{js,ts,jsx,tsx}',
       './resources/contents/mock/**/*.{js,ts,jsx,tsx}',
     ],

@@ -25,3 +25,202 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.TH {
+  font-family: 'Prompt' !important;
+}
+
+/* *! Animate */
+
+.Anim {
+  @apply transition duration-300 xl:hover:duration-200;
+}
+
+.Anim-1 {
+  @apply transition duration-500 xl:hover:duration-300;
+}
+
+.Anim-2 {
+  @apply transition duration-700 xl:hover:duration-500;
+}
+
+.AnimScale {
+  @apply xl:hover:scale-150;
+}
+
+.AnimScale-sm {
+  @apply xl:hover:scale-110;
+}
+
+.AnimOpacity-40 {
+  @apply opacity-40 hover:opacity-100;
+}
+
+.AnimOpacity-60 {
+  @apply opacity-60 hover:opacity-100;
+}
+
+.AnimOpacity-80 {
+  @apply opacity-80 hover:opacity-100;
+}
+
+.AnimTranslate-10 {
+  @apply xl:hover:-translate-x-2.5 xl:hover:-translate-y-2.5;
+}
+
+.AnimRotate-1 {
+  @apply xl:hover:-rotate-1;
+}
+
+.AnimTranslate-4 {
+  @apply xl:hover:-translate-x-1 xl:hover:-translate-y-1;
+}
+
+.AnimSaturate-0 {
+  @apply xl:saturate-0 xl:hover:saturate-100;
+}
+
+/* *! Text */
+
+.page-home-mainTEXT {
+  /* -webkit-text-stroke: 2px #fff; */
+  @apply text-6xl font-bold sm:-mb-2.5 sm:text-7xl md:text-8xl lg:-mb-5 lg:text-9xl xl:text-[160px] xxl:text-[200px];
+}
+
+.page-home-mainTEXT > h1 {
+  @apply duration-500;
+}
+
+.page-home-mainTEXT > h1:hover {
+  -webkit-text-stroke: 2px #fff;
+  @apply text-transparent duration-200;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px #fff;
+  @apply text-transparent;
+}
+
+/* .bullet-sm {
+  @apply 
+} */
+
+.bullet-sm:before {
+  content: '';
+  @apply h-1 w-1 rounded-full;
+}
+
+@media (min-width: 768px) {
+  .text-outline {
+    -webkit-text-stroke: 2px #fff;
+  }
+}
+
+/* *! Element */
+
+.Btn-white-40 {
+  @apply rounded border border-white/40 bg-white/20 p-1 text-xs backdrop-blur-md md:px-3 md:py-1 md:text-base xl:text-xs xxl:text-base;
+}
+
+.NotiBadge-primary {
+  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-primary-0 px-2 py-1 text-xs font-bold leading-none text-black;
+}
+
+.NotiBadge-secondary {
+  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-secondary-0 px-2 py-1 text-xs font-bold leading-none text-white;
+}
+
+.Card-back-md-60 {
+  @apply rounded-md bg-black/60 backdrop-blur-md;
+}
+
+.Card-back-md-40 {
+  @apply rounded-md bg-black/40 backdrop-blur-md;
+}
+
+.Card-back-md-20 {
+  @apply rounded-md bg-black/20 backdrop-blur-md;
+}
+
+.Card-white-20 {
+  @apply rounded-md bg-white bg-opacity-20 backdrop-blur-md;
+}
+
+.Border-white-40 {
+  @apply border border-white/40;
+}
+
+.Border-white-40:focus,
+.Border-white-40:hover,
+.Border-white-40:active {
+  @apply border-white/60;
+}
+
+/* *! Form */
+
+.Form-white input {
+  @apply bg-white/10 px-2 py-1 text-white;
+}
+
+.Form-white input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.Form-white input:-webkit-autofill,
+.Form-white input:-webkit-autofill:focus,
+.Form-white input:-webkit-autofill:hover,
+.Form-white input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: black !important;
+  @apply bg-transparent;
+}
+
+.Form-white-checkbox {
+  @apply absolute z-10 opacity-0;
+}
+
+.Form-white-checkbox + label {
+  @apply relative cursor-pointer p-0;
+}
+
+.Form-white-checkbox + label:before {
+  content: '';
+  @apply Border-white-40 mr-3 inline-block h-3 w-3 rounded-sm bg-white/20 align-top;
+}
+
+.Form-white-checkbox:hover + label:before {
+  @apply bg-primary-0/60;
+}
+
+.Form-white-checkbox:checked + label:before {
+  @apply bg-primary-0;
+}
+
+.Form-white-checkbox:disabled + label {
+  @apply cursor-auto text-white/30;
+}
+
+.Form-white-checkbox:disabled + label:before {
+  @apply bg-white/10;
+}
+
+.Form-white-checkbox:checked + label:after {
+  content: '';
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white,
+    4px -6px 0 white, 4px -8px 0 white;
+  @apply absolute left-[2px] top-1 h-1 w-1 rotate-45 bg-white;
+}
+
+/* *! Others */
+
+.Project-header > h3 {
+  @apply text-3xl font-semibold;
+}
+
+.Project-header > p {
+  @apply mt-6 font-light opacity-80;
+}
+
+.PostTextTab {
+  @apply pl-16;
+}
