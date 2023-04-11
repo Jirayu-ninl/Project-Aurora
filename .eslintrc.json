@@ -33,7 +33,7 @@
   },
   "rules": {
     "indent": ["warn", 2, { "SwitchCase": 1 }],
-    "quotes": ["warn", "single"],
+    "quotes": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off",
@@ -42,7 +42,7 @@
     "prettier/prettier": [
       "warn",
       {
-        "parser": "flow",
+        "parser": "typescript",
         "endOfLine": "auto",
         "singleQuote": true
       }
