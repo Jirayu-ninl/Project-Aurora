@@ -1,10 +1,10 @@
-// import * as Sentry from '@sentry/nextjs'
-// import { app } from './app/config'
+import * as Sentry from '@sentry/nextjs'
+import config from '@app/config'
 
-// const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
+const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
 
-// Sentry.init({
-//   dsn: SENTRY_DSN,
-//   release: app.VERSION,
-//   tracesSampleRate: 1.0,
-// })
+Sentry.init({
+  dsn: SENTRY_DSN,
+  release: config.app.VERSION,
+  tracesSampleRate: 1.0,
+})

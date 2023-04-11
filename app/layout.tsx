@@ -2,7 +2,7 @@
 // 'use client'
 
 // import type { ReactElement, ReactNode } from 'react'
-import type { NextPage  } from 'next'
+import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
 // import { useEffect } from 'react'
@@ -14,7 +14,7 @@ import Script from 'next/script'
 
 import MetaData from '@/resources/contents/global/metaData'
 import { Tracker } from '@aurora/libs'
-import appConfig from '@app/config'
+import Config from '@app/config'
 
 // import MainLayout from 'layouts/MainLayout'
 // import Toast from '@aurora/modules/toast'
@@ -23,7 +23,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'tailwindcss/tailwind.css'
 import './globals.css'
 
-export const metadata  = {...MetaData}
+export const metadata = { ...MetaData }
 
 type NextPageWithLayout = NextPage & {
   disableFooter?: boolean
@@ -65,7 +65,7 @@ const App = ({ children, Component, pageProps }: AppPropsWithLayout) => {
       <body>
         <noscript>
           <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${appConfig.GOOGLE_TAG_MANAGER}`}
+            src={`https://www.googletagmanager.com/ns.html?id=${Config.app.GOOGLE_TAG_MANAGER}`}
             height='0'
             width='0'
             style={{ display: 'none', visibility: 'hidden' }}
@@ -92,7 +92,7 @@ const App = ({ children, Component, pageProps }: AppPropsWithLayout) => {
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer', '${appConfig.GOOGLE_TAG_MANAGER}');
+            })(window,document,'script','dataLayer', '${Config.app.GOOGLE_TAG_MANAGER}');
           `,
           }}
         />
