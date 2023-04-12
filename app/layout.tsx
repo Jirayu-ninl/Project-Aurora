@@ -7,13 +7,13 @@ import type { AppProps } from 'next/app'
 
 // import { useEffect } from 'react'
 // import Router, { useRouter } from 'next/router'
-import Script from 'next/script'
+// import Script from 'next/script'
 // import NProgress from 'nprogress'
 // import { SessionProvider } from 'next-auth/react'
 // import PageTransition from '@aurora/libs/animations/hooks/usePageTransition'
 
-import { Tracker } from '@aurora/libs'
-import Config from '@app/config'
+import Tracker from '@aurora/libs/trackers'
+// import Config from '@app/config'
 
 // import MainLayout from 'layouts/MainLayout'
 // import Toast from '@aurora/modules/toast'
@@ -22,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'tailwindcss/tailwind.css'
 import './globals.css'
 
-export const metadata = { ...Config.metaData }
+// export const metadata = { ...Config.metaData }
 
 type NextPageWithLayout = NextPage & {
   disableFooter?: boolean
@@ -36,7 +36,8 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const App = ({ children, Component, pageProps }: AppPropsWithLayout) => {
-  const pageview = Tracker.gtm.pageview
+  const Analytics = Tracker.gtm.component
+
   // const router = useRouter()
 
   // useEffect(() => {
@@ -52,24 +53,10 @@ const App = ({ children, Component, pageProps }: AppPropsWithLayout) => {
   //   }
   // }, [])
 
-  // useEffect(() => {
-  //   router.events.on('routeChangeComplete', pageview)
-  //   return () => {
-  //     router.events.off('routeChangeComplete', pageview)
-  //   }
-  // }, [router.events])
-
   return (
     <html lang='en'>
       <body>
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${Config.app.GOOGLE_TAG_MANAGER}`}
-            height='0'
-            width='0'
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+        <Analytics />
         {/* <SessionProvider session={pageProps.session}> */}
         {/* <MainLayout
             showNav={!Component.disableNav}
@@ -82,19 +69,6 @@ const App = ({ children, Component, pageProps }: AppPropsWithLayout) => {
         {/* <Toast /> */}
         {/* </MainLayout> */}
         {/* </SessionProvider> */}
-        <Script
-          strategy='afterInteractive'
-          id='GOOGLE_TAG_MANAGER'
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer', '${Config.app.GOOGLE_TAG_MANAGER}');
-          `,
-          }}
-        />
       </body>
     </html>
   )

@@ -1,8 +1,8 @@
-import { pageview } from './gtm'
+import Analytics from './gtm'
 
 const Tracker = {
   gtm: {
-    pageview,
+    component: Analytics,
   },
 }
 
