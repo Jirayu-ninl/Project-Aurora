@@ -1,6 +1,6 @@
 const Text = () => {
   return (
-    <div className='flex flex-col items-center pt-16 w-screen'>
+    <div className='flex w-screen flex-col items-center pt-16'>
       <H1 />
       <H1 />
       <H1 />
