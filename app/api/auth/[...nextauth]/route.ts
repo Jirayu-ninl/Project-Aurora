@@ -4,10 +4,10 @@ import FacebookProvider from 'next-auth/providers/facebook'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-import clientPromise from '@database/mongo/legacy'
+import clientPromise from '@aurora/libs/database/mongo/mongo.legacy'
 
-import SignInProvider from '@auth/signIn.ProviderV3'
-import SignInCredentials from '@auth/signIn.Credentials'
+import SignInProvider from '@aurora/libs/auth/signIn/provider'
+import SignInCredentials from '@aurora/libs/auth/signIn/credentials'
 
 export default NextAuth({
   pages: {
