@@ -1,0 +1,74 @@
+{
+  "uniforms": {
+    "rimWidth": {
+      "value": ".9",
+      "type": "f",
+      "glslType": "float"
+    },
+    "fadeDistance": {
+      "value": "1.29",
+      "type": "f",
+      "glslType": "float"
+    },
+    "time": {
+      "type": "f",
+      "glslType": "float"
+    },
+    "Fresnel_Glow1657095673155_65_color": {
+      "value": {
+        "r": "0.23529411764705882",
+        "g": "0.11372549019607843",
+        "b": "0.38823529411764707"
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "scale": {
+      "value": ".4",
+      "type": "f",
+      "glslType": "float"
+    },
+    "displacement": {
+      "value": ".0",
+      "type": "f",
+      "glslType": "float"
+    },
+    "speed": {
+      "value": ".3",
+      "type": "f",
+      "glslType": "float"
+    },
+    "Big_Wiggles1657095673161_68_color": {
+      "value": {
+        "r": 0.5725490196078431,
+        "g": 0,
+        "b": 0.7803921568627451
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "shininess": {
+      "value": "5",
+      "type": "f",
+      "glslType": "float"
+    },
+    "specular": {
+      "value": {
+        "r": 1,
+        "g": 1,
+        "b": 1
+      },
+      "type": "c",
+      "glslType": "vec3"
+    },
+    "wrapRGB": {
+      "value": {
+        "r": 0.9490196078431372,
+        "g": 0.9490196078431372,
+        "b": 0.9490196078431372
+      },
+      "type": "c",
+      "glslType": "vec3"
+    }
+  }
+}

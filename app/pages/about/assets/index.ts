@@ -1,0 +1,5 @@
+export { default as IconMouse } from './IconMouse'
+export { default as IconDev } from './IconDev'
+export { default as IconMusic } from './IconMusic'
+export { default as IconImage } from './IconImage'
+export { default as IconPresent } from './IconPresent'
