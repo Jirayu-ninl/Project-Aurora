@@ -108,6 +108,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  sentry: {
+    hideSourceMaps: true,
+  },
 }
 
 const sentryWebpackPluginOptions = {

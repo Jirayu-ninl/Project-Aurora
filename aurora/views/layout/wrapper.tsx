@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import { globalStyles } from 'views/theme/css/global'
+import { globalStyles } from '../../default/theme/globalCSS'
 import { getGPUTier } from 'detect-gpu'
-import { User, UI } from '@store'
+import { User, UI } from '../../app/store'
 
 // IJN Components
 import Cursor from './components/cursor'

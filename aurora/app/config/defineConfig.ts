@@ -22,10 +22,30 @@ const defineConfig = {
   },
   app: {
     NAME: 'TheIceJI',
-    VERSION: 'Next (latest)',
-    UPDATE_DATE: 'Dec 31, 2022',
+    VERSION: '2023.05.01',
+    UPDATE_DATE: 'May 1, 2023',
+    Dependencies: {
+      Aurora: '1.0b',
+      React: '18.2.0',
+      NextJs: '13.3.1',
+      ThreeJs: '151.3',
+    },
     GOOGLE_ANALYTICS: 'UA-102194632-3',
     GOOGLE_TAG_MANAGER: 'GTM-KWRQQVP',
+    Theme: {
+      Color: {
+        primary: '#FFC900',
+        secondary: '',
+        tertiary: '',
+        quaternary: '',
+      },
+    },
+    Functions: {
+      useThree: true,
+      useAudio: true,
+      useAuth: true,
+      useWeb3: true,
+    },
   },
 }
 
