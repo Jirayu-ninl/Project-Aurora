@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 
-function withOpacity(variableName) {
+function withOpacity(variableName: any) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) {
       return `rgba(var(${variableName}), ${opacityValue})`
@@ -10,7 +10,7 @@ function withOpacity(variableName) {
   }
 }
 
-function DefaultConfig(Color) {
+function DefaultConfig(Color: any) {
   return {
     content: [
       './app/**/**/**/*.{js,ts,jsx,tsx}',
@@ -63,4 +63,4 @@ function DefaultConfig(Color) {
   }
 }
 
-module.exports = DefaultConfig
+export default DefaultConfig

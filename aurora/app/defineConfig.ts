@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const Default = require('../default/theme/tailwind')
+import Default from '../default/theme/tailwind'
 
 const Color = {
   primary: {
@@ -21,8 +21,8 @@ const Color = {
   },
 }
 
-const Config = {
+const DefineConfig = {
   ...Default(Color),
 }
 
-module.exports = Config
+export default DefineConfig

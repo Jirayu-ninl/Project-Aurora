@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
+
 import * as Sentry from '@sentry/nextjs'
 import type { NextPage } from 'next'
 // import type { ErrorProps } from 'next/error'
