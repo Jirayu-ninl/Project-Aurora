@@ -40,6 +40,14 @@
       "public/*": ["public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    // "sentry.client.config.ts",
+    // "sentry.edge.config.ts",
+    // "sentry.server.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

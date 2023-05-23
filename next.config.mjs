@@ -16,6 +16,7 @@ import runtimeCaching from 'next-pwa/cache.js'
 import plugins from 'next-compose-plugins'
 import { withSentryConfig } from '@sentry/nextjs'
 import bundleAnalyzer from '@next/bundle-analyzer'
+// import SentryCliPlugin from '@sentry/webpack-plugin'
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -31,6 +32,9 @@ const nextConfig = {
       new webpack.ProvidePlugin({
         React: 'react',
       }),
+      // new SentryCliPlugin({
+      //   include: '.',
+      // }),
     )
 
     config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
