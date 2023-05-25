@@ -1,7 +1,7 @@
 import { css, Global } from '@emotion/react'
 import Color from './color'
 
-export const globalStyles = (Darkmode = true) => (
+const GlobalStyles = (Darkmode = true) => (
   <Global
     styles={css`
       * {
@@ -483,3 +483,5 @@ export const globalStyles = (Darkmode = true) => (
     `}
   />
 )
+
+export default GlobalStyles

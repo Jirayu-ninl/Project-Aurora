@@ -32,31 +32,11 @@ const nextConfig = {
       new webpack.ProvidePlugin({
         React: 'react',
       }),
-      // new SentryCliPlugin({
-      //   include: '.',
-      // }),
     )
 
     config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
-    config.resolve.alias['@app'] = path.join(__dirname, 'aurora/app')
-    // config.resolve.alias['@auth'] = path.join(__dirname, 'app/auth')
-    config.resolve.alias['contents'] = path.join(
-      __dirname,
-      'resources/contents',
-    )
-    config.resolve.alias['views'] = path.join(__dirname, 'resources/views')
-    // config.resolve.alias['layouts'] = path.join(
-    //   __dirname,
-    //   'resources/views/layouts',
-    // )
-    config.resolve.alias['pages'] = path.join(
-      __dirname,
-      'resources/views/pages',
-    )
-    // config.resolve.alias['@services'] = path.join(__dirname, 'app/services')
-    // config.resolve.alias['@database'] = path.join(__dirname, 'app/database')
-    // config.resolve.alias['@libs'] = path.join(__dirname, 'libs')
-    // config.resolve.alias['@store'] = path.join(__dirname, 'app/store')
+    config.resolve.alias['@app'] = path.join(__dirname, 'app')
+    config.resolve.alias['@server'] = path.join(__dirname, 'server')
     // config.resolve.alias['public'] = path.join(__dirname, 'public')
 
     // audio support

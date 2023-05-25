@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Init } from '../../views'
+import { Init } from '@aurora/views'
 import defineConfig from './defineConfig'
 
-const config = {
+const Config = {
   app: { ...defineConfig.app },
   metaData: Init.MetaData(defineConfig.metaData),
   contacts: Init.Contacts(defineConfig.contacts),
 }
 
-export default config
+export default Config

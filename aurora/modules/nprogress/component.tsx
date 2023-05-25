@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
-function NProgress() {
+function NProgressComponent() {
   useEffect(() => {
     const handleRouteStart = () => NProgress.start()
     const handleRouteDone = () => NProgress.done()
@@ -23,4 +23,4 @@ function NProgress() {
   return <div></div>
 }
 
-export default NProgress
+export default NProgressComponent

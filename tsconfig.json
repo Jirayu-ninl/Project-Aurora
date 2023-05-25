@@ -24,19 +24,10 @@
       "@/*": ["./*"],
       "@aurora/*": ["aurora/*"],
       "@aurora": ["aurora"],
-      "@app": ["aurora/app"],
-      "@app/*": ["aurora/app/*"],
-      // "@app/*": ["app/*"],
-      // "@libs/*": ["libs/*"],
-      // "@services/*": ["app/services/*"],
-      // "@database/*": ["app/database/*"],
-      // "@database": ["app/database"],
-      // "@store": ["app/store"],
-      // "@auth/*": ["app/auth/*"],
-      "contents/*": ["resources/contents/*"],
-      "views/*": ["resources/views/*"],
-      // "layouts/*": ["resources/views/layouts/*"],
-      "pages/*": ["resources/views/pages/*"],
+      "@app": ["app"],
+      "@app/*": ["app/*"],
+      "@server": ["server"],
+      "@server/*": ["server/*"],
       "public/*": ["public/*"]
     }
   },
@@ -44,10 +35,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    // "sentry.client.config.ts",
-    // "sentry.edge.config.ts",
-    // "sentry.server.config.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,16 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 
-function withOpacity(variableName: any) {
-  return ({ opacityValue }) => {
-    if (opacityValue !== undefined) {
-      return `rgba(var(${variableName}), ${opacityValue})`
-    } else {
-      return `rgb(var(${variableName}))`
-    }
-  }
-}
+// function withOpacity(variableName: any) {
+//   return ({ opacityValue }) => {
+//     if (opacityValue !== undefined) {
+//       return `rgba(var(${variableName}), ${opacityValue})`
+//     } else {
+//       return `rgb(var(${variableName}))`
+//     }
+//   }
+// }
 
-function DefaultConfig(Color: any) {
+function Extend(Color: any, Plugins: [any]) {
   return {
     content: [
       './app/**/**/**/*.{js,ts,jsx,tsx}',
@@ -59,8 +59,10 @@ function DefaultConfig(Color: any) {
         colors: { ...Color },
       },
     },
-    plugins: [require('@tailwindcss/typography')],
+    plugins: Plugins,
   }
 }
+
+const DefaultConfig = { Extend }
 
 export default DefaultConfig
