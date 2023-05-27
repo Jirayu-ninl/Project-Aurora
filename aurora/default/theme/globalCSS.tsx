@@ -25,17 +25,17 @@ const GlobalStyles = (Darkmode = true) => (
         line-height: 1.5;
         color: ${Darkmode ? '#FFF' : '#000'};
         background-color: ${Darkmode ? Color.background[1] : '#FFF'};
-        font-family: 'Poppins', 'Prompt';
+        font-family: 'Inter', 'Prompt';
         -webkit-text-size-adjust: 100%;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      :lang(TH),
-      :lang(EN) {
-        font-size: normal;
-      }
+      // :lang(TH),
+      // :lang(EN) {
+      //   font-size: inherit;
+      // }
 
       ::selection {
         color: #000;

@@ -9,7 +9,7 @@ import { User, UI } from '@app/store'
 // import Cursor from './components/cursor'
 // import { NavBar, NavCanvas } from './nav'
 // import Footer from './footer'
-// import About from 'layouts/components/about'
+import AppInfo from './components/appInfo'
 import IJNconsole from './misc/IJNconsole'
 import useAudio from './hooks/useAudio'
 
@@ -60,7 +60,7 @@ const Wrapper = ({ children }: tWrapper) => {
 
   return (
     <>
-      {/* <About toggleAbout={_appInfo} setToggleAbout={_setAppInfo} /> */}
+      <AppInfo />
       {GlobalStyles(Darkmode)}
       {/* {showNav && (
                 <>

@@ -1,12 +1,14 @@
-export default function RealMotionS({ fill = '#FFF' }: { fill: string }) {
+function RealMotionLogo(props: {
+  type?: string
+  darkmode?: boolean
+  style?: JSON
+}) {
   return (
     <>
       <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='49.802'
-        height='21.792'
         viewBox='0 0 49.802 21.792'
-        style={{ fill: fill }}
+        style={{ fill: props.darkmode ? '#FFF' : '#000', ...props.style }}
+        className='h-full w-full'
       >
         <g id='RealMotion_White' transform='translate(-122.08 -155.22)'>
           <path
@@ -74,3 +76,5 @@ export default function RealMotionS({ fill = '#FFF' }: { fill: string }) {
     </>
   )
 }
+
+export default RealMotionLogo

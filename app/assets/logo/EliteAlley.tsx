@@ -1,12 +1,14 @@
-export default function EliteAlleyS({ fill = '#FFF' }: { fill: string }) {
+function EliteAlleyLogo(props: {
+  type?: string
+  darkmode?: boolean
+  style?: JSON
+}) {
   return (
     <>
       <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='88.393'
-        height='14.305'
         viewBox='0 0 88.393 14.305'
-        style={{ fill: fill }}
+        style={{ fill: props.darkmode ? '#FFF' : '#000', ...props.style }}
+        className='h-full w-full'
       >
         <path
           d='M3.266,2.908V5.736H7.833V8.2H3.266v3h5.14v2.617H0V.31H8.406v2.6Z'
@@ -52,3 +54,5 @@ export default function EliteAlleyS({ fill = '#FFF' }: { fill: string }) {
     </>
   )
 }
+
+export default EliteAlleyLogo

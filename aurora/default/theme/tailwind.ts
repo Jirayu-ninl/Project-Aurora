@@ -29,8 +29,8 @@ function Extend(Color: any, Plugins: [any]) {
         eel: '2560px',
       },
       fontFamily: {
-        display: ['Poppins'],
-        body: ['Poppins'],
+        display: ['Inter'],
+        body: ['Inter'],
       },
       letterSpacing: {
         tighter: '-.05em',
