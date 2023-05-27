@@ -1,6 +1,4 @@
 /* eslint-disable prettier/prettier */
-// import type { ReactElement, ReactNode } from 'react'
-import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
 // import { SessionProvider } from 'next-auth/react'
@@ -9,7 +7,7 @@ import type { AppProps } from 'next/app'
 import Tracker from '@aurora/libs/trackers'
 import Config from '@app/config'
 
-// import MainLayout from 'layouts/MainLayout'
+import Wrapper from './layouts/global/wrapper'
 import Toast from '@aurora/modules/toast'
 
 import 'react-toastify/dist/ReactToastify.css'
@@ -18,15 +16,8 @@ import './globals.css'
 
 export const metadata = { ...Config.metaData }
 
-type NextPageWithLayout = NextPage & {
-  disableFooter?: boolean
-  disableNav?: boolean
-}
-
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-  pageProps: any
-  children: any
+  children: React.ReactNode
 }
 
 const App = ({ children }: AppPropsWithLayout) => {
@@ -34,19 +25,15 @@ const App = ({ children }: AppPropsWithLayout) => {
 
   return (
     <html lang='en'>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Analytics />
         {/* <SessionProvider session={pageProps.session}> */}
-        {/* <MainLayout
-            showNav={!Component.disableNav}
-            showFooter={!Component.disableFooter}
-          > */}
-        {/* <PageTransition router={router}> */}
-        {/* <Component {...pageProps} /> */}
-        {children}
-        {/* </PageTransition> */}
-        <Toast />
-        {/* </MainLayout> */}
+        <Wrapper>
+          {/* <PageTransition router={router}> */}
+          {children}
+          {/* </PageTransition> */}
+          <Toast />
+        </Wrapper>
         {/* </SessionProvider> */}
       </body>
     </html>

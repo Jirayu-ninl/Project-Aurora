@@ -17,5 +17,5 @@ module.exports = {
   useTabs: false,
   vueIndentScriptAndStyle: false,
   plugins: [require('prettier-plugin-tailwindcss')],
-  tailwindConfig: './tailwind.config.js',
+  tailwindConfig: './tailwind.config.ts',
 }

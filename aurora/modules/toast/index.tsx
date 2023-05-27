@@ -18,18 +18,18 @@ const Toast = () => {
   return (
     <ToastContainer
       {...ToastStyle}
-      toastClassName={({ type }) =>
-        contextClass[type || 'default'] +
+      toastClassName={({ typeSwitch }) =>
+        contextClass[typeSwitch || 'default'] +
         'relative flex p-1 mt-3 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer bg-opacity-30 backdrop-filter backdrop-blur-md border border-white/10'
       }
       bodyClassName={() => 'text-sm font-white font-med block p-3 flex'}
       closeButton={ToastCloseButton}
-      // progressClassName={(css) => 'h-64'}
+    // progressClassName={(css) => 'h-64'}
     />
   )
 }
 
-const ToastCloseButton = ({ closeToast }) => (
+const ToastCloseButton = ({ closeToast }: { closeToast: any }) => (
   <div className='m-1 h-3 w-3 fill-white'>
     <svg onClick={closeToast} aria-hidden='true' viewBox='0 0 14 16'>
       <path

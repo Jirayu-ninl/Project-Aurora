@@ -1,9 +1,14 @@
-import create from 'zustand'
+import { create } from 'zustand'
 
-const store = (set) => ({
+const store: tStore = (set) => ({
   page: 'Home',
-  setPage: (p: string) => set(() => ({ page: p })),
+  setPage: (p) => set(() => ({ page: p })),
 })
+
+type tStore = (set: any) => {
+  page: string
+  setPage: (p: string) => void
+}
 
 const store_State = create(store)
 

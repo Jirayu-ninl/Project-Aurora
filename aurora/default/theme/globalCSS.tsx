@@ -1,5 +1,7 @@
 import { css, Global } from '@emotion/react'
-import Color from './color'
+import { theme } from '@app/config/defineConfig'
+
+const Color = theme.color
 
 const GlobalStyles = (Darkmode = true) => (
   <Global
