@@ -50,4 +50,10 @@ const Contacts = (Link: {
   },
 })
 
+export type tContact = {
+  name: string
+  icon: string
+  link: string
+}
+
 export default Contacts

@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
 import { UI } from '@app/store'
 import { app } from '@app/config/defineConfig'
 import MainLogo from '@app/assets/logo/IceJi'
@@ -11,6 +13,9 @@ import ArtScapeLogo from '@app/assets/logo/ArtScape'
 export default function about() {
   const _modalAppInfo = UI((state) => state.modalAppInfo)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
+
+  const OutsideRef = useRef(null)
+  useOnClickOutside(OutsideRef, () => _setModalAppInfo(false))
 
   const transitionConfig = (d: number) => ({
     duration: d,
@@ -28,9 +33,9 @@ export default function about() {
             }}
             transition={transitionConfig(0.3)}
             className='fixed z-90 flex h-screen w-screen  items-center justify-center  bg-white/10 backdrop-blur-md'
-            onClick={() => _setModalAppInfo(false)}
           >
             <motion.div
+              ref={OutsideRef}
               initial={{ y: '80%', opacity: 0 }}
               exit={{ y: '80%', opacity: 0 }}
               animate={{
@@ -65,6 +70,7 @@ export default function about() {
                     <Link
                       href='/changelog'
                       className='cursor-pointer text-2xs font-light opacity-80 hover:opacity-100 md:text-1xs'
+                      onClick={() => _setModalAppInfo(false)}
                     >
                       changelog
                     </Link>

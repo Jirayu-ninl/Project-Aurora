@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
 import { useState, useRef } from 'react'
-import clsx from 'clsx'
 import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
 import { motion } from 'framer-motion'
-import { State, User, UI } from '@app/store'
+import { State, UI } from '@app/store'
 import { NavDropdownState } from '@app/store/ui'
 import { navRoutes } from '@app/config/routes'
 // import UserBlock from './components/user'

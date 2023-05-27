@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion'
-import { config as animationConfig } from 'views/animations'
 
 export default function CreditText({ delay }: { delay: number }) {
-  const { Init, Animated, transition } = animationConfig.footerAnimation
+  const footerAnimation: any = {
+    Init: { visibility: 'hidden', y: 100 },
+    Animated: { visibility: 'visible', y: 0 },
+    transition: (delay: number) => ({ delay: delay }),
+  }
+
+  const { Init, Animated, transition } = footerAnimation
 
   return (
     <motion.p initial={Init} animate={Animated} transition={transition(delay)}>

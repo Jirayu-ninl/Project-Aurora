@@ -1,14 +1,16 @@
 'use client'
-
 import { useEffect, useRef } from 'react'
 import { GlobalStyles } from '@aurora/default/theme'
 import { getGPUTier } from 'detect-gpu'
-import { User, UI } from '@app/store'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false
+import { UI } from '@app/store'
 
 // IJN Components
 import Cursor from './components/cursor'
 import { NavBar /*, NavCanvas */ } from './components/nav'
-// import Footer from './footer'
+import Footer from './components/footer'
 import AppInfo from './components/appInfo'
 import IJNconsole from './misc/IJNconsole'
 import useAudio from './hooks/useAudio'
@@ -83,14 +85,8 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
         </>
       )}
       {children}
-      {/* {_showFooter && (
-                <Footer
-                    toggleAbout={_appInfo}
-                    setToggleAbout={_setAppInfo}
-                    toggleMenu={toggleMenu}
-                />
-            )} */}
-      {/* <Cursor /> */}
+      {_showFooter && <Footer />}
+      <Cursor />
       <audio ref={BGaudio} loop id='LayoutIdAudio'>
         <source src={AudioUrl} type='audio/mpeg' />
       </audio>
