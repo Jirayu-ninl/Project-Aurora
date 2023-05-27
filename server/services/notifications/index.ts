@@ -1,9 +1,9 @@
 const Notification = [
   {
-    title: 'New update: TheIceJi Next',
-    description: 'update IJN App 3.0, new UI, and all latest dependencies',
+    title: 'TheIceJi Aurora',
+    description: 'Redesigned and updated to NextJs 13 App-dir',
     link: '',
-    time: 'Apr 10, 2022',
+    time: 'Jun 19, 2023',
   },
   // {
   //   title: 'New blog post',

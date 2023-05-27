@@ -5,7 +5,7 @@ const store: tStore = (set) => ({
   setPage: (p) => set(() => ({ page: p })),
 })
 
-type tStore = (set: any) => {
+export type tStore = (set: any) => {
   page: string
   setPage: (p: string) => void
 }

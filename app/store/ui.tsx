@@ -7,7 +7,7 @@ const store: tStore = (set) => ({
   gpuTier: null,
   setGpuTier: (gpuTier) => set(() => ({ gpuTier: gpuTier })),
   dark: true,
-  toggleDark: (state) => set(() => ({ dark: !state.dark })),
+  setDark: (dark) => set(() => ({ dark: dark })),
   cursor: false,
   setCursor: (cursor) => set(() => ({ cursor: cursor })),
   isLoading: false,
@@ -17,8 +17,8 @@ const store: tStore = (set) => ({
   showFooter: true,
   setShowFooter: (show) => set(() => ({ showFooter: show })),
   navShowCanvas: false,
-  setNavShowCanvas: (toggle) => set(() => ({ navCanvas: toggle })),
-  navDropdown: false,
+  setNavShowCanvas: (show) => set(() => ({ navShowCanvas: show })),
+  navDropdown: 'none',
   setNavDropdown: (dropdown) => set(() => ({ navDropdown: dropdown })),
   modalAppInfo: false,
   setModalAppInfo: (toggle) => set(() => ({ modalAppInfo: toggle })),
@@ -26,15 +26,28 @@ const store: tStore = (set) => ({
   setAudio: (audio) => set(() => ({ audio: audio })),
 })
 
-type tStore = (set: any) => tStoreState
+export type tNavDropdownState = {
+  NONE: 'none'
+  NOTIFICATIONS: 'notifications'
+  CART: 'cart'
+  SETTINGS: 'settings'
+  USER: 'user'
+}
+export const NavDropdownState: tNavDropdownState = {
+  NONE: 'none',
+  NOTIFICATIONS: 'notifications',
+  CART: 'cart',
+  SETTINGS: 'settings',
+  USER: 'user',
+}
 
-type tStoreState = {
+export type tStoreState = {
   performance: number
   setPerformances: (level: number) => void
   gpuTier: TierResult | null
   setGpuTier: (gpuTier: TierResult | null) => void
   dark: boolean
-  toggleDark: (state: tStoreState) => void
+  setDark: (dark: boolean) => void
   isLoading: boolean
   setIsLoading: (isLoading: boolean) => void
   showNav: boolean
@@ -42,9 +55,9 @@ type tStoreState = {
   showFooter: boolean
   setShowFooter: (show: boolean) => void
   navShowCanvas: boolean
-  setNavShowCanvas: (toggle: boolean) => void
-  navDropdown: boolean | string
-  setNavDropdown: (dropdown: boolean | string) => void
+  setNavShowCanvas: (show: boolean) => void
+  navDropdown: string
+  setNavDropdown: (dropdown: string) => void
   modalAppInfo: boolean
   setModalAppInfo: (toggle: boolean) => void
   cursor: boolean
@@ -52,6 +65,8 @@ type tStoreState = {
   audio: boolean
   setAudio: (audio: boolean) => void
 }
+
+export type tStore = (set: any) => tStoreState
 
 const store_UI = create(store)
 

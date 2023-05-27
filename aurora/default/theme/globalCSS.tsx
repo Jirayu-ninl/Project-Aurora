@@ -23,7 +23,7 @@ const GlobalStyles = (Darkmode = true) => (
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.5;
-        color: ${Darkmode ? '#FFF' : '#000'};
+        color: ${Darkmode ? '#FFF' : Color.background[1]};
         background-color: ${Darkmode ? Color.background[1] : '#FFF'};
         font-family: 'Inter', 'Prompt';
         -webkit-text-size-adjust: 100%;
@@ -131,12 +131,12 @@ const GlobalStyles = (Darkmode = true) => (
       }
 
       a {
-        color: ${Darkmode ? '#FFF' : '#000'};
+        color: ${Darkmode ? '#FFF' : Color.background[1]};
         text-decoration: none;
       }
 
       a:hover {
-        color: ${Darkmode ? '#FFF' : '#000'};
+        color: ${Darkmode ? '#FFF' : Color.background[1]};
         text-decoration: none;
       }
 

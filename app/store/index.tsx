@@ -1,3 +1,6 @@
 export { default as User } from './user'
+export type * as tUser from './user'
 export { default as State } from './state'
+export type * as tState from './state'
 export { default as UI } from './ui'
+export type * as tUI from './ui'

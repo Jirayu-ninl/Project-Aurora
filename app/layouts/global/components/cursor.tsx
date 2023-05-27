@@ -1,24 +1,32 @@
 import { useEffect, useRef } from 'react'
-import { UI } from '@store'
+import { UI } from '@app/store'
 import { css } from '@emotion/css'
 
 function Cursor() {
-  const cursorType = UI((state) => state.cursor)
+  const _cursorType = UI((state) => state.cursor)
 
-  const cursor: any = useRef<HTMLDivElement>(null)
-  const cursor2: any = useRef<HTMLDivElement>(null)
+  const cursor = useRef<HTMLDivElement | null>(null)
+  const cursor2 = useRef<HTMLDivElement | null>(null)
 
-  const onMouseMove = (event: any) => {
+  const onMouseMove = (event: MouseEvent) => {
     const { clientX, clientY } = event
-    cursor.current.style.left = `${clientX}px`
-    cursor.current.style.top = `${clientY}px`
-    cursor2.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0px)`
+    if (cursor.current) {
+      cursor.current.style.left = `${clientX}px`
+      cursor.current.style.top = `${clientY}px`
+    }
+    if (cursor2.current) {
+      cursor2.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0px)`
+    }
   }
 
   useEffect(() => {
-    document.addEventListener('mousemove', onMouseMove)
+    const handleMouseMove = (event: MouseEvent) => {
+      onMouseMove(event)
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
     return () => {
-      document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mousemove', handleMouseMove)
     }
   }, [])
 
@@ -87,10 +95,10 @@ function Cursor() {
 
   return (
     <div>
-      <div className={`${MainCursor} ${cursorType}`} ref={cursor} />
+      <div className={`${MainCursor} ${_cursorType}`} ref={cursor} />
       <div
         ref={cursor2}
-        className={`${CursorBig} ${cursorType ? 'active' : ''}`}
+        className={`${CursorBig} ${_cursorType ? 'active' : ''}`}
       />
     </div>
   )

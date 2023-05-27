@@ -1,34 +1,32 @@
 import { create } from 'zustand'
-import Notification from '@server/services/notification'
+import Notifications from '@server/services/notifications'
 import Cart from '@server/shop/cart'
 
 const store: tStore = (set) => ({
   user: false,
   setUser: (n) => set(() => ({ user: n })),
-  notification: false,
-  setNotification: (n) => set(() => ({ notification: n })),
-  notificationItems: Notification,
-  setNotificationItems: (n) => set(() => ({ notificationItems: n })),
-  cart: false,
-  setCart: (n) => set(() => ({ cart: n })),
-  cartItems: Cart,
-  setCartItems: (n) => set(() => ({ cartItems: n })),
+  notifications: Notifications,
+  setNotifications: (v) => set(() => ({ notifications: v })),
+  addNotification: (i, state) => set(() => state.notifications.push(i)),
+  cart: Cart,
+  setCart: (v) => set(() => ({ cart: v })),
+  addCart: (i, state) => set(() => state.cart.push(i)),
 })
 
-type tStore = (set: any) => {
+export type tStore = (set: any) => tStoreState
+
+export type tStoreState = {
   user: tUser
   setUser: (n: tUser) => void
-  notification: number | boolean
-  setNotification: (n: number | boolean) => void
-  notificationItems: tNotification[] | boolean
-  setNotificationItems: (n: []) => void
-  cart: number | boolean
-  setCart: (n: number | boolean) => void
-  cartItems: tCart[] | boolean
-  setCartItems: (n: []) => void
+  notifications: tNotification[] | []
+  setNotifications: (v: tNotification[] | []) => void
+  addNotification: (i: never, state: tStoreState) => void
+  cart: tCart[] | []
+  setCart: (v: tCart[] | []) => void
+  addCart: (i: never, state: tStoreState) => void
 }
 
-type tUser =
+export type tUser =
   | {
       name: string
       email: string
@@ -36,14 +34,14 @@ type tUser =
     }
   | boolean
 
-type tNotification = {
+export type tNotification = {
   title: string
   description: string
   link: string
   time: string
 }
 
-type tCart = {
+export type tCart = {
   title: string
   description: string
   link: string

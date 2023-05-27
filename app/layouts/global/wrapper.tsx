@@ -6,8 +6,8 @@ import { getGPUTier } from 'detect-gpu'
 import { User, UI } from '@app/store'
 
 // IJN Components
-// import Cursor from './components/cursor'
-// import { NavBar, NavCanvas } from './nav'
+import Cursor from './components/cursor'
+import { NavBar /*, NavCanvas */ } from './components/nav'
 // import Footer from './footer'
 import AppInfo from './components/appInfo'
 import IJNconsole from './misc/IJNconsole'
@@ -15,18 +15,14 @@ import useAudio from './hooks/useAudio'
 
 const AudioUrl = '/audio/WebSound-01.mp3'
 
-type tWrapper = {
-  children: React.ReactNode
-  showNav?: React.ReactNode
-  showFooter?: React.ReactNode
-}
-
-const Wrapper = ({ children }: tWrapper) => {
-  const _setNotification = User((state) => state.setNotification)
-  const _NotificationItems = User((state) => state.notificationItems)
-  const _setCart = User((state) => state.setCart)
-  const _CartItems = User((state) => state.cartItems)
+const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const _setGpuTier = UI((state) => state.setGpuTier)
+  const _setDark = UI((state) => state.setDark)
+  const _dark = UI((state) => state.dark)
+  const _showNav = UI((state) => state.showNav)
+  const _showFooter = UI((state) => state.showFooter)
+  const _navShowCanvas = UI((state) => state.navShowCanvas)
+  const _setNavShowCanvas = UI((state) => state.setNavShowCanvas)
 
   useEffect(() => {
     async function initGPUdata() {
@@ -38,18 +34,31 @@ const Wrapper = ({ children }: tWrapper) => {
   }, [_setGpuTier])
 
   useEffect(() => {
-    _setNotification(
-      typeof _NotificationItems === 'boolean' ? 0 : _NotificationItems.length,
-    )
-    _setCart(typeof _CartItems === 'boolean' ? 0 : _CartItems.length)
-  }, [_setNotification, _NotificationItems, _setCart, _CartItems])
-
-  const Darkmode = true
-  // const [toggleMenu, setToggleMenu] = useState(false)
+    console.log(IJNconsole)
+  }, [])
 
   useEffect(() => {
     console.log(IJNconsole)
-  }, [])
+    function InitState() {
+      if (
+        !('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        _setDark(true)
+      } else {
+        _setDark(false)
+      }
+    }
+    InitState()
+  }, [_setDark])
+
+  useEffect(() => {
+    if (_dark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [_dark])
 
   const [audio] = useAudio()
   const BGaudio = useRef<HTMLAudioElement>(null)
@@ -61,19 +70,20 @@ const Wrapper = ({ children }: tWrapper) => {
   return (
     <>
       <AppInfo />
-      {GlobalStyles(Darkmode)}
-      {/* {showNav && (
-                <>
-                    <NavBar
-                        toggleMenu={toggleMenu}
-                        setToggleMenu={setToggleMenu}
-                        useAudio={useAudio}
-                    />
-                    <NavCanvas toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
-                </>
-            )} */}
+      {GlobalStyles(_dark)}
+      {_showNav && (
+        <>
+          <NavBar
+            useAudio={useAudio}
+            _navShowCanvas={_navShowCanvas}
+            _setNavShowCanvas={_setNavShowCanvas}
+            _dark={_dark}
+          />
+          {/* <NavCanvas toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} /> */}
+        </>
+      )}
       {children}
-      {/* {showFooter && (
+      {/* {_showFooter && (
                 <Footer
                     toggleAbout={_appInfo}
                     setToggleAbout={_setAppInfo}

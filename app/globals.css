@@ -18,12 +18,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  @apply Anim-2
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */;
 }
 
 .TH {
@@ -50,6 +51,10 @@ body {
 
 .AnimScale-sm {
   @apply xl:hover:scale-110;
+}
+
+.AnimOpacity-20 {
+  @apply opacity-20 hover:opacity-100;
 }
 
 .AnimOpacity-40 {
@@ -126,24 +131,28 @@ body {
   @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-primary-0 px-2 py-1 text-xs font-bold leading-none text-black;
 }
 
+.NotiBadge-primary-sm {
+  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-primary-0 px-1 py-0.5 text-xs font-bold leading-none text-black;
+}
+
 .NotiBadge-secondary {
   @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-secondary-0 px-2 py-1 text-xs font-bold leading-none text-white;
 }
 
 .Card-back-md-60 {
-  @apply rounded-md bg-black/60 backdrop-blur-md;
+  @apply rounded-md bg-white/60 dark:bg-black/60 backdrop-blur-md;
 }
 
 .Card-back-md-40 {
-  @apply rounded-md bg-black/40 backdrop-blur-md;
+  @apply rounded-md bg-white/40 dark:bg-black/40 backdrop-blur-md;
 }
 
 .Card-back-md-20 {
-  @apply rounded-md bg-black/20 backdrop-blur-md;
+  @apply rounded-md bg-white/20 dark:bg-black/20 backdrop-blur-md;
 }
 
 .Card-white-20 {
-  @apply rounded-md bg-white bg-opacity-20 backdrop-blur-md;
+  @apply rounded-md bg-white/20 backdrop-blur-md;
 }
 
 .Border-white-40 {
