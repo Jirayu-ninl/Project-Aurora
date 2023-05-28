@@ -1,7 +1,9 @@
+import { Title } from '@app/pages/home'
+
 export default function Home() {
   return (
-    <div className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1 className='text-primary-0'>Hi, I'm IceJi</h1>
-    </div>
+    <main className='relative h-screen w-screen overflow-hidden bg-[url(/page/placeholderBG.png)] bg-cover bg-center'>
+      <Title />
+    </main>
   )
 }

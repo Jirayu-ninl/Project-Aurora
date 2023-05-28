@@ -58,8 +58,8 @@ export default function IJNNav() {
             className='fixed left-0 top-0 z-80 w-screen px-5 py-4'
             ref={NavRef}
           >
-            <div className='flex h-12 rounded-md shadow-xl backdrop-blur-md xxl:h-16'>
-              <div className='flex h-full w-12 items-center bg-black/[0.07] dark:bg-white/[0.07] md:w-1/2 xl:w-[320px] el:w-[468px]'>
+            <div className='bg-back/[0.05] flex h-12 rounded-md shadow-md backdrop-blur-md dark:shadow-xl xxl:h-16'>
+              <div className='flex h-full w-12 items-center rounded-l-md bg-black/[0.07] dark:bg-white/[0.07] md:w-1/2 xl:w-[320px] el:w-[468px]'>
                 <div
                   className='flex h-full w-16 cursor-pointer items-center rounded-l-md bg-primary-0 p-2 lg:p-3'
                   onMouseEnter={() => {

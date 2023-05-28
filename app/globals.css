@@ -89,7 +89,7 @@ body {
 
 .page-home-mainTEXT {
   /* -webkit-text-stroke: 2px #fff; */
-  @apply text-6xl font-bold sm:-mb-2.5 sm:text-7xl md:text-8xl lg:-mb-5 lg:text-9xl xl:text-[160px] xxl:text-[200px];
+  @apply text-6xl font-bold sm:text-8xl md:text-10xl lg:text-[200px] xl:mb-8 xxl:mb-6 xxl:text-[200px] el:mb-0;
 }
 
 .page-home-mainTEXT > h1 {
