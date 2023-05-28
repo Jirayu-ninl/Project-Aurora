@@ -1,17 +1,18 @@
 'use client'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 // import { useSession, signOut } from 'next-auth/react'
 
 import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
+import useAudio from '@aurora/libs/hooks/useAudio'
 
 import { State, UI } from '@app/store'
 import { NavDropdownState } from '@app/store/ui'
+import { aNav, aNavChildren } from '@app/config/defineAnimationConfig'
 import { navRoutes } from '@app/config/routes'
 import IceJiLogo from '@app/assets/logo/IceJi'
 
-import useAudio from '@aurora/libs/hooks/useAudio'
 // import UserBlock from './components/user'
 import NotificationBlock from './components/notification'
 import CartBlock from './components/cart'
@@ -47,67 +48,79 @@ export default function IJNNav() {
 
   return (
     <>
-      {_showNav && (
-        <nav
-          className='fixed left-0 top-0 z-80 w-screen px-5 py-4'
-          ref={NavRef}
-        >
-          <div className='flex h-16 rounded-md shadow-xl backdrop-blur-md'>
-            <div className='flex h-full w-[468px] items-center bg-black/[0.07] dark:bg-white/[0.07]'>
-              <motion.div
-                className='flex h-full w-16 cursor-pointer items-center rounded-l-md bg-primary-0 p-3'
-                onMouseEnter={() => {
-                  _setCursor('logo')
-                }}
-                onMouseLeave={() => {
-                  _setCursor(false)
-                }}
-                onClick={() => _setNavShowCanvas(false)}
-              >
-                <Link href='/home'>
-                  <IceJiLogo />
-                </Link>
-              </motion.div>
-              <h6 className='hidden px-5 font-medium md:block'>{_page}</h6>
-            </div>
-            <div className='flex grow items-center justify-between rounded-r-md border border-black/[0.07] px-6 dark:border-white/[0.07]'>
-              <ul className='flex'>
-                {navRoutes.map((v, i) => (
-                  <NavMenuItem
-                    key={i}
-                    index={i}
-                    menuItem={v}
-                    navActiveState={navActiveState}
-                    setNavActiveState={setNavActiveState}
-                  />
-                ))}
-              </ul>
-              <div className='flex h-full items-center'>
-                <div className='mr-4 hidden h-4 space-x-6 fill-black dark:fill-white md:flex'>
-                  <CartBlock
-                    _setNavDropdown={_setNavDropdown}
-                    _navDropdown={_navDropdown}
-                    NavDropdownState={NavDropdownState}
-                  />
-                  <NotificationBlock
-                    _setNavDropdown={_setNavDropdown}
-                    _navDropdown={_navDropdown}
-                    NavDropdownState={NavDropdownState}
-                  />
-                  <Icon.SeparatorLine />
-                </div>
-                <motion.div
-                  className='flex h-4 space-x-4 fill-black dark:fill-white'
-                  onMouseEnter={() => _setCursor('logo')}
-                  onMouseLeave={() => _setCursor(false)}
-                  onClick={() => {
+      <AnimatePresence>
+        {_showNav && (
+          <motion.nav
+            initial={aNav(_showNav).initial}
+            exit={aNav(_showNav).exit}
+            animate={aNav(_showNav).animate}
+            transition={aNav(_showNav).transition(0)}
+            className='fixed left-0 top-0 z-80 w-screen px-5 py-4'
+            ref={NavRef}
+          >
+            <div className='flex h-16 rounded-md shadow-xl backdrop-blur-md'>
+              <div className='flex h-full w-[468px] items-center bg-black/[0.07] dark:bg-white/[0.07]'>
+                <div
+                  className='flex h-full w-16 cursor-pointer items-center rounded-l-md bg-primary-0 p-3'
+                  onMouseEnter={() => {
+                    _setCursor('logo')
+                  }}
+                  onMouseLeave={() => {
                     _setCursor(false)
                   }}
+                  onClick={() => _setNavShowCanvas(false)}
                 >
-                  <div className='cursor-pointer' onClick={audioToggle}>
-                    {audioPlaying ? <Icon.SoundOn /> : <Icon.SoundOff />}
+                  <Link href='/home'>
+                    <IceJiLogo />
+                  </Link>
+                </div>
+                <h6 className='hidden px-5 font-medium md:block'>{_page}</h6>
+              </div>
+              <div className='flex grow items-center justify-between rounded-r-md border border-black/[0.07] px-6 dark:border-white/[0.07]'>
+                <motion.ul className='flex'>
+                  {navRoutes.map((v, i) => (
+                    <NavMenuItem
+                      key={i}
+                      index={i}
+                      menuItem={v}
+                      navActiveState={navActiveState}
+                      setNavActiveState={setNavActiveState}
+                    />
+                  ))}
+                </motion.ul>
+                <div className='flex h-full items-center'>
+                  <div className='mr-4 hidden h-4 space-x-6 fill-black dark:fill-white md:flex'>
+                    <CartBlock
+                      _setNavDropdown={_setNavDropdown}
+                      _navDropdown={_navDropdown}
+                      NavDropdownState={NavDropdownState}
+                    />
+                    <NotificationBlock
+                      _setNavDropdown={_setNavDropdown}
+                      _navDropdown={_navDropdown}
+                      NavDropdownState={NavDropdownState}
+                    />
+                    <Icon.SeparatorLine />
                   </div>
-                  {/* {!session && (
+                  <motion.div
+                    className='flex h-4 space-x-4 fill-black dark:fill-white'
+                    onMouseEnter={() => _setCursor('logo')}
+                    onMouseLeave={() => _setCursor(false)}
+                    onClick={() => {
+                      _setCursor(false)
+                    }}
+                  >
+                    <motion.div
+                      className='cursor-pointer'
+                      onClick={audioToggle}
+                      initial={aNavChildren.initial}
+                      exit={aNavChildren.exit}
+                      animate={aNavChildren.animate}
+                      transition={aNavChildren.transition(0.9)}
+                    >
+                      {audioPlaying ? <Icon.SoundOn /> : <Icon.SoundOff />}
+                    </motion.div>
+                    {/* {!session && (
                 <Link
                   href='/app/portal'
                   onClick={() => _setNavShowCanvas(false)}
@@ -115,32 +128,41 @@ export default function IJNNav() {
                   <Icon.User />
                 </Link>
               )} */}
-                  <div
-                    className='cursor-pointer'
-                    onClick={() => {
-                      _setDark(!_dark)
-                      _setCursor(false)
-                      _setNavDropdown(NavDropdownState.NONE)
-                    }}
-                  >
-                    <Icon.Dark />
-                  </div>
-                  <div
-                    className='cursor-pointer'
-                    onClick={() => {
-                      _setNavShowCanvas(!_navShowCanvas)
-                      _setCursor(false)
-                      _setNavDropdown(NavDropdownState.NONE)
-                    }}
-                  >
-                    {_navShowCanvas ? <Icon.Close /> : <Icon.Menu />}
-                  </div>
-                </motion.div>
+                    <motion.div
+                      className='cursor-pointer'
+                      onClick={() => {
+                        _setDark(!_dark)
+                        _setCursor(false)
+                        _setNavDropdown(NavDropdownState.NONE)
+                      }}
+                      initial={aNavChildren.initial}
+                      exit={aNavChildren.exit}
+                      animate={aNavChildren.animate}
+                      transition={aNavChildren.transition(1)}
+                    >
+                      <Icon.Dark />
+                    </motion.div>
+                    <motion.div
+                      className='cursor-pointer'
+                      onClick={() => {
+                        _setNavShowCanvas(!_navShowCanvas)
+                        _setCursor(false)
+                        _setNavDropdown(NavDropdownState.NONE)
+                      }}
+                      initial={aNavChildren.initial}
+                      exit={aNavChildren.exit}
+                      animate={aNavChildren.animate}
+                      transition={aNavChildren.transition(1.1)}
+                    >
+                      {_navShowCanvas ? <Icon.Close /> : <Icon.Menu />}
+                    </motion.div>
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        </nav>
-      )}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </>
   )
 }

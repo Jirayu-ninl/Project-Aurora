@@ -1,6 +1,7 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
 import { contacts as contactsRaw } from '@app/config'
+import { aFooter } from '@app/config/defineAnimationConfig'
 import { SocialLinkIcon } from '../components'
 import { UI } from '@app/store'
 
@@ -9,13 +10,6 @@ export default function Footer() {
   const _showFooter = UI((state) => state.showFooter)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
   const _modalAppInfo = UI((state) => state.modalAppInfo)
-
-  const footerAnimation: any = {
-    Init: { visibility: 'hidden', y: 100 },
-    Animated: { visibility: 'visible', y: 0 },
-    transition: (delay: number) => ({ delay: delay }),
-  }
-  const { Init, Animated, transition } = footerAnimation
 
   const contacts = [
     contactsRaw.facebook,
@@ -53,17 +47,16 @@ export default function Footer() {
                   name={v.name}
                   icon={v.icon}
                   link={v.link}
-                  animationDelay={i === 0 ? 0 : i / 10}
-                  // animationDelay={0.3}
+                  index={i}
                   key={i}
                 />
               ))}
             </div>
             <div className='mt-2 flex items-center text-xs md:mt-0 md:text-base'>
               <motion.p
-                initial={Init}
-                animate={Animated}
-                transition={transition(0.2)}
+                initial={aFooter.initial}
+                animate={aFooter.animate}
+                transition={aFooter.transition(0.2)}
               >
                 <a
                   className='Anim AnimOpacity-60 cursor-pointer pr-2'

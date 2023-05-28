@@ -1,5 +1,6 @@
-import { AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { tUser, tUI } from '@app/store'
+import { aNavChildren } from '@app/config/defineAnimationConfig'
 
 import DropdownPopup from './dropdownPopup'
 
@@ -25,7 +26,13 @@ const ListPopupDropdown = ({
   const itemsCount = items.length
 
   return (
-    <span className='relative flex h-full cursor-pointer items-center'>
+    <motion.span
+      className='relative flex h-full cursor-pointer items-center'
+      initial={aNavChildren.initial}
+      exit={aNavChildren.exit}
+      animate={aNavChildren.animate}
+      transition={aNavChildren.transition(state === 'cart' ? 0.7 : 0.8)}
+    >
       <div
         className='h-[18px]'
         onClick={() => {
@@ -51,7 +58,7 @@ const ListPopupDropdown = ({
           />
         )}
       </AnimatePresence>
-    </span>
+    </motion.span>
   )
 }
 

@@ -9,29 +9,24 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
+import { aFooterSocialIcon } from '@app/config/defineAnimationConfig'
+
 export default function SocialLinkIcon({
   name,
   icon,
   link,
-  animationDelay,
+  index,
 }: {
   name: string
   icon: string
   link: string
-  animationDelay: number
+  index: number
 }) {
-  const footerAnimation: any = {
-    Init: { visibility: 'hidden', y: 100 },
-    Animated: { visibility: 'visible', y: 0 },
-    transition: (delay: number) => ({ delay: delay }),
-  }
-
-  const { Init, Animated, transition } = footerAnimation
   return (
     <motion.a
-      initial={Init}
-      animate={Animated}
-      transition={transition(animationDelay)}
+      initial={aFooterSocialIcon.initial}
+      animate={aFooterSocialIcon.animate}
+      transition={aFooterSocialIcon.transition(index === 0 ? 0 : index / 10)}
       href={link}
     >
       {SocialIconGenerator(name)}
@@ -80,7 +75,7 @@ const SocialIconGenerator = (name: string) => {
     return (
       <FontAwesomeIcon
         // icon={brands('discord')}
-        icon={faYoutube}
+        icon={faDiscord}
         size='xs'
         className='Anim AnimScale AnimOpacity-40 h-4'
       />
