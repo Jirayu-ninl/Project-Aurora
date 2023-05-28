@@ -2,7 +2,7 @@
 import type { AppProps } from 'next/app'
 
 // import { SessionProvider } from 'next-auth/react'
-// import PageTransition from '@aurora/libs/animations/hooks/usePageTransition'
+import PageTransition from '@aurora/views/animations/hooks/usePageTransition'
 
 import Tracker from '@aurora/libs/trackers'
 import Config from '@app/config'
@@ -29,9 +29,7 @@ const App = ({ children }: AppPropsWithLayout) => {
         <Analytics />
         {/* <SessionProvider session={pageProps.session}> */}
         <Wrapper>
-          {/* <PageTransition router={router}> */}
-          {children}
-          {/* </PageTransition> */}
+          <PageTransition>{children}</PageTransition>
           <Toast />
         </Wrapper>
         {/* </SessionProvider> */}

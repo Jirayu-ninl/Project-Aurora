@@ -7,7 +7,7 @@ import { Audio, Theme } from './components/setup'
 // IJN Components
 // import Cursor from './components/cursor'
 import { NavBar } from './components/nav'
-import Footer from './components/footer'
+import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {

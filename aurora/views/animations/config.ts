@@ -27,6 +27,31 @@ export const defineConfig = (
   }),
 })
 
+export const defineStaggerConfig = (
+  initial: tInitial,
+  animate: tAnimate,
+  exit: tExit,
+  ease: number[],
+  duration: number,
+) => ({
+  parent: {
+    hidden: initial,
+    show: (d: number) => ({
+      ...animate,
+      transition: {
+        duration: duration,
+        ease: ease || defaultV.EASE,
+        staggerChildren: d,
+      },
+    }),
+    exit: exit,
+  },
+  children: {
+    hidden: initial,
+    show: animate,
+  },
+})
+
 export const WrongZoomIn = (
   duration = 0.6,
   ease = [0.43, 0.13, 0.23, 0.96],

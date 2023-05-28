@@ -61,9 +61,10 @@ export default function AppInfo() {
                 <div className='text-2xs font-light md:text-base'>
                   <p className='font-medium'>Engine:</p>
                   <p className='opacity-60'>
-                    DyedIn UI 1.2 | IJN App 3.2
+                    Aurora Framework {app.Dependencies.Aurora}
                     <br />
-                    React 18.2.0 | NextJs 13.1.0
+                    React {app.Dependencies.React} | NextJs{' '}
+                    {app.Dependencies.NextJs}
                     <br />
                     Copyright&#169;TheIceJI.com <br />
                     All rights reserved
@@ -79,8 +80,12 @@ export default function AppInfo() {
                 </div>
                 <div className='hidden h-6 space-x-2 md:flex'>
                   <RealMotionLogo darkmode={true} />
-                  <IceJiTriangleLogo darkmode={true} />
-                  <ArtScapeLogo darkmode={true} />
+                  <Link href='https://theiceji.com/' className='h-full w-full'>
+                    <IceJiTriangleLogo darkmode={true} />
+                  </Link>
+                  <Link href='https://artscape.day/' className='h-full w-full'>
+                    <ArtScapeLogo darkmode={true} />
+                  </Link>
                 </div>
               </div>
               <div className='h-full w-[415px] overflow-hidden rounded-lg'>

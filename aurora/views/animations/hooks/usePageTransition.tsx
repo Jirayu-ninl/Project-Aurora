@@ -1,6 +1,7 @@
+'use client'
 import { motion } from 'framer-motion'
 
-const UsePageTransition = ({ children, router }) => {
+const UsePageTransition = ({ children }: { children: React.ReactNode }) => {
   const Variants = {
     pageInitial: { opacity: 0 },
     pageAnimate: { opacity: 1 },
@@ -13,7 +14,8 @@ const UsePageTransition = ({ children, router }) => {
 
   return (
     <motion.div
-      key={router.route}
+      // key={router.route}
+      key='TransitionPages'
       initial='pageInitial'
       animate='pageAnimate'
       transition={Transition}

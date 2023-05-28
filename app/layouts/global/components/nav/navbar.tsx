@@ -1,5 +1,4 @@
 'use client'
-import Link from 'next/link'
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 // import { useSession, signOut } from 'next-auth/react'
@@ -29,6 +28,7 @@ export default function IJNNav() {
   const _setNavDropdown = UI((state) => state.setNavDropdown)
   const _navDropdown = UI((state) => state.navDropdown)
   const _page = State((state) => state.page)
+  const _setModalAppInfo = UI((state) => state.setModalAppInfo)
 
   const NavRef = useRef(null)
   useOnClickOutside(NavRef, () => _setNavDropdown(NavDropdownState.NONE))
@@ -68,11 +68,12 @@ export default function IJNNav() {
                   onMouseLeave={() => {
                     _setCursor(false)
                   }}
-                  onClick={() => _setNavShowCanvas(false)}
+                  onClick={() => {
+                    _setNavShowCanvas(false)
+                    _setModalAppInfo(true)
+                  }}
                 >
-                  <Link href='/home'>
-                    <IceJiLogo />
-                  </Link>
+                  <IceJiLogo />
                 </div>
                 <h6 className='hidden px-5 font-medium md:block'>{_page}</h6>
               </div>

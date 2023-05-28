@@ -3,10 +3,10 @@ export const app = {
   VERSION: '2023.05.01',
   UPDATE_DATE: 'May 1, 2023',
   Dependencies: {
-    Aurora: '1.0b',
+    Aurora: '1.0',
     React: '18.2.0',
-    NextJs: '13.3.1',
-    ThreeJs: '151.3',
+    NextJs: '13.4.3',
+    ThreeJs: '152.2',
   },
   GOOGLE_ANALYTICS: 'UA-102194632-3',
   GOOGLE_TAG_MANAGER: 'GTM-KWRQQVP',

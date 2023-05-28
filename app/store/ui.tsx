@@ -14,8 +14,6 @@ const store: tStore = (set) => ({
   setIsLoading: (isLoading) => set(() => ({ isLoading: isLoading })),
   showNav: true,
   setShowNav: (show) => set(() => ({ showNav: show })),
-  showFooter: true,
-  setShowFooter: (show) => set(() => ({ showFooter: show })),
   navShowCanvas: false,
   setNavShowCanvas: (show) => set(() => ({ navShowCanvas: show })),
   navDropdown: 'none',
@@ -24,6 +22,16 @@ const store: tStore = (set) => ({
   setModalAppInfo: (toggle) => set(() => ({ modalAppInfo: toggle })),
   audio: false,
   setAudio: (audio) => set(() => ({ audio: audio })),
+  showFooter: true,
+  setShowFooter: (show) => set(() => ({ showFooter: show })),
+  footerOption: {
+    layout: 'main',
+    fixed: true,
+    background: false,
+    showContact: true,
+    showCredit: true,
+  },
+  setFooterOption: (options) => set(() => ({ footerOption: options })),
 })
 
 export type tNavDropdownState = {
@@ -52,8 +60,6 @@ export type tStoreState = {
   setIsLoading: (isLoading: boolean) => void
   showNav: boolean
   setShowNav: (show: boolean) => void
-  showFooter: boolean
-  setShowFooter: (show: boolean) => void
   navShowCanvas: boolean
   setNavShowCanvas: (show: boolean) => void
   navDropdown: string
@@ -64,6 +70,18 @@ export type tStoreState = {
   setCursor: (cursor: string | boolean) => void
   audio: boolean
   setAudio: (audio: boolean) => void
+  showFooter: boolean
+  setShowFooter: (show: boolean) => void
+  footerOption: tFooterOption
+  setFooterOption: (options: tFooterOption) => void
+}
+
+type tFooterOption = {
+  layout: string
+  fixed: boolean
+  background: boolean | string
+  showContact: boolean
+  showCredit: boolean
 }
 
 export type tStore = (set: any) => tStoreState

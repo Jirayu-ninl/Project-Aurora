@@ -14,7 +14,7 @@ const AudioComp = () => {
 
   return (
     <>
-      <audio ref={BGaudio} loop id='LayoutIdAudio'>
+      <audio ref={BGaudio} loop key='audioBG'>
         <source src={AudioUrl} type='audio/mpeg' />
       </audio>
     </>

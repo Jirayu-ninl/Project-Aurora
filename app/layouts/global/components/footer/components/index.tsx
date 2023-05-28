@@ -1,2 +1,2 @@
-export { default as SocialLinkIcon } from './socialLinkIcon'
-export { default as CreditText } from './creditText'
+export { default as ContactBlock } from './contactBlock'
+export { default as CreditBlock } from './creditBlock'
