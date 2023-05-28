@@ -25,7 +25,7 @@ function NavMenuItem({
       animate={aNavChildren.animate}
       transition={aNavChildren.transition(index / 10)}
       className={clsx(
-        'mr-12 flex',
+        'mr-6 flex xxl:mr-10 el:mr-12',
         navActiveState.id !== index && 'Anim AnimOpacity-20',
       )}
     >
@@ -42,10 +42,12 @@ function NavMenuItem({
           >
             {menuItem.number}
           </p>
-          <p className='pl-3 text-sm font-bold'>{menuItem.title}</p>
+          <p className='pl-1 text-2xs font-bold xxl:text-sm el:pl-3'>
+            {menuItem.title}
+          </p>
         </div>
         {navActiveState.id === index && (
-          <div className='relative mt-2'>
+          <div className='relative mt-1 el:mt-2'>
             <motion.div
               className='Anim-2 absolute h-0.5 bg-primary-0'
               // style={{ width: navActiveState.scrollProgress + '%' }}
