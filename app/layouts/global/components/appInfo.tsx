@@ -1,3 +1,4 @@
+'use client'
 import { useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,7 +11,7 @@ import RealMotionLogo from '@app/assets/logo/RealMotion'
 import IceJiTriangleLogo from '@app/assets/logo/IceJiTriangle'
 import ArtScapeLogo from '@app/assets/logo/ArtScape'
 
-export default function about() {
+export default function AppInfo() {
   const _modalAppInfo = UI((state) => state.modalAppInfo)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
 

@@ -1,4 +1,4 @@
 import NavBar from './navbar'
-import NavCanvas from './canvas'
+// import NavCanvas from './canvas'
 
-export { NavBar, NavCanvas }
+export { NavBar /* NavCanvas */ }
