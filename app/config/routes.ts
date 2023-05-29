@@ -1,11 +1,11 @@
-export type tNavRoute = {
+export type tNavCanvasRoute = {
   id: number
   number: string
   title: string
   path: string
 }
 
-export const navRoutes: tNavRoute[] = [
+export const navCanvasRoutes: tNavCanvasRoute[] = [
   {
     id: 0,
     number: '01',

@@ -9,7 +9,7 @@ import useAudio from '@aurora/libs/hooks/useAudio'
 import { State, UI } from '@app/store'
 import { NavDropdownState } from '@app/store/ui'
 import { aNav, aNavChildren } from '@app/config/defineAnimationConfig'
-import { navRoutes } from '@app/config/routes'
+import { navCanvasRoutes } from '@app/config/routes'
 import IceJiLogo from '@app/assets/logo/IceJi'
 
 // import UserBlock from './components/user'
@@ -25,8 +25,9 @@ export default function IJNNav() {
   const _showNav = UI((state) => state.showNav)
   const _navShowCanvas = UI((state) => state.navShowCanvas)
   const _setNavShowCanvas = UI((state) => state.setNavShowCanvas)
-  const _setNavDropdown = UI((state) => state.setNavDropdown)
   const _navDropdown = UI((state) => state.navDropdown)
+  const _setNavDropdown = UI((state) => state.setNavDropdown)
+  const _navRoute = State((state) => state.navRoute)
   const _page = State((state) => state.page)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
 
@@ -79,7 +80,7 @@ export default function IJNNav() {
               </div>
               <div className='flex grow items-center justify-end rounded-r-md border border-black/[0.07] px-6 dark:border-white/[0.07] xl:justify-between'>
                 <motion.ul className='hidden xl:flex'>
-                  {navRoutes.map((v, i) => (
+                  {_navRoute.map((v, i) => (
                     <NavMenuItem
                       key={i}
                       index={i}
