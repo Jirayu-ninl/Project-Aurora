@@ -14,6 +14,7 @@ import ArtScapeLogo from '@app/assets/logo/ArtScape'
 export default function AppInfo() {
   const _modalAppInfo = UI((state) => state.modalAppInfo)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
+  const _dark = UI((state) => state.dark)
 
   const OutsideRef = useRef(null)
   useOnClickOutside(OutsideRef, () => _setModalAppInfo(false))
@@ -33,7 +34,7 @@ export default function AppInfo() {
               opacity: _modalAppInfo ? 1 : 0,
             }}
             transition={transitionConfig(0.3)}
-            className='fixed z-90 flex h-screen w-screen  items-center justify-center  bg-white/10 backdrop-blur-md'
+            className='fixed z-90 flex h-screen w-screen  items-center justify-center bg-black/10 backdrop-blur-md dark:bg-white/10'
           >
             <motion.div
               ref={OutsideRef}
@@ -44,16 +45,18 @@ export default function AppInfo() {
                 opacity: _modalAppInfo ? 1 : 0,
               }}
               transition={transitionConfig(0.8)}
-              className='flex h-[182px] w-[339px] overflow-hidden rounded-lg bg-[#171717] p-4 drop-shadow-xl md:h-[500px] md:w-[750px] '
+              className='flex h-[182px] w-[339px] overflow-hidden rounded-lg bg-white p-2 drop-shadow-xl dark:bg-[#171717] md:h-[500px] md:w-[750px] md:p-4 '
             >
-              <div className='flex h-full flex-grow flex-col items-start justify-between p-2 md:p-4'>
-                <div className='flex h-[57px] w-full items-center'>
-                  <div className='mr-2 h-full w-[57px] rounded-lg bg-primary-0 p-2.5'>
+              <div className='flex h-full flex-grow flex-col items-start justify-between p-1 md:p-4'>
+                <div className='flex h-9 w-full items-center md:h-[57px]'>
+                  <div className='mr-2 h-full w-[38px] rounded-lg bg-primary-0 p-1 md:w-[57px] md:p-2.5'>
                     <MainLogo darkmode={false} />
                   </div>
                   <div>
-                    <h2 className='text-xl font-semibold'>TheIceJi Aurora</h2>
-                    <p className='text-xs font-light'>
+                    <h2 className='text-xs font-semibold md:text-xl'>
+                      TheIceJi Aurora
+                    </h2>
+                    <p className='text-2xs font-light md:text-xs'>
                       Ver {app.VERSION} | {app.UPDATE_DATE}
                     </p>
                   </div>
@@ -78,17 +81,17 @@ export default function AppInfo() {
                     </Link>
                   </p>
                 </div>
-                <div className='hidden h-6 space-x-2 md:flex'>
-                  <RealMotionLogo darkmode={true} />
+                <div className='flex h-3 md:h-6 md:space-x-2'>
+                  <RealMotionLogo darkmode={_dark} />
                   <Link href='https://theiceji.com/' className='h-full w-full'>
-                    <IceJiTriangleLogo darkmode={true} />
+                    <IceJiTriangleLogo darkmode={_dark} />
                   </Link>
                   <Link href='https://artscape.day/' className='h-full w-full'>
-                    <ArtScapeLogo darkmode={true} />
+                    <ArtScapeLogo darkmode={_dark} />
                   </Link>
                 </div>
               </div>
-              <div className='h-full w-[415px] overflow-hidden rounded-lg'>
+              <div className='h-full w-[150px] overflow-hidden rounded-lg md:w-[415px]'>
                 <Image
                   src='/gui/appInfo.jpg'
                   alt='TheIceJi Splash Screen'
