@@ -9,7 +9,7 @@ import useAudio from '@aurora/libs/hooks/useAudio'
 import { State, UI } from '@app/store'
 import { NavDropdownState } from '@app/store/ui'
 import { aNav, aNavChildren } from '@app/config/defineAnimationConfig'
-import { navCanvasRoutes } from '@app/config/routes'
+// import { navCanvasRoutes } from '@app/config/routes'
 import IceJiLogo from '@app/assets/logo/IceJi'
 
 // import UserBlock from './components/user'

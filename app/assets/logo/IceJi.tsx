@@ -1,7 +1,7 @@
-const Logo = (props: { type?: string; darkmode?: boolean; style?: JSON }) => {
+const Logo = (props: { type?: string; dark?: boolean; style?: JSON }) => {
   if (props.type === 'stroke') {
-    const solid = { fill: props.darkmode ? '#FFF' : '#262626', opacity: 0.1 }
-    const stroke = { stroke: props.darkmode ? '#FFF' : '#262626' }
+    const solid = { fill: props.dark ? '#FFF' : '#262626', opacity: 0.1 }
+    const stroke = { stroke: props.dark ? '#FFF' : '#262626' }
     return (
       <>
         <svg
@@ -53,12 +53,12 @@ const Logo = (props: { type?: string; darkmode?: boolean; style?: JSON }) => {
     )
   } else {
     const cls1 = { opacity: 0.1 }
-    const cls2 = { fill: props.darkmode ? '#FFF' : '#262626' }
+    const cls2 = { fill: props.dark ? '#FFF' : '#262626' }
 
     return (
       <svg
         viewBox='0 0 1024 1024'
-        style={{ fill: props.darkmode ? '#FFF' : '#262626', ...props.style }}
+        style={{ fill: props.dark ? '#FFF' : '#262626', ...props.style }}
         className='h-full w-full'
       >
         <path
