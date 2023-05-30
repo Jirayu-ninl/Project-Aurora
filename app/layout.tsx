@@ -28,15 +28,12 @@ const App = ({ children }: AppPropsWithLayout) => {
   return (
     <html lang='en'>
       <body suppressHydrationWarning={true}>
-        {/* <CreateProgress /> */}
         <Analytics />
         {/* <SessionProvider session={pageProps.session}> */}
-        {/* <CreateProgress> */}
         <Wrapper>
           <PageTransition>{children}</PageTransition>
           <Toast />
         </Wrapper>
-        {/* </CreateProgress> */}
         {/* </SessionProvider> */}
       </body>
     </html>
