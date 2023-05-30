@@ -5,5 +5,5 @@ import PluginTypography from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
 
 export default {
-    ...TailwindDefaultConfig.Extend(theme.color, [PluginTypography])
+  ...TailwindDefaultConfig.Extend(theme.color, [PluginTypography]),
 } /* satisfies Config */

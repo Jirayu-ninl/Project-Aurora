@@ -29,8 +29,8 @@ function Extend(Color: any, Plugins: [any]) {
         eel: '2560px',
       },
       fontFamily: {
-        display: ['Inter'],
-        body: ['Inter'],
+        inter: ['var(--font-inter)'],
+        prompt: ['var(--font-prompt)'],
       },
       letterSpacing: {
         tighter: '-.05em',
