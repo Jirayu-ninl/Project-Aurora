@@ -4,6 +4,7 @@ function IceJiLoading(props: {
   dark?: boolean
   fillInner?: boolean
   pathClassName?: string
+  glow?: boolean
 }) {
   return (
     <>
@@ -11,7 +12,7 @@ function IceJiLoading(props: {
         style={{ ...props.style }}
         viewBox='0 0 212 212'
         fill='none'
-        className='h-full w-full'
+        className='h-full w-full overflow-visible'
       >
         <path
           opacity='0.05'
@@ -23,15 +24,29 @@ function IceJiLoading(props: {
           stroke={props.dark && !props.fillInner ? 'white' : 'black'}
           className={clsx(props.pathClassName && props.pathClassName)}
         />
+        {props.glow && (
+          <>
+            <path
+              d='M105.977 209.93L16.749 158.414V55.3828L105.979 3.86719L195.21 55.3828V158.414L105.977 209.93ZM23.5624 154.48L105.977 202.062L188.399 154.48V59.3164L105.977 11.7344L23.5624 59.3164V154.48Z'
+              style={{ strokeWidth: 2 }}
+              className='stroke-primary-0 blur-sm'
+            />
+            <path
+              d='M105.977 209.93L16.749 158.414V55.3828L105.979 3.86719L195.21 55.3828V158.414L105.977 209.93ZM23.5624 154.48L105.977 202.062L188.399 154.48V59.3164L105.977 11.7344L23.5624 59.3164V154.48Z'
+              style={{ strokeWidth: 5 }}
+              className='stroke-primary-0 blur-md'
+            />
+          </>
+        )}
         <path
           d='M20.3018 57.4121L47.5243 73.1299V140.753L20.3018 156.468V57.4121Z'
           fill={props.dark && props.fillInner ? 'white' : 'black'}
-          fill-opacity='0.2'
+          fillOpacity='0.2'
         />
         <path
           d='M164.648 73.1299L191.87 57.4121V156.468L106.087 205.996V174.563L164.907 141.018L164.648 73.1299Z'
           fill={props.dark && props.fillInner ? 'white' : 'black'}
-          fill-opacity='0.2'
+          fillOpacity='0.2'
         />
         <path
           d='M106.828 106.859H105.124V204.369H106.828V106.859Z'

@@ -10,14 +10,6 @@ export const app = {
   },
   GOOGLE_ANALYTICS: 'UA-102194632-3',
   GOOGLE_TAG_MANAGER: 'GTM-KWRQQVP',
-  Theme: {
-    Color: {
-      primary: '#FFC900',
-      secondary: '',
-      tertiary: '',
-      quaternary: '',
-    },
-  },
   Functions: {
     useThree: true,
     useAudio: true,

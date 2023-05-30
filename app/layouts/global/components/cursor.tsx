@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 import { UI } from '@app/store'
 import { css } from '@emotion/css'

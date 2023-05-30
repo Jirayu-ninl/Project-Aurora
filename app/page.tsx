@@ -30,11 +30,14 @@ export default function Home() {
       _setAudio(true)
       const Go = () => {
         setTimeout(() => setIsPush(true), 100)
-        setTimeout(() => router.push('/home'), 600)
+        setTimeout(() => {
+          _setCursor(false)
+          router.push('/home')
+        }, 600)
       }
       Go()
     }
-  }, [_setShowNav, _setShowFooter, _setAudio, router, isClicked])
+  }, [_setShowNav, _setShowFooter, _setAudio, _setCursor, router, isClicked])
 
   useEffect(() => {
     const controls = animate(0, 100, {
@@ -64,11 +67,12 @@ export default function Home() {
           className='relative flex h-screen w-screen items-center justify-center overflow-hidden bg-white dark:bg-black'
         >
           <div className='flex h-[330px] flex-col justify-between'>
-            <LogoBlock />
+            <LogoBlock isLoaded={isLoaded} />
             <ProgressBlock
               isLoaded={isLoaded}
               progress={progress}
               setIsClicked={setIsClicked}
+              _setCursor={_setCursor}
             />
           </div>
         </motion.main>
@@ -79,8 +83,8 @@ export default function Home() {
   )
 }
 
-const LogoBlock = () => (
-  <div className='mb-8 h-48 w-48'>
+const LogoBlock = ({ isLoaded }: { isLoaded: boolean }) => (
+  <div className='mb-8 h-48 w-48 overflow-visible'>
     <div className='relative w-full'>
       <motion.div
         className='absolute'
@@ -94,16 +98,45 @@ const LogoBlock = () => (
       >
         <IceJiLogo dark={true} />
       </motion.div>
-      <motion.div
-        animate={{ strokeDasharray: 100 }}
-        initial={{ strokeDasharray: 50 }}
-        transition={{
-          duration: 25,
-          ease: [0.33, 1, 0.68, 1],
-        }}
-      >
-        <IceJiLoadingLogo dark={true} style={{ gap: 20 }} fillInner={false} />
-      </motion.div>
+      <AnimatePresence>
+        {!isLoaded && (
+          <motion.div
+            animate={{ strokeDasharray: 1000 }}
+            initial={{ strokeDasharray: 50 }}
+            transition={{
+              duration: 15,
+              ease: [0.33, 1, 0.68, 1],
+            }}
+          >
+            <IceJiLoadingLogo
+              dark={true}
+              style={{ gap: 20 }}
+              fillInner={false}
+              pathClassName='stroke-primary-0'
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isLoaded && (
+          <motion.div
+            animate={{ strokeDasharray: 50 }}
+            initial={{ strokeDasharray: 100 }}
+            transition={{
+              duration: 1,
+              ease: [0.33, 1, 0.68, 1],
+              repeat: Infinity,
+            }}
+          >
+            <IceJiLoadingLogo
+              dark={true}
+              style={{ gap: 40 }}
+              fillInner={false}
+              glow={true}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   </div>
 )
@@ -112,23 +145,27 @@ const ProgressBlock = ({
   isLoaded,
   progress,
   setIsClicked,
+  _setCursor,
 }: {
   isLoaded: boolean
   progress: string
   setIsClicked: Dispatch<SetStateAction<boolean>>
+  _setCursor: (c: boolean | string) => void
 }) => (
   <>
     <AnimatePresence>
       {isLoaded ? (
-        <motion.button
+        <motion.a
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.1 }}
-          className='Btn-white-40 Anim AnimOpacity-60 mx-auto mb-auto uppercase'
+          className='Btn-white-40 Anim AnimOpacity-60 mx-auto mb-auto cursor-pointer uppercase hover:bg-primary-0 hover:text-black hover:shadow-lg hover:shadow-primary-0'
           onClick={() => setIsClicked(true)}
+          // onMouseEnter={() => _setCursor('logo')}
+          // onMouseLeave={() => _setCursor(false)}
         >
           Start journey
-        </motion.button>
+        </motion.a>
       ) : (
         <motion.div
           className='w-full'

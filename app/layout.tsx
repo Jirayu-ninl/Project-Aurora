@@ -2,16 +2,18 @@
 import type { AppProps } from 'next/app'
 
 // import { SessionProvider } from 'next-auth/react'
-import PageTransition from '@aurora/views/animations/hooks/usePageTransition'
-
 import Tracker from '@aurora/libs/trackers'
+import Toast from '@aurora/modules/toast'
+import PageTransition from '@aurora/views/animations/hooks/usePageTransition'
+// import CreateProgress from '@aurora/modules/nprogress'
+
 import Config from '@app/config'
 
 import Wrapper from './layouts/global/wrapper'
-import Toast from '@aurora/modules/toast'
 
-import 'react-toastify/dist/ReactToastify.css'
 import 'tailwindcss/tailwind.css'
+import 'react-toastify/dist/ReactToastify.css'
+import 'nprogress/nprogress.css'
 import './globals.css'
 
 export const metadata = { ...Config.metaData }
@@ -26,12 +28,15 @@ const App = ({ children }: AppPropsWithLayout) => {
   return (
     <html lang='en'>
       <body suppressHydrationWarning={true}>
+        {/* <CreateProgress /> */}
         <Analytics />
         {/* <SessionProvider session={pageProps.session}> */}
+        {/* <CreateProgress> */}
         <Wrapper>
           <PageTransition>{children}</PageTransition>
           <Toast />
         </Wrapper>
+        {/* </CreateProgress> */}
         {/* </SessionProvider> */}
       </body>
     </html>
