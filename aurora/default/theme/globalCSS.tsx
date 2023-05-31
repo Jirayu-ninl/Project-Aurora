@@ -25,7 +25,8 @@ const GlobalStyles = (Darkmode = true) => (
         line-height: 1.5;
         color: ${Darkmode ? '#FFF' : Color.background[1]};
         background-color: ${Darkmode ? Color.background[1] : '#FFF'};
-        font-family: 'Inter', 'Prompt';
+        // font-family: 'Inter', 'Prompt';
+        font-family: var(--font-inter), var(--font-prompt);
         -webkit-text-size-adjust: 100%;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         text-rendering: optimizeLegibility;
