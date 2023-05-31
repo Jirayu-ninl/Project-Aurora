@@ -90,7 +90,7 @@ export default function IJNNav() {
                     />
                   ))}
                 </motion.ul>
-                <div className='flex h-full items-center'>
+                <div className='ml-auto flex h-full w-[200px] items-center justify-end xxl:w-[180px]'>
                   <div className='mr-4 flex h-4 space-x-6 fill-black dark:fill-white'>
                     <CartBlock
                       _setNavDropdown={_setNavDropdown}

@@ -50,7 +50,7 @@ export default function AppInfo() {
               <div className='flex h-full flex-grow flex-col items-start justify-between p-1 md:p-4'>
                 <div className='flex h-9 w-full items-center md:h-[57px]'>
                   <div className='mr-2 h-full w-[38px] rounded-lg bg-primary-0 p-1 md:w-[57px] md:p-2.5'>
-                    <MainLogo darkmode={false} />
+                    <MainLogo dark={false} />
                   </div>
                   <div>
                     <h2 className='text-xs font-semibold md:text-xl'>
@@ -81,8 +81,10 @@ export default function AppInfo() {
                     </Link>
                   </p>
                 </div>
-                <div className='flex h-3 md:h-6 md:space-x-2'>
-                  <RealMotionLogo darkmode={_dark} />
+                <div className='flex h-3 w-[90px] space-x-2 md:h-6 md:w-[180px]'>
+                  <Link href='https://realmotion.co/' className='h-full w-full'>
+                    <RealMotionLogo darkmode={_dark} />
+                  </Link>
                   <Link href='https://theiceji.com/' className='h-full w-full'>
                     <IceJiTriangleLogo darkmode={_dark} />
                   </Link>
@@ -102,7 +104,7 @@ export default function AppInfo() {
                     'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
                   }
                   style={{ objectFit: 'cover' }}
-                  className='duration-300 hover:scale-110 hover:duration-150'
+                  className='h-full duration-300 hover:scale-110 hover:duration-150'
                 />
               </div>
             </motion.div>

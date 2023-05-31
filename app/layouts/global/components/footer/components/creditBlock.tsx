@@ -13,14 +13,14 @@ export default function CreditText() {
         animate={aFooter.animate}
         transition={aFooter.transition(0.2)}
       >
-        <a
+        <button
           className='Anim AnimOpacity-60 cursor-pointer pr-2'
           onClick={() => {
             _setModalAppInfo(!_modalAppInfo)
           }}
         >
           TheIceJI Aurora
-        </a>
+        </button>
         <span className='opacity-40'>
           | Copyright©{new Date().getFullYear()} by{' '}
         </span>
