@@ -1,4 +1,4 @@
-import { UI } from '@app/store'
+import { UI } from '@global/store'
 
 export default function useAudio(): [boolean, () => void] {
   const audio = UI((state) => state.audio)

@@ -4,7 +4,7 @@ import { pageview } from './functions'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from 'react'
-import Config from '@app/config'
+import Config from '@global/config'
 
 export default function Analytics() {
   const pathname = usePathname()

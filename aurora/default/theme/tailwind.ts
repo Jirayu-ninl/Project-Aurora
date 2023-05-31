@@ -13,7 +13,8 @@
 function Extend(Color: any, Plugins: [any]) {
   return {
     content: [
-      './app/**/**/**/*.{js,ts,jsx,tsx}',
+      './app/**/**/**/**/**/*.{js,ts,jsx,tsx}',
+      './global/**/**/**/**/*.{js,ts,jsx,tsx}',
       './aurora/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
     ],
     darkMode: 'class',

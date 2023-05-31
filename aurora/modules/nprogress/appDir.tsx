@@ -2,7 +2,7 @@
 'use client'
 import { useEffect } from 'react'
 import NProgress from 'nprogress'
-import { theme } from '@app/config/defineConfig'
+import { theme } from '@global/config/defineConfig'
 
 type PushStateInput = [
   data: any,
