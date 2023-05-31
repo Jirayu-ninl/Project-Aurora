@@ -14,8 +14,7 @@ function Extend(Color: any, Plugins: [any]) {
   return {
     content: [
       './app/**/**/**/*.{js,ts,jsx,tsx}',
-      './resources/views/**/**/**/**/*.{js,ts,jsx,tsx}',
-      './resources/contents/mock/**/*.{js,ts,jsx,tsx}',
+      './aurora/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
     ],
     darkMode: 'class',
     theme: {
