@@ -15,25 +15,25 @@ export const navCanvasRoutes: tNavCanvasRoute[] = [
   {
     id: 1,
     number: '02',
-    title: 'ABOUT',
-    path: '/about',
-  },
-  {
-    id: 2,
-    number: '03',
-    title: 'SKILLs',
-    path: '/about/skills',
-  },
-  {
-    id: 3,
-    number: '03',
     title: 'PROJECTS',
     path: '/project',
   },
   {
-    id: 4,
-    number: '04',
+    id: 2,
+    number: '03',
     title: 'BLOG',
     path: '/post',
+  },
+  {
+    id: 3,
+    number: '04',
+    title: 'ABOUT',
+    path: '/about',
+  },
+  {
+    id: 4,
+    number: '05',
+    title: 'APP',
+    path: '/app',
   },
 ]

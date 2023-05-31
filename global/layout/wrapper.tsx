@@ -8,7 +8,7 @@ import { Audio, Theme } from './components/setup'
 
 // IJN Components
 import Cursor from './components/cursor'
-import { NavBar } from './components/nav'
+import { NavBar, NavCanvas } from './components/nav'
 import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
 
@@ -19,6 +19,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
       <AppInfo />
       <Theme />
       <NavBar />
+      <NavCanvas />
       {children}
       <Footer />
       <Cursor />

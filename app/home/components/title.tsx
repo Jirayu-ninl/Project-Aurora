@@ -2,9 +2,11 @@
 import { motion } from 'framer-motion'
 import { UI } from '@global/store'
 import { aHomeTitle } from '@global/config/defineAnimationConfig'
+import clsx from 'clsx'
 
 function Title() {
   const _setCursor = UI((state) => state.setCursor)
+  const _dark = UI((state) => state.dark)
   const TittleText = ['T', 'h', 'e', 'I', 'c', 'e', 'J', 'i']
   return (
     <div className='absolute bottom-[65%] left-1/2 flex -translate-x-1/2 flex-col items-center xl:bottom-0'>
@@ -17,7 +19,10 @@ function Title() {
         Just called
       </motion.h3>
       <div
-        className='page-home-mainTEXT flex cursor-pointer'
+        className={clsx(
+          'textHoverStroke-dark page-home-mainTEXT pointer-events-auto flex cursor-pointer',
+          !_dark && 'textHoverStroke',
+        )}
         onMouseEnter={() => {
           _setCursor('logo')
         }}

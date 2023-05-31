@@ -1,6 +1,9 @@
+'use client'
+
 import { useState } from 'react'
-import Router from 'next/router'
+import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import clsx from 'clsx'
 // Components
 import { UI } from '@global/store'
 import { navCanvasRoutes } from '@global/config/routes'
@@ -8,15 +11,14 @@ import type { tNavCanvasRoute } from '@global/config/routes'
 // CSS
 import { navCanvas as CSS } from './styles'
 
-export default function Canvas({
-  _navShowCanvas,
-  _setNavShowCanvas,
-}: {
-  _navShowCanvas: boolean
-  _setNavShowCanvas: (show: boolean) => void
-}) {
+export default function Canvas() {
   const _setCursor = UI((state) => state.setCursor)
+  const _dark = UI((state) => state.dark)
+  const _navShowCanvas = UI((state) => state.navShowCanvas)
+  const _setNavShowCanvas = UI((state) => state.setNavShowCanvas)
   const [MenuHover, setMenuHover] = useState('')
+
+  const Router = useRouter()
 
   const handleLink = (url: string) => {
     _setNavShowCanvas(false)
@@ -50,7 +52,7 @@ export default function Canvas({
               animate={{ y: _navShowCanvas ? 0 : '-100%' }}
               key='Nav_Canvas'
               transition={{ duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
-              className='relative h-full overflow-hidden rounded-md bg-black/20 shadow-xl backdrop-blur-lg'
+              className='relative h-full overflow-hidden rounded-md bg-white/20 shadow-xl backdrop-blur-lg dark:bg-black/20'
             >
               <div className='absolute flex h-full w-full items-center justify-center'>
                 <motion.div
@@ -61,7 +63,10 @@ export default function Canvas({
                 >
                   {navCanvasRoutes.map((route: tNavCanvasRoute) => (
                     <motion.a
-                      className={CSS.CanvasMenuItem}
+                      className={clsx(
+                        CSS.CanvasMenuItem,
+                        _dark && CSS.CanvasMenuItem_dark,
+                      )}
                       key={route.id}
                       onClick={() => handleLink(`${route.path}`)}
                       onMouseEnter={() => {
@@ -79,7 +84,7 @@ export default function Canvas({
                   ))}
                 </motion.div>
               </div>
-              <div className={CSS.bgText}>
+              <div className={clsx(CSS.bgText, _dark && CSS.bgText_dark)}>
                 <AnimatePresence>
                   {MenuHover && (
                     <>
