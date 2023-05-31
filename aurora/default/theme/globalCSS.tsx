@@ -1,5 +1,5 @@
 import { css, Global } from '@emotion/react'
-import { theme } from '@app/config/defineConfig'
+import { theme } from '@global/config/defineConfig'
 
 const Color = theme.color
 

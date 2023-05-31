@@ -27,7 +27,7 @@ const __dirname = dirname(__filename)
 const require = createRequire(import.meta.url)
 
 const nextConfig = {
-  webpack: (config, { webpack, dev, isServer }) => {
+  webpack: (config, { webpack, /*dev ,*/ isServer }) => {
     config.plugins.push(
       new webpack.ProvidePlugin({
         React: 'react',
@@ -36,6 +36,8 @@ const nextConfig = {
 
     config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
     config.resolve.alias['@app'] = path.join(__dirname, 'app')
+    config.resolve.alias['@global'] = path.join(__dirname, 'global')
+    config.resolve.alias['@resources'] = path.join(__dirname, 'app/resources')
     config.resolve.alias['@server'] = path.join(__dirname, 'server')
     // config.resolve.alias['public'] = path.join(__dirname, 'public')
 

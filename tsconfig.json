@@ -26,6 +26,10 @@
       "@aurora": ["aurora"],
       "@app": ["app"],
       "@app/*": ["app/*"],
+      "@global": ["global"],
+      "@global/*": ["global/*"],
+      "@resources": ["app/resources"],
+      "@resources/*": ["app/resources/*"],
       "@server": ["server"],
       "@server/*": ["server/*"],
       "public/*": ["public/*"]

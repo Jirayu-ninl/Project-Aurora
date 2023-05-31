@@ -10,9 +10,9 @@ import Toast from '@aurora/modules/toast'
 import PageTransition from '@aurora/views/animations/hooks/usePageTransition'
 // import CreateProgress from '@aurora/modules/nprogress'
 
-import Config from '@app/config'
+import Config from '@global/config'
 
-import Wrapper from './layouts/global/wrapper'
+import Wrapper from '@global/layout/wrapper'
 
 import 'tailwindcss/tailwind.css'
 import 'react-toastify/dist/ReactToastify.css'

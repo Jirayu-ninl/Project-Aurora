@@ -12,6 +12,10 @@ const UseSmoothScroll = ({
   children,
   physics = { damping: 13, mass: 0.1, stiffness: 55 },
   Callback,
+}: {
+  children: React.ReactNode
+  physics: { damping: number; mass: number; stiffness: number }
+  Callback: (p: number) => any
 }) => {
   // const defaultPhysics = { damping: 15, mass: 0.27, stiffness: 55 }
   const scrollRef = useRef(null)
@@ -27,7 +31,9 @@ const UseSmoothScroll = ({
     const resizeObserver = new ResizeObserver((entries) =>
       resizePageHeight(entries),
     )
-    scrollRef && resizeObserver.observe(scrollRef.current)
+    if (scrollRef.current) {
+      scrollRef && resizeObserver.observe(scrollRef.current)
+    }
     return () => resizeObserver.disconnect()
   }, [scrollRef, resizePageHeight])
 
@@ -45,7 +51,7 @@ const UseSmoothScroll = ({
       <motion.div
         ref={scrollRef}
         style={{ y: spring }}
-        className='fixed top-0 left-0 w-full overflow-hidden overscroll-y-none will-change-transform'
+        className='fixed left-0 top-0 w-full overflow-hidden overscroll-y-none will-change-transform'
       >
         {children}
       </motion.div>
@@ -56,9 +62,9 @@ const UseSmoothScroll = ({
 
 export default UseSmoothScroll
 
-import { useWindowSize } from '@libs/hooks'
+import useWindowSize from '@aurora/libs/hooks/useWindowSize'
 
-export function Legacy({ children }) {
+export function Legacy({ children }: { children: React.ReactNode }) {
   const size = useWindowSize()
   const refApp = useRef(null)
   const refScroll = useRef(null)
@@ -80,9 +86,11 @@ export function Legacy({ children }) {
   }, [size.height])
 
   const setBodyHeight = () => {
-    document.body.style.height = `${
-      refScroll.current.getBoundingClientRect().height
-    }px`
+    if (refScroll.current) {
+      document.body.style.height = `${
+        refScroll.current.getBoundingClientRect().height
+      }px`
+    }
   }
 
   const skewScrolling = () => {
@@ -94,15 +102,17 @@ export function Legacy({ children }) {
     const acceleration = difference / size.width
     const velocity = +acceleration
     const skew = velocity * 7.5
-    refScroll.current.style.transform = `translate3d(0, -${scrollConfig.rounded}px, 0) skewY(${skew}deg)`
-    requestAnimationFrame(() => skewScrolling())
+    if (refScroll.current) {
+      refScroll.current.style.transform = `translate3d(0, -${scrollConfig.rounded}px, 0) skewY(${skew}deg)`
+      requestAnimationFrame(() => skewScrolling())
+    }
   }
 
   console.log(size)
   return (
     <div
       ref={refApp}
-      className='fixed top-0 left-0 h-screen w-screen overflow-hidden'
+      className='fixed left-0 top-0 h-screen w-screen overflow-hidden'
     >
       <div ref={refScroll}>{children}</div>
     </div>

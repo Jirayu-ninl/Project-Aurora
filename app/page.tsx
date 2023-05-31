@@ -3,9 +3,9 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, animate, AnimatePresence } from 'framer-motion'
-import { UI } from '@app/store'
-import IceJiLoadingLogo from '@app/assets/logo/IceJiLoading'
-import IceJiLogo from '@app/assets/logo/IceJi'
+import { UI } from '@global/store'
+import IceJiLoadingLogo from '@resources/common/logo/IceJiLoading'
+import IceJiLogo from '@resources/common/logo/IceJi'
 
 export default function Home() {
   const _setShowNav = UI((state) => state.setShowNav)

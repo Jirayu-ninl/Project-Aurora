@@ -1,91 +1,35 @@
-import { useState, useMemo, useSyncExternalStore, useEffect } from 'react'
+import { useState } from 'react'
 
-export function useWindowSizeLegacy() {
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
+import useEventListener from './useEventListener'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
+
+interface WindowSize {
+  width: number
+  height: number
+}
+
+function useWindowSize(): WindowSize {
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    width: 0,
+    height: 0,
   })
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
+  const handleSize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+  }
 
-    window.addEventListener('resize', handleResize)
+  useEventListener('resize', handleSize)
 
-    handleResize()
-
-    return () => window.removeEventListener('resize', handleResize)
+  // Set size at the first client-side load
+  useIsomorphicLayoutEffect(() => {
+    handleSize()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return windowSize
 }
 
-export default function useWindowSize(serverFallback: number[]): number[] {
-  const getServerSnapshot = () => serverFallback
-
-  const [getSnapshot, subscribe] = useMemo(() => {
-    return [
-      () => [window.innerWidth, window.innerHeight],
-      (notify: () => void) => {
-        window.addEventListener('resize', notify)
-        return () => {
-          window.removeEventListener('resize', notify)
-        }
-      },
-    ]
-  }, [])
-
-  return useSyncExternalStore(
-    subscribe,
-    typeof window !== 'undefined' ? getSnapshot : getServerSnapshot,
-    getServerSnapshot
-  )
-}
-
-export function InnerHeight(serverFallback: number): number {
-  const getServerSnapshot = () => serverFallback
-
-  const [getSnapshot, subscribe] = useMemo(() => {
-    return [
-      () => window.innerHeight,
-      (notify: () => void) => {
-        window.addEventListener('resize', notify)
-        return () => {
-          window.removeEventListener('resize', notify)
-        }
-      },
-    ]
-  }, [])
-
-  return useSyncExternalStore(
-    subscribe,
-    typeof window !== 'undefined' ? getSnapshot : getServerSnapshot,
-    getServerSnapshot
-  )
-}
-
-export function InnerWidth(serverFallback: number): number {
-  const getServerSnapshot = () => serverFallback
-
-  const [getSnapshot, subscribe] = useMemo(() => {
-    return [
-      () => window.innerWidth,
-      (notify: () => void) => {
-        window.addEventListener('resize', notify)
-        return () => {
-          window.removeEventListener('resize', notify)
-        }
-      },
-    ]
-  }, [])
-
-  return useSyncExternalStore(
-    subscribe,
-    typeof window !== 'undefined' ? getSnapshot : getServerSnapshot,
-    getServerSnapshot
-  )
-}
+export default useWindowSize

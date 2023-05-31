@@ -1,4 +1,4 @@
-import { Title } from '@app/pages/home'
+import { Title } from './components'
 
 export default function Home() {
   return (
