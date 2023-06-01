@@ -6,6 +6,7 @@ import { css } from '@emotion/css'
 
 function Cursor() {
   const _cursorType = UI((state) => state.cursor)
+  const _dark = UI((state) => state.dark)
 
   const cursor = useRef<HTMLDivElement | null>(null)
   const cursor2 = useRef<HTMLDivElement | null>(null)
@@ -44,7 +45,7 @@ function Cursor() {
     will-change: width, height, transform, border;
     transform-origin: center;
     z-index: 90;
-    background-color: #fff;
+    // background-color: #fff;
     mix-blend-mode: normal;
     &.pointer {
       /* transform-origin: center; */
@@ -82,7 +83,7 @@ function Cursor() {
     width: 40px;
     transition: all 0.3s ease-out;
     will-change: width, height, transform, border;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: ${_dark ? 'rgba(255,255,255,0.2)' : 'rgba(0, 0, 0, 0.2)'};
     border: 1px solid #fff;
     opacity: 0.7;
     transition-duration: 250ms;

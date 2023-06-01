@@ -1,0 +1,4 @@
+{
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+}

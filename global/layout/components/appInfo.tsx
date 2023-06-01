@@ -74,7 +74,7 @@ export default function AppInfo() {
                     All rights reserved
                     <br />
                     <Link
-                      href='/changelog'
+                      href='https://changelog.docs.theiceji.com/'
                       className='cursor-pointer text-2xs font-light opacity-80 hover:opacity-100 md:text-1xs'
                       onClick={() => _setModalAppInfo(false)}
                     >

@@ -85,6 +85,10 @@ body {
   @apply xl:saturate-0 xl:hover:saturate-100;
 }
 
+.hideLastChild-Parent > .isChild:last-child {
+  @apply hidden;
+}
+
 /* *! Text */
 
 .page-home-mainTEXT {
@@ -102,7 +106,7 @@ body {
 }
 
 .textHoverStroke-dark > h1:hover {
-  -webkit-text-stroke: 2px #FFF;
+  -webkit-text-stroke: 2px #fff;
   @apply text-transparent duration-200;
 }
 
@@ -145,15 +149,15 @@ body {
 }
 
 .Card-back-md-60 {
-  @apply rounded-md bg-white/60 dark:bg-black/60 backdrop-blur-md;
+  @apply rounded-md bg-white/60 backdrop-blur-md dark:bg-black/60;
 }
 
 .Card-back-md-40 {
-  @apply rounded-md bg-white/40 dark:bg-black/40 backdrop-blur-md;
+  @apply rounded-md bg-white/40 backdrop-blur-md dark:bg-black/40;
 }
 
 .Card-back-md-20 {
-  @apply rounded-md bg-white/20 dark:bg-black/20 backdrop-blur-md;
+  @apply rounded-md bg-white/20 backdrop-blur-md dark:bg-black/20;
 }
 
 .Card-white-20 {

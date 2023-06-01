@@ -3,6 +3,10 @@ import { create } from 'zustand'
 const store: tStore = (set) => ({
   page: 'Home',
   setPage: (p) => set(() => ({ page: p })),
+  pageState: 'none',
+  setPageState: (p) => set(() => ({ pageState: p })),
+  pageStateIndex: 0,
+  setPageStateIndex: (id) => set(() => ({ pageStateIndex: id })),
   navRoute: iNavRoute,
   setNavRoute: (r) => set(() => ({ navRoute: r })),
 })
@@ -10,6 +14,10 @@ const store: tStore = (set) => ({
 export type tStore = (set: any) => {
   page: string
   setPage: (p: string) => void
+  pageState: string
+  setPageState: (p: string) => void
+  pageStateIndex: number
+  setPageStateIndex: (p: number) => void
   navRoute: tNavRoute
   setNavRoute: (p: tNavRoute) => void
 }
