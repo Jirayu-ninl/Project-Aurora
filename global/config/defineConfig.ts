@@ -1,7 +1,7 @@
 export const app = {
   NAME: 'TheIceJI',
-  VERSION: '2023.06.01',
-  UPDATE_DATE: 'Jun 1, 2023',
+  VERSION: '2023.06.02',
+  UPDATE_DATE: 'Jun 2, 2023',
   Dependencies: {
     Aurora: '0.8b',
     React: '18.2.0',

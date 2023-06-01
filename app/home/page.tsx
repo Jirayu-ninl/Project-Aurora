@@ -6,15 +6,13 @@ import { State } from '@global/store'
 
 function Page() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-  const _setBackRoute = State((state) => state.setBackRoute)
 
   useEffect(() => {
     _setNavRouteActiveState({
       id: 99,
       scrollProgress: 0,
     })
-    _setBackRoute('/home')
-  }, [_setNavRouteActiveState, _setBackRoute])
+  }, [_setNavRouteActiveState])
 
   return (
     <main className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>

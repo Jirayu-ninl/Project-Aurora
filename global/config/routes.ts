@@ -10,7 +10,7 @@ export const navCanvasRoutes: tNavCanvasRoute[] = [
     id: 0,
     number: '01',
     title: 'HOME',
-    path: '/home',
+    path: '/home/intro',
   },
   {
     id: 1,

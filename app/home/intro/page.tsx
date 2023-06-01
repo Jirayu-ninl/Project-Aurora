@@ -1,6 +1,19 @@
+'use client'
+
+import { useEffect } from 'react'
+import { State } from '@global/store'
 import { Title, Sidebar } from './components'
 
 export default function Home() {
+  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+
+  useEffect(() => {
+    _setNavRouteActiveState({
+      id: 0,
+      scrollProgress: 20,
+    })
+  }, [_setNavRouteActiveState])
+
   const sideNav = [
     {
       name: 'Adaptability',

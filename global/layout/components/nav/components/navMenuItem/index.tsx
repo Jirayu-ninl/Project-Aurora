@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -9,12 +8,10 @@ function NavMenuItem({
   menuItem,
   index,
   _navRouteActiveState,
-  _setNavRouteActiveState,
 }: {
   menuItem: tNavCanvasRoute
   index: number
   _navRouteActiveState: { id: number; scrollProgress: number }
-  _setNavRouteActiveState: (v: { id: number; scrollProgress: number }) => void
 }) {
   return (
     <motion.div
@@ -29,10 +26,7 @@ function NavMenuItem({
     >
       <Link
         href={menuItem.path}
-        onClick={() =>
-          _setNavRouteActiveState({ id: index, scrollProgress: 0 })
-        }
-        className='AnimUnderline-FirstChild'
+        className='AnimUnderline-FirstChild navMenuItem'
       >
         <div className='flex items-center'>
           <p
@@ -48,7 +42,8 @@ function NavMenuItem({
             {menuItem.title}
           </p>
         </div>
-        {_navRouteActiveState.id === index && (
+        {(_navRouteActiveState.id === index ||
+          _navRouteActiveState.id === 99) && (
           <div className='relative mt-1 el:mt-2'>
             <motion.div
               className='Anim-2 absolute ml-[10px] h-0.5 bg-quaternary-2 dark:bg-primary-0'

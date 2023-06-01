@@ -184,11 +184,11 @@ body {
 }
 
 .NotiBadge-primary {
-  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-quaternary-2 dark:bg-primary-0 px-2 py-1 text-xs font-bold leading-none text-white dark:text-black;
+  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-quaternary-2 px-2 py-1 text-xs font-bold leading-none text-white dark:bg-primary-0 dark:text-black;
 }
 
 .NotiBadge-primary-sm {
-  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-quaternary-2 dark:bg-primary-0 px-1 py-0.5 text-xs font-bold leading-none text-white dark:text-black;
+  @apply absolute right-0 top-0 inline-flex -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-quaternary-2 px-1 py-0.5 text-xs font-bold leading-none text-white dark:bg-primary-0 dark:text-black;
 }
 
 .NotiBadge-secondary {
@@ -288,4 +288,10 @@ body {
 
 .PostTextTab {
   @apply pl-16;
+}
+
+/* *! NavBar */
+
+.navMenuItem:hover > div > p:first-child {
+  opacity: 0.6;
 }

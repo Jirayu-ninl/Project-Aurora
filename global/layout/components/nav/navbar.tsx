@@ -31,7 +31,6 @@ export default function IJNNav() {
   const _setNavDropdown = UI((state) => state.setNavDropdown)
   const _navRoute = State((state) => state.navRoute)
   const _navRouteActiveState = State((state) => state.navRouteActiveState)
-  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
   const _backRoute = State((state) => state.backRoute)
   const _page = State((state) => state.page)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
@@ -92,7 +91,6 @@ export default function IJNNav() {
                       index={i}
                       menuItem={v}
                       _navRouteActiveState={_navRouteActiveState}
-                      _setNavRouteActiveState={_setNavRouteActiveState}
                     />
                   ))}
                 </motion.ul>

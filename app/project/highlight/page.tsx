@@ -8,14 +8,14 @@ function Page() {
 
   useEffect(() => {
     _setNavRouteActiveState({
-      id: 4,
-      scrollProgress: 80,
+      id: 0,
+      scrollProgress: 20,
     })
   }, [_setNavRouteActiveState])
 
   return (
     <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
-      <h1 className='text-xl'>Services</h1>
+      <h1 className='text-xl'>HIGHLIGHT</h1>
     </main>
   )
 }

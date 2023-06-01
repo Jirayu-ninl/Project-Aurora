@@ -24,8 +24,8 @@ export type tStore = (set: any) => {
   setInPageNavIndex: (p: number) => void
   backRoute: string
   setBackRoute: (r: string) => void
-  navRoute: tNavRoute
-  setNavRoute: (p: tNavRoute) => void
+  navRoute: tNavRoute | []
+  setNavRoute: (p: tNavRoute | []) => void
   navRouteActiveState: tNavRouteActiveState
   setNavRouteActiveState: (a: tNavRouteActiveState) => void
 }
