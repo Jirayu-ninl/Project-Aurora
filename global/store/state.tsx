@@ -3,10 +3,12 @@ import { create } from 'zustand'
 const store: tStore = (set) => ({
   page: 'Home',
   setPage: (p) => set(() => ({ page: p })),
-  pageState: 'none',
-  setPageState: (p) => set(() => ({ pageState: p })),
-  pageStateIndex: 0,
-  setPageStateIndex: (id) => set(() => ({ pageStateIndex: id })),
+  inPageNav: 'none',
+  setInPageNav: (p) => set(() => ({ pageState: p })),
+  inPageNavIndex: 0,
+  setInPageNavIndex: (id) => set(() => ({ pageStateIndex: id })),
+  backRoute: '/home',
+  setBackRoute: (r) => set(() => ({ backRoute: r })),
   navRoute: iNavRoute,
   setNavRoute: (r) => set(() => ({ navRoute: r })),
 })
@@ -14,10 +16,12 @@ const store: tStore = (set) => ({
 export type tStore = (set: any) => {
   page: string
   setPage: (p: string) => void
-  pageState: string
-  setPageState: (p: string) => void
-  pageStateIndex: number
-  setPageStateIndex: (p: number) => void
+  inPageNav: string
+  setInPageNav: (p: string) => void
+  inPageNavIndex: number
+  setInPageNavIndex: (p: number) => void
+  backRoute: string
+  setBackRoute: (r: string) => void
   navRoute: tNavRoute
   setNavRoute: (p: tNavRoute) => void
 }
@@ -27,13 +31,13 @@ const iNavRoute = [
     id: 0,
     number: '01',
     title: 'HOME',
-    path: '/home',
+    path: '/home/landing',
   },
   {
     id: 1,
     number: '02',
-    title: 'ABOUT',
-    path: '/about',
+    title: 'PASSIONATE',
+    path: '/home/passionate',
   },
   {
     id: 2,
@@ -50,8 +54,8 @@ const iNavRoute = [
   {
     id: 4,
     number: '04',
-    title: 'BLOG',
-    path: '/post',
+    title: 'SERVICES',
+    path: '/home/services',
   },
 ]
 

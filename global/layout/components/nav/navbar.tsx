@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 // import { useSession, signOut } from 'next-auth/react'
 
@@ -29,6 +30,7 @@ export default function IJNNav() {
   const _navDropdown = UI((state) => state.navDropdown)
   const _setNavDropdown = UI((state) => state.setNavDropdown)
   const _navRoute = State((state) => state.navRoute)
+  const _backRoute = State((state) => state.backRoute)
   const _page = State((state) => state.page)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
 
@@ -79,8 +81,14 @@ export default function IJNNav() {
                 </div>
                 <h6 className='hidden px-5 font-medium md:block'>{_page}</h6>
               </div>
-              <div className='flex grow items-center justify-end rounded-r-md border border-black/[0.07] px-6 dark:border-white/[0.07] xl:justify-between'>
-                <motion.ul className='hidden xl:flex'>
+              <div className='relative flex grow items-center justify-end rounded-r-md border border-black/[0.07] px-6 dark:border-white/[0.07] xl:justify-between'>
+                <Link
+                  className='Anim absolute -left-2 hidden h-5 w-5 cursor-pointer rounded-full bg-black stroke-white p-1.5 hover:bg-quaternary-3 dark:bg-white dark:stroke-black dark:hover:bg-primary-0 xl:block'
+                  href={_backRoute}
+                >
+                  <Icon.ArrowMinimal />
+                </Link>
+                <motion.ul className='hidden xl:flex xl:ml-2'>
                   {_navRoute.map((v, i) => (
                     <NavMenuItem
                       key={i}
