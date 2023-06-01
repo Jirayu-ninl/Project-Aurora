@@ -44,8 +44,8 @@ const SidebarList = ({
         className={clsx(
           'Anim relative h-2 w-2 rounded-full border xxl:h-3 xxl:w-3',
           _pageStateIndex >= id
-            ? 'border-primary-0 opacity-100'
-            : 'border-black opacity-20 dark:border-white',
+            ? 'border-quaternary-2 opacity-100 dark:border-primary-0'
+            : 'border-black opacity-20 hover:opacity-100 dark:border-white',
         )}
         onClick={() => {
           _setPageStateIndex(id)
@@ -55,13 +55,13 @@ const SidebarList = ({
         <p
           className={clsx(
             'Anim pointer-events-auto absolute left-4 -mt-0.5 cursor-pointer whitespace-nowrap text-2xs uppercase hover:opacity-100 xxl:left-6 xxl:-mt-0.5 xxl:text-xs',
-            _pageStateIndex >= id && 'text-primary-0',
+            _pageStateIndex >= id && 'text-quaternary-2 dark:text-primary-0',
           )}
         >
           {name}
         </p>
         <div
-          className='Anim m-px h-1 w-1 rounded-full bg-primary-0 xxl:m-0.5 xxl:h-1.5 xxl:w-1.5'
+          className='Anim m-px h-1 w-1 rounded-full bg-quaternary-2 dark:bg-primary-0 xxl:m-0.5 xxl:h-1.5 xxl:w-1.5'
           style={{ opacity: _pageStateIndex >= id ? 1 : 0 }}
         />
       </div>

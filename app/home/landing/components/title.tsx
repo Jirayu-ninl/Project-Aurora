@@ -14,7 +14,7 @@ function Title() {
         initial={aHomeTitle.initial}
         animate={aHomeTitle.animate}
         transition={aHomeTitle.transition(0)}
-        className='text-xs font-semibold uppercase text-primary-0 md:text-xl lg:text-2xl xl:text-3xl '
+        className='text-xs font-semibold uppercase text-quaternary-2 dark:text-primary-0 md:text-xl lg:text-2xl xl:text-3xl '
       >
         Just called
       </motion.h3>

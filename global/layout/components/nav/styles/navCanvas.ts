@@ -59,7 +59,7 @@ export const CanvasMenuItem = css`
     cursor: none;
     & h1 {
       // color: white;
-      color: black;
+      color: ${Color.quaternary[2]};
       // -webkit-text-stroke: 0px #fff;
       -webkit-text-stroke: 0px #000;
       letter-spacing: 5px;
@@ -74,7 +74,7 @@ export const CanvasMenuItem = css`
     & h6 {
       transition-duration: 250ms;
       opacity: 1;
-      color: ${Color.primary[0]};
+      color: ${Color.quaternary[2]};
     }
   }
 `
@@ -95,10 +95,13 @@ export const CanvasMenuItem_dark = css`
     color: #fff!important;
   }
   &:hover {
-    & h1 {
-      color: white!important;
-      -webkit-text-stroke: 0px #fff!important;
-    }
+      & h1 {
+        color: ${Color.primary[0]} !important;
+        -webkit-text-stroke: 0px #fff !important;
+      }
+      & h6 {
+        color: ${Color.primary[0]} !important;
+      }
     }
   }
 `

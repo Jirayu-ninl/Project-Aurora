@@ -63,7 +63,7 @@ export default function IJNNav() {
             <div className='bg-back/[0.05] flex h-12 rounded-md shadow-md backdrop-blur-md dark:shadow-xl xxl:h-16'>
               <div className='flex h-full w-12 items-center rounded-l-md bg-black/[0.07] dark:bg-white/[0.07] md:w-1/2 xl:w-[320px] el:w-[468px]'>
                 <div
-                  className='flex h-full w-16 cursor-pointer items-center rounded-l-md bg-primary-0 p-2 lg:p-3'
+                  className='Anim flex h-full w-16 cursor-pointer items-center rounded-l-md bg-quaternary-2 p-2 dark:bg-primary-0 lg:p-3'
                   onMouseEnter={() => {
                     _setCursor('logo')
                   }}
@@ -75,7 +75,7 @@ export default function IJNNav() {
                     _setModalAppInfo(true)
                   }}
                 >
-                  <IceJiLogo />
+                  <IceJiLogo dark={!_dark} />
                 </div>
                 <h6 className='hidden px-5 font-medium md:block'>{_page}</h6>
               </div>

@@ -41,7 +41,7 @@ const ListPopupDropdown = ({
       >
         {icon}
         {itemsCount !== 0 && (
-          <span className='NotiBadge-primary-sm '>{itemsCount}</span>
+          <span className='NotiBadge-primary-sm'>{itemsCount}</span>
         )}
       </div>
       <AnimatePresence>

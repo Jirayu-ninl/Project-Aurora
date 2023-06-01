@@ -32,12 +32,14 @@ function NavMenuItem({
       <Link
         href={menuItem.path}
         onClick={() => setNavActiveState({ id: index, scrollProgress: 0 })}
+        className='AnimUnderline-FirstChild'
       >
         <div className='flex items-center'>
           <p
             className={clsx(
               'text-2xs font-black',
-              navActiveState.id === index && 'Anim text-primary-0',
+              navActiveState.id === index &&
+                'Anim text-quaternary-2 dark:text-primary-0',
             )}
           >
             {menuItem.number}
@@ -49,13 +51,13 @@ function NavMenuItem({
         {navActiveState.id === index && (
           <div className='relative mt-1 el:mt-2'>
             <motion.div
-              className='Anim-2 absolute h-0.5 bg-primary-0'
+              className='Anim-2 absolute ml-[10px] h-0.5 bg-quaternary-2 dark:bg-primary-0'
               // style={{ width: navActiveState.scrollProgress + '%' }}
               initial={{ width: '0%' }}
               animate={{ width: navActiveState.scrollProgress + '%' }}
               transition={{ delay: 1, duration: 1 }}
             />
-            <div className='h-0.5 w-full bg-white opacity-20' />
+            <div className='ml-[10px] h-0.5 w-[calc(100%-20px)] bg-white opacity-20' />
           </div>
         )}
       </Link>
