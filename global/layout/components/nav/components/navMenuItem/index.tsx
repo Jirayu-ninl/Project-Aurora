@@ -8,15 +8,13 @@ import { aNavChildren } from '@global/config/defineAnimationConfig'
 function NavMenuItem({
   menuItem,
   index,
-  navActiveState,
-  setNavActiveState,
+  _navRouteActiveState,
+  _setNavRouteActiveState,
 }: {
   menuItem: tNavCanvasRoute
   index: number
-  navActiveState: { id: number; scrollProgress: number }
-  setNavActiveState: Dispatch<
-    SetStateAction<{ id: number; scrollProgress: number }>
-  >
+  _navRouteActiveState: { id: number; scrollProgress: number }
+  _setNavRouteActiveState: (v: { id: number; scrollProgress: number }) => void
 }) {
   return (
     <motion.div
@@ -26,19 +24,21 @@ function NavMenuItem({
       transition={aNavChildren.transition(index / 10)}
       className={clsx(
         'mr-6 flex xxl:mr-10 el:mr-12',
-        navActiveState.id !== index && 'Anim AnimOpacity-20',
+        _navRouteActiveState.id !== index && 'Anim AnimOpacity-20',
       )}
     >
       <Link
         href={menuItem.path}
-        onClick={() => setNavActiveState({ id: index, scrollProgress: 0 })}
+        onClick={() =>
+          _setNavRouteActiveState({ id: index, scrollProgress: 0 })
+        }
         className='AnimUnderline-FirstChild'
       >
         <div className='flex items-center'>
           <p
             className={clsx(
               'text-2xs font-black',
-              navActiveState.id === index &&
+              _navRouteActiveState.id === index &&
                 'Anim text-quaternary-2 dark:text-primary-0',
             )}
           >
@@ -48,13 +48,13 @@ function NavMenuItem({
             {menuItem.title}
           </p>
         </div>
-        {navActiveState.id === index && (
+        {_navRouteActiveState.id === index && (
           <div className='relative mt-1 el:mt-2'>
             <motion.div
               className='Anim-2 absolute ml-[10px] h-0.5 bg-quaternary-2 dark:bg-primary-0'
               // style={{ width: navActiveState.scrollProgress + '%' }}
               initial={{ width: '0%' }}
-              animate={{ width: navActiveState.scrollProgress + '%' }}
+              animate={{ width: _navRouteActiveState.scrollProgress + '%' }}
               transition={{ delay: 1, duration: 1 }}
             />
             <div className='ml-[10px] h-0.5 w-[calc(100%-20px)] bg-white opacity-20' />

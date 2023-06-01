@@ -6,11 +6,13 @@ const store: tStore = (set) => ({
   inPageNav: 'none',
   setInPageNav: (p) => set(() => ({ pageState: p })),
   inPageNavIndex: 0,
-  setInPageNavIndex: (id) => set(() => ({ pageStateIndex: id })),
+  setInPageNavIndex: (id) => set(() => ({ inPageNavIndex: id })),
   backRoute: '/home',
   setBackRoute: (r) => set(() => ({ backRoute: r })),
   navRoute: iNavRoute,
   setNavRoute: (r) => set(() => ({ navRoute: r })),
+  navRouteActiveState: iNavRouteActiveState,
+  setNavRouteActiveState: (a) => set(() => ({ navRouteActiveState: a })),
 })
 
 export type tStore = (set: any) => {
@@ -24,6 +26,18 @@ export type tStore = (set: any) => {
   setBackRoute: (r: string) => void
   navRoute: tNavRoute
   setNavRoute: (p: tNavRoute) => void
+  navRouteActiveState: tNavRouteActiveState
+  setNavRouteActiveState: (a: tNavRouteActiveState) => void
+}
+
+const iNavRouteActiveState = {
+  id: 0,
+  scrollProgress: 20,
+}
+
+type tNavRouteActiveState = {
+  id: number
+  scrollProgress: number
 }
 
 const iNavRoute = [

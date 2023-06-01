@@ -30,6 +30,8 @@ export default function IJNNav() {
   const _navDropdown = UI((state) => state.navDropdown)
   const _setNavDropdown = UI((state) => state.setNavDropdown)
   const _navRoute = State((state) => state.navRoute)
+  const _navRouteActiveState = State((state) => state.navRouteActiveState)
+  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
   const _backRoute = State((state) => state.backRoute)
   const _page = State((state) => state.page)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
@@ -42,11 +44,6 @@ export default function IJNNav() {
     toggleAudio()
     _setCursor(false)
   }
-
-  const [navActiveState, setNavActiveState] = useState({
-    id: 0,
-    scrollProgress: 20,
-  })
 
   // const { data: session } = useSession()
 
@@ -94,8 +91,8 @@ export default function IJNNav() {
                       key={i}
                       index={i}
                       menuItem={v}
-                      navActiveState={navActiveState}
-                      setNavActiveState={setNavActiveState}
+                      _navRouteActiveState={_navRouteActiveState}
+                      _setNavRouteActiveState={_setNavRouteActiveState}
                     />
                   ))}
                 </motion.ul>

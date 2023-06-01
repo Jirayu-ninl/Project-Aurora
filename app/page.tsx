@@ -101,6 +101,7 @@ const LogoBlock = ({ isLoaded }: { isLoaded: boolean }) => (
       <AnimatePresence>
         {!isLoaded && (
           <motion.div
+            className='absolute'
             animate={{ strokeDasharray: 1000 }}
             initial={{ strokeDasharray: 50 }}
             transition={{
@@ -120,6 +121,7 @@ const LogoBlock = ({ isLoaded }: { isLoaded: boolean }) => (
       <AnimatePresence>
         {isLoaded && (
           <motion.div
+            className='absolute'
             animate={{ strokeDasharray: 50 }}
             initial={{ strokeDasharray: 100 }}
             transition={{
