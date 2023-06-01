@@ -88,7 +88,7 @@ export default function IJNNav() {
                 >
                   <Icon.ArrowMinimal />
                 </Link>
-                <motion.ul className='hidden xl:flex xl:ml-2'>
+                <motion.ul className='hidden xl:ml-2 xl:flex'>
                   {_navRoute.map((v, i) => (
                     <NavMenuItem
                       key={i}

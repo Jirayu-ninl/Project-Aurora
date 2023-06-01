@@ -30,8 +30,8 @@ const iNavRoute = [
   {
     id: 0,
     number: '01',
-    title: 'HOME',
-    path: '/home/landing',
+    title: 'INTRO',
+    path: '/home/intro',
   },
   {
     id: 1,
@@ -43,13 +43,13 @@ const iNavRoute = [
     id: 2,
     number: '03',
     title: 'SKILLs',
-    path: '/about/skills',
+    path: '/home/skills',
   },
   {
     id: 3,
     number: '03',
     title: 'PROJECTS',
-    path: '/project',
+    path: '/home/projects',
   },
   {
     id: 4,
