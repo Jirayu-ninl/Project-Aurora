@@ -1,5 +1,6 @@
 // import * as THREE from 'three'
 import { useRef } from 'react'
+import type { Mesh } from 'three'
 import { useFrame } from '@react-three/fiber'
 import {
   useCubeTexture,
@@ -8,11 +9,9 @@ import {
   Stars,
 } from '@react-three/drei'
 
-import { useResource } from '@aurora/libs/hooks/three'
 import { theme } from '@global/config/defineConfig'
+import { useResource } from '@aurora/libs/hooks/three'
 import Instances from './instances'
-
-// import Obj from './testObj'
 
 function Scene() {
   const Color = theme.color
@@ -25,9 +24,11 @@ function Scene() {
 
   const [setMaterial, material] = useResource(false)
 
-  const r_Star = useRef(null)
+  const r_Star = useRef<(typeof Stars & Mesh) | null>(null)
   useFrame(() => {
-    r_Star.current.rotation.y += 0.0005
+    if (r_Star.current) {
+      r_Star.current.rotation.y += 0.0005
+    }
   })
 
   return (
@@ -57,7 +58,6 @@ function Scene() {
           fade
         />
       </group>
-      {/* <Obj /> */}
     </>
   )
 }

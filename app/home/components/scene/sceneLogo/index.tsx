@@ -1,4 +1,5 @@
-import { Suspense, useRef, useState } from 'react'
+import { Suspense, useRef } from 'react'
+import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import {
@@ -11,10 +12,9 @@ import {
 import { KernelSize } from 'postprocessing'
 
 import Scene from './scene'
-import * as THREE from 'three'
 
 export default function App() {
-  const light = useRef(null)
+  const light = useRef<THREE.PointLight | null>(null)
   const { scene } = useThree()
 
   const sunMaterial = new THREE.MeshBasicMaterial({
@@ -30,8 +30,10 @@ export default function App() {
   scene.add(Sun)
 
   useFrame((state) => {
-    light.current.position.x = state.mouse.x * 20
-    light.current.position.y = state.mouse.y * 20
+    if (light.current) {
+      light.current.position.x = state.mouse.x * 20
+      light.current.position.y = state.mouse.y * 20
+    }
   })
 
   return (

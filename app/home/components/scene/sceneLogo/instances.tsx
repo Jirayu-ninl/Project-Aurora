@@ -1,10 +1,13 @@
 import React, { useState, useMemo } from 'react'
+import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Icosahedron } from '@react-three/drei'
-import IJNLogo from './IJNLogo'
+import Logo from './logo'
 
-function Instances({ material }) {
-  const [sphereRefs] = useState(() => [])
+function Instances({ material }: { material: THREE.MeshStandardMaterial }) {
+  const [sphereRefs] = useState<
+    Array<THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial>>
+  >(() => [])
   const initialPositions = useMemo(
     () => [
       [-4, 20, -12],
@@ -32,14 +35,20 @@ function Instances({ material }) {
   })
   return (
     <>
-      <IJNLogo material={material} />
+      <Logo material={material} />
       {initialPositions.map((pos, i) => (
         <Icosahedron
           args={[1, 4]}
           position={[pos[0], pos[1], pos[2]]}
           material={material}
           key={i}
-          ref={(ref) => (sphereRefs[i] = ref)}
+          // ref={(ref) => (sphereRefs[i] = ref)}
+          ref={(ref) =>
+            (sphereRefs[i] = ref as THREE.Mesh<
+              THREE.BufferGeometry,
+              THREE.MeshStandardMaterial
+            >)
+          }
         />
       ))}
     </>
