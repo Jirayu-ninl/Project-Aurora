@@ -1,15 +1,18 @@
 import { MutableRefObject, useEffect } from 'react'
 
 declare global {
+  interface Element {
+    webkitRequestFullscreen?: () => Promise<void>
+  }
   interface Document {
-    webkitFullscreenElement: any
-    webkitExitFullscreen: any
+    webkitFullscreenElement: Element | null
+    webkitExitFullscreen?: () => Promise<void>
   }
 }
 
-export default function useFullScreen(ref: MutableRefObject<any>) {
+export default function useFullScreen(ref: MutableRefObject<Element | null>) {
   useEffect(() => {
-    const view = ref.current
+    const view = ref.current as HTMLElement
 
     if (view) {
       const originalW = view.offsetWidth
