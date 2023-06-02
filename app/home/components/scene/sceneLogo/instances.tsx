@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Icosahedron } from '@react-three/drei'
-import { IJNLogo } from '../../objects/models'
+import IJNLogo from './IJNLogo'
 
 function Instances({ material }) {
   const [sphereRefs] = useState(() => [])

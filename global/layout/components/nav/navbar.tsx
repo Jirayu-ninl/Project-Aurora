@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 // import { useSession, signOut } from 'next-auth/react'
 
 import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
-import useAudio from '@aurora/libs/hooks/useAudio'
+import { useAudio } from '@aurora/libs/hooks/audio'
 
 import { State, UI } from '@global/store'
 import { NavDropdownState } from '@global/store/ui'

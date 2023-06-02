@@ -31,15 +31,10 @@ const IJNLogo = ({ material }) => {
     )
   })
 
-  const { nodes, materials } = useGLTF('three/model/HomeLogo/Scene.gltf')
+  const { nodes, materials } = useGLTF('/three/model/HomeLogo/Scene.gltf')
 
   return (
-    <group
-      ref={group}
-      dispose={null}
-      rotation={[0, 0, 0]}
-      position={[-1.5, 0, 0]}
-    >
+    <group ref={group} dispose={null} rotation={[0, 0, 0]} position={[0, 0, 0]}>
       <mesh
         ref={main}
         position={[-1.8, -2.4, 0]}
@@ -49,8 +44,8 @@ const IJNLogo = ({ material }) => {
       >
         <meshStandardMaterial
           {...materials.LogoShader}
-          emissiveIntensity={0.15}
-          envMap={material.envMap}
+          emissiveIntensity={0.05}
+          // envMap={material.envMap}
         />
       </mesh>
     </group>

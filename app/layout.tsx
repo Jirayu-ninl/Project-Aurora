@@ -7,7 +7,7 @@ import clsx from 'clsx'
 // import { SessionProvider } from 'next-auth/react'
 import Tracker from '@aurora/libs/trackers'
 import Toast from '@aurora/modules/toast'
-import PageTransition from '@aurora/views/animations/hooks/usePageTransition'
+import { PageTransition } from '@aurora/libs/hooks/animations'
 // import CreateProgress from '@aurora/modules/nprogress'
 
 import Config from '@global/config'

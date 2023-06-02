@@ -4,7 +4,7 @@ config.autoAddCss = false
 
 import CreateProgress from '@aurora/modules/nprogress'
 
-import { Audio, Theme } from './components/setup'
+import { Audio, Setup } from './components/setup'
 
 // IJN Components
 import Cursor from './components/cursor'
@@ -17,7 +17,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       <CreateProgress />
       <AppInfo />
-      <Theme />
+      <Setup />
       <NavBar />
       <NavCanvas />
       {children}

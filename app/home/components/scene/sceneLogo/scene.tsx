@@ -8,13 +8,15 @@ import {
   Stars,
 } from '@react-three/drei'
 
-import useResource from '@libs/three/utils/useResource'
-import Color from 'views/theme/color'
+import { useResource } from '@aurora/libs/hooks/three'
+import { theme } from '@global/config/defineConfig'
 import Instances from './instances'
 
 // import Obj from './testObj'
 
 function Scene() {
+  const Color = theme.color
+
   const bumpMap = useTexture('/three/blob/alphaMap.jpg')
   const envMap = useCubeTexture(
     ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'],
