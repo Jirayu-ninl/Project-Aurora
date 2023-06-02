@@ -20,8 +20,8 @@ function Title() {
       </motion.h3>
       <div
         className={clsx(
-          'textHoverStroke-dark page-home-mainTEXT pointer-events-auto flex cursor-pointer',
-          !_dark && 'textHoverStroke',
+          'page-home-mainTEXT pointer-events-auto flex cursor-pointer',
+          _dark ? 'textHoverStroke-dark' : 'textHoverStroke',
         )}
         onMouseEnter={() => {
           _setCursor('logo')
