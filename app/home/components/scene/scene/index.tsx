@@ -106,12 +106,8 @@ export default function App({ _dark }: { _dark: boolean }) {
   return (
     <>
       <ambientLight intensity={1} />
-      <group ref={animateCam}>
-        <PerspectiveCamera
-          makeDefault
-          fov={45}
-          ref={userCam}
-        >
+      <group ref={animateCam} position={[0, 0, 0]}>
+        <PerspectiveCamera makeDefault fov={45} ref={userCam}>
           {/* <fog attach='fog' args={[_dark ? '#101010' : 'white', 5, 10]} /> */}
         </PerspectiveCamera>
       </group>

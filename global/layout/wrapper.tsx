@@ -11,11 +11,13 @@ import Cursor from './components/cursor'
 import { NavBar, NavCanvas } from './components/nav'
 import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
+import Beta from './components/modal.beta'
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <CreateProgress />
+      <Beta />
       <AppInfo />
       <Setup />
       <NavBar />
@@ -27,5 +29,4 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     </>
   )
 }
-
 export default Wrapper
