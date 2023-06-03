@@ -27,7 +27,7 @@ const DropdownPopup = ({
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className='Card-back-md-60 absolute right-0 top-14 flex max-h-64 w-48 flex-col py-4 drop-shadow-md'
+      className='Card-back-md-60 absolute -right-14 top-14 flex max-h-64 w-48 flex-col py-4 drop-shadow-md sm:right-0 px-2'
     >
       <h5 className='mb-2 text-center text-base font-semibold'>{title}</h5>
       {itemsCount === 0 ? (

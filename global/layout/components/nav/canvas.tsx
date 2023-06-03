@@ -10,6 +10,8 @@ import { navCanvasRoutes } from '@global/config/routes'
 import type { tNavCanvasRoute } from '@global/config/routes'
 // CSS
 import { navCanvas as CSS } from './styles'
+// Footer
+import { FooterMobile } from '../footer'
 
 export default function Canvas() {
   const _setCursor = UI((state) => state.setCursor)
@@ -45,7 +47,7 @@ export default function Canvas() {
     <>
       <AnimatePresence>
         {_navShowCanvas && (
-          <div className='fixed left-0 top-4 z-70 h-screen w-screen overflow-hidden px-5 pb-8'>
+          <div className='fixed left-0 top-4 z-70 h-[calc(100vh-64px)] w-screen overflow-hidden px-5 pb-8 md:h-screen'>
             <motion.div
               initial={{ y: '-100%' }}
               exit={{ y: '-100%' }}
@@ -84,6 +86,7 @@ export default function Canvas() {
                   ))}
                 </motion.div>
               </div>
+              <FooterMobile />
               <div className={clsx(CSS.bgText, _dark && CSS.bgText_dark)}>
                 <AnimatePresence>
                   {MenuHover && (

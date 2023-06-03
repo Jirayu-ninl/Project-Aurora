@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 // import { useSession, signOut } from 'next-auth/react'
@@ -55,7 +55,7 @@ export default function IJNNav() {
             exit={aNav(_showNav).exit}
             animate={aNav(_showNav).animate}
             transition={aNav(_showNav).transition(0)}
-            className='fixed left-0 top-0 z-80 w-screen px-5 py-4'
+            className='fixed left-0 top-0 z-80 hidden w-screen px-5 py-4 md:block'
             ref={NavRef}
           >
             <div className='bg-back/[0.05] flex h-12 rounded-md shadow-md backdrop-blur-md dark:shadow-xl xxl:h-16'>

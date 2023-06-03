@@ -14,15 +14,13 @@ export default function Sidebar({
   return (
     <div className='hideLastChild-Parent absolute left-4 top-80 flex h-[40vh] w-[12px] flex-col items-center justify-center md:h-[60vh] lg:left-6 xl:top-0 xl:h-[80vh] xxl:left-8'>
       {items.map((v, i) => (
-        <>
-          <SidebarList
-            name={v.name}
-            key={i}
-            id={i}
-            _pageStateIndex={_pageStateIndex}
-            _setPageStateIndex={_setPageStateIndex}
-          />
-        </>
+        <SidebarList
+          name={v.name}
+          key={i}
+          id={i}
+          _pageStateIndex={_pageStateIndex}
+          _setPageStateIndex={_setPageStateIndex}
+        />
       ))}
     </div>
   )

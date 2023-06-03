@@ -21,7 +21,7 @@ export default function Footer() {
             transition={aFooter.transition(0)}
             className={clsx(
               _footerOption.fixed && 'fixed',
-              'bottom-0 left-0 z-10 flex w-screen flex-col items-center px-5 py-3 md:flex-row',
+              'bottom-0 left-0 z-10 hidden w-screen flex-col items-center px-5 py-3 md:flex md:flex-row',
               _footerOption.showContact && _footerOption.showCredit
                 ? 'justify-between'
                 : 'justify-center',

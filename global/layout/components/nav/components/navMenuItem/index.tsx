@@ -20,15 +20,19 @@ function NavMenuItem({
       animate={aNavChildren.animate}
       transition={aNavChildren.transition(index / 10)}
       className={clsx(
-        'mr-6 flex xxl:mr-10 el:mr-12',
+        'flex xxl:mr-10 el:mr-12',
         _navRouteActiveState.id !== index && 'Anim AnimOpacity-20',
       )}
     >
       <Link
         href={menuItem.path}
-        className='AnimUnderline-FirstChild navMenuItem'
+        className={clsx(
+          'md:AnimUnderline-FirstChild navMenuItem mb-2 w-full rounded-md bg-black/10 p-2 dark:bg-white/10 md:mb-0 md:bg-transparent md:p-0 dark:md:bg-transparent',
+          _navRouteActiveState.id === index &&
+            'border-l-2 border-quaternary-2 dark:border-primary-0 md:border-none',
+        )}
       >
-        <div className='flex items-center'>
+        <div className='flex items-start md:items-center'>
           <p
             className={clsx(
               'text-2xs font-black',
@@ -38,7 +42,7 @@ function NavMenuItem({
           >
             {menuItem.number}
           </p>
-          <p className='pl-1 text-2xs font-bold xxl:text-sm el:pl-3'>
+          <p className='pl-1 text-xl font-bold md:text-2xs xxl:text-sm el:pl-3'>
             {menuItem.title}
           </p>
         </div>
