@@ -48,7 +48,7 @@ function Scene({ _dark }: { _dark: boolean }) {
       {/* <Ground /> */}
       <group ref={TheObj} position={[0, 1.3, 0]}>
         <mesh rotation={[-Math.PI / 1.3, Math.PI / 1.3, 0]}>
-          <boxBufferGeometry args={[1, 1, 1]} />
+          <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color='orange' />
         </mesh>
       </group>

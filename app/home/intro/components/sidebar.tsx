@@ -17,6 +17,7 @@ export default function Sidebar({
         <>
           <SidebarList
             name={v.name}
+            key={i}
             id={i}
             _pageStateIndex={_pageStateIndex}
             _setPageStateIndex={_setPageStateIndex}
