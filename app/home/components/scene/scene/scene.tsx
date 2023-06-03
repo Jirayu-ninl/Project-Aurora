@@ -43,6 +43,7 @@ function Scene({ _dark }: { _dark: boolean }) {
         sectionThickness={1}
         sectionColor={_dark ? '#04C2A2' : '#4300FF'}
         // fadeDistance={100}
+        // fadeStrength={xxx}
       />
       {/* <OrbitControls
         autoRotate

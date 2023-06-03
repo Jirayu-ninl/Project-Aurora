@@ -24,7 +24,7 @@ const SceneRoot = () => {
 
   const getDRP: () => number[] = () => {
     if (_gpuTier?.fps) {
-      const { drp } = useOptimization(_gpuTier.fps, 'fps')
+      const { drp } = useOptimization(_gpuTier.tier, 'tier')
       return drp
     }
     return [1, 1]
