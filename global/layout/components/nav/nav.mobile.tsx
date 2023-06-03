@@ -28,7 +28,7 @@ function NavMobile({ children }: { children: React.ReactNode }) {
     toggleAudio()
   }
 
-  const [showPanel, setShowPanel] = useState(true)
+  const [showPanel, setShowPanel] = useState(false)
   const [panelState, setPanelState] = useState('user')
 
   return (
