@@ -14,7 +14,7 @@ export default function Home() {
       scrollProgress: 20,
     })
     _setHomeCamera({
-      position: [0, -0.1, 3],
+      position: [0, 1.4, 5],
       rotation: [0, 0, 0],
     })
   }, [_setNavRouteActiveState, _setHomeCamera])

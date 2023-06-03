@@ -27,7 +27,7 @@ function Scene({ _dark }: { _dark: boolean }) {
     { path: '/three/blob/cube/' },
   )
 
-  const TheObj = useRef<any>(null)
+  const TheObj = useRef<THREE.Group>(null)
 
   useFrame(({ clock, mouse }) => {
     if (TheObj.current) {
@@ -46,15 +46,15 @@ function Scene({ _dark }: { _dark: boolean }) {
         <Ground />
       </Stage> */}
       {/* <Ground /> */}
-      <group ref={TheObj} position={[0, -0.3, 1]}>
-        <mesh rotation={[-Math.PI / 1, Math.PI / 1.3, 0]}>
+      <group ref={TheObj} position={[0, 1.3, 0]}>
+        <mesh rotation={[-Math.PI / 1.3, Math.PI / 1.3, 0]}>
           <boxBufferGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color='orange' />
         </mesh>
       </group>
       <Grid
         renderOrder={-1}
-        position={[0, -1.4, 0]}
+        position={[0, 0, 0]}
         infiniteGrid={true}
         cellSize={0.6}
         cellThickness={0.6}
@@ -66,8 +66,6 @@ function Scene({ _dark }: { _dark: boolean }) {
         fadeStrength={1.2}
       />
       {/* <OrbitControls /> */}
-      {/* <Environment background preset='sunset' blur={0.8} /> */}
-      <Shadows />
       <Environment preset='sunset' blur={0.8} />
     </>
   )

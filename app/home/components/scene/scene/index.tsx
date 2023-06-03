@@ -109,7 +109,6 @@ export default function App({ _dark }: { _dark: boolean }) {
       <group ref={animateCam}>
         <PerspectiveCamera
           makeDefault
-          position={[0, -0.1, 3]}
           fov={45}
           ref={userCam}
         >
