@@ -76,6 +76,7 @@ export const theme = {
       4: '#B30000',
     },
     background: {
+      0: '#101010',
       1: '#1A1A1A',
       2: '#03131a',
       3: '#072c3b',

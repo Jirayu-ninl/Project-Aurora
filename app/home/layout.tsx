@@ -48,7 +48,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   }, [_setPage, _setBackRoute, _setNavRoute])
 
   return (
-    <div className='relative h-screen w-screen'>
+    <div className='relative h-screen w-screen bg-white dark:bg-background-0'>
       <div className='absolute h-full w-full'>
         <Scene />
       </div>

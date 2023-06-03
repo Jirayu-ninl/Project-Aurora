@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -6,11 +7,12 @@ import { Canvas } from '@react-three/fiber'
 
 import { UI } from '@global/store'
 import { useOptimization } from '@aurora/libs/hooks/three'
-import SceneLogo from './sceneLogo'
+import Scene from './scene'
 // import { InnerWidth } from '@libs/hooks/v2/useWindowSize'
 
-const Scene = () => {
+const SceneRoot = () => {
   const _gpuTier = UI((state) => state.gpuTier)
+  const _dark = UI((state) => state.dark)
   const [antialias, setAntialias] = useState(true)
 
   useEffect(() => {
@@ -20,26 +22,35 @@ const Scene = () => {
     }
   }, [])
 
-  const { drp } = useOptimization(_gpuTier == null ? 3 : _gpuTier.tier)
+  const getDRP: () => number[] = () => {
+    if (_gpuTier?.fps) {
+      const { drp } = useOptimization(_gpuTier.fps, 'fps')
+      return drp
+    }
+    return [1, 1]
+  }
 
   return (
     <div className='absolute h-screen w-screen overflow-hidden'>
       <Canvas
-        dpr={drp}
+        dpr={getDRP() as [number, number]}
+        // dpr={[1, 1]}
         gl={{
           powerPreference: 'high-performance',
           alpha: true,
           antialias: antialias,
           stencil: false,
           depth: false,
+          logarithmicDepthBuffer: true,
         }}
         linear={true}
+        shadows
       >
-        <SceneLogo />
+        <Scene _dark={_dark} />
       </Canvas>
       <Loader />
     </div>
   )
 }
 
-export default Scene
+export default SceneRoot
