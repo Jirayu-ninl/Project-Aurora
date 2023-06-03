@@ -11,9 +11,9 @@ function Title() {
   return (
     <div className='absolute bottom-[65%] left-1/2 flex -translate-x-1/2 flex-col items-center xl:bottom-0'>
       <motion.h3
-        initial={aHomeTitle.initial}
-        animate={aHomeTitle.animate}
-        transition={aHomeTitle.transition(0)}
+        initial={aHomeTitle(2).initial}
+        animate={aHomeTitle(2).animate}
+        transition={aHomeTitle(2).transition(0)}
         className='text-xs font-semibold uppercase text-quaternary-2 dark:text-primary-0 md:text-xl lg:text-2xl xl:text-3xl '
       >
         Just called
@@ -32,9 +32,9 @@ function Title() {
       >
         {TittleText.map((v, i) => (
           <motion.h1
-            initial={aHomeTitle.initial}
-            animate={aHomeTitle.animate}
-            transition={aHomeTitle.transition(i / 10)}
+            initial={aHomeTitle(i).initial}
+            animate={aHomeTitle(i).animate}
+            transition={aHomeTitle(i).transition(i / 10)}
             key={i}
           >
             {v}

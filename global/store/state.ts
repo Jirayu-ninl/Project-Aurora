@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import { iHomeCamera, iNavRouteActiveState, iNavRoute } from './state.e'
+export type { tHomeCamera, tNavRouteActiveState, tNavRoute } from './state.e'
 
 const store: tStore = (set) => ({
   page: 'Home',
@@ -13,6 +15,8 @@ const store: tStore = (set) => ({
   setNavRoute: (r) => set(() => ({ navRoute: r })),
   navRouteActiveState: iNavRouteActiveState,
   setNavRouteActiveState: (a) => set(() => ({ navRouteActiveState: a })),
+  homeCamera: iHomeCamera,
+  setHomeCamera: (c) => set(() => ({ homeCamera: c })),
 })
 
 export type tStore = (set: any) => {
@@ -24,61 +28,13 @@ export type tStore = (set: any) => {
   setInPageNavIndex: (p: number) => void
   backRoute: string
   setBackRoute: (r: string) => void
-  navRoute: tNavRoute | []
-  setNavRoute: (p: tNavRoute | []) => void
-  navRouteActiveState: tNavRouteActiveState
-  setNavRouteActiveState: (a: tNavRouteActiveState) => void
+  navRoute: typeof iNavRoute | []
+  setNavRoute: (p: typeof iNavRoute | []) => void
+  navRouteActiveState: typeof iNavRouteActiveState
+  setNavRouteActiveState: (a: typeof iNavRouteActiveState) => void
+  homeCamera: typeof iHomeCamera
+  setHomeCamera: (c: typeof iHomeCamera) => void
 }
-
-const iNavRouteActiveState = {
-  id: 0,
-  scrollProgress: 20,
-}
-
-type tNavRouteActiveState = {
-  id: number
-  scrollProgress: number
-}
-
-const iNavRoute = [
-  {
-    id: 0,
-    number: '01',
-    title: 'INTRO',
-    path: '/home/intro',
-  },
-  {
-    id: 1,
-    number: '02',
-    title: 'PASSIONATE',
-    path: '/home/passionate',
-  },
-  {
-    id: 2,
-    number: '03',
-    title: 'SKILLs',
-    path: '/home/skills',
-  },
-  {
-    id: 3,
-    number: '03',
-    title: 'PROJECTS',
-    path: '/home/projects',
-  },
-  {
-    id: 4,
-    number: '04',
-    title: 'SERVICES',
-    path: '/home/services',
-  },
-]
-
-export type tNavRoute = {
-  id: number
-  number: string
-  title: string
-  path: string
-}[]
 
 const store_State = create(store)
 

@@ -10,10 +10,12 @@ import {
   GodRays,
 } from '@react-three/postprocessing'
 import { KernelSize } from 'postprocessing'
+import { State } from '@global/store'
 
 import Scene from './scene'
 
 export default function App({ _dark }: { _dark: boolean }) {
+  const _homeCamera = State((state) => state.homeCamera)
   const light = useRef<THREE.PointLight | null>(null)
   const { scene } = useThree()
 
@@ -36,39 +38,85 @@ export default function App({ _dark }: { _dark: boolean }) {
   //   }
   // })
 
-  const rCam = useRef<THREE.PerspectiveCamera | undefined>(null)
+  const animateCam = useRef<THREE.Group | null>(null)
+  const userCam = useRef<THREE.PerspectiveCamera | undefined>(null)
 
   useFrame(({ clock, mouse }) => {
-    if (rCam.current) {
-      rCam.current.position.y = THREE.MathUtils.lerp(
-        rCam.current.position.y,
-        -mouse.y * Math.PI * -0.5 + 0.5,
-        0.15,
+    const UserCam = userCam.current
+    if (UserCam) {
+      UserCam.position.y = THREE.MathUtils.lerp(
+        UserCam.position.y,
+        -mouse.y * Math.PI * -0.05 - 0.2,
+        0.03,
       )
-      rCam.current.rotation.x = THREE.MathUtils.lerp(
-        rCam.current.rotation.x,
-        -mouse.y * Math.PI * 0.05 - 0.3,
-        0.15,
+      UserCam.rotation.x = THREE.MathUtils.lerp(
+        UserCam.rotation.x,
+        -mouse.y * Math.PI * 0.02 - 0.05,
+        0.03,
       )
-      rCam.current.position.x = THREE.MathUtils.lerp(
-        rCam.current.position.x,
-        -mouse.x * Math.PI * -0.5,
-        0.15,
+      UserCam.position.x = THREE.MathUtils.lerp(
+        UserCam.position.x,
+        -mouse.x * Math.PI * -0.045,
+        0.03,
       )
-      rCam.current.rotation.y = THREE.MathUtils.lerp(
-        rCam.current.rotation.y,
-        mouse.x * Math.PI * 0.05,
-        0.15,
+      UserCam.rotation.y = THREE.MathUtils.lerp(
+        UserCam.rotation.y,
+        mouse.x * Math.PI * 0.02,
+        0.03,
+      )
+    }
+
+    const AnimateCam = animateCam.current
+
+    if (AnimateCam) {
+      const oldAnimateCam = AnimateCam
+      AnimateCam.position.x = THREE.MathUtils.lerp(
+        oldAnimateCam.position.x,
+        _homeCamera.position[0],
+        0.03,
+      )
+      AnimateCam.position.y = THREE.MathUtils.lerp(
+        oldAnimateCam.position.y,
+        _homeCamera.position[1],
+        0.03,
+      )
+      AnimateCam.position.z = THREE.MathUtils.lerp(
+        oldAnimateCam.position.z,
+        _homeCamera.position[2],
+        0.03,
+      )
+      AnimateCam.rotation.x = THREE.MathUtils.lerp(
+        oldAnimateCam.rotation.x,
+        _homeCamera.rotation[0],
+        0.03,
+      )
+      AnimateCam.rotation.y = THREE.MathUtils.lerp(
+        oldAnimateCam.rotation.y,
+        _homeCamera.rotation[1],
+        0.03,
+      )
+      AnimateCam.rotation.z = THREE.MathUtils.lerp(
+        oldAnimateCam.rotation.z,
+        _homeCamera.rotation[2],
+        0.03,
       )
     }
   })
 
   return (
     <>
-      <fog attach='fog' args={[_dark ? 'black' : 'white', 8, 30]} />
-      <PerspectiveCamera makeDefault position={[0, 0, 3]} fov={45} ref={rCam}>
-        <ambientLight intensity={1} />
-        {/* <pointLight
+      <ambientLight intensity={1} />
+      <group ref={animateCam}>
+        <PerspectiveCamera
+          makeDefault
+          position={[0, -0.1, 3]}
+          fov={45}
+          ref={userCam}
+        >
+          {/* <fog attach='fog' args={[_dark ? '#101010' : 'white', 5, 10]} /> */}
+        </PerspectiveCamera>
+      </group>
+      {/* <pointLight
           ref={light}
           position-z={-4}
           intensity={0.05}
@@ -88,7 +136,6 @@ export default function App({ _dark }: { _dark: boolean }) {
             color={'#ffffff'}
           />
         </group> */}
-      </PerspectiveCamera>
       <Suspense fallback={null}>
         <Scene _dark={_dark} />
       </Suspense>
@@ -97,7 +144,7 @@ export default function App({ _dark }: { _dark: boolean }) {
           focusDistance={0.002}
           focalLength={0.02}
           bokehScale={10}
-          height={400}
+          height={200}
         /> */}
         <Bloom luminanceThreshold={1} mipmapBlur />
         <Bloom

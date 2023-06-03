@@ -6,13 +6,18 @@ import { Title, Sidebar } from './components'
 
 export default function Home() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+  const _setHomeCamera = State((state) => state.setHomeCamera)
 
   useEffect(() => {
     _setNavRouteActiveState({
       id: 0,
       scrollProgress: 20,
     })
-  }, [_setNavRouteActiveState])
+    _setHomeCamera({
+      position: [0, -0.1, 3],
+      rotation: [0, 0, 0],
+    })
+  }, [_setNavRouteActiveState, _setHomeCamera])
 
   const sideNav = [
     {

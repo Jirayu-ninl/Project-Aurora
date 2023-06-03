@@ -37,13 +37,14 @@ export const aFooterSocialIcon = setAnimationConfig(
   0.5,
 )
 
-export const aHomeTitle = setAnimationConfig(
-  { visibility: 'hidden', y: 200 },
-  { visibility: 'visible', y: 0 },
-  { visibility: 'hidden', y: 200 },
-  WrongCurve,
-  0.2,
-)
+export const aHomeTitle = (i: number) =>
+  setAnimationConfig(
+    { visibility: 'hidden', y: i % 2 === 0 ? 50 : -50 },
+    { visibility: 'visible', y: 0 },
+    { visibility: 'hidden', y: i % 2 === 0 ? 50 : -50 },
+    WrongCurve,
+    0.2,
+  )
 
 export const aXA = setAnimationStaggerConfig(
   { visibility: 'hidden', y: 50, opacity: 0 },
