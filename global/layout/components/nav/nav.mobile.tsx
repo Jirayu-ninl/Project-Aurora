@@ -1,15 +1,12 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import Link from 'next/link'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
 import { useAudio } from '@aurora/libs/hooks/audio'
 
 import { State, UI } from '@global/store'
-import { NavDropdownState } from '@global/store/ui'
-import { aNav, aNavChildren } from '@global/config/defineAnimationConfig'
+import { aNavChildren } from '@global/config/defineAnimationConfig'
 
 import IceJiLogo from '@resources/common/logo/IceJi'
 import * as Icon from './assets'
@@ -45,8 +42,9 @@ function NavMobile({ children }: { children: React.ReactNode }) {
             <div
               className='rotate-90 cursor-pointer stroke-black'
               onClick={() => {
-                setShowPanel(panelState === 'navigation' ? !showPanel : true)
                 setPanelState('navigation')
+                setShowPanel(panelState === 'navigation' ? !showPanel : true)
+                _setNavShowCanvas(false)
               }}
             >
               <Icon.Arrow />
@@ -55,6 +53,7 @@ function NavMobile({ children }: { children: React.ReactNode }) {
               className='cursor-pointer'
               onClick={() => {
                 _setNavShowCanvas(!_navShowCanvas)
+                setShowPanel(false)
               }}
             >
               {_navShowCanvas ? <Icon.Close /> : <Icon.Menu />}
@@ -62,8 +61,9 @@ function NavMobile({ children }: { children: React.ReactNode }) {
             <div
               className='cursor-pointer'
               onClick={() => {
-                setShowPanel(panelState === 'user' ? !showPanel : true)
                 setPanelState('user')
+                setShowPanel(panelState === 'user' ? !showPanel : true)
+                _setNavShowCanvas(false)
               }}
             >
               <Icon.User />
