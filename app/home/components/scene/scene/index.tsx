@@ -16,8 +16,8 @@ import Scene from './scene'
 
 export default function App({ _dark }: { _dark: boolean }) {
   const _homeCamera = State((state) => state.homeCamera)
-  const light = useRef<THREE.PointLight | null>(null)
-  const { scene } = useThree()
+  // const light = useRef<THREE.PointLight | null>(null)
+  // const { scene } = useThree()
 
   // const sunMaterial = new THREE.MeshBasicMaterial({
   //   color: 0xffddaa,

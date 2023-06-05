@@ -54,6 +54,14 @@ export const aXA = setAnimationStaggerConfig(
   0.3,
 )
 
+export const aHeaderSkewUp = setAnimationConfig(
+  { skewY: 10, y: 150, opacity: 0, scale: 1.2 },
+  { skewY: 0, y: 0, opacity: 1, scale: 1 },
+  { skewY: 10, y: 150, opacity: 0, scale: 1.2 },
+  WrongCurve,
+  0.5,
+)
+
 // **! OTHERS
 
 export const stagger_yUp_O = {
