@@ -75,10 +75,18 @@ export default function AppInfo() {
                     <br />
                     <Link
                       href='https://changelog.docs.theiceji.com/'
-                      className='cursor-pointer text-2xs font-light opacity-80 hover:opacity-100 md:text-1xs'
+                      className='cursor-pointer text-2xs font-light opacity-60 hover:opacity-100 md:text-base'
                       onClick={() => _setModalAppInfo(false)}
                     >
                       changelog
+                    </Link>
+                    {' | '}
+                    <Link
+                      href='/status?section=server'
+                      className='cursor-pointer text-2xs font-light opacity-60 hover:opacity-100 md:text-base'
+                      onClick={() => _setModalAppInfo(false)}
+                    >
+                      status
                     </Link>
                   </p>
                 </div>

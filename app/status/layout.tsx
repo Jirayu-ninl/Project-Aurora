@@ -34,8 +34,10 @@ function Layout({ children }: { children: React.ReactNode }) {
   }, [_setPage, _setNavRoute, _setBackRoute])
 
   return (
-    <div className='relative flex h-full w-screen justify-center overflow-y-hidden px-4 pb-4 pt-28'>
-      <div className='container h-full w-full xxl:w-[1440px]'>{children}</div>
+    <div className='relative flex h-screen w-screen justify-center overflow-y-hidden px-4 pb-4 pt-28'>
+      <div className='container h-full w-full overflow-hidden xxl:w-[1440px]'>
+        {children}
+      </div>
     </div>
   )
 }
