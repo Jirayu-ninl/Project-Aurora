@@ -93,6 +93,7 @@ const nextConfig = {
   },
   experimental: {
     appDir: true,
+    serverActions: true,
   },
   sentry: {
     hideSourceMaps: true,

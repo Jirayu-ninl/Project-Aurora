@@ -82,7 +82,7 @@ export default function AppInfo() {
                     </Link>
                     {' | '}
                     <Link
-                      href='/status?section=server'
+                      href='/status/app'
                       className='cursor-pointer text-2xs font-light opacity-60 hover:opacity-100 md:text-base'
                       onClick={() => _setModalAppInfo(false)}
                     >
