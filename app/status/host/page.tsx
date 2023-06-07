@@ -1,4 +1,4 @@
-'use server'
+// 'use server'
 
 import clsx from 'clsx'
 import { host as hostData } from '../data'

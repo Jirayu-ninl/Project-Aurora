@@ -20,26 +20,32 @@ function Layout({ children }: { children: React.ReactNode }) {
       {
         id: 0,
         number: '01',
-        title: 'SERVER',
-        path: '/status?section=server',
+        title: 'APP',
+        path: '/status/app',
       },
       {
         id: 1,
         number: '02',
-        title: 'APP',
-        path: '/status?section=app',
+        title: 'SERVER',
+        path: '/status/server',
       },
       {
         id: 2,
         number: '03',
-        title: 'device',
-        path: '/status?section=device',
+        title: 'CLIENT',
+        path: '/status/client',
+      },
+      {
+        id: 3,
+        number: '04',
+        title: 'HOST',
+        path: '/status/host',
       },
     ])
   }, [_setPage, _setNavRoute, _setBackRoute])
 
   const Pathname = usePathname().slice(8)
-  const sectionName = ['server', 'app', 'device', 'host']
+  const sectionName = ['app', 'server', 'client', 'host']
 
   return (
     <div className='relative flex h-screen w-screen justify-center overflow-y-hidden px-4 pb-4 pt-28'>
