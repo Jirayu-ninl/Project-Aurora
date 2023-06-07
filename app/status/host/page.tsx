@@ -1,7 +1,7 @@
 // 'use server'
 
 import clsx from 'clsx'
-import { host as hostData } from '../data'
+import { host as hostData } from '../data/'
 
 function Page() {
   return (
