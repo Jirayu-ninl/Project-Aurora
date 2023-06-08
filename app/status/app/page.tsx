@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { UI } from '@global/store'
-import app from '../data/app'
+import app from './data'
 
 function Page() {
   const _dark = UI((state) => state.dark)

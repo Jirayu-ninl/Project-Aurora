@@ -2,6 +2,7 @@
 import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import clsx from 'clsx'
 
 // import { SessionProvider } from 'next-auth/react'
@@ -57,6 +58,7 @@ const App = ({ children }: AppPropsWithLayout) => {
           <Toast />
         </Wrapper>
         {/* </SessionProvider> */}
+        <VercelAnalytics />
       </body>
     </html>
   )

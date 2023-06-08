@@ -1,5 +1,3 @@
-'use client'
-
 function Status() {
   return (
     <div className='Anim mb-2 flex w-full items-center justify-center px-6 py-4'>

@@ -2,7 +2,7 @@
 
 import clsx from 'clsx'
 import { UI } from '@global/store'
-import client from '../data/client'
+import client from './data'
 
 function Page() {
   const _gpuTier = UI((state) => state.gpuTier)

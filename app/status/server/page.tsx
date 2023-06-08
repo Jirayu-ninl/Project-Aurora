@@ -1,7 +1,7 @@
 // 'use server'
 
 import clsx from 'clsx'
-import serverData from '../data/server'
+import serverData from './data'
 
 function Page() {
   return (

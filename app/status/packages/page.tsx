@@ -1,7 +1,7 @@
 'use server'
 
 import clsx from 'clsx'
-import pkgData from '../data/packages'
+import pkgData from './data'
 
 // getEnvInfo().then((data) => console.log(data.['npmPackages']))
 
