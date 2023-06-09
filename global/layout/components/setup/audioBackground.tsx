@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import { useAudio } from '@aurora/libs/hooks/audio'
 
-const AudioUrl = '/audio/WebSound-01.mp3'
+const AudioUrl = '/audio/WebSound.mp3'
 
 const AudioComp = () => {
   const [audio] = useAudio()
