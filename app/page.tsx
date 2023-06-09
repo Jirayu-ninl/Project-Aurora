@@ -3,7 +3,10 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, animate, AnimatePresence } from 'framer-motion'
+import { useGLTF } from '@react-three/drei'
+
 import { UI } from '@global/store'
+
 import IceJiLoadingLogo from '@resources/common/logo/IceJiLoading'
 import IceJiLogo from '@resources/common/logo/IceJi'
 
@@ -19,6 +22,8 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
   const [isPush, setIsPush] = useState(false)
+
+  useGLTF.preload('/three/scene/home/cube.glb')
 
   useEffect(() => {
     _setShowNav(false)

@@ -16,8 +16,8 @@ import Scene from './scene'
 
 export default function App({ _dark }: { _dark: boolean }) {
   const _homeCamera = State((state) => state.homeCamera)
-  // const light = useRef<THREE.PointLight | null>(null)
-  // const { scene } = useThree()
+  const light = useRef<THREE.PointLight | null>(null)
+  const { scene } = useThree()
 
   // const sunMaterial = new THREE.MeshBasicMaterial({
   //   color: 0xffddaa,
@@ -25,16 +25,16 @@ export default function App({ _dark }: { _dark: boolean }) {
   //   fog: false,
   // })
 
-  // const sunGeometry = new THREE.SphereGeometry(5, 32, 32)
+  // const sunGeometry = new THREE.SphereGeometry(3, 16, 16)
   // const Sun = new THREE.Mesh(sunGeometry, sunMaterial)
-  // Sun.position.set(-5, 8, -30)
+  // Sun.position.set(0, 0, -30)
 
   // scene.add(Sun)
 
   // useFrame((state) => {
   //   if (light.current) {
-  //     light.current.position.x = state.mouse.x * 20
-  //     light.current.position.y = state.mouse.y * 20
+  //     light.current.position.x = state.mouse.x * 2
+  //     light.current.position.y = state.mouse.y * 2
   //   }
   // })
 
@@ -112,25 +112,21 @@ export default function App({ _dark }: { _dark: boolean }) {
         </PerspectiveCamera>
       </group>
       {/* <pointLight
-          ref={light}
-          position-z={-4}
+        ref={light}
+        position-z={4}
+        intensity={0.05}
+        color={'#fff9d4'}
+      />
+      <group>
+        <pointLight
+          position={[3, -5, -10]}
           intensity={0.05}
-          color={'#fff9d4'}
+          color={'#ffffff'}
         />
-        <group>
-          <pointLight
-            position={[3, -5, -10]}
-            intensity={0.05}
-            color={'#ffffff'}
-          />
-        </group>
-        <group>
-          <pointLight
-            position={[-2, 5, 10]}
-            intensity={0.1}
-            color={'#ffffff'}
-          />
-        </group> */}
+      </group> */}
+      <group>
+        <pointLight position={[-2, 5, 10]} intensity={0.1} color={'#ffffff'} />
+      </group>
       <Suspense fallback={null}>
         <Scene _dark={_dark} />
       </Suspense>
@@ -142,7 +138,7 @@ export default function App({ _dark }: { _dark: boolean }) {
           height={200}
         /> */}
         <Bloom luminanceThreshold={1} mipmapBlur />
-        <Bloom
+        {/* {/* <Bloom
           intensity={5}
           luminanceThreshold={0.5}
           luminanceSmoothing={0.3}
@@ -155,18 +151,41 @@ export default function App({ _dark }: { _dark: boolean }) {
           luminanceSmoothing={0.5}
           opacity={0.2}
           kernelSize={KernelSize.HUGE}
-        />
+        /> */}
         {/* <GodRays
           sun={Sun}
           height={480}
-          density={2}
+          density={20}
           decay={0.9}
           weight={0.6}
           exposure={1}
           samples={60}
           clampMax={1}
         /> */}
-        {/* <Noise opacity={0.025} /> */}
+        <Bloom
+          intensity={10}
+          luminanceThreshold={0.2}
+          luminanceSmoothing={0.5}
+          opacity={0.2}
+          kernelSize={KernelSize.SMALL}
+        />
+        <Bloom
+          intensity={10}
+          luminanceThreshold={0.3}
+          luminanceSmoothing={0.2}
+          opacity={0.1}
+          height={500}
+          kernelSize={KernelSize.LARGE}
+        />
+        <Bloom
+          intensity={20}
+          luminanceThreshold={0}
+          luminanceSmoothing={0.1}
+          height={100}
+          opacity={0.07}
+          kernelSize={KernelSize.HUGE}
+        />
+        <Noise opacity={0.025} />
       </EffectComposer>
     </>
   )

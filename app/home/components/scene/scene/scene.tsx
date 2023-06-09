@@ -4,53 +4,37 @@ import { useRef, memo } from 'react'
 import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import {
-  useCubeTexture,
   useTexture,
-  MeshDistortMaterial,
-  Stage,
   Grid,
   OrbitControls,
   Environment,
   Reflector,
   AccumulativeShadows,
   RandomizedLight,
+  Float,
 } from '@react-three/drei'
 
-import { theme } from '@global/config/defineConfig'
+import Cube from './components/cube'
 
 function Scene({ _dark }: { _dark: boolean }) {
-  const Color = theme.color
-
-  const bumpMap = useTexture('/three/blob/alphaMap.jpg')
-  const envMap = useCubeTexture(
-    ['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png'],
-    { path: '/three/blob/cube/' },
-  )
+  // const Color = theme.color
 
   const TheObj = useRef<THREE.Group>(null)
 
-  useFrame(({ clock, mouse }) => {
+  useFrame(({ clock }) => {
     if (TheObj.current) {
-      TheObj.current.rotation.y = clock.getElapsedTime() * 0.3
+      TheObj.current.rotation.y =
+        Math.sin(clock.getElapsedTime() * 0.2) / 4 - Math.PI / 1.35
     }
   })
 
   return (
     <>
-      {/* <Stage
-        intensity={0.5}
-        environment='city'
-        shadows={{ type: 'accumulative', bias: -0.001 }}
-        adjustCamera={false}
-      >
-        <Ground />
-      </Stage> */}
       {/* <Ground /> */}
       <group ref={TheObj} position={[0, 1.3, 0]}>
-        <mesh rotation={[-Math.PI / 1.3, Math.PI / 1.3, 0]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color='orange' />
-        </mesh>
+        <Float floatIntensity={2} speed={2}>
+          <Cube _dark={_dark} />
+        </Float>
       </group>
       <Grid
         renderOrder={-1}
@@ -66,7 +50,7 @@ function Scene({ _dark }: { _dark: boolean }) {
         fadeStrength={1.2}
       />
       {/* <OrbitControls /> */}
-      <Environment preset='sunset' blur={0.8} />
+      <Environment preset='city' blur={0.8} />
     </>
   )
 }
