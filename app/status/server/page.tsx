@@ -1,9 +1,21 @@
-// 'use server'
+'use client'
+
+import { useEffect } from 'react'
+import { State } from '@global/store'
 
 import clsx from 'clsx'
 import serverData from './data'
 
 function Page() {
+  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+
+  useEffect(() => {
+    _setNavRouteActiveState({
+      id: 1,
+      scrollProgress: 40,
+    })
+  }, [_setNavRouteActiveState])
+
   return (
     <>
       {serverData().contents.map((v, i) =>
