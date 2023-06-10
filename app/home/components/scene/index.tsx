@@ -40,7 +40,7 @@ const SceneRoot = () => {
           alpha: true,
           antialias: antialias,
           stencil: false,
-          depth: false,
+          depth: true,
           logarithmicDepthBuffer: true,
         }}
         linear={true}

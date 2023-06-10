@@ -23,32 +23,36 @@ export default function Model(
   props: JSX.IntrinsicElements['group'] & { _dark: boolean },
 ) {
   const { nodes, materials } = useGLTF(
-    '/three/scene/home/cube.glb',
+    '/three/scene/home/cubeOnly.glb',
   ) as GLTFResult
+
   return (
     <group {...props} dispose={null}>
       {/* <mesh
         castShadow
         receiveShadow
         geometry={nodes.Cube002_Cube005.geometry}
-        material={materials.Tess}
         scale={0.5}
-      /> */}
+      >
+        <meshStandardMaterial {...materials.Tess} />
+      </mesh> */}
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Cube003_Cube006.geometry}
-        material={materials.cube}
         scale={0.5}
       >
         <meshStandardMaterial
           {...materials.cube}
           emissiveIntensity={2}
-          // envMap={material.envMap}
+          depthTest={false}
+          roughness={1}
+          metalness={0}
+          // toneMapped={false}
         />
       </mesh>
     </group>
   )
 }
 
-useGLTF.preload('/three/scene/home/cube.glb')
+useGLTF.preload('/three/scene/home/cubeOnly.glb')
