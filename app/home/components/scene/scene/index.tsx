@@ -1,15 +1,11 @@
-import { Suspense, useRef, useMemo } from 'react'
+import { Suspense, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-// import { UnrealBloomPass } from 'three-stdlib'
 import { EffectComposer, Bloom, Noise } from '@react-three/postprocessing'
-import { KernelSize } from 'postprocessing'
 import { State } from '@global/store'
 
 import Scene from './scene'
-
-// extend({ UnrealBloomPass })
 
 export default function App({ _dark }: { _dark: boolean }) {
   const _homeCamera = State((state) => state.homeCamera)
@@ -97,33 +93,9 @@ export default function App({ _dark }: { _dark: boolean }) {
           bokehScale={10}
           height={200}
         /> */}
-        <Bloom luminanceThreshold={1} mipmapBlur />
-        <Bloom
-          intensity={10}
-          luminanceThreshold={0.2}
-          luminanceSmoothing={0.5}
-          opacity={0.2}
-          kernelSize={KernelSize.SMALL}
-          // blendFunction={BlendFunction.SCREEN}
-        />
-        <Bloom
-          intensity={10}
-          luminanceThreshold={0.3}
-          luminanceSmoothing={0.2}
-          opacity={0.1}
-          height={500}
-          kernelSize={KernelSize.LARGE}
-          // blendFunction={BlendFunction.SCREEN}
-        />
-        <Bloom
-          intensity={20}
-          luminanceThreshold={0}
-          luminanceSmoothing={0.1}
-          height={100}
-          opacity={0.07}
-          kernelSize={KernelSize.HUGE}
-          // blendFunction={BlendFunction.SCREEN}
-        />
+        <Bloom luminanceThreshold={0.5} mipmapBlur />
+        <Bloom luminanceThreshold={1} intensity={10} levels={9} mipmapBlur />
+        <Bloom luminanceThreshold={1.5} intensity={5} levels={8} mipmapBlur />
         <Noise opacity={0.025} />
       </EffectComposer>
     </>

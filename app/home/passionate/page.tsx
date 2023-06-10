@@ -16,7 +16,7 @@ function Page() {
       scrollProgress: 40,
     })
     _setHomeCamera({
-      position: [-0.6, 2.2, 1.5],
+      position: [-1.2, 1.5, 3],
       rotation: [0, 0, 0],
     })
   }, [_setNavRouteActiveState, _setHomeCamera])

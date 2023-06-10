@@ -71,7 +71,7 @@ function Scene({ _dark }: { _dark: boolean }) {
         </group>
       </Environment>
       <Shadows positionY={-0.8} />
-      <color args={_dark ? [0x101010] : [0xffffff]} attach='background' />
+      {/* <color args={_dark ? [0x101010] : [0xffffff]} attach='background' /> */}
     </>
   )
 }

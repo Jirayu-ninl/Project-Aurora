@@ -5,6 +5,16 @@ import {
 
 const WrongCurve: number[] = [0.43, 0.13, 0.23, 0.96]
 
+export const aFramer3DConfig = {
+  transition: {
+    type: 'spring',
+    mass: 5,
+    stiffness: 50,
+    damping: 50,
+    restDelta: 0.0001,
+  },
+}
+
 export const aNav = (_showNav: boolean) =>
   setAnimationConfig(
     { y: '-100%' },

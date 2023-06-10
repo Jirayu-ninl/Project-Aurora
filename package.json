@@ -54,7 +54,7 @@
     "@react-three/fiber": "^8.13.0",
     "@react-three/flex": "^1.0.1",
     "@react-three/gpu-pathtracer": "^0.1.1",
-    "@react-three/postprocessing": "^2.11.4",
+    "@react-three/postprocessing": "^2.14.9",
     "@react-three/rapier": "^1.0.0",
     "@sentry/nextjs": "^7.53.1",
     "@tailwindcss/typography": "^0.5.9",
