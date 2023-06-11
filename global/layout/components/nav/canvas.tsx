@@ -6,8 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 // Components
 import { UI } from '@global/store'
-import { navCanvasRoutes } from '@global/config/routes'
-import type { tNavCanvasRoute } from '@global/config/routes'
+import { navPrimaryRoutes } from '@global/config/routes'
 // CSS
 import { navCanvas as CSS } from './styles'
 // Footer
@@ -63,27 +62,29 @@ export default function Canvas() {
                   animate='animate'
                   exit='exit'
                 >
-                  {navCanvasRoutes.map((route: tNavCanvasRoute) => (
-                    <motion.a
-                      className={clsx(
-                        CSS.CanvasMenuItem,
-                        _dark && CSS.CanvasMenuItem_dark,
-                      )}
-                      key={route.id}
-                      onClick={() => handleLink(`${route.path}`)}
-                      onMouseEnter={() => {
-                        _setCursor('go'), setMenuHover(route.title)
-                      }}
-                      onMouseLeave={() => {
-                        _setCursor(false), setMenuHover('')
-                      }}
-                      variants={titleSlideUp}
-                      transition={transition}
-                    >
-                      <motion.h6>{route.number}</motion.h6>
-                      <motion.h1>{route.title}</motion.h1>
-                    </motion.a>
-                  ))}
+                  {navPrimaryRoutes.map(
+                    (route: (typeof navPrimaryRoutes)[0], id: number) => (
+                      <motion.a
+                        className={clsx(
+                          CSS.CanvasMenuItem,
+                          _dark && CSS.CanvasMenuItem_dark,
+                        )}
+                        key={id}
+                        onClick={() => handleLink(`${route.path}`)}
+                        onMouseEnter={() => {
+                          _setCursor('go'), setMenuHover(route.title)
+                        }}
+                        onMouseLeave={() => {
+                          _setCursor(false), setMenuHover('')
+                        }}
+                        variants={titleSlideUp}
+                        transition={transition}
+                      >
+                        <motion.h6>0{id + 1}</motion.h6>
+                        <motion.h1>{route.title}</motion.h1>
+                      </motion.a>
+                    ),
+                  )}
                 </motion.div>
               </div>
               <FooterMobile />

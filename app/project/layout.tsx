@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 import { State } from '@global/store'
+import { navSecondaryRoutes } from '@global/config/routes'
+import InitPageState from '@aurora/views/init/pageState'
 
 function Layout({ children }: { children: React.ReactNode }) {
   const _setPage = State((state) => state.setPage)
@@ -9,22 +11,15 @@ function Layout({ children }: { children: React.ReactNode }) {
   const _setBackRoute = State((state) => state.setBackRoute)
 
   useEffect(() => {
-    _setPage('Project')
-    _setBackRoute('/project')
-    _setNavRoute([
-      {
-        id: 0,
-        number: '01',
-        title: 'HIGHLIGHT',
-        path: '/project/highlight',
-      },
-      {
-        id: 1,
-        number: '02',
-        title: 'CATEGORIES',
-        path: '/project/categories',
-      },
-    ])
+    InitPageState(
+      _setPage,
+      _setBackRoute,
+      _setNavRoute,
+      navSecondaryRoutes.project,
+    )
+    // _setPage(navSecondaryRoutes.project.title)
+    // _setBackRoute(navSecondaryRoutes.project.setBackRoute)
+    // _setNavRoute(navSecondaryRoutes.project.route)
   }, [_setPage, _setNavRoute, _setBackRoute])
 
   return <div className='relative h-screen w-screen'>{children}</div>

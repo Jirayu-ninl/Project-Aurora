@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import clsx from 'clsx'
-import type { tNavCanvasRoute } from '@global/config/routes'
+import type { tNavPrimaryRoutes } from '@global/config/routes'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 import { tNavRouteActiveState } from '@global/store/state.e'
 
@@ -14,7 +14,7 @@ function NavMenuItem({
   index,
   _navRouteActiveState,
 }: {
-  menuItem: tNavCanvasRoute
+  menuItem: tNavPrimaryRoutes
   index: number
   _navRouteActiveState: tNavRouteActiveState
 }) {
@@ -45,7 +45,7 @@ function NavMenuItem({
                 'Anim text-quaternary-2 dark:text-primary-0',
             )}
           >
-            {menuItem.number}
+            0{index + 1}
           </p>
           <p className='pl-1 text-xl font-bold md:text-2xs xxl:text-sm el:pl-3'>
             {menuItem.title}

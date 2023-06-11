@@ -21,7 +21,7 @@ export const iNavRouteActiveState: tNavRouteActiveState = {
 }
 
 export type tNavRouteActiveState = {
-  id?: number
+  id: number
   scrollProgress?: number
   pages?: number
   scrollable?: boolean
@@ -32,40 +32,28 @@ export type tNavRouteActiveState = {
 
 export const iNavRoute: tNavRoute = [
   {
-    id: 0,
-    number: '01',
     title: 'INTRO',
     path: '/home/intro',
   },
   {
-    id: 1,
-    number: '02',
     title: 'PASSIONATE',
     path: '/home/passionate',
   },
   {
-    id: 2,
-    number: '03',
     title: 'SKILLs',
     path: '/home/skills',
   },
   {
-    id: 3,
-    number: '03',
     title: 'PROJECTS',
     path: '/home/projects',
   },
   {
-    id: 4,
-    number: '04',
     title: 'SERVICES',
     path: '/home/services',
   },
 ]
 
 export type tNavRoute = {
-  id: number
-  number: string
   title: string
   path: string
 }[]

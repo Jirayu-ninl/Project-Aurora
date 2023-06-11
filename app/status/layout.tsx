@@ -6,6 +6,8 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 import { State } from '@global/store'
+import { navSecondaryRoutes } from '@global/config/routes'
+import InitPageState from '@aurora/views/init/pageState'
 // import Data from './data'
 
 function Layout({ children }: { children: React.ReactNode }) {
@@ -14,34 +16,32 @@ function Layout({ children }: { children: React.ReactNode }) {
   const _setBackRoute = State((state) => state.setBackRoute)
 
   useEffect(() => {
-    _setPage('Status')
-    _setBackRoute('/status')
-    _setNavRoute([
-      {
-        id: 0,
-        number: '01',
-        title: 'APP',
-        path: '/status/app',
-      },
-      {
-        id: 1,
-        number: '02',
-        title: 'SERVER',
-        path: '/status/server',
-      },
-      {
-        id: 2,
-        number: '03',
-        title: 'CLIENT',
-        path: '/status/client',
-      },
-      {
-        id: 3,
-        number: '04',
-        title: 'HOST',
-        path: '/status/host',
-      },
-    ])
+    InitPageState(
+      _setPage,
+      _setBackRoute,
+      _setNavRoute,
+      navSecondaryRoutes.status,
+    )
+    // _setPage('Status')
+    // _setBackRoute('/status')
+    // _setNavRoute([
+    //   {
+    //     title: 'APP',
+    //     path: '/status/app',
+    //   },
+    //   {
+    //     title: 'SERVER',
+    //     path: '/status/server',
+    //   },
+    //   {
+    //     title: 'CLIENT',
+    //     path: '/status/client',
+    //   },
+    //   {
+    //     title: 'HOST',
+    //     path: '/status/host',
+    //   },
+    // ])
   }, [_setPage, _setNavRoute, _setBackRoute])
 
   const Pathname = usePathname().slice(8)

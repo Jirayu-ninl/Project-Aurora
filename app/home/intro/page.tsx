@@ -6,7 +6,6 @@ import { Title, Sidebar } from './components'
 
 export default function Home() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-  const _setHomeCamera = State((state) => state.setHomeCamera)
   const _pageStateIndex = State((state) => state.inPageNavIndex)
   const _setPageStateIndex = State((state) => state.setInPageNavIndex)
 
@@ -44,11 +43,7 @@ export default function Home() {
       scrollable: false,
       pages: sideNav.length,
     })
-    _setHomeCamera({
-      position: [0, 0.5, 5],
-      rotation: [0, 0, 0],
-    })
-  }, [_setNavRouteActiveState, _setHomeCamera, _pageStateIndex, sideNav.length])
+  }, [_setNavRouteActiveState, _pageStateIndex, sideNav.length])
 
   return (
     <main className='relative h-screen w-screen overflow-hidden'>

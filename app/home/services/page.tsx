@@ -8,18 +8,13 @@ import { aHeaderSkewUp } from '@global/config/defineAnimationConfig'
 
 function Page() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-  const _setHomeCamera = State((state) => state.setHomeCamera)
 
   useEffect(() => {
     _setNavRouteActiveState({
       id: 4,
       scrollProgress: 80,
     })
-    _setHomeCamera({
-      position: [4, 8, -2.2],
-      rotation: [-Math.PI / 2, 0, 0],
-    })
-  }, [_setNavRouteActiveState, _setHomeCamera])
+  }, [_setNavRouteActiveState])
 
   return (
     <main className='relative flex h-screen w-screen items-start justify-center overflow-hidden'>
