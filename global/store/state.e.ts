@@ -1,3 +1,5 @@
+import { MotionValue } from 'framer-motion'
+
 export const iHomeCamera: tHomeCamera = {
   position: [0, -0.1, 3],
   rotation: [0, 0, 0],
@@ -11,11 +13,21 @@ export type tHomeCamera = {
 export const iNavRouteActiveState: tNavRouteActiveState = {
   id: 0,
   scrollProgress: 20,
+  pages: 1,
+  scrollable: false,
+  pageHeight: undefined,
+  motionValue: undefined,
+  scrollY: undefined,
 }
 
 export type tNavRouteActiveState = {
-  id: number
-  scrollProgress: number
+  id?: number
+  scrollProgress?: number
+  pages?: number
+  scrollable?: boolean
+  pageHeight?: number | undefined
+  motionValue?: MotionValue<string> | undefined
+  scrollY?: MotionValue<number> | undefined
 }
 
 export const iNavRoute: tNavRoute = [

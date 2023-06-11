@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import {
-  useRef,
-  useState,
-  useCallback,
-  useLayoutEffect,
-  useEffect,
-} from 'react'
+import { useRef, useState, useCallback, useLayoutEffect } from 'react'
 import { ResizeObserver } from '@juggle/resize-observer'
-import { useScroll, useTransform, useSpring, motion } from 'framer-motion'
+import {
+  useScroll,
+  useTransform,
+  useSpring,
+  motion,
+  MotionValue,
+} from 'framer-motion'
+import { InnerHeight } from '../useWindowSize'
 
 const UseSmoothScroll = ({
   children,
@@ -17,13 +20,13 @@ const UseSmoothScroll = ({
 }: {
   children: React.ReactNode
   physics: { damping: number; mass: number; stiffness: number }
-  Callback: (p: number) => any
+  Callback: (value: tCallbackReturnValue) => void
 }) => {
   // const defaultPhysics = { damping: 15, mass: 0.27, stiffness: 55 }
   const scrollRef = useRef(null)
   const [pageHeight, setPageHeight] = useState(0)
 
-  const resizePageHeight = useCallback((entries) => {
+  const resizePageHeight = useCallback((entries: any) => {
     for (const entry of entries) {
       setPageHeight(entry.contentRect.height)
     }
@@ -45,7 +48,14 @@ const UseSmoothScroll = ({
   const spring = useSpring(transform, physics)
 
   if (Callback) {
-    Callback(pageHeight)
+    const windowHeight = InnerHeight(-1)
+    const motionValue = useTransform(
+      scrollY,
+      [0, pageHeight - windowHeight],
+      ['0%', '100%'],
+    )
+
+    Callback({ pageHeight, motionValue, scrollY })
   }
 
   return (
@@ -62,61 +72,10 @@ const UseSmoothScroll = ({
   )
 }
 
-export default UseSmoothScroll
-
-import useWindowSize from '@aurora/libs/hooks/useWindowSize'
-
-export function Legacy({ children }: { children: React.ReactNode }) {
-  const size = useWindowSize()
-  const refApp = useRef(null)
-  const refScroll = useRef(null)
-
-  const scrollConfig = {
-    ease: 0.1,
-    current: 0,
-    previous: 0,
-    rounded: 0,
-  }
-
-  useEffect(() => {
-    requestAnimationFrame(() => skewScrolling())
-    return skewScrolling()
-  })
-
-  useLayoutEffect(() => {
-    setBodyHeight()
-  }, [size.height])
-
-  const setBodyHeight = () => {
-    if (refScroll.current) {
-      document.body.style.height = `${
-        refScroll.current.getBoundingClientRect().height
-      }px`
-    }
-  }
-
-  const skewScrolling = () => {
-    scrollConfig.current = window.scrollY
-    scrollConfig.previous +=
-      (scrollConfig.current - scrollConfig.previous) * scrollConfig.ease
-    scrollConfig.rounded = Math.round(scrollConfig.previous * 100) / 100
-    const difference = scrollConfig.current - scrollConfig.rounded
-    const acceleration = difference / size.width
-    const velocity = +acceleration
-    const skew = velocity * 7.5
-    if (refScroll.current) {
-      refScroll.current.style.transform = `translate3d(0, -${scrollConfig.rounded}px, 0) skewY(${skew}deg)`
-      requestAnimationFrame(() => skewScrolling())
-    }
-  }
-
-  console.log(size)
-  return (
-    <div
-      ref={refApp}
-      className='fixed left-0 top-0 h-screen w-screen overflow-hidden'
-    >
-      <div ref={refScroll}>{children}</div>
-    </div>
-  )
+export type tCallbackReturnValue = {
+  pageHeight?: number
+  motionValue?: MotionValue<string>
+  scrollY?: MotionValue<number>
 }
+
+export default UseSmoothScroll

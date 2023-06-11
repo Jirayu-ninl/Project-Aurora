@@ -1,8 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import clsx from 'clsx'
 import type { tNavCanvasRoute } from '@global/config/routes'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
+import { tNavRouteActiveState } from '@global/store/state.e'
+
+import ScrollProgress from './scrollProgress'
 
 function NavMenuItem({
   menuItem,
@@ -11,7 +16,7 @@ function NavMenuItem({
 }: {
   menuItem: tNavCanvasRoute
   index: number
-  _navRouteActiveState: { id: number; scrollProgress: number }
+  _navRouteActiveState: tNavRouteActiveState
 }) {
   return (
     <motion.div
@@ -48,15 +53,9 @@ function NavMenuItem({
         </div>
         {(_navRouteActiveState.id === index ||
           _navRouteActiveState.id === 99) && (
-          <div className='relative mt-1 el:mt-2'>
-            <motion.div
-              className='Anim-2 absolute ml-[10px] h-0.5 bg-quaternary-2 dark:bg-primary-0'
-              // style={{ width: navActiveState.scrollProgress + '%' }}
-              initial={{ width: '0%' }}
-              animate={{ width: _navRouteActiveState.scrollProgress + '%' }}
-              transition={{ delay: 1, duration: 1 }}
-            />
-            <div className='ml-[10px] h-0.5 w-[calc(100%-20px)] bg-white opacity-20' />
+          <div className='relative mt-1 w-[calc(100%-20px)] el:mt-2'>
+            <ScrollProgress _navRouteActiveState={_navRouteActiveState} />
+            <div className='ml-[10px] h-0.5 w-full bg-white opacity-20' />
           </div>
         )}
       </Link>

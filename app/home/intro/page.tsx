@@ -7,19 +7,14 @@ import { Title, Sidebar } from './components'
 export default function Home() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
   const _setHomeCamera = State((state) => state.setHomeCamera)
-
-  useEffect(() => {
-    _setNavRouteActiveState({
-      id: 0,
-      scrollProgress: 20,
-    })
-    _setHomeCamera({
-      position: [0, 0.5, 5],
-      rotation: [0, 0, 0],
-    })
-  }, [_setNavRouteActiveState, _setHomeCamera])
+  const _pageStateIndex = State((state) => state.inPageNavIndex)
+  const _setPageStateIndex = State((state) => state.setInPageNavIndex)
 
   const sideNav = [
+    {
+      name: 'Introduction',
+      url: '/home?title=Introduction',
+    },
     {
       name: 'Adaptability',
       url: '/home?title=Adaptability',
@@ -42,10 +37,27 @@ export default function Home() {
     },
   ]
 
+  useEffect(() => {
+    _setNavRouteActiveState({
+      id: 0,
+      scrollProgress: _pageStateIndex,
+      scrollable: false,
+      pages: sideNav.length,
+    })
+    _setHomeCamera({
+      position: [0, 0.5, 5],
+      rotation: [0, 0, 0],
+    })
+  }, [_setNavRouteActiveState, _setHomeCamera, _pageStateIndex, sideNav.length])
+
   return (
     <main className='relative h-screen w-screen overflow-hidden'>
       <Title />
-      <Sidebar items={sideNav} />
+      <Sidebar
+        items={sideNav}
+        _pageStateIndex={_pageStateIndex}
+        _setPageStateIndex={_setPageStateIndex}
+      />
     </main>
   )
 }

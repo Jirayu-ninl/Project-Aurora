@@ -5,12 +5,13 @@ import { State } from '@global/store'
 
 export default function Sidebar({
   items,
+  _pageStateIndex,
+  _setPageStateIndex,
 }: {
   items: { name: string; url?: string; id?: number }[]
+  _pageStateIndex: number
+  _setPageStateIndex: (i: number) => void
 }) {
-  const _pageStateIndex = State((state) => state.inPageNavIndex)
-  const _setPageStateIndex = State((state) => state.setInPageNavIndex)
-
   return (
     <div className='hideLastChild-Parent absolute left-4 top-80 flex h-[40vh] w-[12px] flex-col items-center justify-center md:h-[60vh] lg:left-6 xl:top-0 xl:h-[80vh] xxl:left-8'>
       {items.map((v, i) => (

@@ -11,6 +11,7 @@ function Page() {
     _setNavRouteActiveState({
       id: 99,
       scrollProgress: 0,
+      scrollable: false,
     })
   }, [_setNavRouteActiveState])
 
