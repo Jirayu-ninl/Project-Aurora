@@ -106,12 +106,12 @@ const sentryWebpackPluginOptions = {
 }
 
 // manage i18n
-if (process.env.EXPORT !== 'true') {
-  nextConfig.i18n = {
-    locales: ['en-US'],
-    defaultLocale: 'en-US',
-  }
-}
+// if (process.env.EXPORT !== 'true') {
+//   nextConfig.i18n = {
+//     locales: ['en-US'],
+//     defaultLocale: 'en-US',
+//   }
+// }
 
 export default plugins(
   [[withSentryConfig, sentryWebpackPluginOptions], withBundleAnalyzer, withPWA],
