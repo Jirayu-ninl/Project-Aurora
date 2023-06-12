@@ -19,8 +19,8 @@ const UseSmoothScroll = ({
   Callback,
 }: {
   children: React.ReactNode
-  physics: { damping: number; mass: number; stiffness: number }
-  Callback: (value: tCallbackReturnValue) => void
+  physics?: { damping: number; mass: number; stiffness: number }
+  Callback?: (value: tCallbackReturnValue) => void
 }) => {
   // const defaultPhysics = { damping: 15, mass: 0.27, stiffness: 55 }
   const scrollRef = useRef(null)

@@ -24,14 +24,11 @@ const store: tStore = (set) => ({
   setAudio: (audio) => set(() => ({ audio: audio })),
   showFooter: true,
   setShowFooter: (show) => set(() => ({ showFooter: show })),
-  footerOption: {
-    layout: 'main',
-    fixed: true,
-    background: false,
-    showContact: true,
-    showCredit: true,
-  },
-  setFooterOption: (options) => set(() => ({ footerOption: options })),
+  footerOption: iFooterOption,
+  setFooterOption: (options: tFooterOption) =>
+    set(({ footerOption }: { footerOption: tFooterOption }) => ({
+      footerOption: { ...footerOption, ...options },
+    })),
 })
 
 export type tNavDropdownState = {
@@ -76,12 +73,20 @@ export type tStoreState = {
   setFooterOption: (options: tFooterOption) => void
 }
 
+const iFooterOption = {
+  layout: 'main',
+  fixed: true,
+  background: false,
+  showContact: true,
+  showCredit: true,
+}
+
 type tFooterOption = {
-  layout: string
-  fixed: boolean
-  background: boolean | string
-  showContact: boolean
-  showCredit: boolean
+  layout?: string
+  fixed?: boolean
+  background?: boolean | string
+  showContact?: boolean
+  showCredit?: boolean
 }
 
 export type tStore = (set: any) => tStoreState

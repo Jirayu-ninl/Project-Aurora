@@ -1,22 +1,58 @@
-'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Link from 'next/link'
+import { gql, request as gqlRequest } from 'graphql-request'
+import SetState from '@app/resources/common/components/setDefaultNavActiveState'
 
-import { useEffect } from 'react'
-import { State } from '@global/store'
+const getPosts = async () => {
+  try {
+    const requestQL = gql`
+      {
+        posts {
+          slug
+          title
+          excerpt
+          date
+          featured
+          tag
+          coverImage {
+            height
+            url
+            width
+          }
+        }
+      }
+    `
 
-function Page() {
-  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+    const { posts } = await gqlRequest<any>(
+      process.env.GRAPHQL_CONTENT_URL as string,
+      requestQL,
+    )
 
-  useEffect(() => {
-    _setNavRouteActiveState({
-      id: 99,
-      scrollProgress: 0,
-    })
-  }, [_setNavRouteActiveState])
+    return { status: 'success', posts }
+  } catch (error) {
+    return { status: 'error', error }
+  }
+}
+
+async function Page() {
+  const data = await getPosts()
 
   return (
-    <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
-      <h1 className='text-xl'>Posts</h1>
-    </main>
+    <>
+      <SetState />
+      <main className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>
+        <h1 className='text-xl'>Posts</h1>
+        {data.posts ? (
+          data.posts.map((v: any, i: number) => (
+            <Link key={i} href={`/post/` + v.slug}>
+              {v.title}
+            </Link>
+          ))
+        ) : (
+          <h6>No data</h6>
+        )}
+      </main>
+    </>
   )
 }
 

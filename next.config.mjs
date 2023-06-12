@@ -8,6 +8,7 @@
  * @param {T} config - A generic parameter that flows through to the return type
  * @constraint {{import('next').NextConfig}}
  */
+import 'dotenv/config'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import { createRequire } from 'node:module'

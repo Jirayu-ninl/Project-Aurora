@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion, animate, AnimatePresence } from 'framer-motion'
 import { useGLTF } from '@react-three/drei'
 
-import { UI } from '@global/store'
+import { UI, State } from '@global/store'
 
 import IceJiLoadingLogo from '@resources/common/logo/IceJiLoading'
 import IceJiLogo from '@resources/common/logo/IceJi'
@@ -13,9 +13,9 @@ import IceJiLogo from '@resources/common/logo/IceJi'
 export default function Home() {
   const _setShowNav = UI((state) => state.setShowNav)
   const _setShowFooter = UI((state) => state.setShowFooter)
-
   const _setAudio = UI((state) => state.setAudio)
   const _setCursor = UI((state) => state.setCursor)
+  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
 
   const router = useRouter()
   const [progress, setProgress] = useState('0')
@@ -29,10 +29,17 @@ export default function Home() {
     _setShowNav(false)
     _setShowFooter(false)
     router.prefetch('/home')
+
     if (isClicked) {
       _setShowNav(true)
       _setShowFooter(true)
       _setAudio(true)
+      _setNavRouteActiveState({
+        id: 0,
+        scrollProgress: 0,
+        pages: 1,
+        scrollable: false,
+      })
       const Go = () => {
         setTimeout(() => setIsPush(true), 100)
         setTimeout(() => {
@@ -42,7 +49,15 @@ export default function Home() {
       }
       Go()
     }
-  }, [_setShowNav, _setShowFooter, _setAudio, _setCursor, router, isClicked])
+  }, [
+    _setShowNav,
+    _setShowFooter,
+    _setAudio,
+    _setCursor,
+    router,
+    isClicked,
+    _setNavRouteActiveState,
+  ])
 
   useEffect(() => {
     const controls = animate(0, 100, {

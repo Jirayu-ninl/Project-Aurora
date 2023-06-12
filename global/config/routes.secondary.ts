@@ -75,6 +75,10 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
         title: 'CATEGORIES',
         path: '/post/categories',
       },
+      {
+        title: 'CONTENT',
+        path: '/post',
+      },
     ],
   },
   app: {

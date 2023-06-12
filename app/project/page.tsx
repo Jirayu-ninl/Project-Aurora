@@ -1,22 +1,57 @@
-'use client'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Link from 'next/link'
+import { gql, request as gqlRequest } from 'graphql-request'
+import SetState from '@app/resources/common/components/setDefaultNavActiveState'
 
-import { useEffect } from 'react'
-import { State } from '@global/store'
+const getPosts = async () => {
+  try {
+    const requestQL = gql`
+      {
+        projects {
+          title
+          slug
+          featured
+          tagline
+          tag
+          coverImage {
+            url
+            width
+            height
+          }
+        }
+      }
+    `
 
-function Page() {
-  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+    const { projects } = await gqlRequest<any>(
+      process.env.GRAPHQL_PROJECT_URL as string,
+      requestQL,
+    )
 
-  useEffect(() => {
-    _setNavRouteActiveState({
-      id: 99,
-      scrollProgress: 0,
-    })
-  }, [_setNavRouteActiveState])
+    return { status: 'success', projects }
+  } catch (error) {
+    return { status: 'error', error }
+  }
+}
+
+async function Page() {
+  const data = await getPosts()
 
   return (
-    <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
-      <h1 className='text-xl'>Projects</h1>
-    </main>
+    <>
+      <SetState />
+      <main className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>
+        <h1 className='text-xl'>Projects</h1>
+        {data.projects ? (
+          data.projects.map((v: any, i: number) => (
+            <Link href={'/project/' + v.slug} key={i}>
+              {v.title}
+            </Link>
+          ))
+        ) : (
+          <h6>No data</h6>
+        )}
+      </main>
+    </>
   )
 }
 

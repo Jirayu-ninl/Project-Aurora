@@ -10,7 +10,7 @@ const Header = ({
 }: {
   Title: string
   Img: string
-  Tags?: { name: string; link?: string }[]
+  Tags?: string[]
   lang?: string
   ColorBg?: string
 }) => {
@@ -38,7 +38,7 @@ const Header = ({
 
   return (
     <div
-      className='relative flex h-[50vh] items-end justify-center overflow-hidden'
+      className='relative flex h-[calc(100vh-56px)] items-end justify-center overflow-hidden md:h-screen'
       style={{ backgroundColor: ColorBg }}
     >
       <div className='container z-10 w-screen px-4 xxl:w-[1440px]'>
@@ -48,20 +48,20 @@ const Header = ({
           animate='animate'
           className='uppercase'
         >
-          {Tags?.map((v: { name: string; link?: string }, i: number) => (
+          {Tags?.map((v: string, i: number) => (
             <motion.button
               className='Btn-white-40 Anim AnimTranslate-4 mr-2 mt-2 uppercase hover:bg-primary-0 hover:text-black'
               key={i}
               variants={animItem}
             >
-              {v.name}
+              {v}
             </motion.button>
           ))}
         </motion.div>
         <motion.h1
           initial={{ y: 300, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className='mb-6 mt-1 text-6xl font-bold md:mt-0 md:text-7xl xxl:text-8xl'
+          className='mb-12 mt-1 text-3xl font-bold md:mt-0 md:text-7xl xxl:text-8xl'
         >
           {Title}
         </motion.h1>

@@ -21,7 +21,6 @@ function Page() {
   }, [_setNavRouteActiveState])
 
   const handleProgress = ({ motionValue }: tCallbackReturnValue) => {
-    console.log(motionValue)
     _setNavRouteActiveState({
       id: 0,
       scrollable: true,
@@ -37,7 +36,7 @@ function Page() {
       >
         <Header
           Title='Portfolio (Post-production)'
-          Img='/blog/c_f001_pipeline_3/Header-Post-production-pipeline.jpg'
+          Img='/page/portfolio/header.jpg'
           Tags={[]}
           lang='th'
         />
