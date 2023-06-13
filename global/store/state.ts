@@ -14,7 +14,7 @@ const store: tStore = (set) => ({
   navRoute: iNavRoute,
   setNavRoute: (r) => set(() => ({ navRoute: r })),
   navRouteActiveState: iNavRouteActiveState,
-  setNavRouteActiveState: (a) => set(() => ({ navRouteActiveState: a })),
+  setNavRouteActiveState: (a) => set(() => ({ navRouteActiveState: { ...a } })),
   homeCamera: iHomeCamera,
   setHomeCamera: (c) => set(() => ({ homeCamera: c })),
 })

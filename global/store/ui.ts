@@ -26,8 +26,8 @@ const store: tStore = (set) => ({
   setShowFooter: (show) => set(() => ({ showFooter: show })),
   footerOption: iFooterOption,
   setFooterOption: (options: tFooterOption) =>
-    set(({ footerOption }: { footerOption: tFooterOption }) => ({
-      footerOption: { ...footerOption, ...options },
+    set(() => ({
+      footerOption: { ...iFooterOption, ...options },
     })),
 })
 

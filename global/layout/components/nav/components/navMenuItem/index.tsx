@@ -32,7 +32,7 @@ function NavMenuItem({
       <Link
         href={menuItem.path}
         className={clsx(
-          'md:AnimUnderline-FirstChild navMenuItem mb-2 w-full rounded-md bg-black/10 p-2 dark:bg-white/10 md:mb-0 md:bg-transparent md:p-0 dark:md:bg-transparent',
+          'AnimUnderline-FirstChild navMenuItem mb-2 w-full rounded-md bg-black/10 p-2 dark:bg-white/10 md:mb-0 md:bg-transparent md:p-0 dark:md:bg-transparent',
           _navRouteActiveState.id === index &&
             'border-l-2 border-quaternary-2 dark:border-primary-0 md:border-none',
         )}
@@ -54,7 +54,9 @@ function NavMenuItem({
         {(_navRouteActiveState.id === index ||
           _navRouteActiveState.id === 99) && (
           <div className='relative mt-1 w-[calc(100%-20px)] el:mt-2'>
-            <ScrollProgress _navRouteActiveState={_navRouteActiveState} />
+            {_navRouteActiveState.id === index && (
+              <ScrollProgress _navRouteActiveState={_navRouteActiveState} />
+            )}
             <div className='ml-[10px] h-0.5 w-full bg-white opacity-20' />
           </div>
         )}

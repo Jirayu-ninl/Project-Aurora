@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { State } from '@global/store'
+import { State, UI } from '@global/store'
 
 import { navSecondaryRoutes } from '@global/config/routes'
 import InitPageState from '@aurora/views/init/pageState'
@@ -14,6 +14,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   const _setBackRoute = State((state) => state.setBackRoute)
   const _navRouteActiveState = State((state) => state.navRouteActiveState)
   const _setHomeCamera = State((state) => state.setHomeCamera)
+  const _gpuTier = UI((state) => state.gpuTier)
 
   useEffect(() => {
     InitPageState(
@@ -22,9 +23,6 @@ function Layout({ children }: { children: React.ReactNode }) {
       _setNavRoute,
       navSecondaryRoutes.home,
     )
-    // _setPage(navSecondaryRoutes.home.title)
-    // _setBackRoute(navSecondaryRoutes.home.setBackRoute)
-    // _setNavRoute(navSecondaryRoutes.home.route)
     _setHomeCamera(
       _navRouteActiveState.id === 1
         ? {
@@ -48,7 +46,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           }
         : {
             position: [0, 0.5, 5],
-            rotation: [0, 0, 0],
+            rotation: [_gpuTier?.isMobile ? 0.1 : 0, 0, 0],
           },
     )
   }, [
@@ -57,6 +55,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     _setNavRoute,
     _setHomeCamera,
     _navRouteActiveState.id,
+    _gpuTier?.isMobile,
   ])
 
   return (

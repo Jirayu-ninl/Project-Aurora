@@ -96,6 +96,20 @@ body {
   transform-origin: left;
   transition: 0.5s transform;
   z-index: 90;
+  @apply bg-primary-0 hidden md:block;
+}
+
+.testBefore:before {
+  content: 'xxx';
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  width: calc(100% - 20px);
+  /* height: 2px; */
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: 0.5s transform;
+  z-index: 90;
   @apply bg-primary-0;
 }
 
@@ -119,7 +133,7 @@ body {
   transform-origin: left;
   transition: 0.5s transform;
   z-index: 90;
-  @apply bg-quaternary-2 dark:bg-primary-0;
+  @apply bg-quaternary-2 dark:bg-primary-0 hidden md:block;
 }
 
 .AnimUnderline-FirstChild:hover > div:before {
