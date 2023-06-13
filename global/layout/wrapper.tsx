@@ -19,7 +19,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       <CreateProgress />
       {/* <SetPageState /> */}
-      <Beta />
+      {/* <Beta /> */}
       <AppInfo />
       <Setup />
       <NavBar />

@@ -2,13 +2,15 @@
 
 import clsx from 'clsx'
 import pkgData from './data'
+import PageState from './pageState'
 
-// getEnvInfo().then((data) => console.log(data.['npmPackages']))
+async function Page() {
+  const data = await pkgData()
 
-function Page() {
   return (
     <>
-      {pkgData?.contents.map((v, i) =>
+      <PageState />
+      {data?.contents.map((v, i) =>
         !v.isHeader ? (
           <div
             key={i}

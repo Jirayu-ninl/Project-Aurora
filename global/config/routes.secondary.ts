@@ -135,8 +135,8 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
         path: '/status/client',
       },
       {
-        title: 'HOST',
-        path: '/status/host',
+        title: 'PKGs',
+        path: '/status/packages',
       },
     ],
   },

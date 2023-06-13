@@ -22,46 +22,25 @@ function Layout({ children }: { children: React.ReactNode }) {
       _setNavRoute,
       navSecondaryRoutes.status,
     )
-    // _setPage('Status')
-    // _setBackRoute('/status')
-    // _setNavRoute([
-    //   {
-    //     title: 'APP',
-    //     path: '/status/app',
-    //   },
-    //   {
-    //     title: 'SERVER',
-    //     path: '/status/server',
-    //   },
-    //   {
-    //     title: 'CLIENT',
-    //     path: '/status/client',
-    //   },
-    //   {
-    //     title: 'HOST',
-    //     path: '/status/host',
-    //   },
-    // ])
   }, [_setPage, _setNavRoute, _setBackRoute])
 
   const Pathname = usePathname().slice(8)
-  const sectionName = ['app', 'server', 'client', 'host']
 
   return (
     <div className='relative flex h-screen w-screen justify-center overflow-y-hidden px-4 pb-4 pt-28'>
       <div className='container h-full w-full overflow-hidden xxl:w-[1440px]'>
         <div className='h-full w-full overflow-y-hidden md:flex'>
           <div className='flex w-full overflow-x-scroll pb-4 pr-2 pt-2 md:w-1/3 md:flex-col md:pb-0'>
-            {sectionName.map((v, i) => (
+            {navSecondaryRoutes.status.route.map((v, i) => (
               <Link
                 className={clsx(
                   'Anim AnimTranslate-4 mr-2 cursor-pointer text-right text-4xl font-light uppercase md:pr-0 md:hover:opacity-100',
-                  Pathname === v ? 'opacity-100' : 'opacity-20',
+                  Pathname === v.path.slice(8) ? 'opacity-100' : 'opacity-20',
                 )}
-                href={`/status/` + v}
+                href={v.path}
                 key={i}
               >
-                {v}
+                {v.title}
               </Link>
             ))}
           </div>
