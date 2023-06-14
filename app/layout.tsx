@@ -15,7 +15,7 @@ import Config from '@global/config'
 
 import Wrapper from '@global/layout/wrapper'
 
-import 'tailwindcss/tailwind.css'
+// import 'tailwindcss/tailwind.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'nprogress/nprogress.css'
 import './globals.css'
