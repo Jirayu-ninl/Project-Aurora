@@ -1,10 +1,26 @@
-const Cart = [
+const Cart: tCart[] = [
   {
-    title: '1,350 Mobile Lr Preset',
-    description: '59$',
+    id: 'firstProduct',
+    itemId: 'firstProduct',
+    createdAt: new Date(1686999450000),
+    updatedAt: new Date(1686999451034),
+    name: '1,350 Mobile Lr Preset',
+    quantity: 1,
     link: '',
-    time: 'Apr 10, 2022',
+    userId: '',
   },
 ]
+
+export type tCart = {
+  id: string
+  itemId: string
+  createdAt: Date
+  updatedAt: Date
+  name: string
+  link: string
+  quantity: number
+  userId: string
+  user?: never
+}
 
 export default Cart

@@ -5,11 +5,9 @@ import { Prompt } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import clsx from 'clsx'
 
-// import { SessionProvider } from 'next-auth/react'
 import Tracker from '@aurora/libs/trackers'
 import Toast from '@aurora/modules/toast'
 import { PageTransition } from '@aurora/libs/hooks/animations'
-// import CreateProgress from '@aurora/modules/nprogress'
 
 import Config from '@global/config'
 
@@ -52,12 +50,10 @@ const App = ({ children }: AppPropsWithLayout) => {
     >
       <body suppressHydrationWarning={true}>
         <Analytics />
-        {/* <SessionProvider session={pageProps.session}> */}
         <Wrapper>
           <PageTransition>{children}</PageTransition>
           <Toast />
         </Wrapper>
-        {/* </SessionProvider> */}
         <VercelAnalytics />
       </body>
     </html>

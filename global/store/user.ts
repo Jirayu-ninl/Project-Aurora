@@ -1,6 +1,8 @@
 import { create } from 'zustand'
-import Notifications from '@server/services/notifications'
-import Cart from '@server/shop/cart'
+import Notifications, {
+  type tNotification,
+} from '@server/services/notifications'
+import Cart, { type tCart } from '@server/shop/cart'
 
 const store: tStore = (set) => ({
   user: false,
@@ -33,20 +35,6 @@ export type tUser =
       image: string
     }
   | boolean
-
-export type tNotification = {
-  title: string
-  description: string
-  link: string
-  time: string
-}
-
-export type tCart = {
-  title: string
-  description: string
-  link: string
-  time: string
-}
 
 const store_User = create(store)
 

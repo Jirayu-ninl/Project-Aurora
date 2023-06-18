@@ -4,12 +4,12 @@ config.autoAddCss = false
 
 import CreateProgress from '@aurora/modules/nprogress'
 
+import WrapperMobile from './wrapper.mobile'
 import { Audio, Setup /*, SetPageState */ } from './components/setup'
 
 // IJN Components
 import Cursor from './components/cursor'
 import { NavBar, NavCanvas /* NavMobile */ } from './components/nav'
-import WrapperMobile from './wrapper.mobile'
 import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
 import Beta from './components/modal.beta'
@@ -19,7 +19,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       <CreateProgress />
       {/* <SetPageState /> */}
-      <Beta />
+      {/* <Beta /> */}
       <AppInfo />
       <Setup />
       <NavBar />

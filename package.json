@@ -1,6 +1,6 @@
 {
   "name": "theiceji-aurora",
-  "version": "2023.06",
+  "version": "2023.06.17",
   "private": true,
   "repository": {
     "type": "git",
@@ -13,16 +13,16 @@
   "homepage": "https://TheIceJI.com",
   "scripts": {
     "format": "yarn prettier && yarn eslint",
-    "eslint": "yarn eslint-resource && yarn eslint-page",
-    "eslint-resource": "eslint --fix \"./resources/views/**/**/**/**/*.{js,ts,jsx,tsx}\" --ext jsconfig.json",
-    "eslint-page": "eslint --fix \"./pages/**/**/**/*.{js,ts,jsx,tsx}\" --ext jsconfig.json",
-    "prettier": "yarn prettier-resource && yarn prettier-page",
-    "prettier-resource": "prettier --write \"./resources/views/**/**/**/**/*.{js,ts,jsx,tsx}\"",
-    "prettier-page": "prettier --write \"./pages/**/**/**/*.{js,ts,jsx,tsx}\"",
-    "lint:css": "stylelint \"./resources/views/**/**/**/**/*.{js,ts,jsx,tsx}\"",
-    "dev": "next dev",
+    "eslint": "eslint --fix \"./app/**/**/**/**/*.{js,ts,jsx,tsx}\" --ext jsconfig.json",
+    "prettier": "prettier --write \"./app/**/**/**/**/*.{js,ts,jsx,tsx}\"",
+    "lint:css": "stylelint \"./app/**/**/**/**/*.{js,ts,jsx,tsx}\"",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "dev": "next dev -p 8989",
     "build": "next build",
     "start": "next start",
+    "deploy": "yarn db:generate && yarn db:push && yarn build",
     "server": "NODE_ENV=production node server.js",
     "export": "EXPORT=true next build && EXPORT=true next export",
     "analyze": "cross-env ANALYZE=true next build",
@@ -30,6 +30,9 @@
     "post": "next-sitemap --config sitemap.config.js",
     "clean": "rimraf .next out",
     "prepare": "husky install"
+  },
+  "prisma": {
+    "schema": "server/db/prisma/schema.prisma"
   },
   "husky": {
     "hooks": {
@@ -57,6 +60,7 @@
     "@react-three/postprocessing": "^2.14.9",
     "@react-three/rapier": "^1.0.1",
     "@sentry/nextjs": "^7.55.2",
+    "@t3-oss/env-nextjs": "^0.4.1",
     "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-query": "^4.29.13",
     "@theatre/core": "^0.6.1",

@@ -1,28 +1,24 @@
-const Notification = [
+const Notification: tNotification[] = [
   {
+    id: 'app',
+    createdAt: new Date(1686999451034),
     title: 'TheIceJi Aurora',
-    description: 'Redesigned and updated to NextJs 13 App-dir',
+    text: 'Redesigned and updated to NextJs 13 App-dir',
     link: '',
-    time: 'Jun 19, 2023',
+    isRead: false,
+    userId: '0',
   },
-  // {
-  //   title: 'New blog post',
-  //   description: 'Color theory for film grading',
-  //   link: '',
-  //   time: 'Apr 9, 2022',
-  // },
-  // {
-  //   title: 'New blog post',
-  //   description: 'Color theory for film grading',
-  //   link: '',
-  //   time: 'Apr 9, 2022',
-  // },
-  // {
-  //   title: 'New blog post',
-  //   description: 'Color theory for film grading',
-  //   link: '',
-  //   time: 'Apr 9, 2022',
-  // }
 ]
+
+export type tNotification = {
+  id: string
+  createdAt: Date
+  isRead: boolean
+  title: string
+  text: string
+  link: string
+  userId: string
+  user?: never
+}
 
 export default Notification

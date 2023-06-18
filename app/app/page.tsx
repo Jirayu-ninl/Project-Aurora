@@ -2,6 +2,12 @@
 
 import { useEffect } from 'react'
 import { State } from '@global/store'
+import {
+  LoginButton,
+  LogoutButton,
+  ProfileButton,
+  RegisterButton,
+} from '@app/resources/common/components/app/button'
 
 function Page() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
@@ -16,6 +22,12 @@ function Page() {
   return (
     <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
       <h1 className='text-xl'>App</h1>
+      <div>
+        <LoginButton />
+        <RegisterButton />
+        <LogoutButton />
+        <ProfileButton />
+      </div>
     </main>
   )
 }
