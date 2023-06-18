@@ -20,4 +20,5 @@ const App = async (req: NextApiRequest, res: NextApiResponse) => {
   })
 }
 
-export default Authenticated(App)
+const handler = Authenticated(App)
+export { handler as GET, handler as POST }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { User } from '../../database/mongo/models'
+import { User } from '../../../database/mongo/models'
 import bcrypt from 'bcrypt'
 
 const SignIn_Credentials = async (credentials: any) => {

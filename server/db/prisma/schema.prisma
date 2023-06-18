@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Example {
-  id        String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -38,7 +38,7 @@ enum Role {
   USER
 }
 
-enum UserPackage {
+enum UserPlan {
   FREE
   PLUS
   PRO
@@ -46,12 +46,15 @@ enum UserPackage {
 }
 
 model User {
-  id            String         @id @default(cuid()) @map("_id") @db.ObjectId
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  username      String?        @unique
   name          String?
+  password      String?
   role          Role           @default(USER)
-  userTeir      UserPackage    @default(FREE)
-  email         String?        @unique
+  plan          UserPlan       @default(FREE)
+  email         String         @unique
   emailVerified DateTime?
+  createdAt     DateTime       @default(now()) @db.Timestamp
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -60,7 +63,7 @@ model User {
 }
 
 model Account {
-  id                String  @id @default(cuid()) @map("_id") @db.ObjectId
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
   type              String
   provider          String
@@ -78,7 +81,7 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
   userId       String   @db.ObjectId
   expires      DateTime
@@ -95,7 +98,7 @@ model VerificationToken {
 }
 
 model Notification {
-  id        String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now()) @db.Timestamp
   isRead    Boolean
   title     String
@@ -106,7 +109,7 @@ model Notification {
 }
 
 model Cart {
-  id        String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   itemId    String   @unique
   createdAt DateTime @default(now()) @db.Timestamp
   updatedAt DateTime @updatedAt
