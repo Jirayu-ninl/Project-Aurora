@@ -1,34 +1,34 @@
-const minEight = (pass) => {
+const minEight = (pass: string) => {
   return String(pass).match(/^.{8,}$/)
 }
 
-const number = (pass) => {
+const number = (pass: string) => {
   return String(pass).match(/^(?=.*?[0-9]).{1,}$/)
 }
 
-const uppercase = (pass) => {
+const uppercase = (pass: string) => {
   return String(pass).match(/^(?=.*?[A-Z]).{1,}$/)
 }
 
-const lowercase = (pass) => {
+const lowercase = (pass: string) => {
   return String(pass).match(/^(?=.*?[a-z]).{1,}$/)
 }
 
-const specialChar = (pass) => {
+const specialChar = (pass: string) => {
   return String(pass).match(/^(?=.*?[#?!@$%^&*_-]).{1,}$/)
 }
 
-const noSpace = (pass) => {
+const noSpace = (pass: string) => {
   return String(pass).match(/^\S*$/)
 }
 
-const finalize = (pass) => {
+const finalize = (pass: string) => {
   return String(pass).match(
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/
   )
 }
 
-const Func = (pass) => {
+const Func = (pass: string) => {
   if (number(pass) === null) {
     return {
       error: true,

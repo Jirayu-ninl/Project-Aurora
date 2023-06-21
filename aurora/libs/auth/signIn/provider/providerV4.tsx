@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { v4 as uuidv4 } from 'uuid'
 import { env } from '@aurora/env.mjs'
 import Prisma from '@aurora/libs/database/prisma'
 
@@ -8,25 +7,20 @@ const SignIn_Provider = async (user: any, account: any) => {
   if (isAllowedToSignIn) {
     try {
       if (user.provider === 'credentials') {
-        user.email = user.credential.email
-        return user
+        return true
       } else {
-        const email = user.email
-        const Req_User = await Prisma.user.findUnique({
+        const isUser = await Prisma.user.findUnique({
           where: {
-            email: email,
+            email: user.email,
           },
         })
-        if (Req_User) {
-          return true
-        } else {
-          const generatedUserId = uuidv4()
-          account.userId = generatedUserId
-          account.email = email
-          user.id = generatedUserId
-          await linkAccount(user, account)
+
+        if (isUser) {
+          await addProvider(isUser, account)
           return true
         }
+
+        return true
       }
     } catch (error) {
       if (env.NODE_ENV !== 'production') console.log(error)
@@ -37,15 +31,28 @@ const SignIn_Provider = async (user: any, account: any) => {
   }
 }
 
-const linkAccount = (user: any, account: any) => {
-  user.accounts = {
-    ...user.accounts,
-    [account.provider]: {
-      email: account.email,
-      providerAccountId: account.providerAccountId,
-    },
-  }
-  return user
+const addProvider = (isUser: any, account: any) => {
+  // isUser.Providers
+
+  // user.accounts = {
+  //   ...user.accounts,
+  //   [account.provider]: {
+  //     email: account.email,
+  //     providerAccountId: account.providerAccountId,
+  //   },
+  // }
+  return true
 }
+
+// const linkAccount = (user: any, account: any) => {
+//   user.accounts = {
+//     ...user.accounts,
+//     [account.provider]: {
+//       email: account.email,
+//       providerAccountId: account.providerAccountId,
+//     },
+//   }
+//   return user
+// }
 
 export default SignIn_Provider

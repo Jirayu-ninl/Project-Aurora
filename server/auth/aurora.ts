@@ -6,7 +6,7 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from 'next-auth'
-import { SignInProvider, SignInCredentials } from '@aurora/libs/auth/signIn'
+import { SignInCredentials, SignInProvider } from '@aurora/libs/auth/signIn'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
@@ -32,20 +32,13 @@ declare module 'next-auth' {
 }
 
 export const authOptions: NextAuthOptions = {
-  // pages: {
-  //   signIn: '/app/portal',
-  //   signOut: '/app/portal',
-  //   error: '/app/portal',
-  //   newUser: '/app/user',
-  // },
+  pages: {
+    signIn: '/app/portal',
+    signOut: '/app/portal',
+    error: '/app/portal',
+    newUser: '/app/user',
+  },
   callbacks: {
-    // jwt: async ({ token, user }) => {
-    //   if (user) {
-    //     token.userId = user.userId
-    //     token.userRole = user.role
-    //   }
-    //   return token
-    // },
     session: ({ session, user }: any) => ({
       ...session,
       user: {
@@ -55,11 +48,12 @@ export const authOptions: NextAuthOptions = {
         plane: user.plan,
       },
     }),
-    // signIn: async ({ user, account }) => SignInProvider(user, account),
+
     // redirect: async ({ baseUrl }) => {
     //   const appUrl = baseUrl + '/app/user'
     //   return appUrl
     // },
+    // signIn: async ({ user, account }) => SignInProvider(user, account),
   },
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -81,7 +75,7 @@ export const authOptions: NextAuthOptions = {
     // }),
     CredentialsProvider({
       name: 'Email',
-      id: 'theiceji-login',
+      id: 'theiceji',
       type: 'credentials',
       credentials: {
         email: { label: 'E-mail', type: 'text', placeholder: 'E-mail' },
@@ -97,10 +91,6 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: env.NEXTAUTH_SECRET,
-  // session: {
-  //   strategy: 'jwt',
-  //   maxAge: 30 * 24 * 60 * 60, // 30 days
-  // },
 }
 
 export const getServerAuthSession = (ctx: {
