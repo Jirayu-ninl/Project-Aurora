@@ -22,7 +22,7 @@ function SetToast() {
     }
     return
   }, [error])
-  return <div>setToast</div>
+  return null
 }
 
 export default SetToast

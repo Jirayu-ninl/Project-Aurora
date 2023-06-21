@@ -61,3 +61,4 @@ const App = ({ children }: AppPropsWithLayout) => {
 }
 
 export default App
+export { reportWebVitals } from 'next-axiom'

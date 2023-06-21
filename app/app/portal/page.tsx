@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { getCsrfToken } from 'next-auth/react'
 import { SignIn } from './components'
-import SetToast from './setToast'
+import SetErrorToast from '@app/resources/common/components/toast/setErrorToast'
 
 const Page = async ({ ctx }: any) => {
   const csrfToken = await getCsrfToken(ctx)
 
   return (
     <>
-      <SetToast />
+      <SetErrorToast />
       <SignIn csrfToken={csrfToken} />
     </>
   )
