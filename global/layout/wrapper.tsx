@@ -6,6 +6,7 @@ import CreateProgress from '@aurora/modules/nprogress'
 
 import WrapperMobile from './wrapper.mobile'
 import { Audio, Setup /*, SetPageState */ } from './components/setup'
+import { SetPageState } from './components/setup'
 
 // IJN Components
 import Cursor from './components/cursor'
@@ -18,7 +19,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <CreateProgress />
-      {/* <SetPageState /> */}
+      <SetPageState />
       {/* <Beta /> */}
       <AppInfo />
       <Setup />

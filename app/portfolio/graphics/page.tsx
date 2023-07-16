@@ -13,12 +13,12 @@ import Content from './contents'
 function Page() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
 
-  useEffect(() => {
-    _setNavRouteActiveState({
-      id: 0,
-      scrollProgress: 0,
-    })
-  }, [_setNavRouteActiveState])
+  // useEffect(() => {
+  //   _setNavRouteActiveState({
+  //     id: 0,
+  //     scrollProgress: 0,
+  //   })
+  // }, [_setNavRouteActiveState])
 
   const handleProgress = ({ motionValue }: tCallbackReturnValue) => {
     _setNavRouteActiveState({

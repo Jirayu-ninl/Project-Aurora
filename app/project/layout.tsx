@@ -1,26 +1,23 @@
-'use client'
+// 'use client'
 
-import { useEffect } from 'react'
-import { State } from '@global/store'
-import { navSecondaryRoutes } from '@global/config/routes'
-import InitPageState from '@aurora/views/init/pageState'
+// import { useEffect } from 'react'
+// import { State } from '@global/store'
+// import { navSecondaryRoutes } from '@global/config/routes'
+// import InitPageState from '@aurora/views/init/pageState'
 
 function Layout({ children }: { children: React.ReactNode }) {
-  const _setPage = State((state) => state.setPage)
-  const _setNavRoute = State((state) => state.setNavRoute)
-  const _setBackRoute = State((state) => state.setBackRoute)
+  // const _setPage = State((state) => state.setPage)
+  // const _setNavRoute = State((state) => state.setNavRoute)
+  // const _setBackRoute = State((state) => state.setBackRoute)
 
-  useEffect(() => {
-    InitPageState(
-      _setPage,
-      _setBackRoute,
-      _setNavRoute,
-      navSecondaryRoutes.project,
-    )
-    // _setPage(navSecondaryRoutes.project.title)
-    // _setBackRoute(navSecondaryRoutes.project.setBackRoute)
-    // _setNavRoute(navSecondaryRoutes.project.route)
-  }, [_setPage, _setNavRoute, _setBackRoute])
+  // useEffect(() => {
+  //   InitPageState(
+  //     _setPage,
+  //     _setBackRoute,
+  //     _setNavRoute,
+  //     navSecondaryRoutes.project,
+  //   )
+  // }, [_setPage, _setNavRoute, _setBackRoute])
 
   return <div className='relative h-screen w-screen'>{children}</div>
 }

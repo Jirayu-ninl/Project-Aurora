@@ -1,20 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-
-import { State } from '@global/store'
 import { aHeaderSkewUp } from '@global/config/defineAnimationConfig'
 
 function Page() {
-  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-
-  useEffect(() => {
-    _setNavRouteActiveState({
-      id: 1,
-      scrollProgress: 40,
-    })
-  }, [_setNavRouteActiveState])
 
   return (
     <main className='relative flex h-screen w-screen items-start justify-start overflow-hidden'>

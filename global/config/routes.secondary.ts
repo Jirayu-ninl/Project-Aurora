@@ -2,6 +2,7 @@ export type tNavSecondaryRoute = {
   id: number
   title: string
   setBackRoute: string
+  scrollable?: boolean
   route: {
     title: string
     path: string
@@ -24,6 +25,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     id: 0,
     title: 'Home',
     setBackRoute: '/home',
+    scrollable: false,
     route: [
       {
         title: 'INTRO',

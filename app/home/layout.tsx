@@ -3,26 +3,14 @@
 
 import { useEffect } from 'react'
 import { State, UI } from '@global/store'
-
-import { navSecondaryRoutes } from '@global/config/routes'
-import InitPageState from '@aurora/views/init/pageState'
 import Scene from './components/scene'
 
 function Layout({ children }: { children: React.ReactNode }) {
-  const _setPage = State((state) => state.setPage)
-  const _setNavRoute = State((state) => state.setNavRoute)
-  const _setBackRoute = State((state) => state.setBackRoute)
   const _navRouteActiveState = State((state) => state.navRouteActiveState)
   const _setHomeCamera = State((state) => state.setHomeCamera)
   const _gpuTier = UI((state) => state.gpuTier)
 
   useEffect(() => {
-    InitPageState(
-      _setPage,
-      _setBackRoute,
-      _setNavRoute,
-      navSecondaryRoutes.home,
-    )
     _setHomeCamera(
       _navRouteActiveState.id === 1
         ? {
@@ -50,9 +38,9 @@ function Layout({ children }: { children: React.ReactNode }) {
           },
     )
   }, [
-    _setPage,
-    _setBackRoute,
-    _setNavRoute,
+    // _setPage,
+    // _setBackRoute,
+    // _setNavRoute,
     _setHomeCamera,
     _navRouteActiveState.id,
     _gpuTier?.isMobile,

@@ -1,28 +1,27 @@
 'use client'
 
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import { State } from '@global/store'
+// import { State } from '@global/store'
 import { navSecondaryRoutes } from '@global/config/routes'
-import InitPageState from '@aurora/views/init/pageState'
-// import Data from './data'
+// import InitPageState from '@aurora/views/init/pageState'
 
 function Layout({ children }: { children: React.ReactNode }) {
-  const _setPage = State((state) => state.setPage)
-  const _setNavRoute = State((state) => state.setNavRoute)
-  const _setBackRoute = State((state) => state.setBackRoute)
+  // const _setPage = State((state) => state.setPage)
+  // const _setNavRoute = State((state) => state.setNavRoute)
+  // const _setBackRoute = State((state) => state.setBackRoute)
 
-  useEffect(() => {
-    InitPageState(
-      _setPage,
-      _setBackRoute,
-      _setNavRoute,
-      navSecondaryRoutes.status,
-    )
-  }, [_setPage, _setNavRoute, _setBackRoute])
+  // useEffect(() => {
+  //   InitPageState(
+  //     _setPage,
+  //     _setBackRoute,
+  //     _setNavRoute,
+  //     navSecondaryRoutes.status,
+  //   )
+  // }, [_setPage, _setNavRoute, _setBackRoute])
 
   const Pathname = usePathname().slice(8)
 

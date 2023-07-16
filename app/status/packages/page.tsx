@@ -2,14 +2,14 @@
 
 import clsx from 'clsx'
 import pkgData from './data'
-import PageState from './pageState'
+// import PageState from './pageState'
 
 async function Page() {
   const data = await pkgData()
 
   return (
     <>
-      <PageState />
+      {/* <PageState /> */}
       {data?.contents.map((v, i) =>
         !v.isHeader ? (
           <div
