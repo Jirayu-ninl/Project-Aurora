@@ -29,6 +29,7 @@ const __dirname = dirname(__filename)
 const require = createRequire(import.meta.url)
 
 const nextConfig = {
+  
   webpack: (config, { webpack, /*dev ,*/ isServer }) => {
     config.plugins.push(
       new webpack.ProvidePlugin({
@@ -43,7 +44,6 @@ const nextConfig = {
     config.resolve.alias['@server'] = path.join(__dirname, 'server')
     // config.resolve.alias['public'] = path.join(__dirname, 'public')
 
-    // audio support
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,
       exclude: config.exclude,
@@ -63,7 +63,12 @@ const nextConfig = {
     })
 
     config.module.rules.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
+      test: /\.mp4$/,
+      use: ['file-loader'],
+    })
+
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag|ps)$/,
       exclude: /node_modules/,
       use: ['raw-loader', 'glslify-loader'],
     })

@@ -1,13 +1,19 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
 import { useEffect, useState } from 'react'
 import { Loader } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import { MotionConfig } from 'framer-motion'
+
 import { UI } from '@global/store'
 import { useOptimization } from '@aurora/libs/hooks/three'
-import Scene from './components/scene'
+import Scene from './scene'
 
-function Page() {
+import { aFramer3DConfig } from '@global/config/defineAnimationConfig'
+// import { InnerWidth } from '@libs/hooks/v2/useWindowSize'
+
+const SceneRoot = () => {
   const _gpuTier = UI((state) => state.gpuTier)
   const _dark = UI((state) => state.dark)
   const [antialias, setAntialias] = useState(true)
@@ -28,10 +34,11 @@ function Page() {
   }
 
   return (
-    <main className='relative h-screen w-screen bg-white dark:bg-[#101010]'>
-      <div className='absolute h-full w-full overflow-hidden'>
+    <div className='absolute h-screen w-screen overflow-hidden'>
+      <MotionConfig transition={aFramer3DConfig.transition}>
         <Canvas
           dpr={getDRP() as [number, number]}
+          // dpr={[1, 1]}
           gl={{
             powerPreference: 'high-performance',
             alpha: true,
@@ -45,13 +52,10 @@ function Page() {
         >
           <Scene _dark={_dark} />
         </Canvas>
-        <Loader />
-      </div>
-      {/* <div className='pointer-events-none absolute h-full w-full flex justify-center items-center'>
-        <h1 className='text-10xl'>TheIceJi</h1>
-      </div> */}
-    </main>
+      </MotionConfig>
+      <Loader />
+    </div>
   )
 }
 
-export default Page
+export default SceneRoot
