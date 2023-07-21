@@ -41,3 +41,4 @@ float cpNoise21(vec2 P) {
 }
 
 #pragma glslify: export(cpNoise21)
+// #pragma loader: export cpNoise21

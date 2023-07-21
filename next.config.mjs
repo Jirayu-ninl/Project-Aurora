@@ -29,7 +29,6 @@ const __dirname = dirname(__filename)
 const require = createRequire(import.meta.url)
 
 const nextConfig = {
-  
   webpack: (config, { webpack, /*dev ,*/ isServer }) => {
     config.plugins.push(
       new webpack.ProvidePlugin({
@@ -43,6 +42,11 @@ const nextConfig = {
     config.resolve.alias['@resources'] = path.join(__dirname, 'app/resources')
     config.resolve.alias['@server'] = path.join(__dirname, 'server')
     // config.resolve.alias['public'] = path.join(__dirname, 'public')
+
+    config.resolve.alias['auroraGL'] = path.resolve(
+      __dirname,
+      'aurora/libs/webGL/glsl',
+    )
 
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,
@@ -70,7 +74,7 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag|ps)$/,
       exclude: /node_modules/,
-      use: ['raw-loader', 'glslify-loader'],
+      use: ['glslify-import-loader', 'raw-loader', 'glslify-loader'],
     })
 
     return config

@@ -14,15 +14,6 @@ import { theme } from '@global/config/defineConfig'
 
 import AbstractCube from './cube.abstract'
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      abstractShader: any
-      backgroundShader: any
-    }
-  }
-}
-
 const Cube = ({ _dark }: { _dark?: boolean }) => {
   const config = {
     backside: true,
@@ -47,10 +38,7 @@ const Cube = ({ _dark }: { _dark?: boolean }) => {
     <>
       <Center rotation={[0, Math.PI / 1.35, 0]} position={[0, 0, 0]}>
         <RoundedBox args={[1, 1, 1]}>
-          <MeshTransmissionMaterial
-            {...config}
-            attach='material'
-          />
+          <MeshTransmissionMaterial {...config} attach='material' />
         </RoundedBox>
         <AbstractCube />
       </Center>

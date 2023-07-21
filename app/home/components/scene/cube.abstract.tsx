@@ -15,7 +15,7 @@ const AbstractCube = () => {
     ({ clock }) =>
       abstractShaderRef.current &&
       // (abstractShaderRef.current.uTime = clock.getElapsedTime()),
-      (abstractShaderRef.current.uTime += 0.005),
+      (abstractShaderRef.current.uTime += 0.05),
   )
 
   const PrimaryColorArray = ColorUtils.HEXtoArray(
@@ -25,11 +25,7 @@ const AbstractCube = () => {
 
   const sUniform = {
     uTime: 0,
-    uColor: new Color(
-      PrimaryColorArray[0],
-      PrimaryColorArray[1],
-      PrimaryColorArray[2],
-    ),
+    uColor: ColorUtils.HEXtoThree('#cc78c1', 1, Color),
     uResolution: new Vector2(256, 256),
   }
 

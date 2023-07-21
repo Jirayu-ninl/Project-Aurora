@@ -61,7 +61,7 @@ function Cursor() {
     &.go {
       height: 57px;
       width: 57px;
-      background: url(/cursor/Cursor.png);
+      background: url(/cursor/go.png);
       mix-blend-mode: normal;
       box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
     }
@@ -91,6 +91,17 @@ function Cursor() {
       opacity: 0;
       transform: translate(-50%, -50%) scale(0);
     }
+    &.lens {
+      top: -125px;
+      left: -125px;
+      height: 250px;
+      width: 250px;
+      background: url(/cursor/lens.png);
+      // background-color: red;
+      mix-blend-mode: normal;
+      box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.33s ease-out;
+    }
     @media (max-width: 1199.98px) {
       display: none;
     }
@@ -101,7 +112,13 @@ function Cursor() {
       <div className={`${MainCursor} ${_cursorType}`} ref={cursor} />
       <div
         ref={cursor2}
-        className={`${CursorBig} ${_cursorType ? 'active' : ''}`}
+        className={`${CursorBig} ${
+          _cursorType
+            ? typeof _cursorType === 'string' && _cursorType === 'lens'
+              ? 'lens'
+              : 'active'
+            : ''
+        }`}
       />
     </div>
   )
