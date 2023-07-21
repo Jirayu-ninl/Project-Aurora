@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import Si from 'systeminformation'
 
-export async function GET(request: Request) {
+export async function GET() {
   const Data = () => {
     return {
       name: 'device',

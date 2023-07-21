@@ -44,7 +44,7 @@ export default function Home() {
         setTimeout(() => setIsPush(true), 100)
         setTimeout(() => {
           _setCursor(false)
-          router.push('/home/intro')
+          router.push('/home')
         }, 600)
       }
       Go()
