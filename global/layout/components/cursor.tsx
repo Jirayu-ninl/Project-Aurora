@@ -92,13 +92,15 @@ function Cursor() {
       transform: translate(-50%, -50%) scale(0);
     }
     &.lens {
-      top: -125px;
-      left: -125px;
-      height: 250px;
-      width: 250px;
-      background: url(/cursor/lens.png);
+      top: calc(100vh / -8);
+      left: calc(100vh / -8);
+      height: calc(100vh / 4);
+      width: calc(100vh / 4);
+      background: no-repeat url(/cursor/lens.png);
+      background-size: cover;
       // background-color: red;
       mix-blend-mode: normal;
+      border: 1px solid #ffffff88;
       box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
       transition: all 0.33s ease-out;
     }
