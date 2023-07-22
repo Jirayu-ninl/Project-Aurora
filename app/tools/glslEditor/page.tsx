@@ -5,10 +5,6 @@ import { useLayoutEffect, useRef } from 'react'
 import 'glslEditor/build/glslEditor.css'
 import './patch.css'
 
-export const metadata = {
-  title: 'GLSL Editor | IceJiVerse Tools',
-}
-
 function Page() {
   const CanvasRef = useRef(null)
 
