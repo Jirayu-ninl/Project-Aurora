@@ -16,6 +16,7 @@ export type tNavSecondaryRoutes = {
   app: tNavSecondaryRoute
   shop: tNavSecondaryRoute
   portfolio: tNavSecondaryRoute
+  tools: tNavSecondaryRoute
   status: tNavSecondaryRoute
   example: tNavSecondaryRoute
 }
@@ -119,8 +120,20 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       },
     ],
   },
+  tools: {
+    id: 21,
+    title: 'Tools',
+    setBackRoute: '/tools',
+    scrollable: false,
+    route: [
+      {
+        title: 'GLSL Editor',
+        path: '/tools/glslEditor',
+      },
+    ],
+  },
   status: {
-    id: 12,
+    id: 31,
     title: 'Status',
     setBackRoute: '/status',
     route: [

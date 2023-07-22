@@ -1,0 +1,20 @@
+.ge_canvas_container {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.ge_menu_bar {
+  position: absolute;
+  background: #2f3034;
+}
+
+.ge_menu_bar,
+.CodeMirror {
+  z-index: 0;
+}
+
+.ge_editor,
+.cm-s-monokai.CodeMirror,
+.cm-s-monokai .CodeMirror-gutters {
+  background: transparent;
+}

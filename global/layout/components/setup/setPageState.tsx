@@ -25,28 +25,27 @@ function SetPageState() {
       _setPage(routeData.title)
       _setBackRoute(routeData.setBackRoute)
       _setNavRoute(routeData.route)
+      if (!reqPath[1]) {
+        _setNavRouteActiveState({
+          id: 99,
+          scrollProgress: 0,
+        })
+      } else {
+        navSecondaryRoutes[reqPath[0] as keyof tNavSecondaryRoutes].route.map(
+          (v, i) => {
+            if (pathName === v.path) {
+              _setNavRouteActiveState({
+                id: i,
+                scrollProgress: 20,
+              })
+            }
+          },
+        )
+      }
     } else {
       _setPage('NOT FOUND')
       _setBackRoute('/home/intro')
       _setNavRoute(navPrimaryRoutes)
-    }
-
-    if (!reqPath[1]) {
-      _setNavRouteActiveState({
-        id: 99,
-        scrollProgress: 0,
-      })
-    } else {
-      navSecondaryRoutes[reqPath[0] as keyof tNavSecondaryRoutes].route.map(
-        (v, i) => {
-          if (pathName === v.path) {
-            _setNavRouteActiveState({
-              id: i,
-              scrollProgress: 20,
-            })
-          }
-        },
-      )
     }
   }, [_setPage, _setNavRoute, _setBackRoute, _setNavRouteActiveState, pathName])
   return null
