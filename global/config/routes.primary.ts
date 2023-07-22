@@ -6,7 +6,7 @@ export type tNavPrimaryRoutes = {
 export const navPrimaryRoutes: tNavPrimaryRoutes[] = [
   {
     title: 'HOME',
-    path: '/home/intro',
+    path: '/home',
   },
   {
     title: 'PROJECTS',

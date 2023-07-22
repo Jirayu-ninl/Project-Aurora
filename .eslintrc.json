@@ -36,6 +36,7 @@
     "quotes": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-var-requires": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-namespace": "off",
     "react-hooks/rules-of-hooks": "warn",
