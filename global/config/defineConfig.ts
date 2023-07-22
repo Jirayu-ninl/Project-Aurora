@@ -20,13 +20,26 @@ export const app = {
 
 export const metaData = {
   appName: 'TheIceJi',
-  title: 'TheIceJI - Official Website',
+  title: 'IceJiVerse | Where the dream begins',
   url: 'https://TheIceJI.com',
   description:
-    "I'm Jirayu Ninlapun, and I'm a Cinematic Art student at Bangkok University. I've worked as a Web Developer for three years and am an expert in Front-end and Web-animation.",
+    "I'm Jirayu Ninlapun, a Creative Developer with a passion for pushing the boundaries of web technology. My expertise lies in WebGL, GLSL, and 3D development, and I thrive on creating immersive and visually stunning experiences. With a strong background in front-end development and NextJS, I excel at crafting engaging web animations that captivate users.",
   coverImg: '/og.jpg',
   author: 'Jirayu Ninlapun',
-  keywords: ['TheIceJi', 'Jirayu Ninlapun', 'Web Developer'],
+  keywords: [
+    'TheIceJi',
+    'Jirayu Ninlapun',
+    'Web Developer',
+    'Creative Developer',
+    'NextJs Developer',
+    'DimensionsAI',
+    'Artscape',
+    'Graphics Designer',
+    'VFX Artist',
+    'Sound Engineer',
+    'ไอซ์จิ',
+    'จิรายุ นิลพันธุ์',
+  ],
   twitterID: '@theiceji',
 }
 

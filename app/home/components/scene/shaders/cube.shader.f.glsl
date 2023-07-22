@@ -53,6 +53,7 @@ void main() {
   float warpedNoise = domainWarp(csm_vPosition);
   vec3 col = colorMapLookup(warpedNoise);
   csm_DiffuseColor = vec4(col, 1.);
+  csm_Emissive = col;
 
   float noise = gln_simplex(csm_vPosition);
   // csm_Metalness = smoothstep(0.4, 0.5, noise * 0.7);

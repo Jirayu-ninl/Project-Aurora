@@ -13,7 +13,7 @@ import Cursor from './components/cursor'
 import { NavBar, NavCanvas /* NavMobile */ } from './components/nav'
 import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
-import Beta from './components/modal.beta'
+// import Beta from './components/modal.beta'
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (

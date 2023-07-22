@@ -46,7 +46,7 @@ export default function Canvas() {
     <>
       <AnimatePresence>
         {_navShowCanvas && (
-          <div className='fixed left-0 top-4 z-70 h-[calc(100vh-64px)] w-screen overflow-hidden px-5 pb-8 md:h-screen'>
+          <div className='fixed left-0 top-4 z-[350] h-[calc(100vh-64px)] w-screen overflow-hidden px-5 pb-8 md:h-screen'>
             <motion.div
               initial={{ y: '-100%' }}
               exit={{ y: '-100%' }}

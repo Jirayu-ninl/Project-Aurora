@@ -4,11 +4,15 @@
 }
 
 .ge_menu_bar {
-  position: absolute;
-  background: #2f3034;
+  /* position: absolute; */
+  /* background: #2f3034; */
+  background: #464c50;
+  width: 600px;
+  margin: 8px;
+  border-radius: 10px;
 }
 
-.ge_menu_bar,
+/* .ge_menu_bar, */
 .CodeMirror {
   z-index: 0;
 }

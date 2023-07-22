@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
 import 'glslEditor/build/glslEditor.css'
 import './patch.css'
+
+export const metadata = {
+  title: 'GLSL Editor | IceJiVerse Tools',
+}
 
 function Page() {
   const CanvasRef = useRef(null)
@@ -22,7 +27,7 @@ function Page() {
 
   return (
     <div className='h-screen w-screen pt-24 pb-12 p-5'>
-      <div className='h-full w-full bg-[#26272a] rounded-lg overflow-hidden relative'>
+      <div className='h-full w-full bg-[#26272a] rounded-lg overflow-scroll relative'>
         <div ref={CanvasRef} />
       </div>
     </div>

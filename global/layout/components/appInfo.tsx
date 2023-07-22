@@ -35,7 +35,7 @@ export default function AppInfo() {
               opacity: _modalAppInfo ? 1 : 0,
             }}
             transition={transitionConfig(0.3)}
-            className='fixed z-90 flex h-screen w-screen  items-center justify-center bg-black/10 backdrop-blur-md dark:bg-white/10'
+            className='fixed z-[500] flex h-screen w-screen  items-center justify-center bg-black/10 backdrop-blur-md dark:bg-white/10'
           >
             <motion.div
               ref={OutsideRef}
