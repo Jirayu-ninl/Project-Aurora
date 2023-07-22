@@ -76,6 +76,11 @@ const nextConfig = {
       exclude: /node_modules/,
       use: ['glslify-import-loader', 'raw-loader', 'glslify-loader'],
     })
+    config.module.rules.push({
+      test: /\.hlsl$/i,
+      exclude: /node_modules/,
+      use: ['@gdgt/hlsl-loader'],
+    })
 
     return config
   },

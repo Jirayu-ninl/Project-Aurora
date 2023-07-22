@@ -3,24 +3,22 @@ import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import {
   PerspectiveCamera,
-  OrthographicCamera,
-  Environment,
   Float,
-  Lightformer,
-  OrbitControls,
-  ScrollControls,
-  useScroll,
-  Html,
-  Text,
+  // Preload,
+  // OrbitControls,
+  // ScrollControls,
+  // useScroll,
+  // Html,
+  // Text,
 } from '@react-three/drei'
-import { EffectComposer, Bloom, Noise } from '@react-three/postprocessing'
-import { State } from '@global/store'
+// import { State } from '@global/store'
 
 import Cube from './cube'
 import Shadows from './shadows'
 import { Background } from './background'
 // import { Lens } from './lens'
-import { Header } from './header'
+import { Title } from './title'
+import Environments from './environments'
 
 declare global {
   namespace JSX {
@@ -33,12 +31,12 @@ declare global {
 }
 
 export default function App({ _dark }: { _dark: boolean }) {
-  const _homeCamera = State((state) => state.homeCamera)
-  const animateCam = useRef<THREE.Group | null>(null)
-  const userCam = useRef<THREE.PerspectiveCamera | undefined>(null)
+  // const _homeCamera = State((state) => state.homeCamera)
+  // const animateCam = useRef<THREE.Group | null>(null)
+  // const userCam = useRef<THREE.PerspectiveCamera | undefined>(null)
   const TheCubeRef = useRef<THREE.Group>(null)
 
-  const scroll = useScroll()
+  // const scroll = useScroll()
 
   useFrame(({ mouse, clock }) => {
     //   const UserCam = userCam.current
@@ -151,73 +149,13 @@ export default function App({ _dark }: { _dark: boolean }) {
             <Cube _dark={_dark} />
           </Float>
         </group>
-        {/* <Text
-          position={[0, 0, -1]}
-          font='/three/fonts/Inter-SemiBold.woff'
-          fontSize={1}
-        >
-          TheIceJi
-          <meshStandardMaterial
-            color={_dark ? [2, 2, 2] : [0.3, 0.3, 0.3]}
-            toneMapped={false}
-            side={THREE.DoubleSide}
-          />
-        </Text> */}
-        <Header _dark={_dark} />
+        <Title _dark={_dark} />
         <Environments />
         <Shadows positionY={-0.8} />
         <Background _dark={_dark} />
+        {/* <Preload all /> */}
       </Suspense>
       {/* <PostProcessing /> */}
     </>
   )
 }
-
-const Environments = () => (
-  <>
-    <Environment resolution={32}>
-      <group rotation={[-Math.PI / 4, -0.3, 0]}>
-        <Lightformer
-          intensity={2}
-          rotation-x={Math.PI / 2}
-          position={[0, 5, -9]}
-          scale={[10, 10, 1]}
-        />
-        <Lightformer
-          intensity={1}
-          rotation-y={Math.PI / 2}
-          position={[-5, 1, -1]}
-          scale={[10, 2, 1]}
-        />
-        <Lightformer
-          intensity={1}
-          rotation-y={Math.PI / 2}
-          position={[-5, -1, -1]}
-          scale={[10, 2, 1]}
-        />
-        <Lightformer
-          intensity={1}
-          rotation-y={-Math.PI / 2}
-          position={[10, 1, 0]}
-          scale={[20, 2, 1]}
-        />
-        <Lightformer
-          type='ring'
-          intensity={1}
-          rotation-y={Math.PI / 2}
-          position={[-0.1, -1, -5]}
-          scale={10}
-        />
-      </group>
-    </Environment>
-  </>
-)
-
-const PostProcessing = () => (
-  <EffectComposer>
-    <Bloom luminanceThreshold={0.5} mipmapBlur />
-    <Bloom luminanceThreshold={1} intensity={10} levels={9} mipmapBlur />
-    <Bloom luminanceThreshold={1.5} intensity={5} levels={8} mipmapBlur />
-    <Noise opacity={0.25} />
-  </EffectComposer>
-)

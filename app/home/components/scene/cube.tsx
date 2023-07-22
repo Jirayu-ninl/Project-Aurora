@@ -1,18 +1,8 @@
-// import * as THREE from 'three'
-import { useRef } from 'react'
-import { DoubleSide, Color } from 'three'
-import { useFrame, useThree, useLoader, extend } from '@react-three/fiber'
-import {
-  Center,
-  Preload,
-  MeshTransmissionMaterial,
-  Text,
-  RoundedBox,
-} from '@react-three/drei'
-import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
-import { theme } from '@global/config/defineConfig'
+import { Center, MeshTransmissionMaterial, RoundedBox } from '@react-three/drei'
+// import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
+// import { theme } from '@global/config/defineConfig'
 
-import AbstractCube from './cube.abstract'
+import AbstractCube from './cube.abstractCaustics'
 
 const Cube = ({ _dark }: { _dark?: boolean }) => {
   const config = {
@@ -38,9 +28,13 @@ const Cube = ({ _dark }: { _dark?: boolean }) => {
     <>
       <Center rotation={[0, Math.PI / 1.35, 0]} position={[0, 0, 0]}>
         <RoundedBox args={[1, 1, 1]}>
-          <MeshTransmissionMaterial {...config} attach='material' />
+          <MeshTransmissionMaterial
+            {...config}
+            // transmissionSampler
+            attach='material'
+          />
         </RoundedBox>
-        <AbstractCube />
+        <AbstractCube _dark={_dark} />
       </Center>
     </>
   )

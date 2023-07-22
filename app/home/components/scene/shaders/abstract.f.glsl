@@ -4,6 +4,9 @@ uniform vec2 uResolution;
 uniform float uTime;
 uniform vec3 uColor;
 
+varying vec2 vUv;
+// varying vec3 vNormal; 
+
 int octaves = 2;
 float seed2 = 73156.8473192;
 float seed = 43758.5453123;
@@ -102,11 +105,9 @@ vec4 renderPass(vec2 uv, vec2 uvoffset) {
 
 void main() {
     vec2 fragCoord = gl_FragCoord.xy;
-      // Screen coordinates.
     vec2 uv = (fragCoord - uResolution.xy * .5) / uResolution.y;
 
     vec4 render = renderPass(uv, vec2(1.));
     gl_FragColor = render;
-
-    // gl_FragColor = vec4(hueShift(render.xyz, 4.8), 1.0);
+    // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
 }

@@ -11,36 +11,6 @@ import backgroundFragShader from './shaders/background.f.glsl'
 import cpNoise21 from 'auroraGL/noise/cpNoise21.glsl'
 
 export const Background = ({ _dark }: { _dark: boolean }) => {
-  // const BackgroundShader = useMemo(() => {
-  //   console.log('Creating shader with _dark:', _dark)
-
-  //   const backgroundUniform = {
-  //     u_time: 0,
-  //     u_mouse: new THREE.Vector2(),
-  //     u_dark: _dark,
-  //     u_color1: ColorUtils.HEXtoThree('#ffb449', 1, THREE.Color),
-  //     u_color2: ColorUtils.HEXtoThree('#afc9cf', 1, THREE.Color),
-  //     u_color3: ColorUtils.HEXtoThree('#789fcc', 1, THREE.Color),
-  //   }
-
-  //   return shaderMaterial(
-  //     backgroundUniform,
-  //     backgroundVertShader,
-  //     `${cpNoise21} ${backgroundFragShader}`,
-  //   )
-
-  // }, [_dark])
-
-  // extend({ BackgroundShader })
-
-  // const target = new THREE.Vector2()
-  // useFrame(({ mouse }) => {
-  //   backgroundShaderRef.current &&
-  //     ((backgroundShaderRef.current.uniforms.u_time.value += 0.005),
-  //     target.set((mouse.x + 1) * 0.5, (mouse.y + 1) * 0.5),
-  //     backgroundShaderRef.current.uniforms.u_mouse.value.lerp(target, 0.2))
-  // })
-
   const shader: THREE.Shader = useMemo(
     () => ({
       uniforms: {
