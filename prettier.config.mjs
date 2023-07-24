@@ -1,4 +1,7 @@
-module.exports = {
+/** @type {import("prettier").Options} */
+import pluginTailwindcss from 'prettier-plugin-tailwindcss'
+
+const config = {
   arrowParens: 'always',
   bracketSpacing: true,
   embeddedLanguageFormatting: 'auto',
@@ -16,6 +19,8 @@ module.exports = {
   trailingComma: 'all',
   useTabs: false,
   vueIndentScriptAndStyle: false,
-  // plugins: [require('prettier-plugin-tailwindcss')],
-  // tailwindConfig: './tailwind.config.ts',
+  plugins: [pluginTailwindcss],
+  tailwindConfig: './tailwind.config.ts',
 }
+
+export default config

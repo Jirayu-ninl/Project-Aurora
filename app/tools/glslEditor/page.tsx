@@ -6,7 +6,7 @@ import 'glslEditor/build/glslEditor.css'
 import './patch.css'
 
 function Page() {
-  const CanvasRef = useRef(null)
+  const CanvasRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     const GlslEditor = require('glslEditor/build/glslEditor.min')
@@ -22,12 +22,12 @@ function Page() {
       })
     }
     InitEditor()
-    return InitEditor
+    return () => window.removeEventListener('beforeunload', () => {})
   }, [])
 
   return (
-    <div className='h-screen w-screen pt-24 pb-12 p-5'>
-      <div className='h-full w-full bg-[#26272a] rounded-lg overflow-scroll relative'>
+    <div className='p-5 h-screen w-screen pt-24 pb-12'>
+      <div className='h-full w-full bg-[#26272a] rounded-lg overflow-y-scroll relative overflow-x-hidden'>
         <div ref={CanvasRef} />
       </div>
     </div>
