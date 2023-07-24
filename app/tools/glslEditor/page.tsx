@@ -26,8 +26,8 @@ function Page() {
   }, [])
 
   return (
-    <div className='p-5 h-screen w-screen pt-24 pb-12'>
-      <div className='h-full w-full bg-[#26272a] rounded-lg overflow-y-scroll relative overflow-x-hidden'>
+    <div className='h-screen w-screen p-5 pb-12 pt-24'>
+      <div className='relative h-full w-full overflow-x-hidden overflow-y-scroll rounded-lg bg-[#26272a]'>
         <div ref={CanvasRef} />
       </div>
     </div>
