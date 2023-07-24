@@ -6,7 +6,7 @@ import headerFrontFragShader from '../shaders/headerFront.f.glsl'
 import headerBackVertShader from '../shaders/headerBack.v.glsl'
 import headerBackFragShader from '../shaders/headerBack.f.glsl'
 
-export const Title = ({ _dark }: { _dark: boolean }) => {
+const Title = ({ _dark }: { _dark: boolean }) => {
   const _setCursor = UI((state) => state.setCursor)
 
   return (
@@ -37,3 +37,5 @@ export const Title = ({ _dark }: { _dark: boolean }) => {
     </mesh>
   )
 }
+
+export default Title

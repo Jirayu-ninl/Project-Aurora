@@ -10,7 +10,7 @@ import backgroundVertShader from './shaders/background.v.glsl'
 import backgroundFragShader from './shaders/background.f.glsl'
 import cpNoise21 from 'auroraGL/noise/cpNoise21.glsl'
 
-export const Background = ({ _dark }: { _dark: boolean }) => {
+const Background = ({ _dark }: { _dark: boolean }) => {
   const shader: THREE.Shader = useMemo(
     () => ({
       uniforms: {
@@ -35,9 +35,10 @@ export const Background = ({ _dark }: { _dark: boolean }) => {
   })
 
   return (
-    <Plane args={[14, 5]} scale={0.8} position={[0, 0, -1.2]}>
-      {/* <backgroundShader ref={backgroundShaderRef} /> */}
+    <Plane args={[14, 8]} scale={0.8} position={[0, 0, -1.2]}>
       <shaderMaterial args={[shader]} />
     </Plane>
   )
 }
+
+export default Background

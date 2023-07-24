@@ -6,7 +6,7 @@ import { Loader } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { UI } from '@global/store'
 import { useOptimization } from '@aurora/libs/hooks/three'
-import Scene from './components/scene'
+import Scene from './components'
 
 function Page() {
   const _gpuTier = UI((state) => state.gpuTier)
@@ -29,29 +29,31 @@ function Page() {
   }
 
   return (
-    <main className='relative h-screen w-screen bg-white dark:bg-[#101010]'>
-      <div className='absolute h-full w-full overflow-hidden'>
-        <Canvas
-          dpr={getDRP() as [number, number]}
-          gl={{
-            powerPreference: 'high-performance',
-            alpha: true,
-            antialias: antialias,
-            stencil: false,
-            depth: true,
-            logarithmicDepthBuffer: true,
-          }}
-          linear={true}
-          shadows
-        >
-          <Scene _dark={_dark} />
-        </Canvas>
-        <Loader />
-      </div>
-      {/* <div className='pointer-events-none absolute h-full w-full flex justify-center items-center'>
+    <>
+      <main className='relative h-screen w-screen bg-white dark:bg-[#101010]'>
+        <div className='absolute h-full w-full overflow-hidden'>
+          <Canvas
+            dpr={getDRP() as [number, number]}
+            gl={{
+              powerPreference: 'high-performance',
+              alpha: true,
+              antialias: antialias,
+              stencil: false,
+              depth: true,
+              logarithmicDepthBuffer: true,
+            }}
+            linear={true}
+            shadows
+          >
+            <Scene _dark={_dark} />
+          </Canvas>
+          <Loader />
+        </div>
+        {/* <div className='pointer-events-none absolute h-full w-full flex justify-center items-center'>
         <h1 className='text-10xl'>TheIceJi</h1>
       </div> */}
-    </main>
+      </main>
+    </>
   )
 }
 

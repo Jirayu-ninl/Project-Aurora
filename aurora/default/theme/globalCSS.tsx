@@ -12,8 +12,24 @@ const GlobalStyles = (Darkmode = true) => (
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
       }
+      // *::-webkit-scrollbar {
+      //   display: none;
+      // }
+
+      *::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: ${Darkmode ? '#ffffff11' : '#00000011'};
+      }
+
       *::-webkit-scrollbar {
-        display: none;
+        width: 4px;
+        background-color: transparent;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: ${Darkmode ? '#ffd900' : '#ff3b3b'};
       }
 
       body {
@@ -426,7 +442,9 @@ const GlobalStyles = (Darkmode = true) => (
         right: 0px;
         width: 100px;
         height: 100%;
-        box-shadow: 0 0 10px #fff, 0 0 5px #fff;
+        box-shadow:
+          0 0 10px #fff,
+          0 0 5px #fff;
         opacity: 1;
 
         -webkit-transform: rotate(3deg) translate(0px, -4px);

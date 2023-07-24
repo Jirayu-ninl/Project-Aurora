@@ -10,15 +10,19 @@ function Page() {
 
   useLayoutEffect(() => {
     const GlslEditor = require('glslEditor/build/glslEditor.min')
-    new GlslEditor(CanvasRef.current, {
-      canvas_size: 500,
-      canvas_draggable: true,
-      theme: 'monokai',
-      multipleBuffers: true,
-      watchHash: true,
-      fileDrops: true,
-      menu: true,
-    })
+    const InitEditor = () => {
+      new GlslEditor(CanvasRef.current, {
+        canvas_size: 500,
+        canvas_draggable: true,
+        theme: 'monokai',
+        multipleBuffers: true,
+        watchHash: true,
+        fileDrops: true,
+        menu: true,
+      })
+    }
+    InitEditor()
+    return InitEditor
   }, [])
 
   return (

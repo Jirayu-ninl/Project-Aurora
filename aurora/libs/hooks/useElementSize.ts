@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
 
 // See: https://usehooks-ts.com/react-hook/use-event-listener
-import { useEventListener } from '../useEventListener'
+import useEventListener from './useEventListener'
 // See: https://usehooks-ts.com/react-hook/use-isomorphic-layout-effect
-import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
 interface Size {
   width: number

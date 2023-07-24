@@ -1,10 +1,6 @@
 // import * as THREE from 'three'
 import { useRef } from 'react'
-import {
-  useFrame,
-  useThree,
-  useLoader,
-} from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import {
   Center,
   Preload,
@@ -12,7 +8,6 @@ import {
   MeshTransmissionMaterial,
   RoundedBox,
 } from '@react-three/drei'
-import { RGBELoader } from 'three-stdlib'
 
 const RenderTextureCube = ({
   config,
@@ -29,11 +24,6 @@ const RenderTextureCube = ({
     () =>
       contents.current &&
       contents.current.matrix.copy(main.current.matrixWorld),
-  )
-
-  const texture = useLoader(
-    RGBELoader,
-    'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr',
   )
 
   return (

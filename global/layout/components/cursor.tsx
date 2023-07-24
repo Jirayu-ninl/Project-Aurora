@@ -44,7 +44,7 @@ function Cursor() {
     transition-property: width, height, border;
     will-change: width, height, transform, border;
     transform-origin: center;
-    z-index: 90;
+    z-index: 500;
     // background-color: #fff;
     mix-blend-mode: normal;
     &.pointer {
@@ -78,7 +78,7 @@ function Cursor() {
     position: fixed;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 90;
+    z-index: 500;
     height: 40px;
     width: 40px;
     transition: all 0.3s ease-out;
