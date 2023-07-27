@@ -11,19 +11,27 @@ const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
   const scroll = useScroll()
 
   useFrame(({ mouse, clock }) => {
-    const setCubePositionX = (): number => {
-      let positionX
+    const setCubePositionX = (positionX: number): number => {
+      // let positionX
       if (scroll.offset <= 2.543 / scroll.pages) {
         positionX = -Math.sin(scroll.offset * (scroll.pages * 1.2)) * 2
       } else if (
         2.543 / scroll.pages < scroll.offset &&
-        scroll.offset <= 6 / scroll.pages
+        scroll.offset <= 5 / scroll.pages
       ) {
         positionX = 0
-      } else if (scroll.offset > 6 / scroll.pages) {
+      } else if (
+        5 / scroll.pages < scroll.offset &&
+        scroll.offset <= 6 / scroll.pages
+      ) {
         positionX =
-          -Math.sin((scroll.offset - 6 / scroll.pages) * (scroll.pages * 1.2)) *
+          -Math.sin((scroll.offset - 5 / scroll.pages) * (scroll.pages * 1.2)) *
           2
+      } else if (
+        6 / scroll.pages < scroll.offset &&
+        scroll.offset < 9 / scroll.pages
+      ) {
+        positionX = -2
       } else {
         positionX = 0
       }
@@ -63,7 +71,7 @@ const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
       )
       TheCube.position.x = MathUtils.lerp(
         TheCube.position.x,
-        setCubePositionX(),
+        setCubePositionX(TheCube.position.x),
         // -Math.sin(scroll.offset * (scroll.pages * 1.2)) * 2,
         // (Math.floor(scroll.offset * scroll.pages) / 2) % 2 == 0 ? -2 : 2,
         0.2,

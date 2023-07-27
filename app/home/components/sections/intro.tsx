@@ -21,11 +21,11 @@ function IntroSection() {
 
   return (
     <>
-      <div className='absolute top-[140vh] left-[40vw]'>
-        <h1 className=' text-6xl font-bold mb-8 uppercase' ref={rTextTitle}>
+      <div className='absolute left-[40vw] top-[140vh]'>
+        <h1 className=' mb-8 text-6xl font-bold uppercase' ref={rTextTitle}>
           <span className='text-8xl text-primary-0'>H</span>I, I AM
         </h1>
-        <p className='text-3xl font-light opacity-90 leading-relaxed'>
+        <p className='text-3xl font-light leading-relaxed opacity-90'>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Creative Developer with a
           passion for pushing the boundaries
           <br />

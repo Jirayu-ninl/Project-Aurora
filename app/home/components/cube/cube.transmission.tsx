@@ -5,7 +5,7 @@ const Cube = ({ _dark }: { _dark?: boolean }) => {
     backside: true,
     backsideThickness: 0.3,
     samples: 16,
-    resolution: 512,
+    // resolution: 512,
     transmission: _dark ? 1 : 1.05,
     clearcoat: 1,
     clearcoatRoughness: 0.42,

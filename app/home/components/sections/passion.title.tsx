@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { Text, useScroll } from '@react-three/drei'
 import { getInviewAnimationValue } from '@aurora/views/animations'
 
-function PassionSectionTitle() {
+function PassionSectionTitle({ _dark }: { _dark: boolean }) {
   const rTextPassionateMat = useRef<any>(null)
   const scroll = useScroll()
   useFrame(() => {
@@ -28,7 +28,7 @@ function PassionSectionTitle() {
       >
         PASSIONATE
         <meshBasicMaterial
-          color='#ffffff'
+          color={_dark ? '#fff' : '#fafafa'}
           ref={rTextPassionateMat}
           transparent
           opacity={1}
