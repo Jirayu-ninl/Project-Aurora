@@ -18,20 +18,20 @@ const MarqueeSection = ({ _dark }: { _dark: boolean }) => {
         (row, index) =>
           (row.position.x =
             (!(index % 2) ? -10 : -15) *
-            scroll.range(2.9 / scroll.pages, 3.2 / scroll.pages)),
+            scroll.range(3.8 / scroll.pages, 4.2 / scroll.pages)),
       )
     MarqueeBehindRef.current &&
       MarqueeBehindRef.current.map(
         (row, index) =>
           (row.position.x =
             (!(index % 2) ? -6 : -10) *
-            scroll.range(2.9 / scroll.pages, 3.2 / scroll.pages)),
+            scroll.range(3.8 / scroll.pages, 4.2 / scroll.pages)),
       )
   })
 
   return (
     <>
-      <mesh position={[0, -10, -1]} rotation={[0, 0, Math.PI / 24]}>
+      <mesh position={[0, -13, -1]} rotation={[0, 0, Math.PI / 24]}>
         {ContentData.softSkills.map((row, index) => (
           <mesh
             position={[0, -index / 1.7, 0]}
@@ -53,7 +53,7 @@ const MarqueeSection = ({ _dark }: { _dark: boolean }) => {
           </mesh>
         ))}
       </mesh>
-      <mesh position={[0, -10, -2]} rotation={[0, 0, Math.PI / 24]} scale={1.2}>
+      <mesh position={[0, -13, -2]} rotation={[0, 0, Math.PI / 24]} scale={1.2}>
         {ContentData.hardSkills.map((row, index) => (
           <mesh
             position={[-5, -index / 1.7, 0]}

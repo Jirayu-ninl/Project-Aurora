@@ -81,6 +81,10 @@ body {
   @apply xl:hover:-translate-x-1 xl:hover:-translate-y-1;
 }
 
+.-AnimTranslate-4 {
+  @apply xl:hover:translate-x-1 xl:hover:translate-y-1;
+}
+
 .AnimSaturate-0 {
   @apply xl:saturate-0 xl:hover:saturate-100;
 }
@@ -198,6 +202,10 @@ body {
 
 .Btn-white-40 {
   @apply rounded border border-white/40 bg-white/20 p-1 text-xs backdrop-blur-md md:px-3 md:py-1 md:text-base xl:text-xs xxl:text-base;
+}
+
+.Btn-press-2 {
+  @apply rounded border  p-1 text-xs backdrop-blur-md md:px-3 md:py-1 md:text-base xl:text-xs xxl:text-base shadow-md shadow-white;
 }
 
 .NotiBadge-primary {

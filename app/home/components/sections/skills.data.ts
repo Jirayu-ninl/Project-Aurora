@@ -37,4 +37,9 @@ export const backend = [
   'Prisma',
   'MongoDB',
   'Redis',
+  'tRPC',
+  'NextAuth',
+  'EthereumJs',
+  'Sentry',
+  'ExpressJs',
 ]

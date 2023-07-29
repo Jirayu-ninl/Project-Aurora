@@ -10,7 +10,7 @@ import { Text } from '@react-three/drei'
 
 import CustomShaderMaterial from 'three-custom-shader-material'
 import { useFrame } from '@react-three/fiber'
-import { patchShaders } from 'gl-noise/build/glNoise.m'
+// import { patchShaders } from 'gl-noise/build/glNoise.m'
 import sVertex from './shaders/circleParticles.v.glsl'
 import sFragment from './shaders/circleParticles.f.glsl'
 
@@ -18,12 +18,12 @@ export const CircleParticles = ({
   radius,
   numParticles,
   data,
-  position = [0, 0, 0],
+  _dark,
 }: {
   radius: number
   numParticles: number
   data: string[]
-  position?: [number, number, number]
+  _dark: boolean
 }) => {
   const pointRef = useRef<any>(null)
   const matRef = useRef<any>(null)
@@ -61,17 +61,18 @@ export const CircleParticles = ({
     uTime: {
       value: 0,
     },
+    uDark: { value: _dark },
   }
 
   return (
-    <mesh position={position}>
+    <>
       <points geometry={geometry} ref={pointRef}>
         {/* <pointsMaterial attach='material' color='white' /> */}
         <CustomShaderMaterial
           ref={matRef}
           baseMaterial={PointsMaterial}
-          vertexShader={patchShaders(sVertex)}
-          fragmentShader={patchShaders(sFragment)}
+          vertexShader={sVertex}
+          fragmentShader={sFragment}
           uniforms={sUniforms}
           transparent
         />
@@ -83,15 +84,17 @@ export const CircleParticles = ({
             Math.sin((i / numParticles) * Math.PI * 8) * (radius + 0.05),
             0,
           ]}
+          font={'/three/fonts/Inter-SemiBold.woff'}
           rotation={[0, 0, (i / numParticles) * 4 * Math.PI * 2]}
-          scale={0.04 * radius}
+          scale={0.5 / (radius + 4)}
           key={i}
           anchorX='left'
           anchorY='middle'
+          color={_dark ? '#fff' : '#000'}
         >
           {s}
         </Text>
       ))}
-    </mesh>
+    </>
   )
 }

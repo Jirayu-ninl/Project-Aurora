@@ -1,24 +1,28 @@
+import { useRef, useState } from 'react'
 import {
   PerspectiveCamera,
   Preload,
-  // OrbitControls,
+  OrbitControls,
   ScrollControls,
   Scroll,
   Text,
 } from '@react-three/drei'
 // import { State } from '@global/store'
+import { Color } from 'three'
 import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
 
 import Cube from './cube'
 import Hero from './hero'
 import {
   IntroSection,
+  PassionSectionQuote,
   PassionSectionTitle,
   PassionSectionContent,
   MarqueeSection,
   SkillsSection,
 } from './sections'
 import Environments from './environments'
+import PageState from './state'
 
 declare global {
   namespace JSX {
@@ -31,8 +35,11 @@ declare global {
 }
 
 export default function App({ _dark }: { _dark: boolean }) {
-  // const userCam = useRef<THREE.PerspectiveCamera | undefined>(null)
+  // const CamRef = useRef<THREE.PerspectiveCamera | undefined>(null)
+  const $scroll = useRef<any>(null)
+  const $background = useRef<any>(null)
 
+  // console.log(_scrollState)
   // const { width: w, height: h } = useThree((state) => state.viewport)
 
   return (
@@ -41,22 +48,21 @@ export default function App({ _dark }: { _dark: boolean }) {
         <ambientLight intensity={0.6} />
         <Environments />
       </PerspectiveCamera>
-      {/* <OrbitControls /> */}
+      {/* <OrbitControls enableZoom={false} /> */}
       <ScrollControls damping={0.3} distance={1} pages={16}>
-        <Scroll>
+        <Scroll ref={$scroll}>
+          <PageState />
           <Hero _dark={_dark} />
           <Cube _dark={_dark} />
-        </Scroll>
-        <Scroll>
           <Scroll html style={{ width: '100%' }}>
-            <IntroSection />
+            <IntroSection _dark={_dark} />
             <PassionSectionContent />
           </Scroll>
+          <PassionSectionQuote _dark={_dark} />
           <PassionSectionTitle _dark={_dark} />
           <MarqueeSection _dark={_dark} />
-          <SkillsSection _dark={_dark} />
-          <Text position={[0, -18, -1]}>Skill 2</Text>
-          <Text position={[0, -27, -1]}>Projects</Text>
+          <SkillsSection _dark={_dark} scrollRef={$scroll} />
+          <Text position={[0, -35, -1]}>PROJECTS</Text>
         </Scroll>
       </ScrollControls>
       <color
@@ -68,6 +74,7 @@ export default function App({ _dark }: { _dark: boolean }) {
             number,
           ]
         }
+        ref={$background}
       />
       <Preload all />
     </>

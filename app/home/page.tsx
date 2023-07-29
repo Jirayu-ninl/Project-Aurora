@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useState, Suspense } from 'react'
-import { Loader, useProgress, Html } from '@react-three/drei'
+import { Loader /*, useProgress, Html*/ } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { UI } from '@global/store'
 import { useOptimization } from '@aurora/libs/hooks/three'

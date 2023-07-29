@@ -15,7 +15,6 @@ float random(vec2 p) {
     return fract(cos(dot(p, k1)) * 12345.6789);
 }
 
-// const vec3 colorBase = vec3(0.0);
 const vec3 colorBaseDark = vec3(0.0);
 const vec3 colorBaseLight = vec3(1.0);
 // const vec3 color1 = vec3(0.89, 0.34, 0.11);

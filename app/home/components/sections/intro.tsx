@@ -2,17 +2,13 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
 
-function IntroSection() {
+import { BtnlineEdge } from '@resources/common/components/button'
+
+function IntroSection({ _dark }: { _dark: boolean }) {
   const rTextTitle = useRef<any>(null)
   const scroll = useScroll()
 
   useFrame(() => {
-    // console.log(scroll.offset)
-    // console.log(scroll.delta)
-    // console.log(scroll.damping)
-    // console.log(scroll.range(2 / scroll.pages, 3 / scroll.pages))
-    // console.log(delta)
-
     rTextTitle.current &&
       (rTextTitle.current.style.transform = `translate3d(${
         10 - (1 - scroll.range(0.03185, 0.10179)) * 100
@@ -21,8 +17,8 @@ function IntroSection() {
 
   return (
     <>
-      <div className='absolute left-[40vw] top-[140vh]'>
-        <h1 className=' mb-8 text-6xl font-bold uppercase' ref={rTextTitle}>
+      <div className='absolute left-[40vw] top-[140vh] flex flex-col'>
+        <h1 className=' mb-10 text-6xl font-bold uppercase' ref={rTextTitle}>
           <span className='text-8xl text-primary-0'>H</span>I, I AM
         </h1>
         <p className='text-3xl font-light leading-relaxed opacity-90'>
@@ -37,6 +33,12 @@ function IntroSection() {
           <br /> I excel at crafting engaging web animations that captivate
           users.
         </p>
+        <BtnlineEdge
+          href='/about'
+          text='LEARN MORE'
+          classParent='ml-auto mt-10'
+          _dark={_dark}
+        />
       </div>
     </>
   )

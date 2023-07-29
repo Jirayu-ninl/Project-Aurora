@@ -3,7 +3,7 @@ import { ContentData } from './passion.content.data'
 const PassionSectionContent = () => {
   return (
     <>
-      <div className='absolute top-[260vh] flex h-[70vh] w-screen flex-col items-center justify-between'>
+      <div className='absolute top-[350vh] flex h-[70vh] w-screen flex-col items-center justify-between'>
         {ContentData.map((row, index) => (
           <div className='flex w-[1440px] justify-between' key={index}>
             {row.map((item, index2) => (

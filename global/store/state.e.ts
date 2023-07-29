@@ -26,7 +26,7 @@ export type tNavRouteActiveState = {
   pages?: number
   scrollable?: boolean
   pageHeight?: number | undefined
-  motionValue?: MotionValue<string> | undefined
+  motionValue?: MotionValue<string> | string | undefined
   scrollY?: MotionValue<number> | undefined
 }
 

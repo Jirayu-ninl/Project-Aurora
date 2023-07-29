@@ -1,0 +1,101 @@
+import { useEffect, type RefObject } from 'react'
+import type { Group, Mesh } from 'three'
+import { Euler, Vector3, MathUtils } from 'three'
+import { useScroll } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+
+const useExplode = (
+  group: RefObject<Group>,
+  { distance = 3, enableRotation = true },
+) => {
+  useEffect(() => {
+    const groupWorldPosition = new Vector3()
+    if (group.current) {
+      group.current.getWorldPosition(groupWorldPosition)
+
+      group.current.children.forEach((mesh: any) => {
+        mesh.originalPosition = mesh.position.clone()
+        const meshWorldPosition = new Vector3()
+        mesh.getWorldPosition(meshWorldPosition)
+
+        mesh.directionVector = meshWorldPosition
+          .clone()
+          .sub(groupWorldPosition)
+          .normalize()
+
+        mesh.originalRotation = mesh.rotation.clone()
+        mesh.targetRotation = new Euler(
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+          Math.random() * Math.PI,
+        )
+      })
+    }
+  }, [group])
+
+  useEffect(() => {
+    group.current &&
+      group.current.children.forEach((mesh: any) => {
+        mesh.targetPosition = mesh.originalPosition
+          .clone()
+          .add(mesh.directionVector.clone().multiplyScalar(distance))
+      })
+  }, [group, distance])
+
+  const scrollData = useScroll()
+
+  useFrame(() => {
+    group.current &&
+      group.current.children.forEach((mesh: any) => {
+        if (scrollData.offset < 0.0001) {
+          if (mesh.name === 'origin') {
+            mesh.visible = true
+          } else {
+            mesh.visible = false
+          }
+        } else {
+          if (mesh.name === 'origin') {
+            mesh.visible = false
+          } else {
+            mesh.visible = true
+          }
+        }
+
+        mesh.position.x = MathUtils.lerp(
+          mesh.originalPosition.x,
+          mesh.targetPosition.x,
+          scrollData.offset, // 0 at the beginning and 1 after scroll
+        )
+        mesh.position.y = MathUtils.lerp(
+          mesh.originalPosition.y,
+          mesh.targetPosition.y,
+          scrollData.offset, // 0 at the beginning and 1 after scroll
+        )
+        mesh.position.z = MathUtils.lerp(
+          mesh.originalPosition.z,
+          mesh.targetPosition.z,
+          scrollData.offset, // 0 at the beginning and 1 after scroll
+        )
+
+        if (enableRotation) {
+          mesh.rotation.x = MathUtils.lerp(
+            mesh.originalRotation.x,
+            mesh.targetRotation.x,
+            scrollData.offset, // 0 at the beginning and 1 after scroll
+          )
+          mesh.rotation.y = MathUtils.lerp(
+            mesh.originalRotation.y,
+            mesh.targetRotation.y,
+            scrollData.offset, // 0 at the beginning and 1 after scroll
+          )
+          mesh.rotation.z = MathUtils.lerp(
+            mesh.originalRotation.z,
+            mesh.targetRotation.z,
+            scrollData.offset, // 0 at the beginning and 1 after scroll
+          )
+        }
+      })
+  })
+}
+
+export default useExplode
