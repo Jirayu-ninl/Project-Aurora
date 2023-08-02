@@ -1,20 +1,62 @@
 import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
+import { useFrame } from '@react-three/fiber'
+import { useScroll } from '@react-three/drei'
 import CSM from 'three-custom-shader-material/vanilla'
 import { useExplode } from '@aurora/libs/webGL/hooks'
 import type { tNodes } from './cube.destruction.d'
+import { getInviewAnimationValue } from '@aurora/views/animations'
+import { getCubeState } from './cube.state.date'
 
 import fractalVertShader from './shaders/destruction.fractal.v.glsl'
 import fractalFragShader from './shaders/destruction.fractal.f.glsl'
 
 export const FractalModel = ({ nodes }: { nodes: tNodes }) => {
   const $destructionCube = useRef<THREE.Group | null>(null)
+  const scroll = useScroll()
+  const cubeState = getCubeState(scroll.pages)
+
+  useFrame((state, delta) => {
+    if ($destructionCube.current) {
+      const destructionCube = $destructionCube.current
+
+      destructionCube.visible =
+        cubeState.destructScale.START <= scroll.offset ? true : false
+
+      if (
+        cubeState.destructScale.START <= scroll.offset &&
+        scroll.offset <= cubeState.destructScale.END
+      ) {
+        const targetScale =
+          0.3 +
+          getInviewAnimationValue(
+            [cubeState.destructScale.START, cubeState.destructScale.END],
+            scroll.offset,
+          ) *
+            0.3
+        destructionCube.scale.set(targetScale, targetScale, targetScale)
+        destructionCube.rotation.z = THREE.MathUtils.lerp(
+          destructionCube.rotation.z,
+          0,
+          getInviewAnimationValue(
+            [cubeState.destructScale.START, cubeState.destructScale.END],
+            scroll.offset,
+          ),
+        )
+      }
+
+      if (cubeState.destructScale.END <= scroll.offset) {
+        destructionCube.rotateZ(0.01)
+      }
+    }
+  })
 
   useExplode($destructionCube, {
-    distance: 32,
+    distance: 16,
     enableRotation: false,
     invertX: true,
     invertZ: true,
+    range: [cubeState.destruct.START, cubeState.destruct.END],
   })
 
   const fractalShader = useMemo(
@@ -36,7 +78,7 @@ export const FractalModel = ({ nodes }: { nodes: tNodes }) => {
 
   return (
     <>
-      <group dispose={null} scale={0.4} ref={$destructionCube}>
+      <group dispose={null} scale={0.3} ref={$destructionCube}>
         <mesh
           castShadow
           receiveShadow

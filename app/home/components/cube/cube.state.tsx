@@ -1,87 +1,24 @@
 import type { RefObject } from 'react'
-import { MathUtils, type Group } from 'three'
+import { MathUtils } from 'three'
+import type { Group, Mesh } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
-import { getInviewAnimationValue } from '@aurora/views/animations'
+import {
+  setTheCubePositionX,
+  setTheCubePositionZ,
+  setTheCubeScale,
+} from './cube.state.setTheCube'
 
-const CubeState = ({ TheCubeRef }: { TheCubeRef: RefObject<Group | null> }) => {
+const CubeState = ({
+  $TheCubeRef,
+}: {
+  $TheCubeRef: RefObject<Group | Mesh | null>
+}) => {
   const scroll = useScroll()
 
   useFrame(({ mouse, clock }) => {
-    const setCubePositionX = (positionX: number): number => {
-      if (scroll.offset <= 2.543 / scroll.pages) {
-        positionX = -Math.sin(scroll.offset * (scroll.pages * 1.2)) * 2
-      } else if (
-        2.543 / scroll.pages < scroll.offset &&
-        scroll.offset <= 6.5 / scroll.pages
-      ) {
-        positionX = 0
-      } else if (
-        6.5 / scroll.pages < scroll.offset &&
-        scroll.offset <= 7.5 / scroll.pages
-      ) {
-        positionX =
-          -Math.sin(
-            (scroll.offset - 6.5 / scroll.pages) * (scroll.pages * 1.2),
-          ) * 2
-      } else if (
-        7.5 / scroll.pages < scroll.offset &&
-        scroll.offset < 9.2 / scroll.pages
-      ) {
-        positionX = -2
-      } else if (
-        9.2 / scroll.pages < scroll.offset &&
-        scroll.offset < 12 / scroll.pages
-      ) {
-        positionX =
-          -Math.sin(
-            (scroll.offset - 8.1 / scroll.pages) * (scroll.pages * 1.2),
-          ) * 2
-      } else if (12 / scroll.pages < scroll.offset && scroll.offset < 1) {
-        positionX = 2
-      } else {
-        positionX =
-          -Math.sin(
-            (scroll.offset - 8.1 / scroll.pages) * (scroll.pages * 1.2),
-          ) * 2
-      }
-      return positionX
-    }
-
-    const setCubePositionZ = (positionZ: number): number => {
-      if (
-        0 / scroll.pages < scroll.offset &&
-        scroll.offset <= 4 / scroll.pages
-      ) {
-        positionZ =
-          getInviewAnimationValue(
-            [
-              1.4 / scroll.pages,
-              2.2 / scroll.pages,
-              2.4 / scroll.pages,
-              3.2 / scroll.pages,
-            ],
-            scroll.offset,
-          ) * -1.5
-      } else if (
-        9.2 / scroll.pages < scroll.offset &&
-        scroll.offset < 12 / scroll.pages
-      ) {
-        positionZ =
-          getInviewAnimationValue(
-            [9.2 / scroll.pages, 12 / scroll.pages],
-            scroll.offset,
-          ) * -0.5
-      } else if (12 / scroll.pages < scroll.offset && scroll.offset < 1) {
-        positionZ = -0.5
-      } else {
-        positionZ = 0
-      }
-      return positionZ
-    }
-
-    if (TheCubeRef.current) {
-      const TheCube = TheCubeRef.current
+    if ($TheCubeRef.current) {
+      const TheCube = $TheCubeRef.current
       TheCube.rotation.y =
         Math.sin(clock.getElapsedTime() * 0.2) / 4 - Math.PI / 1.35
 
@@ -113,14 +50,16 @@ const CubeState = ({ TheCubeRef }: { TheCubeRef: RefObject<Group | null> }) => {
       )
       TheCube.position.x = MathUtils.lerp(
         TheCube.position.x,
-        setCubePositionX(TheCube.position.x),
+        setTheCubePositionX(TheCube.position.x, scroll),
         0.2,
       )
       TheCube.position.z = MathUtils.lerp(
         TheCube.position.z,
-        setCubePositionZ(TheCube.position.z),
+        setTheCubePositionZ(TheCube.position.z, scroll),
         0.2,
       )
+      const TheCubeScale = setTheCubeScale(1, scroll)
+      TheCube.scale.set(TheCubeScale, TheCubeScale, TheCubeScale)
     }
   })
 

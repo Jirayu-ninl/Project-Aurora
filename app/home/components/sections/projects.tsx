@@ -8,6 +8,7 @@ import { useTexture } from '@react-three/drei'
 import { Texture } from 'three'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { UI } from '@global/store'
 import { setupCSS } from './projects.css'
 import Data from './projects.data'
 
@@ -77,7 +78,7 @@ const R3F = ({
       target.set(
         mouse.x * 1.7 + 1,
         mouse.y - $scroll.current.position.y - 0.2,
-        0,
+        -1,
       )
       ref.position.lerp(target, 0.1)
     }
@@ -85,7 +86,7 @@ const R3F = ({
 
   return (
     <>
-      <mesh position={[-1.7, -35, 0]} ref={$projectImg}>
+      <mesh position={[-1.7, -35, 0]} ref={$projectImg} scale={1.5}>
         <planeGeometry args={[1.6, 0.9, 20, 10]} />
         <shaderMaterial args={[shader]} />
       </mesh>
@@ -110,6 +111,7 @@ const Project = ({
   ProjectHover: number
   setProjectHover: Dispatch<number>
 }) => {
+  const _setCursor = UI((state) => state.setCursor)
   const CSS = setupCSS(_dark)
   return (
     <>
@@ -124,7 +126,12 @@ const Project = ({
         onMouseLeave={() => setProjectHover(0)}
       >
         <h6 className='-mb-6 text-4xl font-bold'>{year}</h6>
-        <h3 className='Anim text-10xl font-bold leading-tight'>
+        <h3
+          className='Anim text-10xl font-bold leading-tight'
+          onMouseEnter={() => _setCursor('go')}
+          onMouseMove={() => _setCursor('go')}
+          onMouseLeave={() => _setCursor(false)}
+        >
           <span>{title.slice(0, 1)}</span>
           {title.slice(1)}
         </h3>

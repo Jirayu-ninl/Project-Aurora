@@ -1,19 +1,22 @@
-// import * as THREE from 'three'
-import { useMemo } from 'react'
+import * as THREE from 'three'
+import { useMemo, useRef } from 'react'
 import { Color, MeshStandardMaterial } from 'three'
 import { useFrame } from '@react-three/fiber'
-import { RoundedBox } from '@react-three/drei'
+import { RoundedBox, useScroll } from '@react-three/drei'
 import CSM from 'three-custom-shader-material'
+import { getInviewAnimationValue } from '@aurora/views/animations'
+import { getCubeState } from './cube.state.date'
 
-import frag from './shaders/cube.shader.f.glsl'
-import Vert from './shaders/cube.shader.v.glsl'
-import common from './shaders/cube.shader.common.glsl'
-import simplex from './shaders/cube.shader.simplex.glsl'
-import FBM from './shaders/cube.shader.fmb'
-
-import DestructionCube from './cube.destruction'
+import frag from './shaders/cube.abstract.f.glsl'
+import Vert from './shaders/cube.abstract.v.glsl'
+import common from './shaders/cube.abstract.common.glsl'
+import simplex from './shaders/cube.abstract.simplex.glsl'
+import FBM from './shaders/cube.abstract.fmb'
 
 const AbstractCube = ({ _dark }: { _dark?: boolean }) => {
+  const scroll = useScroll()
+  const $cube = useRef<THREE.Mesh | null>(null)
+
   const abstractShaderUniforms = useMemo(
     () => ({
       colorMap: {
@@ -42,6 +45,9 @@ const AbstractCube = ({ _dark }: { _dark?: boolean }) => {
       uTime: {
         value: 0,
       },
+      uAlpha: {
+        value: 1,
+      },
     }),
     [_dark],
   )
@@ -58,11 +64,29 @@ const AbstractCube = ({ _dark }: { _dark?: boolean }) => {
 
   useFrame(() => {
     abstractShaderUniforms.uTime.value += 0.05
+    // console.log(scroll.offset)
+    const cubeState = getCubeState(scroll.pages)
+
+    $cube.current &&
+      ($cube.current.visible =
+        scroll.offset <= cubeState.fadeOut.END ? true : false)
+
+    if (
+      cubeState.fadeOut.START <= scroll.offset &&
+      scroll.offset <= cubeState.fadeOut.END
+    ) {
+      abstractShaderUniforms.uAlpha.value =
+        1 -
+        getInviewAnimationValue(
+          [cubeState.fadeOut.START, cubeState.fadeOut.END],
+          scroll.offset,
+        )
+    }
   })
 
   return (
     <>
-      <RoundedBox args={[1, 1, 1]} scale={0.8}>
+      <RoundedBox args={[1, 1, 1]} scale={0.8} ref={$cube}>
         <CSM
           baseMaterial={MeshStandardMaterial}
           uniforms={abstractShaderUniforms}

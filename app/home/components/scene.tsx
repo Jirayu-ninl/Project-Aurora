@@ -2,12 +2,11 @@ import { useRef, useState } from 'react'
 import {
   PerspectiveCamera,
   Preload,
-  OrbitControls,
+  // OrbitControls,
   ScrollControls,
   Scroll,
   Text,
 } from '@react-three/drei'
-// import { State } from '@global/store'
 import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
 
 import Cube from './cube'
@@ -24,6 +23,7 @@ import {
 import Overlay from './overlay'
 import Environments from './environments'
 import PageState from './state'
+// import PostProcessing from './postprocessing'
 
 declare global {
   namespace JSX {
@@ -48,7 +48,7 @@ export default function App({ _dark }: { _dark: boolean }) {
         <Environments />
         <Overlay _dark={_dark} $scroll={$scroll} />
       </PerspectiveCamera>
-      <OrbitControls enableZoom={false} />
+      {/* <OrbitControls enableZoom={false} /> */}
       <ScrollControls damping={0.3} distance={1} pages={16}>
         <Scroll ref={$scroll}>
           <PageState />
@@ -67,9 +67,10 @@ export default function App({ _dark }: { _dark: boolean }) {
           <MarqueeSection _dark={_dark} />
           <SkillsSection _dark={_dark} scrollRef={$scroll} />
           <ProjectsSection.R3F projectHover={projectHover} $scroll={$scroll} />
-          <Text position={[0, -33, -1]}>SERVICES</Text>
+          {/* <Text position={[0, -33, -1]}>SERVICES</Text> */}
         </Scroll>
       </ScrollControls>
+      {/* <PostProcessing /> */}
       <color
         attach='background'
         args={

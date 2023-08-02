@@ -1,6 +1,7 @@
 const getInviewAnimationValue = (
   rangeValue: [number, number] | [number, number, number, number],
   currentValue: number,
+  defaultValue = 0,
 ) => {
   let animatedValue = 0
   if (rangeValue.length === 4) {
@@ -15,7 +16,7 @@ const getInviewAnimationValue = (
       animatedValue =
         1 - (currentValue - rangeValue[2]) / (rangeValue[3] - rangeValue[2])
     } else {
-      animatedValue = 0
+      animatedValue = defaultValue
     }
   } else {
     if (currentValue < rangeValue[0]) {
@@ -24,7 +25,7 @@ const getInviewAnimationValue = (
       animatedValue =
         (currentValue - rangeValue[0]) / (rangeValue[1] - rangeValue[0])
     } else {
-      animatedValue = 0
+      animatedValue = defaultValue
     }
   }
 

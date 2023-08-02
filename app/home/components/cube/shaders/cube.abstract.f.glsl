@@ -1,5 +1,6 @@
 uniform vec3 colorMap[5];
 uniform float uTime;
+uniform float uAlpha;
 
 varying vec3 csm_vPosition;
 
@@ -52,8 +53,8 @@ vec3 colorMapLookup(float t) {
 void main() {
   float warpedNoise = domainWarp(csm_vPosition);
   vec3 col = colorMapLookup(warpedNoise);
-  csm_DiffuseColor = vec4(col, 1.);
-  csm_Emissive = col;
+  csm_DiffuseColor = vec4(col * uAlpha, 1.);
+  csm_Emissive = col * uAlpha;
 
   float noise = gln_simplex(csm_vPosition);
   // csm_Metalness = smoothstep(0.4, 0.5, noise * 0.7);
