@@ -3,7 +3,7 @@ import { useLoader } from '@react-three/fiber'
 // import CSM from 'three-custom-shader-material/vanilla'
 import { RGBELoader } from 'three-stdlib'
 import { MeshRefractionMaterial } from '@react-three/drei'
-import type { tNodes } from './cube.destruction.d'
+import type { tNodes } from './cube.destruction.f.d'
 
 // import {
 //   shaderStructs,

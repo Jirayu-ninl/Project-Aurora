@@ -16,7 +16,7 @@ export const FractalModel = ({ nodes }: { nodes: tNodes }) => {
   const scroll = useScroll()
   const cubeState = getCubeState(scroll.pages)
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if ($destructionCube.current) {
       const destructionCube = $destructionCube.current
 

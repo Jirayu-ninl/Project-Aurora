@@ -40,6 +40,8 @@ const Cube = ({ _dark }: { _dark?: boolean }) => {
           // distortion= {0.5}
           // distortionScale= {3}
           // temporalDistortion= {0.08}
+          distortionScale={0}
+          temporalDistortion={0}
           ior={1.5}
           color={_dark ? [1, 1, 1] : [1.3, 1.3, 1.3]}
           // transmissionSampler
