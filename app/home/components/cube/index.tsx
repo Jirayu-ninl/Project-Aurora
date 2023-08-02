@@ -16,9 +16,9 @@ const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
         <Float floatIntensity={1} speed={2}>
           <Center rotation={[0, Math.PI / 1.35, 0]} position={[0, 0, 0]}>
             <CubeState TheCubeRef={TheCubeRef} />
-            <DestructionCube />
-            {/* <TransmissionCube _dark={_dark} /> */}
-            {/* <AbstractCube _dark={_dark} /> */}
+            {/* <DestructionCube _dark={_dark} /> */}
+            <TransmissionCube _dark={_dark} />
+            <AbstractCube _dark={_dark} />
           </Center>
         </Float>
       </group>

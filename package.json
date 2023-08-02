@@ -134,6 +134,7 @@
     "systeminformation": "^5.18.10",
     "three": "^0.155.0",
     "three-custom-shader-material": "^5.4.0",
+    "three-mesh-bvh": "0.6.0",
     "three-stdlib": "^2.24.1",
     "uuid": "^9.0.0",
     "vfx-composer": "^0.4.0",

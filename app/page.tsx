@@ -23,7 +23,7 @@ export default function Home() {
   const [isClicked, setIsClicked] = useState(false)
   const [isPush, setIsPush] = useState(false)
 
-  useGLTF.preload('/three/scene/home/cube.glb')
+  useGLTF.preload('/three/model/desCube/model.glb')
 
   useEffect(() => {
     _setShowNav(false)

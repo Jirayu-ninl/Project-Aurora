@@ -1,115 +1,14 @@
-import { useRef } from 'react'
-import { MeshStandardMaterial, EquirectangularReflectionMapping } from 'three'
-import type { Mesh, Group } from 'three'
-import { useLoader } from '@react-three/fiber'
+import { useRef, useMemo } from 'react'
+import * as THREE from 'three'
 import CSM from 'three-custom-shader-material/vanilla'
-import { GLTF, RGBELoader } from 'three-stdlib'
 import { useExplode } from '@aurora/libs/webGL/hooks'
+import type { tNodes } from './cube.destruction.d'
 
-import { useGLTF, MeshRefractionMaterial } from '@react-three/drei'
+import fractalVertShader from './shaders/destruction.fractal.v.glsl'
+import fractalFragShader from './shaders/destruction.fractal.f.glsl'
 
-type GLTFResult = GLTF & {
-  nodes: tNodes
-  materials?: {
-    mat21: typeof MeshStandardMaterial
-    Material: typeof MeshStandardMaterial
-  }
-}
-
-type tNodes = {
-  Gems: Mesh
-  Cube_cell301: Mesh
-  Cube_cell302: Mesh
-  Cube_cell303: Mesh
-  Cube_cell304: Mesh
-  Cube_cell305: Mesh
-  Cube_cell306: Mesh
-  Cube_cell307: Mesh
-  Cube_cell201: Mesh
-  Cube_cell205: Mesh
-  Cube_cell206: Mesh
-  Cube_cell207: Mesh
-  Cube_cell208: Mesh
-  Cube_cell203: Mesh
-  Cube_cell202: Mesh
-  Cube_cell204: Mesh
-  Cube_cell101: Mesh
-  Cube_cell102: Mesh
-  Cube_cell103: Mesh
-  Cube_cell104: Mesh
-  Cube_cell105: Mesh
-  Cube_cell106: Mesh
-  Cube_cell107: Mesh
-  Cube_cell108: Mesh
-}
-
-type tMaterials = {
-  fractalMaterial?: CSM<typeof MeshStandardMaterial>
-  gemMaterial?: CSM<typeof MeshStandardMaterial>
-}
-
-const Model = ({ materials }: { materials: tMaterials }) => {
-  const { nodes /*, materials*/ } = useGLTF(
-    '/three/model/desCube/model.glb',
-  ) as GLTFResult
-
-  const { fractalMaterial, gemMaterial } = materials
-
-  return (
-    <>
-      <GemModel nodes={nodes} material={gemMaterial} />
-      {/* <FractalModel nodes={nodes} material={fractalMaterial} /> */}
-    </>
-  )
-}
-
-const GemModel = ({
-  nodes,
-  material,
-}: {
-  nodes: tNodes
-  material: CSM<typeof MeshStandardMaterial> | undefined
-}) => {
-  const textureUrl = [
-    'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/peppermint_powerplant_2_1k.hdr',
-    'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr',
-  ]
-  const texture = useLoader(RGBELoader, textureUrl[0])
-  texture.mapping = EquirectangularReflectionMapping
-
-  return (
-    <>
-      <group dispose={null} scale={0.4}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Gems.geometry}
-          // material={material}
-          position={[0.014, 0.037, 0.002]}
-          scale={-3.184}
-        >
-          <MeshRefractionMaterial
-            envMap={texture}
-            ior={2.75}
-            fresnel={1}
-            bounces={2}
-            aberrationStrength={0.01}
-            toneMapped={false}
-          />
-        </mesh>
-      </group>
-    </>
-  )
-}
-
-const FractalModel = ({
-  nodes,
-  material,
-}: {
-  nodes: tNodes
-  material: CSM<typeof MeshStandardMaterial> | undefined
-}) => {
-  const $destructionCube = useRef<Group | null>(null)
+export const FractalModel = ({ nodes }: { nodes: tNodes }) => {
+  const $destructionCube = useRef<THREE.Group | null>(null)
 
   useExplode($destructionCube, {
     distance: 32,
@@ -117,6 +16,23 @@ const FractalModel = ({
     invertX: true,
     invertZ: true,
   })
+
+  const fractalShader = useMemo(
+    () => ({
+      baseMaterial: THREE.MeshStandardMaterial,
+      vertexShader: fractalVertShader,
+      fragmentShader: fractalFragShader,
+      silent: true,
+      uniforms: {
+        u_time: {
+          value: 0,
+        },
+      },
+    }),
+    [],
+  )
+
+  const material = new CSM(fractalShader)
 
   return (
     <>
@@ -286,6 +202,3 @@ const FractalModel = ({
     </>
   )
 }
-
-useGLTF.preload('/three/model/desCube/model.glb')
-export default Model
