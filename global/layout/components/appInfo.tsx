@@ -104,7 +104,7 @@ export default function AppInfo() {
               </div>
               <div className='h-full w-[150px] overflow-hidden rounded-lg md:w-[415px]'>
                 <Image
-                  src='/gui/appInfo.jpg'
+                  src='/layout/appInfo.jpg'
                   alt='TheIceJi Splash Screen'
                   width={1500}
                   height={3000}

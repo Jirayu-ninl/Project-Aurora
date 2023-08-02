@@ -30,23 +30,23 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     route: [
       {
         title: 'INTRO',
-        path: '/home/intro',
+        path: '/home?id=intro',
       },
       {
         title: 'PASSIONATE',
-        path: '/home/passionate',
+        path: '/home?id=passionate',
       },
       {
         title: 'SKILLs',
-        path: '/home/skills',
+        path: '/home?id=skills',
       },
       {
         title: 'PROJECTS',
-        path: '/home/projects',
+        path: '/home?id=projects',
       },
       {
         title: 'SERVICES',
-        path: '/home/services',
+        path: '/home?id=services',
       },
     ],
   },

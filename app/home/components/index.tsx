@@ -1,82 +1,60 @@
-import { useRef, useState } from 'react'
-import {
-  PerspectiveCamera,
-  Preload,
-  OrbitControls,
-  ScrollControls,
-  Scroll,
-  Text,
-} from '@react-three/drei'
-// import { State } from '@global/store'
-import { Color } from 'three'
-import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
+/* eslint-disable react-hooks/rules-of-hooks */
+'use client'
 
-import Cube from './cube'
-import Hero from './hero'
-import {
-  IntroSection,
-  PassionSectionQuote,
-  PassionSectionTitle,
-  PassionSectionContent,
-  MarqueeSection,
-  SkillsSection,
-} from './sections'
-import Environments from './environments'
-import PageState from './state'
+import { useEffect, useState, Suspense } from 'react'
+import { Loader } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { UI } from '@global/store'
+import { useOptimization } from '@aurora/libs/hooks/three'
+import Scene from './scene'
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      abstractShader: any
-      backgroundShader: any
-      textTitleShader: any
+function CanvasApp() {
+  const _gpuTier = UI((state) => state.gpuTier)
+  const _dark = UI((state) => state.dark)
+  const [antialias, setAntialias] = useState(true)
+
+  useEffect(() => {
+    const pixelRatio = window.devicePixelRatio
+    if (pixelRatio > 1) {
+      setAntialias(false)
     }
+  }, [])
+
+  const getDRP: () => number[] = () => {
+    if (_gpuTier?.fps) {
+      const { drp } = useOptimization(_gpuTier.tier, 'tier')
+      return drp
+    }
+    return [1, 1]
   }
-}
-
-export default function App({ _dark }: { _dark: boolean }) {
-  // const CamRef = useRef<THREE.PerspectiveCamera | undefined>(null)
-  const $scroll = useRef<any>(null)
-  const $background = useRef<any>(null)
-
-  // console.log(_scrollState)
-  // const { width: w, height: h } = useThree((state) => state.viewport)
 
   return (
     <>
-      <PerspectiveCamera makeDefault fov={50} position={[0, 0, 3]}>
-        <ambientLight intensity={0.6} />
-        <Environments />
-      </PerspectiveCamera>
-      {/* <OrbitControls enableZoom={false} /> */}
-      <ScrollControls damping={0.3} distance={1} pages={16}>
-        <Scroll ref={$scroll}>
-          <PageState />
-          <Hero _dark={_dark} />
-          <Cube _dark={_dark} />
-          <Scroll html style={{ width: '100%' }}>
-            <IntroSection _dark={_dark} />
-            <PassionSectionContent />
-          </Scroll>
-          <PassionSectionQuote _dark={_dark} />
-          <PassionSectionTitle _dark={_dark} />
-          <MarqueeSection _dark={_dark} />
-          <SkillsSection _dark={_dark} scrollRef={$scroll} />
-          <Text position={[0, -35, -1]}>PROJECTS</Text>
-        </Scroll>
-      </ScrollControls>
-      <color
-        attach='background'
-        args={
-          ColorUtils.HEXtoArray(_dark ? '#101010' : '#ffffff', 1) as [
-            number,
-            number,
-            number,
-          ]
-        }
-        ref={$background}
-      />
-      <Preload all />
+      <Canvas
+        dpr={getDRP() as [number, number]}
+        gl={{
+          powerPreference: 'high-performance',
+          alpha: true,
+          antialias: antialias,
+          stencil: false,
+          depth: true,
+          logarithmicDepthBuffer: true,
+        }}
+        linear={true}
+        shadows
+      >
+        <Suspense fallback={null}>
+          <Scene _dark={_dark} />
+        </Suspense>
+      </Canvas>
+      <Loader />
     </>
   )
 }
+
+// const LoaderComp = () => {
+//   const { active, progress, errors, item, loaded, total } = useProgress()
+//   return <Html center>{progress} % loaded</Html>
+// }
+
+export default CanvasApp

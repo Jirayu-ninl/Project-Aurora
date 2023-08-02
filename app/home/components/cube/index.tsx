@@ -5,6 +5,7 @@ import { Center, Float } from '@react-three/drei'
 import CubeState from './cube.state'
 import AbstractCube from './cube.abstractCaustics'
 import TransmissionCube from './cube.transmission'
+import DestructionCube from './cube.destruction'
 
 const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
   const TheCubeRef = useRef<Group | null>(null)
@@ -15,8 +16,9 @@ const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
         <Float floatIntensity={1} speed={2}>
           <Center rotation={[0, Math.PI / 1.35, 0]} position={[0, 0, 0]}>
             <CubeState TheCubeRef={TheCubeRef} />
-            <TransmissionCube _dark={_dark} />
-            <AbstractCube _dark={_dark} />
+            <DestructionCube />
+            {/* <TransmissionCube _dark={_dark} /> */}
+            {/* <AbstractCube _dark={_dark} /> */}
           </Center>
         </Float>
       </group>

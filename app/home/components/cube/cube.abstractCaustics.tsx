@@ -11,6 +11,8 @@ import common from './shaders/cube.shader.common.glsl'
 import simplex from './shaders/cube.shader.simplex.glsl'
 import FBM from './shaders/cube.shader.fmb'
 
+import DestructionCube from './cube.destruction'
+
 const AbstractCube = ({ _dark }: { _dark?: boolean }) => {
   const abstractShaderUniforms = useMemo(
     () => ({

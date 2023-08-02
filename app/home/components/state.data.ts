@@ -49,12 +49,12 @@ export const NavSectionInit = (scroll: any) => ({
     index: 2,
     name: 'SKILLS',
     start: 4.2 / scroll.pages,
-    end: 12.6 / scroll.pages,
+    end: 11.3 / scroll.pages,
   },
   projects: {
     index: 3,
     name: 'PROJECTS',
-    start: 12.6 / scroll.pages,
+    start: 11.3 / scroll.pages,
     end: 14 / scroll.pages,
   },
   services: {

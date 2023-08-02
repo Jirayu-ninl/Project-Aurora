@@ -100,21 +100,7 @@ body {
   transform-origin: left;
   transition: 0.5s transform;
   z-index: 90;
-  @apply bg-primary-0 hidden md:block;
-}
-
-.testBefore:before {
-  content: 'xxx';
-  position: absolute;
-  bottom: 0px;
-  left: 10px;
-  width: calc(100% - 20px);
-  /* height: 2px; */
-  transform: scaleX(1);
-  transform-origin: left;
-  transition: 0.5s transform;
-  z-index: 90;
-  @apply bg-primary-0;
+  @apply hidden bg-primary-0 md:block;
 }
 
 .AnimUnderline:hover:before {
@@ -137,7 +123,7 @@ body {
   transform-origin: left;
   transition: 0.5s transform;
   z-index: 90;
-  @apply bg-quaternary-2 dark:bg-primary-0 hidden md:block;
+  @apply hidden bg-quaternary-2 dark:bg-primary-0 md:block;
 }
 
 .AnimUnderline-FirstChild:hover > div:before {
@@ -147,6 +133,16 @@ body {
   transform: scaleX(1);
   transform-origin: left;
   transition: 0.5s transform;
+}
+
+.AnimTextStrokeWhite {
+  -webkit-text-stroke: 2px #ffffff !important;
+  color: transparent;
+}
+
+.AnimTextStrokeBlack {
+  -webkit-text-stroke: 2px #1a1a1a;
+  color: transparent;
 }
 
 .hideLastChild-Parent > .isChild:last-child {
@@ -205,7 +201,7 @@ body {
 }
 
 .Btn-press-2 {
-  @apply rounded border  p-1 text-xs backdrop-blur-md md:px-3 md:py-1 md:text-base xl:text-xs xxl:text-base shadow-md shadow-white;
+  @apply rounded border  p-1 text-xs shadow-md shadow-white backdrop-blur-md md:px-3 md:py-1 md:text-base xl:text-xs xxl:text-base;
 }
 
 .NotiBadge-primary {
@@ -296,8 +292,13 @@ body {
 
 .Form-white-checkbox:checked + label:after {
   content: '';
-  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white,
-    4px -6px 0 white, 4px -8px 0 white;
+  box-shadow:
+    2px 0 0 white,
+    4px 0 0 white,
+    4px -2px 0 white,
+    4px -4px 0 white,
+    4px -6px 0 white,
+    4px -8px 0 white;
   @apply absolute left-[2px] top-1 h-1 w-1 rotate-45 bg-white;
 }
 

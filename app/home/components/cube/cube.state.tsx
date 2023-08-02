@@ -13,25 +13,36 @@ const CubeState = ({ TheCubeRef }: { TheCubeRef: RefObject<Group | null> }) => {
         positionX = -Math.sin(scroll.offset * (scroll.pages * 1.2)) * 2
       } else if (
         2.543 / scroll.pages < scroll.offset &&
-        scroll.offset <= 7 / scroll.pages
+        scroll.offset <= 6.5 / scroll.pages
       ) {
         positionX = 0
       } else if (
-        7 / scroll.pages < scroll.offset &&
-        scroll.offset <= 8 / scroll.pages
+        6.5 / scroll.pages < scroll.offset &&
+        scroll.offset <= 7.5 / scroll.pages
       ) {
         positionX =
-          -Math.sin((scroll.offset - 7 / scroll.pages) * (scroll.pages * 1.2)) *
-          2
+          -Math.sin(
+            (scroll.offset - 6.5 / scroll.pages) * (scroll.pages * 1.2),
+          ) * 2
       } else if (
-        8 / scroll.pages < scroll.offset &&
-        scroll.offset < 11 / scroll.pages
+        7.5 / scroll.pages < scroll.offset &&
+        scroll.offset < 9.2 / scroll.pages
       ) {
         positionX = -2
+      } else if (
+        9.2 / scroll.pages < scroll.offset &&
+        scroll.offset < 12 / scroll.pages
+      ) {
+        positionX =
+          -Math.sin(
+            (scroll.offset - 8.1 / scroll.pages) * (scroll.pages * 1.2),
+          ) * 2
+      } else if (12 / scroll.pages < scroll.offset && scroll.offset < 1) {
+        positionX = 2
       } else {
         positionX =
           -Math.sin(
-            (scroll.offset - 9.8 / scroll.pages) * (scroll.pages * 1.2),
+            (scroll.offset - 8.1 / scroll.pages) * (scroll.pages * 1.2),
           ) * 2
       }
       return positionX
@@ -52,6 +63,17 @@ const CubeState = ({ TheCubeRef }: { TheCubeRef: RefObject<Group | null> }) => {
             ],
             scroll.offset,
           ) * -1.5
+      } else if (
+        9.2 / scroll.pages < scroll.offset &&
+        scroll.offset < 12 / scroll.pages
+      ) {
+        positionZ =
+          getInviewAnimationValue(
+            [9.2 / scroll.pages, 12 / scroll.pages],
+            scroll.offset,
+          ) * -0.5
+      } else if (12 / scroll.pages < scroll.offset && scroll.offset < 1) {
+        positionZ = -0.5
       } else {
         positionZ = 0
       }
@@ -92,15 +114,11 @@ const CubeState = ({ TheCubeRef }: { TheCubeRef: RefObject<Group | null> }) => {
       TheCube.position.x = MathUtils.lerp(
         TheCube.position.x,
         setCubePositionX(TheCube.position.x),
-        // -Math.sin(scroll.offset * (scroll.pages * 1.2)) * 2,
-        // (Math.floor(scroll.offset * scroll.pages) / 2) % 2 == 0 ? -2 : 2,
         0.2,
       )
       TheCube.position.z = MathUtils.lerp(
         TheCube.position.z,
         setCubePositionZ(TheCube.position.z),
-        // -Math.sin(scroll.offset * (scroll.pages * 1.2)) * 2,
-        // (Math.floor(scroll.offset * scroll.pages) / 2) % 2 == 0 ? -2 : 2,
         0.2,
       )
     }

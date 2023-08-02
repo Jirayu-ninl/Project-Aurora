@@ -6,7 +6,13 @@ import { useFrame } from '@react-three/fiber'
 
 const useExplode = (
   group: RefObject<Group>,
-  { distance = 3, enableRotation = true },
+  {
+    distance = 3,
+    enableRotation = true,
+    invertX = false,
+    invertY = false,
+    invertZ = false,
+  },
 ) => {
   useEffect(() => {
     const groupWorldPosition = new Vector3()
@@ -47,51 +53,39 @@ const useExplode = (
   useFrame(() => {
     group.current &&
       group.current.children.forEach((mesh: any) => {
-        if (scrollData.offset < 0.0001) {
-          if (mesh.name === 'origin') {
-            mesh.visible = true
-          } else {
-            mesh.visible = false
-          }
-        } else {
-          if (mesh.name === 'origin') {
-            mesh.visible = false
-          } else {
-            mesh.visible = true
-          }
+        if (mesh.originalPosition && mesh.targetPosition) {
+          mesh.position.x = MathUtils.lerp(
+            mesh.originalPosition.x,
+            invertX ? -mesh.targetPosition.x : mesh.targetPosition.x,
+            scrollData.offset,
+          )
+          mesh.position.y = MathUtils.lerp(
+            mesh.originalPosition.y,
+            invertY ? -mesh.targetPosition.y : mesh.targetPosition.y,
+            scrollData.offset,
+          )
+          mesh.position.z = MathUtils.lerp(
+            mesh.originalPosition.z,
+            invertZ ? -mesh.targetPosition.z : mesh.targetPosition.z,
+            scrollData.offset,
+          )
         }
-
-        mesh.position.x = MathUtils.lerp(
-          mesh.originalPosition.x,
-          mesh.targetPosition.x,
-          scrollData.offset, // 0 at the beginning and 1 after scroll
-        )
-        mesh.position.y = MathUtils.lerp(
-          mesh.originalPosition.y,
-          mesh.targetPosition.y,
-          scrollData.offset, // 0 at the beginning and 1 after scroll
-        )
-        mesh.position.z = MathUtils.lerp(
-          mesh.originalPosition.z,
-          mesh.targetPosition.z,
-          scrollData.offset, // 0 at the beginning and 1 after scroll
-        )
 
         if (enableRotation) {
           mesh.rotation.x = MathUtils.lerp(
             mesh.originalRotation.x,
             mesh.targetRotation.x,
-            scrollData.offset, // 0 at the beginning and 1 after scroll
+            scrollData.offset,
           )
           mesh.rotation.y = MathUtils.lerp(
             mesh.originalRotation.y,
             mesh.targetRotation.y,
-            scrollData.offset, // 0 at the beginning and 1 after scroll
+            scrollData.offset,
           )
           mesh.rotation.z = MathUtils.lerp(
             mesh.originalRotation.z,
             mesh.targetRotation.z,
-            scrollData.offset, // 0 at the beginning and 1 after scroll
+            scrollData.offset,
           )
         }
       })

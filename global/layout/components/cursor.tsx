@@ -61,7 +61,7 @@ function Cursor() {
     &.go {
       height: 57px;
       width: 57px;
-      background: url(/cursor/go.png);
+      background: url(/layout/cursor/go.png);
       mix-blend-mode: normal;
       box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
     }
@@ -96,7 +96,7 @@ function Cursor() {
       left: calc(100vh / -8);
       height: calc(100vh / 4);
       width: calc(100vh / 4);
-      background: no-repeat url(/cursor/lens.png);
+      background: no-repeat url(/layout/cursor/lens.png);
       background-size: cover;
       // background-color: red;
       mix-blend-mode: normal;

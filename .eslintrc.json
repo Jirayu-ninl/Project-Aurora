@@ -32,7 +32,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "indent": ["off", 2, { "SwitchCase": 1 }],
     "quotes": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/no-unused-vars": "warn",

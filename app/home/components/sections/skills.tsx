@@ -1,4 +1,5 @@
 import { useRef, type RefObject } from 'react'
+import { useRouter } from 'next/navigation'
 import { MathUtils, type Mesh } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Scroll, useScroll, Text, Html } from '@react-three/drei'
@@ -18,29 +19,23 @@ const SkillsSection = ({
   const $ring = useRef<Mesh>(null)
   const $frontRing = useRef<any>(null)
   const $backRing = useRef<any>(null)
-  const $sectionText = useRef<any>(null)
-  const $sectionBtn = useRef<any>(null)
+  // const $sectionText = useRef<any>(null)
+  // const $sectionBtn = useRef<any>(null)
 
+  // const router = useRouter()
   const scroll = useScroll()
 
   useFrame(() => {
     const prePoint = 7.4 / scroll.pages
     const startPoint = 7.6 / scroll.pages
-    const endPoint = 11 / scroll.pages
+    const endPoint = 9.5 / scroll.pages
 
-    $sectionText.current &&
-      $sectionText.current.position.set(
-        2.7,
-        -scrollRef.current.position.y - 1.3,
-        0,
-      )
-    $sectionBtn.current &&
-      $sectionBtn.current.position.set(
-        2.7,
-        -scrollRef.current.position.y - 0.86,
-        0,
-      )
-    console.log($sectionBtn.current.position)
+    // $sectionText.current &&
+    //   $sectionText.current.position.set(
+    //     2.7,
+    //     -scrollRef.current.position.y - 1.3,
+    //     0,
+    //   )
 
     if (prePoint <= scroll.offset && scroll.offset <= startPoint) {
       $ring.current &&
@@ -68,21 +63,20 @@ const SkillsSection = ({
           0,
           -scroll.range(startPoint, endPoint) * 8,
         )
-      $sectionText.current &&
-        ($sectionText.current.fillOpacity = getInviewAnimationValue(
-          [
-            7.6 / scroll.pages,
-            7.9 / scroll.pages,
-            10.5 / scroll.pages,
-            11 / scroll.pages,
-          ],
-          scroll.offset,
-        ))
-    } else {
-      $sectionText.current && ($sectionText.current.fillOpacity = 0)
-    }
+      // $sectionText.current &&
+      //   ($sectionText.current.fillOpacity = getInviewAnimationValue(
+      //     [
+      //       7.6 / scroll.pages,
+      //       7.9 / scroll.pages,
+      //       10.5 / scroll.pages,
+      //       11 / scroll.pages,
+      //     ],
+      //     scroll.offset,
+      //   ))
 
-    // console.log($sectionText.current.fillOpacity)
+      // } else {
+      //   $sectionText.current && ($sectionText.current.fillOpacity = 0)
+    }
   })
 
   return (
@@ -105,7 +99,7 @@ const SkillsSection = ({
           />
         </mesh>
       </mesh>
-      <Text
+      {/* <Text
         position={[2.7, -22, 0]}
         ref={$sectionText}
         anchorX='right'
@@ -116,29 +110,7 @@ const SkillsSection = ({
         fillOpacity={0}
       >
         SKILLS
-      </Text>
-      <Text
-        position={[2.0, -22, 0]}
-        ref={$sectionBtn}
-        anchorX='right'
-        anchorY='bottom'
-        scale={0.06}
-        font={'/three/fonts/Inter-SemiBold.woff'}
-        color={_dark ? '#fff' : '#010101'}
-        fillOpacity={1}
-      >
-        VIEW FULL
-      </Text>
-      {/* <mesh position={[2, -45, 0]} ref={$sectionBtn}>
-        <Html>
-          <BtnlineEdge
-            href='/about'
-            text='LEARN MORE'
-            classParent='ml-auto mt-10'
-            _dark={_dark}
-          />
-        </Html>
-      </mesh> */}
+      </Text> */}
     </>
   )
 }
