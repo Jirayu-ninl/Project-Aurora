@@ -23,7 +23,7 @@ import {
 import Overlay from './overlay'
 import Environments from './environments'
 import PageState from './state'
-// import PostProcessing from './postprocessing'
+import PostProcessing from './postprocessing'
 
 declare global {
   namespace JSX {
@@ -67,10 +67,10 @@ export default function App({ _dark }: { _dark: boolean }) {
           <MarqueeSection _dark={_dark} />
           <SkillsSection _dark={_dark} scrollRef={$scroll} />
           <ProjectsSection.R3F projectHover={projectHover} $scroll={$scroll} />
-          {/* <Text position={[0, -33, -1]}>SERVICES</Text> */}
+          <Text position={[0, -37, -1]}>Drop me a line</Text>
         </Scroll>
       </ScrollControls>
-      {/* <PostProcessing /> */}
+      <PostProcessing />
       <color
         attach='background'
         args={

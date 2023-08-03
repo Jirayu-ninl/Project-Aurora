@@ -119,7 +119,7 @@ const Project = ({
         href={link}
         className={clsx(
           CSS.project,
-          'my-6 border-2 border-transparent border-t-black/20 pt-6 dark:border-t-white/30',
+          'border-2 border-transparent border-t-black/20 pb-12 pt-6 dark:border-t-white/30',
         )}
         onMouseEnter={() => setProjectHover(ProjectHover + 1)}
         onMouseMove={() => setProjectHover(ProjectHover + 1)}
