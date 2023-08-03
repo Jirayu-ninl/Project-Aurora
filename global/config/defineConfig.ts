@@ -1,12 +1,12 @@
 export const app = {
   NAME: 'TheIceJI',
-  VERSION: '2023.07.21',
-  UPDATE_DATE: 'Jul 21, 2023',
+  VERSION: '2023.08.03',
+  UPDATE_DATE: 'Aug 3, 2023',
   Dependencies: {
-    Aurora: '0.10b',
+    Aurora: '0.11-pre',
     React: '18.2.0',
-    NextJs: '13.4.10',
-    ThreeJs: '154.0',
+    NextJs: '13.4.12',
+    ThreeJs: '155.0',
   },
   // GOOGLE_ANALYTICS: 'UA-102194632-3',
   // GOOGLE_TAG_MANAGER: 'GTM-KWRQQVP',
