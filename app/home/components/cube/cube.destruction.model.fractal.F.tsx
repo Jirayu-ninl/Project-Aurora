@@ -11,13 +11,18 @@ import { getCubeState } from './cube.state.date'
 import fractalVertShader from './shaders/destruction.fractal.v.glsl'
 import fractalFragShader from './shaders/destruction.fractal.f.glsl'
 
-export const FractalModel = ({ nodes }: { nodes: tNodes }) => {
+export const FractalModel = ({
+  nodes,
+  isMobile = false,
+}: {
+  nodes: tNodes
+  isMobile?: boolean
+}) => {
   const $destructionCube = useRef<THREE.Group | null>(null)
   const scroll = useScroll()
   const cubeState = getCubeState(scroll.pages)
-
   useFrame(() => {
-    if ($destructionCube.current) {
+    if ($destructionCube.current && !isMobile) {
       const destructionCube = $destructionCube.current
 
       destructionCube.visible =
@@ -35,6 +40,7 @@ export const FractalModel = ({ nodes }: { nodes: tNodes }) => {
           ) *
             0.3
         destructionCube.scale.set(targetScale, targetScale, targetScale)
+
         destructionCube.rotation.z = THREE.MathUtils.lerp(
           destructionCube.rotation.z,
           0,

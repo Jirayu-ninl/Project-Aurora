@@ -41,9 +41,9 @@ const TextComponent = ({
     <Text
       font={`/three/fonts/Inter-${isBlack ? 'Black' : 'SemiBold'}.woff`}
       scale={isBehind ? 0.7 : 0.6}
-      color={_dark ? 'white' : 'black'}
+      color={_dark ? '#fefbea' : 'black'}
       fillOpacity={isBehind && _dark ? 0.2 : isBehind && !_dark ? 0.1 : 1}
-      outlineColor={_dark ? 'black' : 'white'}
+      outlineColor={_dark ? 'black' : '#fefbea'}
       outlineBlur={0.8}
       outlineOpacity={0.3}
       position={position}

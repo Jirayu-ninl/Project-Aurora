@@ -5,7 +5,6 @@ import {
   // OrbitControls,
   ScrollControls,
   Scroll,
-  // StatsGl
 } from '@react-three/drei'
 import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
 
@@ -14,8 +13,7 @@ import Hero from './hero'
 import {
   IntroSection,
   PassionSectionQuote,
-  PassionSectionTitle,
-  PassionSectionContent,
+  PassionSection,
   MarqueeSection,
   SkillsSection,
   ProjectsSection,
@@ -34,10 +32,19 @@ declare global {
       backgroundShader: any
       textTitleShader: any
     }
+    interface IntrinsicAttributes {
+      style?: any
+    }
   }
 }
 
-export default function App({ _dark }: { _dark: boolean }) {
+export default function App({
+  _dark,
+  isMobile,
+}: {
+  _dark: boolean
+  isMobile: boolean
+}) {
   const $scroll = useRef<any>(null)
   const $background = useRef<any>(null)
 
@@ -47,18 +54,18 @@ export default function App({ _dark }: { _dark: boolean }) {
     <>
       <PerspectiveCamera makeDefault fov={50} position={[0, 0, 3]}>
         <ambientLight intensity={0.6} />
-        <Environments />
+        <Environments isMobile={isMobile} />
         <Overlay _dark={_dark} $scroll={$scroll} />
       </PerspectiveCamera>
       {/* <OrbitControls enableZoom={false} /> */}
       <ScrollControls damping={0.3} distance={1} pages={16}>
         <Scroll ref={$scroll}>
           <PageState />
-          <Hero _dark={_dark} />
-          <Cube _dark={_dark} />
+          <Hero _dark={_dark} isMobile={isMobile} />
+          <Cube _dark={_dark} isMobile={isMobile} />
           <Scroll html style={{ width: '100%' }}>
-            <IntroSection _dark={_dark} />
-            <PassionSectionContent />
+            <IntroSection _dark={_dark} isMobile={isMobile} />
+            <PassionSection.HTML />
             <ProjectsSection.HTML
               _dark={_dark}
               setProjectHover={setProjectHover}
@@ -66,21 +73,24 @@ export default function App({ _dark }: { _dark: boolean }) {
             <ContactSection.HTML />
             <Footer.HTML />
           </Scroll>
-          <PassionSectionQuote _dark={_dark} />
-          <PassionSectionTitle _dark={_dark} />
+          <PassionSectionQuote _dark={_dark} isMobile={isMobile} />
+          <PassionSection.R3F _dark={_dark} isMobile={isMobile} />
           <MarqueeSection _dark={_dark} />
-          <SkillsSection _dark={_dark} scrollRef={$scroll} />
+          <SkillsSection.R3F
+            _dark={_dark}
+            scrollRef={$scroll}
+            isMobile={isMobile}
+          />
           <ProjectsSection.R3F projectHover={projectHover} $scroll={$scroll} />
-          <ContactSection.R3F _dark={_dark} />
-          <Footer.R3F _dark={_dark} />
+          <ContactSection.R3F _dark={_dark} isMobile={isMobile} />
+          <Footer.R3F _dark={_dark} isMobile={isMobile} />
         </Scroll>
       </ScrollControls>
-      {/* <StatsGl /> */}
       <PostProcessing />
       <color
         attach='background'
         args={
-          ColorUtils.HEXtoArray(_dark ? '#101010' : '#ffffff', 1) as [
+          ColorUtils.HEXtoArray(_dark ? '#101010' : '#fefbea', 1) as [
             number,
             number,
             number,

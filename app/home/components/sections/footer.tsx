@@ -9,10 +9,10 @@ const HTML = () => {
 
   return (
     <>
-      <div className='absolute top-[1520vh] flex h-[100vh] w-screen flex-col items-center justify-between'>
+      <div className='absolute top-[1510vh] flex h-[100vh] w-screen flex-col items-center justify-between md:top-[1520vh]'>
         <div className='relative h-[70vh] w-[1280px]'>
           <p
-            className='absolute bottom-0 left-1/2 -translate-x-[120px] uppercase tracking-wide'
+            className='absolute bottom-0 left-1/2 -translate-x-1/2 uppercase tracking-wide md:-translate-x-[120px]'
             onMouseEnter={() => _setCursor('logo')}
             onMouseMove={() => _setCursor('logo')}
             onMouseLeave={() => _setCursor(false)}
@@ -25,17 +25,17 @@ const HTML = () => {
   )
 }
 
-const R3F = ({ _dark }: { _dark: boolean }) => {
+const R3F = ({ _dark, isMobile }: { _dark: boolean; isMobile: boolean }) => {
   return (
     <>
       <group position={[0, -43, -1]}>
-        <mesh position={[0, -1, -1]} scale={1.2}>
+        <mesh position={isMobile ? [0, -1.5, -1] : [0, -1, -1]} scale={1.2}>
           <planeGeometry args={[8, 4.5, 2, 1]} />
-          <meshStandardMaterial color={_dark ? '#000000' : '#ffffff'} />
+          <meshStandardMaterial color={_dark ? '#000000' : [1.7, 1.7, 1.7]} />
         </mesh>
         <Text
           position={[0, 0.6, 0]}
-          scale={0.8}
+          scale={isMobile ? 0.4 : 0.8}
           color={
             _dark
               ? ColorUtils.HEXtoThree('#ffa900', 7, THREE.Color)

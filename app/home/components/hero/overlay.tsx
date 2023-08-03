@@ -4,7 +4,13 @@ import { useFrame } from '@react-three/fiber'
 import { Html, useScroll } from '@react-three/drei'
 import { css } from '@emotion/css'
 
-export const Overlay = ({ _dark }: { _dark: boolean }) => {
+export const Overlay = ({
+  _dark,
+  isMobile,
+}: {
+  _dark: boolean
+  isMobile: boolean
+}) => {
   const ref = useRef<any>(null)
   const Scroll = useScroll()
   useFrame(() => {
@@ -42,10 +48,10 @@ export const Overlay = ({ _dark }: { _dark: boolean }) => {
 
   return (
     <>
-      <Html position={[0, -1.1, 0]} ref={ref}>
-        <div className='w-64 flex justify-center items-center -translate-x-1/2 space-x-2'>
+      <Html position={isMobile ? [0, -0.5, 0] : [0, -1.1, 0]} ref={ref}>
+        <div className='flex w-64 -translate-x-1/2 items-center justify-center space-x-2'>
           <p>Scroll down</p>
-          <div className='px-2 pt-2 pb-4 border-2 dark:border-white border-black rounded-full opacity-70'>
+          <div className='rounded-full border-2 border-black px-2 pb-4 pt-2 opacity-70 dark:border-white'>
             <div className={mAnimatedCSS}></div>
           </div>
         </div>

@@ -10,7 +10,13 @@ import CSM from 'three-custom-shader-material'
 import vertShader from './shaders/passionQuote.v.glsl'
 import fragShader from './shaders/passionQuote.f.glsl'
 
-function PassionSectionQuote({ _dark }: { _dark: boolean }) {
+function PassionSectionQuote({
+  _dark,
+  isMobile,
+}: {
+  _dark: boolean
+  isMobile: boolean
+}) {
   const rTextPassionateMat = useRef<any>(null)
   const scroll = useScroll()
   useFrame(() => {
@@ -49,9 +55,9 @@ function PassionSectionQuote({ _dark }: { _dark: boolean }) {
   return (
     <>
       <Text
-        position={[-3, -5.6, -1]}
+        position={isMobile ? [-0.8, -5.6, -1] : [-3, -5.6, -1]}
         font={'/three/fonts/Inter-Black.woff'}
-        scale={0.7}
+        scale={isMobile ? 0.4 : 0.7}
       >
         &#60;
         <meshBasicMaterial
@@ -64,7 +70,7 @@ function PassionSectionQuote({ _dark }: { _dark: boolean }) {
       <Text
         position={[0, -5.8, -0.3]}
         font={'/three/fonts/Inter-Black.woff'}
-        scale={0.46}
+        scale={isMobile ? 0.1 : 0.46}
       >
         BORN TO BE CODE
         <CSM
@@ -76,9 +82,9 @@ function PassionSectionQuote({ _dark }: { _dark: boolean }) {
         />
       </Text>
       <Text
-        position={[-1.07, -6.2, -0.5]}
+        position={isMobile ? [-0.3, -5.95, -0.5] : [-1.07, -6.2, -0.5]}
         font={'/three/fonts/Inter-SemiBold.woff'}
-        scale={0.37}
+        scale={isMobile ? 0.1 : 0.37}
       >
         BORN TO BE
         <CSM
@@ -90,9 +96,9 @@ function PassionSectionQuote({ _dark }: { _dark: boolean }) {
         />
       </Text>
       <Text
-        position={[1.14, -6.2, -0.5]}
+        position={isMobile ? [0.32, -5.95, -0.5] : [1.14, -6.2, -0.5]}
         font={'/three/fonts/Inter-Black.woff'}
-        scale={0.37}
+        scale={isMobile ? 0.1 : 0.37}
       >
         EXPERTISE
         <meshBasicMaterial
@@ -107,9 +113,9 @@ function PassionSectionQuote({ _dark }: { _dark: boolean }) {
         />
       </Text>
       <Text
-        position={[3, -6.3, -1]}
+        position={isMobile ? [0.8, -6.1, -1] : [3, -6.3, -1]}
         font={'/three/fonts/Inter-Black.woff'}
-        scale={0.7}
+        scale={isMobile ? 0.4 : 0.7}
       >
         &#47;&#62;
         <meshBasicMaterial

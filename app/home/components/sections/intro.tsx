@@ -4,7 +4,13 @@ import { useScroll } from '@react-three/drei'
 
 import { BtnlineEdge } from '@resources/common/components/button'
 
-function IntroSection({ _dark }: { _dark: boolean }) {
+function IntroSection({
+  _dark,
+  isMobile,
+}: {
+  _dark: boolean
+  isMobile: boolean
+}) {
   const rTextTitle = useRef<any>(null)
   const scroll = useScroll()
 
@@ -17,21 +23,38 @@ function IntroSection({ _dark }: { _dark: boolean }) {
 
   return (
     <>
-      <div className='absolute left-[40vw] top-[140vh] flex flex-col'>
-        <h1 className=' mb-10 text-6xl font-bold uppercase' ref={rTextTitle}>
-          <span className='text-8xl text-primary-0'>H</span>I, I AM
+      <div className='absolute top-[140vh] flex flex-col px-6 md:left-[40vw] md:px-0'>
+        <h1
+          className='mb-10 pl-24 text-2xl font-bold uppercase md:pl-0 md:text-6xl'
+          ref={rTextTitle}
+        >
+          <span className='text-5xl text-primary-0 md:text-8xl'>H</span>I, I AM
         </h1>
-        <p className='text-3xl font-light leading-relaxed opacity-90'>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Creative Developer with a
-          passion for pushing the boundaries
-          <br />
-          of web technology. My expertise lies in WebGL, GLSL, and 3D dev,
-          <br />
-          and I thrive on creating immersive and visually stunning experiences.
-          <br />
-          With a strong background in front-end development and NextJS,
-          <br /> I excel at crafting engaging web animations that captivate
-          users.
+        <p className='text-lg font-light leading-relaxed opacity-90 md:text-3xl'>
+          {isMobile ? (
+            <>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Creative Developer with a
+              passion for pushing the boundaries of web technology. My expertise
+              lies in WebGL, GLSL, and 3D dev, and I thrive on creating
+              immersive and visually stunning experiences. With a strong
+              background in front-end development and NextJS, I excel at
+              crafting engaging web animations that captivate users.
+            </>
+          ) : (
+            <>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Creative Developer with a
+              passion for pushing the boundaries
+              <br />
+              of web technology. My expertise lies in WebGL, GLSL, and 3D dev,
+              <br />
+              and I thrive on creating immersive and visually stunning
+              experiences.
+              <br />
+              With a strong background in front-end development and NextJS,
+              <br /> I excel at crafting engaging web animations that captivate
+              users.
+            </>
+          )}
         </p>
         <BtnlineEdge
           href='/about'

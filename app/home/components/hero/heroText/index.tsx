@@ -6,7 +6,7 @@ import headerFrontFragShader from '../shaders/headerFront.f.glsl'
 import headerBackVertShader from '../shaders/headerBack.v.glsl'
 import headerBackFragShader from '../shaders/headerBack.f.glsl'
 
-const Title = ({ _dark }: { _dark: boolean }) => {
+const Title = ({ _dark, isMobile }: { _dark: boolean; isMobile: boolean }) => {
   const _setCursor = UI((state) => state.setCursor)
 
   return (
@@ -21,6 +21,7 @@ const Title = ({ _dark }: { _dark: boolean }) => {
         _setCursor(false)
       }}
       position={[0, 0, -1]}
+      scale={isMobile ? 0.5 : 1}
     >
       <TextPlane
         text={'TheIceJi'}

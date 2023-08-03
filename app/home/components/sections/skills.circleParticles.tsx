@@ -1,16 +1,10 @@
 import { useRef, useMemo } from 'react'
-import {
-  BufferGeometry,
-  BufferAttribute,
-  Float32BufferAttribute,
-  PointsMaterial,
-  // Color,
-} from 'three'
-import { Text } from '@react-three/drei'
-
-import CustomShaderMaterial from 'three-custom-shader-material'
+import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
-// import { patchShaders } from 'gl-noise/build/glNoise.m'
+import { Text } from '@react-three/drei'
+import CustomShaderMaterial from 'three-custom-shader-material'
+import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
+
 import sVertex from './shaders/circleParticles.v.glsl'
 import sFragment from './shaders/circleParticles.f.glsl'
 
@@ -37,8 +31,11 @@ export const CircleParticles = ({
       const z = 0
       vertices.push(x, y, z)
     }
-    const geometry = new BufferGeometry()
-    geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3))
+    const geometry = new THREE.BufferGeometry()
+    geometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(vertices, 3),
+    )
 
     const initialPointSize = 0.05
     const sizes = new Float32Array(vertices.length / 3).fill(initialPointSize)
@@ -46,7 +43,7 @@ export const CircleParticles = ({
       sizes[i] += i % 2 === 0 ? 0.03 : -0.03
     }
 
-    geometry.setAttribute('cSize', new BufferAttribute(sizes, 1))
+    geometry.setAttribute('cSize', new THREE.BufferAttribute(sizes, 1))
 
     geometry.computeVertexNormals()
 
@@ -64,13 +61,18 @@ export const CircleParticles = ({
     uDark: { value: _dark },
   }
 
+  const textColor = _dark
+    ? radius > 3
+      ? ColorUtils.HEXtoThree('#a8f1ff', 2, THREE.Color)
+      : ColorUtils.HEXtoThree('#fff1a8', 3, THREE.Color)
+    : '#000'
+
   return (
     <>
       <points geometry={geometry} ref={pointRef}>
-        {/* <pointsMaterial attach='material' color='white' /> */}
         <CustomShaderMaterial
           ref={matRef}
-          baseMaterial={PointsMaterial}
+          baseMaterial={THREE.PointsMaterial}
           vertexShader={sVertex}
           fragmentShader={sFragment}
           uniforms={sUniforms}
@@ -90,7 +92,7 @@ export const CircleParticles = ({
           key={i}
           anchorX='left'
           anchorY='middle'
-          color={_dark ? '#fff' : '#000'}
+          color={textColor}
         >
           {s}
         </Text>

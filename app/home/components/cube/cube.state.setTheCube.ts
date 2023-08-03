@@ -5,6 +5,7 @@ import { getCubeState } from './cube.state.date'
 export const setTheCubePositionX = (
   positionX: number,
   scroll: ScrollControlsState,
+  isMobile = false,
 ): number => {
   const cubeState = getCubeState(scroll.pages)
 
@@ -59,6 +60,10 @@ export const setTheCubePositionX = (
   } else {
     positionX = 0
   }
+
+  if (isMobile) {
+    positionX = positionX * 0.35
+  }
   return positionX
 }
 
@@ -102,11 +107,13 @@ export const setTheCubePositionZ = (
 export const setTheCubeScale = (
   initialScale: number,
   scroll: ScrollControlsState,
+  isMobile = false,
 ): number => {
   let Scale: number
   const cubeState = getCubeState(scroll.pages)
 
   if (cubeState.diamondZoom.START < scroll.offset) {
+    const mulScale = isMobile ? 1 : 1.5
     Scale =
       initialScale +
       getInviewAnimationValue(
@@ -114,7 +121,7 @@ export const setTheCubeScale = (
         scroll.offset,
         1,
       ) *
-        1.5
+        mulScale
   } else {
     Scale = initialScale
   }

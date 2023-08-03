@@ -44,7 +44,7 @@ const LineEdge = ({
     display: inline-block;
     & > span {
       color: ${isPrimary ? Color.primary : Color.base};
-      padding: 8px 16px;
+      // padding: 8px 16px;
       position: relative;
       display: block;
       width: 100%;
@@ -106,7 +106,14 @@ const LineEdge = ({
   return (
     <>
       <Link href={href} className={clsx(BtnCSS, classParent)}>
-        <span className={clsx(classChild)}>{text}</span>
+        <span
+          className={clsx(
+            classChild,
+            'px-3 py-2 text-xs md:px-4 md:py-2 md:text-base',
+          )}
+        >
+          {text}
+        </span>
       </Link>
     </>
   )

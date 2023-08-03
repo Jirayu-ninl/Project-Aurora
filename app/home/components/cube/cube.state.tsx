@@ -11,8 +11,10 @@ import {
 
 const CubeState = ({
   $TheCubeRef,
+  isMobile,
 }: {
   $TheCubeRef: RefObject<Group | Mesh | null>
+  isMobile: boolean
 }) => {
   const scroll = useScroll()
 
@@ -22,27 +24,30 @@ const CubeState = ({
       TheCube.rotation.y =
         Math.sin(clock.getElapsedTime() * 0.2) / 4 - Math.PI / 1.35
 
-      TheCube.position.y = MathUtils.lerp(
-        TheCube.position.y,
-        -mouse.y * Math.PI * -0.1 + 0.5,
-        0.04,
-      )
-      TheCube.position.x = MathUtils.lerp(
-        TheCube.position.x,
-        -mouse.x * Math.PI * -0.1,
-        0.04,
-      )
+      if (!isMobile) {
+        TheCube.position.y = MathUtils.lerp(
+          TheCube.position.y,
+          -mouse.y * Math.PI * -0.1 + 0.5,
+          0.04,
+        )
+        TheCube.position.x = MathUtils.lerp(
+          TheCube.position.x,
+          -mouse.x * Math.PI * -0.1,
+          0.04,
+        )
 
-      TheCube.rotation.x = MathUtils.lerp(
-        TheCube.rotation.x,
-        -mouse.y * Math.PI * 0.1,
-        0.08,
-      )
-      TheCube.rotation.y = MathUtils.lerp(
-        TheCube.rotation.y,
-        mouse.x * Math.PI * 0.1,
-        0.08,
-      )
+        TheCube.rotation.x = MathUtils.lerp(
+          TheCube.rotation.x,
+          -mouse.y * Math.PI * 0.1,
+          0.08,
+        )
+        TheCube.rotation.y = MathUtils.lerp(
+          TheCube.rotation.y,
+          mouse.x * Math.PI * 0.1,
+          0.08,
+        )
+      }
+
       TheCube.position.y = MathUtils.lerp(
         TheCube.position.y,
         -(scroll.offset * (scroll.pages * 2.63)),
@@ -50,7 +55,7 @@ const CubeState = ({
       )
       TheCube.position.x = MathUtils.lerp(
         TheCube.position.x,
-        setTheCubePositionX(TheCube.position.x, scroll),
+        setTheCubePositionX(TheCube.position.x, scroll, isMobile),
         0.2,
       )
       TheCube.position.z = MathUtils.lerp(
@@ -58,7 +63,7 @@ const CubeState = ({
         setTheCubePositionZ(TheCube.position.z, scroll),
         0.2,
       )
-      const TheCubeScale = setTheCubeScale(1, scroll)
+      const TheCubeScale = setTheCubeScale(isMobile ? 0.7 : 1, scroll, isMobile)
       TheCube.scale.set(TheCubeScale, TheCubeScale, TheCubeScale)
     }
   })

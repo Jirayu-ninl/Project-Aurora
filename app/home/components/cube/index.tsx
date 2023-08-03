@@ -7,7 +7,13 @@ import AbstractCube from './cube.abstractCaustics'
 import TransmissionCube from './cube.transmission'
 import DestructionCube from './cube.destruction'
 
-const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
+const CubeCompose = ({
+  _dark,
+  isMobile,
+}: {
+  _dark?: boolean
+  isMobile: boolean
+}) => {
   const $TheCubeRef = useRef<THREE.Group | null>(null)
 
   return (
@@ -15,10 +21,14 @@ const CubeCompose = ({ _dark }: { _dark?: boolean }) => {
       <group ref={$TheCubeRef} position={[0, 0, 0]}>
         <Float floatIntensity={1} speed={2}>
           <Center rotation={[0, Math.PI / 1.35, 0]} position={[0, 0, 0]}>
-            <CubeState $TheCubeRef={$TheCubeRef} />
-            <DestructionCube _dark={_dark} />
-            <TransmissionCube _dark={_dark} />
-            <AbstractCube _dark={_dark} />
+            <CubeState $TheCubeRef={$TheCubeRef} isMobile={isMobile} />
+            <DestructionCube _dark={_dark} isMobile={isMobile} />
+            {!isMobile && (
+              <>
+                <TransmissionCube _dark={_dark} />
+                <AbstractCube _dark={_dark} />
+              </>
+            )}
           </Center>
         </Float>
       </group>

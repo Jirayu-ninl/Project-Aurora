@@ -24,7 +24,7 @@ const HTML = ({
 }) => {
   return (
     <>
-      <div className='absolute top-[1150vh] flex w-screen flex-col px-8'>
+      <div className='absolute top-[1150vh] flex w-screen flex-col px-2 md:px-8'>
         {/* <h1 className='text-5xl font-bold uppercase'>Projects</h1> */}
         {Data.map((v, i) => (
           <Project
@@ -90,7 +90,7 @@ const R3F = ({
           ref.visible = false
         }
       }
-      
+
       const target = new Vector3()
       target.set(
         mouse.x * 1.7 + 1,
@@ -136,15 +136,15 @@ const Project = ({
         href={link}
         className={clsx(
           CSS.project,
-          'border-2 border-transparent border-t-black/20 pb-12 pt-6 dark:border-t-white/30',
+          'border-2 border-transparent border-t-black/20 pb-12 pt-6 opacity-100 hover:opacity-100 dark:border-t-white/30 md:opacity-40',
         )}
         onMouseEnter={() => setProjectHover(ProjectHover + 1)}
         onMouseMove={() => setProjectHover(ProjectHover + 1)}
         onMouseLeave={() => setProjectHover(0)}
       >
-        <h6 className='-mb-6 text-4xl font-bold'>{year}</h6>
+        <h6 className='text-base font-bold md:-mb-6 md:text-4xl'>{year}</h6>
         <h3
-          className='Anim text-10xl font-bold leading-tight'
+          className='Anim text-5xl font-bold leading-tight text-black dark:text-white md:text-10xl md:text-transparent'
           onMouseEnter={() => _setCursor('go')}
           onMouseMove={() => _setCursor('go')}
           onMouseLeave={() => _setCursor(false)}
@@ -156,7 +156,7 @@ const Project = ({
           {tags.map((v, i) => (
             <p
               key={i}
-              className='Anim border px-6 py-1 hover:border-primary-0 hover:bg-primary-0 hover:text-black'
+              className='Anim border px-2 text-xs hover:border-primary-0 hover:bg-primary-0 hover:text-black md:px-6 md:py-1 md:text-base'
             >
               {v.title}
             </p>

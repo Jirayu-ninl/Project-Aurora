@@ -13,7 +13,7 @@ const SkillsOverlay = ({
       <AnimatePresence>
         {visibility && (
           <motion.div
-            className='absolute bottom-0 right-8 flex flex-col items-end'
+            className='absolute bottom-24 right-8 flex flex-col items-end md:bottom-4'
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}
@@ -25,7 +25,7 @@ const SkillsOverlay = ({
               classParent='pointer-events-auto'
               _dark={_dark}
             />
-            <h2 className='-mt-12 text-10xl font-bold'>SKILLS</h2>
+            <h2 className='text-6xl font-bold md:text-10xl'>SKILLS</h2>
           </motion.div>
         )}
       </AnimatePresence>

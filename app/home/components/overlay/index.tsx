@@ -28,7 +28,7 @@ const Overlay = ({
       <Html
         style={{
           position: 'fixed',
-          height: '100vh',
+          height: '100svh',
           width: '100vw',
           pointerEvents: 'none',
         }}

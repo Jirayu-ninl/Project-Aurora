@@ -35,6 +35,7 @@ const GlobalStyles = (Darkmode = true) => (
       body {
         width: 100%;
         height: 100vh;
+        height: 100svh;
         padding: 0;
         font-size: 1rem;
         font-weight: 400;

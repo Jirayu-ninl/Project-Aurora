@@ -31,6 +31,27 @@ body {
   font-family: 'Prompt' !important;
 }
 
+/* *! Utils */
+
+.NSB::-webkit-scrollbar {
+  display: none;
+}
+
+.h-svh {
+  height: 100vh;
+  height: 100svh;
+}
+
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.h-lvh {
+  height: 100vh;
+  height: 100lvh;
+}
+
 /* *! Animate */
 
 .Anim {
@@ -314,6 +335,16 @@ body {
 
 .PostTextTab {
   @apply pl-16;
+}
+
+.m-container {
+  height: calc(100vh - 56px);
+  height: calc(100svh - 56px);
+}
+
+.m-state-page {
+  top: calc(100vh - 90px);
+  top: calc(100svh - 90px);
 }
 
 /* *! NavBar */

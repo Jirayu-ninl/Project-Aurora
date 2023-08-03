@@ -30,7 +30,7 @@ function NavMobile({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <nav className='absolute flex h-screen w-screen items-end'>
+      <nav className='h-svh absolute flex w-screen items-end'>
         <div className='Anim h-24 w-full bg-quaternary-2 px-16 pt-14 dark:bg-primary-0'>
           <motion.div
             initial={aNavChildren.initial}
@@ -71,11 +71,11 @@ function NavMobile({ children }: { children: React.ReactNode }) {
           </motion.div>
         </div>
       </nav>
-      <div className='absolute z-50 h-[calc(100vh-56px)] overflow-y-scroll rounded-b-3xl bg-white shadow-lg shadow-black/50 dark:bg-[#101010]'>
+      <div className='NSB m-container absolute z-50 overflow-y-scroll rounded-b-3xl bg-white shadow-lg shadow-black/50 dark:bg-[#101010]'>
         {children}
       </div>
       <div
-        className='Anim absolute right-6 top-12 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'
+        className='Anim absolute right-6 top-6 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'
         onClick={() => {
           _setNavShowCanvas(false)
           _setModalAppInfo(true)
@@ -83,7 +83,7 @@ function NavMobile({ children }: { children: React.ReactNode }) {
       >
         <IceJiLogo dark={!_dark} />
       </div>
-      <div className='pointer-events-none fixed bottom-16 z-60 flex w-screen'>
+      <div className='m-state-page pointer-events-none fixed z-60 flex w-screen'>
         <p className='mx-auto rounded-md bg-black/10 px-3 py-1 text-xs backdrop-blur-lg dark:bg-white/10'>
           {_page}
         </p>
