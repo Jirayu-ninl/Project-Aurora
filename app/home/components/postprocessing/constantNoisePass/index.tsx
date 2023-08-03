@@ -12,7 +12,7 @@ export const ConstantNoisePass = forwardRef(() => {
       new ShaderMaterial({
         uniforms: {
           tDiffuse: { value: null },
-          u_scale: { value: 0.1 },
+          u_scale: { value: 0.07 },
         },
         vertexShader: vertexShader,
         fragmentShader: fragmentShader,

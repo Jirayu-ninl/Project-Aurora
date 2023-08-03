@@ -16,5 +16,5 @@ void main() {
     // gl_FragColor = vec4(u_baseColor, alpha);
     // csm_DiffuseColor = vec4(u_baseColor, alpha);
     csm_DiffuseColor = vec4(u_baseColor, alpha);
-    csm_Emissive = u_dark ? vec3(fadeEdge * 2.) : vec3(0.);
+    csm_Emissive = u_dark ? vec3(fadeEdge * 0.65) : vec3(0.);
 }

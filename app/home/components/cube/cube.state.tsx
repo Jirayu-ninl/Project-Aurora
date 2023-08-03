@@ -45,8 +45,8 @@ const CubeState = ({
       )
       TheCube.position.y = MathUtils.lerp(
         TheCube.position.y,
-        -(scroll.offset * (scroll.pages * 3.1)),
-        0.2,
+        -(scroll.offset * (scroll.pages * 2.63)),
+        1,
       )
       TheCube.position.x = MathUtils.lerp(
         TheCube.position.x,

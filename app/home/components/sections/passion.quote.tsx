@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { Text, useScroll } from '@react-three/drei'
 import { getInviewAnimationValue } from '@aurora/views/animations'
 import { theme } from '@global/config/defineConfig'
+import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
 
 import CSM from 'three-custom-shader-material'
 import vertShader from './shaders/passionQuote.v.glsl'
@@ -95,7 +96,11 @@ function PassionSectionQuote({ _dark }: { _dark: boolean }) {
       >
         EXPERTISE
         <meshBasicMaterial
-          color={_dark ? theme.color.primary[0] : theme.color.quaternary[2]}
+          color={
+            _dark
+              ? ColorUtils.HEXtoThree('#ffa900', 3, Color)
+              : theme.color.quaternary[2]
+          }
           ref={rTextPassionateMat}
           transparent
           opacity={1}

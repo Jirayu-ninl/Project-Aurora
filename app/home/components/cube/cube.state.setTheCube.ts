@@ -90,7 +90,7 @@ export const setTheCubePositionZ = (
       ) * -0.5
   } else if (
     cubeState.projectSection.pre.END < scroll.offset &&
-    scroll.offset < 1
+    scroll.offset <= 1
   ) {
     positionZ = -0.5
   } else {

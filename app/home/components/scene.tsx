@@ -19,6 +19,8 @@ import {
   MarqueeSection,
   SkillsSection,
   ProjectsSection,
+  ContactSection,
+  Footer,
 } from './sections'
 import Overlay from './overlay'
 import Environments from './environments'
@@ -61,13 +63,15 @@ export default function App({ _dark }: { _dark: boolean }) {
               _dark={_dark}
               setProjectHover={setProjectHover}
             />
+            <ContactSection.HTML />
           </Scroll>
           <PassionSectionQuote _dark={_dark} />
           <PassionSectionTitle _dark={_dark} />
           <MarqueeSection _dark={_dark} />
           <SkillsSection _dark={_dark} scrollRef={$scroll} />
           <ProjectsSection.R3F projectHover={projectHover} $scroll={$scroll} />
-          <Text position={[0, -37, -1]}>Drop me a line</Text>
+          <ContactSection.R3F _dark={_dark} />
+          <Footer.R3F _dark={_dark} />
         </Scroll>
       </ScrollControls>
       <PostProcessing />
