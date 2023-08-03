@@ -1,20 +1,12 @@
 const useOptimization = (value: number, type: string) => {
-  // const drp: [number, number] =
-  // value >= 3
-  //     ? [1, 1]
-  //     : value === 2
-  //     ? [0.7, 0.7]
-  //     : value === 1
-  //     ? [0.5, 0.5]
-  //     : [0.1, 0.1]
-  let drp: [number, number] = [0.1, 0.1]
+  let drp: [number, number] = [0.7, 0.7]
 
   switch (type) {
     case 'tier':
       {
         drp =
           value >= 3
-            ? [1, 2]
+            ? [1, 1.5]
             : value === 2
             ? [0.7, 1]
             : value === 1

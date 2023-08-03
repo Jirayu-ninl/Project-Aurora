@@ -5,7 +5,7 @@ import {
   // OrbitControls,
   ScrollControls,
   Scroll,
-  Text,
+  // StatsGl
 } from '@react-three/drei'
 import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
 
@@ -64,6 +64,7 @@ export default function App({ _dark }: { _dark: boolean }) {
               setProjectHover={setProjectHover}
             />
             <ContactSection.HTML />
+            <Footer.HTML />
           </Scroll>
           <PassionSectionQuote _dark={_dark} />
           <PassionSectionTitle _dark={_dark} />
@@ -74,6 +75,7 @@ export default function App({ _dark }: { _dark: boolean }) {
           <Footer.R3F _dark={_dark} />
         </Scroll>
       </ScrollControls>
+      {/* <StatsGl /> */}
       <PostProcessing />
       <color
         attach='background'
