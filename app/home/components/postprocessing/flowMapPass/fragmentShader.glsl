@@ -20,9 +20,6 @@ void main() {
 
     float a = smoothstep(0.05, 0.0, length(distortion));
     a *= tex.a;
-    vec4 color = texture2D(tDiffuse, v_uv);
-
     // gl_FragColor = vec4(tex.rgb * a, a);
     gl_FragColor = vec4(tex.rgb, a);
-    // gl_FragColor = color;
 }

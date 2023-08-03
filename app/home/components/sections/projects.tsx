@@ -60,6 +60,8 @@ const R3F = ({
         u_texture: {
           value: new Texture(),
         },
+        u_progress: { value: 1 },
+        u_alpha: { value: 1.0 },
       },
       vertexShader,
       fragmentShader,
@@ -73,7 +75,22 @@ const R3F = ({
     shader.uniforms.u_texture.value = image[projectHover - 1]
     if ($projectImg.current) {
       const ref = $projectImg.current
-      ref.visible = projectHover === 0 ? false : true
+      if (projectHover !== 0) {
+        ref.visible = true
+        if (shader.uniforms.u_progress.value <= 1) {
+          shader.uniforms.u_progress.value += 0.04
+        }
+      } else {
+        if (0 <= shader.uniforms.u_progress.value) {
+          shader.uniforms.u_progress.value -= 0.04
+        } else {
+          shader.uniforms.u_progress.value = 0
+        }
+        if (shader.uniforms.u_progress.value === 0) {
+          ref.visible = false
+        }
+      }
+      
       const target = new Vector3()
       target.set(
         mouse.x * 1.7 + 1,
@@ -88,7 +105,7 @@ const R3F = ({
     <>
       <mesh position={[-1.7, -35, 0]} ref={$projectImg} scale={1.5}>
         <planeGeometry args={[1.6, 0.9, 20, 10]} />
-        <shaderMaterial args={[shader]} />
+        <shaderMaterial args={[shader]} transparent />
       </mesh>
     </>
   )
@@ -112,7 +129,7 @@ const Project = ({
   setProjectHover: Dispatch<number>
 }) => {
   const _setCursor = UI((state) => state.setCursor)
-  const CSS = setupCSS(_dark)
+  const CSS = useMemo(() => setupCSS(_dark), [_dark])
   return (
     <>
       <Link

@@ -32,7 +32,7 @@ export const setupCSS = (_dark: boolean) => {
           color: ${Color.text};
           -webkit-text-stroke: 2px transparent;
           transition-duration: 250ms;
-          transform: translateX(3%) scaleX(1.05);
+          // transform: translateX(3%) scaleX(1.05);
           & > span {
             color: ${Color.primary};
           }

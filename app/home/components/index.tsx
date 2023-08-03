@@ -38,7 +38,7 @@ function CanvasApp() {
           antialias: antialias,
           stencil: false,
           depth: true,
-          logarithmicDepthBuffer: true,
+          // logarithmicDepthBuffer: true,
         }}
         linear={true}
         shadows
