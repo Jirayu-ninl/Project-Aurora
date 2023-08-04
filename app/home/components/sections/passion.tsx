@@ -10,12 +10,12 @@ const HTML = () => {
       <div className='absolute top-[315vh] flex h-[70vh] w-screen flex-col items-center justify-between md:top-[350vh]'>
         {ContentData.map((row, index) => (
           <div
-            className='flex w-full flex-col justify-between px-6 md:flex-row md:px-0 xl:w-[1440px]'
+            className='flex w-full flex-col justify-between px-6 lg:w-2/3 xl:w-[960px] xl:flex-row xl:px-0 el:w-[1440px]'
             key={index}
           >
             {row.map((item, index2) => (
               <div
-                className='Anim relative mb-6 w-full cursor-pointer overflow-hidden rounded-lg border border-black/20 bg-white/10 p-4 pb-6 backdrop-blur-lg hover:bg-primary-0 dark:border-white/40 dark:hover:bg-tertiary-2 md:mb-0 md:w-1/3 md:p-10 md:pb-12'
+                className='Anim relative mb-6 w-full cursor-pointer overflow-hidden rounded-lg border border-black/20 bg-white/10 p-4 pb-6 backdrop-blur-lg hover:bg-primary-0 dark:border-white/40 dark:hover:bg-tertiary-2 md:p-10 md:pb-12 xl:m-8 xl:mb-0 xl:w-1/2 el:m-0 el:w-1/3'
                 key={index2}
               >
                 <h2 className='mb-6 text-xl font-bold md:text-4xl'>

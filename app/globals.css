@@ -339,12 +339,12 @@ body {
 
 .m-container {
   height: calc(100vh - 56px);
-  height: calc(100svh - 56px);
+  height: calc(100dvh - 56px);
 }
 
 .m-state-page {
   top: calc(100vh - 90px);
-  top: calc(100svh - 90px);
+  top: calc(100dvh - 90px);
 }
 
 /* *! NavBar */

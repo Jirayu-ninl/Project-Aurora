@@ -7,9 +7,11 @@ import { BtnlineEdge } from '@resources/common/components/button'
 function IntroSection({
   _dark,
   isMobile,
+  w = 4,
 }: {
   _dark: boolean
   isMobile: boolean
+  w?: number
 }) {
   const rTextTitle = useRef<any>(null)
   const scroll = useScroll()
@@ -23,15 +25,15 @@ function IntroSection({
 
   return (
     <>
-      <div className='absolute top-[140vh] flex flex-col px-6 md:left-[40vw] md:px-0'>
+      <div className='absolute top-[140vh] flex flex-col px-6 md:left-[10vw] lg:left-[40vw] lg:px-0'>
         <h1
           className='mb-10 pl-24 text-2xl font-bold uppercase md:pl-0 md:text-6xl'
           ref={rTextTitle}
         >
           <span className='text-5xl text-primary-0 md:text-8xl'>H</span>I, I AM
         </h1>
-        <p className='text-lg font-light leading-relaxed opacity-90 md:text-3xl'>
-          {isMobile ? (
+        <p className='text-lg font-light leading-relaxed opacity-90 lg:text-lg el:text-3xl'>
+          {w < 1.57 || isMobile ? (
             <>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Creative Developer with a
               passion for pushing the boundaries of web technology. My expertise

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useThree } from '@react-three/fiber'
 import {
   PerspectiveCamera,
   Preload,
@@ -7,6 +8,7 @@ import {
   Scroll,
 } from '@react-three/drei'
 import { Color as ColorUtils } from '@aurora/libs/webGL/utils'
+import { getIsVertical } from './responsive'
 
 import Cube from './cube'
 import Hero from './hero'
@@ -47,6 +49,9 @@ export default function App({
 }) {
   const $scroll = useRef<any>(null)
   const $background = useRef<any>(null)
+  const { width: w } = useThree((state) => state.viewport)
+  const { aspect } = useThree((state) => state.viewport)
+  const isVertical = getIsVertical(w, aspect)
 
   const [projectHover, setProjectHover] = useState<number>(0)
 
@@ -61,10 +66,10 @@ export default function App({
       <ScrollControls damping={0.3} distance={1} pages={16}>
         <Scroll ref={$scroll}>
           <PageState />
-          <Hero _dark={_dark} isMobile={isMobile} />
-          <Cube _dark={_dark} isMobile={isMobile} />
+          <Hero _dark={_dark} isMobile={isVertical} />
+          <Cube _dark={_dark} isMobile={isVertical} />
           <Scroll html style={{ width: '100%' }}>
-            <IntroSection _dark={_dark} isMobile={isMobile} />
+            <IntroSection _dark={_dark} isMobile={isMobile} w={w} />
             <PassionSection.HTML />
             <ProjectsSection.HTML
               _dark={_dark}
@@ -73,17 +78,17 @@ export default function App({
             <ContactSection.HTML />
             <Footer.HTML />
           </Scroll>
-          <PassionSectionQuote _dark={_dark} isMobile={isMobile} />
+          <PassionSectionQuote _dark={_dark} isMobile={isVertical} />
           <PassionSection.R3F _dark={_dark} isMobile={isMobile} />
           <MarqueeSection _dark={_dark} />
           <SkillsSection.R3F
             _dark={_dark}
             scrollRef={$scroll}
-            isMobile={isMobile}
+            isMobile={isVertical}
           />
           <ProjectsSection.R3F projectHover={projectHover} $scroll={$scroll} />
-          <ContactSection.R3F _dark={_dark} isMobile={isMobile} />
-          <Footer.R3F _dark={_dark} isMobile={isMobile} />
+          <ContactSection.R3F _dark={_dark} isMobile={isVertical} />
+          <Footer.R3F _dark={_dark} isMobile={isVertical} />
         </Scroll>
       </ScrollControls>
       <PostProcessing />

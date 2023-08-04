@@ -13,7 +13,7 @@ const SkillsOverlay = ({
       <AnimatePresence>
         {visibility && (
           <motion.div
-            className='absolute bottom-24 right-8 flex flex-col items-end md:bottom-4'
+            className='absolute bottom-24 right-8 flex flex-col items-end md:bottom-6'
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}

@@ -3,11 +3,11 @@ import { Text } from '@react-three/drei'
 const HTML = () => {
   return (
     <>
-      <div className='absolute top-[1380vh] flex h-[100vh] w-screen flex-col items-center justify-between md:top-[1400vh]'>
+      <div className='absolute top-[1380vh] flex h-[100vh] w-screen flex-col items-center justify-between md:top-[1380vh] xl:top-[1400vh]'>
         <input
           type='text'
           placeholder='E-MAIL'
-          className='bg-black/5 px-4 py-2 text-lg font-light text-white backdrop-blur-lg dark:bg-white/5 md:px-12 md:py-4 md:text-8xl'
+          className='bg-black/5 px-4 py-2 text-lg font-light text-white backdrop-blur-lg dark:bg-white/5 md:px-12 md:py-4 md:text-4xl xl:text-6xl el:text-8xl'
         />
       </div>
     </>

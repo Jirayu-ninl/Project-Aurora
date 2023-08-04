@@ -12,7 +12,7 @@ const HTML = () => {
       <div className='absolute top-[1510vh] flex h-[100vh] w-screen flex-col items-center justify-between md:top-[1520vh]'>
         <div className='relative h-[70vh] w-[1280px]'>
           <p
-            className='absolute bottom-0 left-1/2 -translate-x-1/2 uppercase tracking-wide md:-translate-x-[120px]'
+            className='absolute bottom-0 left-1/2 -translate-x-1/2 uppercase tracking-wide xl:-translate-x-[120px]'
             onMouseEnter={() => _setCursor('logo')}
             onMouseMove={() => _setCursor('logo')}
             onMouseLeave={() => _setCursor(false)}

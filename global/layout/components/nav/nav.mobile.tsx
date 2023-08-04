@@ -30,7 +30,7 @@ function NavMobile({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <nav className='h-svh absolute flex w-screen items-end'>
+      <nav className='h-dvh absolute flex w-screen items-end'>
         <div className='Anim h-24 w-full bg-quaternary-2 px-16 pt-14 dark:bg-primary-0'>
           <motion.div
             initial={aNavChildren.initial}
@@ -75,7 +75,7 @@ function NavMobile({ children }: { children: React.ReactNode }) {
         {children}
       </div>
       <div
-        className='Anim absolute right-6 top-6 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'
+        className='Anim absolute right-6 top-12 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'
         onClick={() => {
           _setNavShowCanvas(false)
           _setModalAppInfo(true)

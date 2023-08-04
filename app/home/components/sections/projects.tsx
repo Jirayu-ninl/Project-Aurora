@@ -142,9 +142,11 @@ const Project = ({
         onMouseMove={() => setProjectHover(ProjectHover + 1)}
         onMouseLeave={() => setProjectHover(0)}
       >
-        <h6 className='text-base font-bold md:-mb-6 md:text-4xl'>{year}</h6>
+        <h6 className='text-base font-bold md:-mb-2 md:text-2xl xxl:-mb-6 xxl:text-4xl'>
+          {year}
+        </h6>
         <h3
-          className='Anim text-5xl font-bold leading-tight text-black dark:text-white md:text-10xl md:text-transparent'
+          className='Anim text-5xl text-8xl font-bold leading-tight text-black dark:text-white md:text-transparent xxl:text-10xl'
           onMouseEnter={() => _setCursor('go')}
           onMouseMove={() => _setCursor('go')}
           onMouseLeave={() => _setCursor(false)}
