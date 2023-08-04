@@ -25,7 +25,7 @@ function NavMenuItem({
       animate={aNavChildren.animate}
       transition={aNavChildren.transition(index / 10)}
       className={clsx(
-        'flex xxl:mr-10 el:mr-12',
+        'flex xl:mr-6 xxl:mr-9 el:mr-12',
         _navRouteActiveState.id !== index && 'Anim AnimOpacity-20',
       )}
     >
