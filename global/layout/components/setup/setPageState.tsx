@@ -16,9 +16,10 @@ function SetPageState() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
 
   const pathName = usePathname()
-  const reqPath = usePathname().slice(1).split('/')
 
   useEffect(() => {
+    const reqPath = pathName.slice(1).split('/')
+
     if (reqPath[0] in navSecondaryRoutes) {
       const routeData =
         navSecondaryRoutes[reqPath[0] as keyof tNavSecondaryRoutes]
@@ -38,14 +39,19 @@ function SetPageState() {
                 id: i,
                 scrollProgress: 20,
               })
+              _setPage(reqPath[0].slice(0, 4).toUpperCase() + '. ' + v.title)
             }
           },
         )
       }
     } else {
       _setPage('NOT FOUND')
-      _setBackRoute('/home/intro')
+      _setBackRoute('/home')
       _setNavRoute(navPrimaryRoutes)
+      _setNavRouteActiveState({
+        id: 99,
+        scrollProgress: 0,
+      })
     }
   }, [_setPage, _setNavRoute, _setBackRoute, _setNavRouteActiveState, pathName])
   return null

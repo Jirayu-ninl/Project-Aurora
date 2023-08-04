@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { State } from '@global/store'
 import Header from './components/header'
 import {
@@ -12,13 +12,6 @@ import Content from './contents'
 
 function Page() {
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-
-  // useEffect(() => {
-  //   _setNavRouteActiveState({
-  //     id: 0,
-  //     scrollProgress: 0,
-  //   })
-  // }, [_setNavRouteActiveState])
 
   const handleProgress = ({ motionValue }: tCallbackReturnValue) => {
     _setNavRouteActiveState({
@@ -40,7 +33,7 @@ function Page() {
           Tags={[]}
           lang='th'
         />
-        <div className='flex w-screen'>
+        <div className='flex w-full'>
           <div className='container px-4 py-12 sm:px-8 sm:py-24 md:px-12 lg:py-48 xl:w-[1024px]'>
             <TableOfContents />
             <Content />

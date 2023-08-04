@@ -1,10 +1,10 @@
 import { useRef, useLayoutEffect, useEffect } from 'react'
-import useWindowSize from '@aurora/libs/hooks/useWindowSize'
+import { useWindowSizeLegacy as useWindowSize } from '@aurora/libs/hooks/useWindowSize'
 
 export function Legacy({ children }: { children: React.ReactNode }) {
   const size = useWindowSize()
   const refApp = useRef(null)
-  const refScroll = useRef(null)
+  const refScroll = useRef<any>(null)
 
   const scrollConfig = {
     ease: 0.1,
@@ -36,7 +36,9 @@ export function Legacy({ children }: { children: React.ReactNode }) {
       (scrollConfig.current - scrollConfig.previous) * scrollConfig.ease
     scrollConfig.rounded = Math.round(scrollConfig.previous * 100) / 100
     const difference = scrollConfig.current - scrollConfig.rounded
-    const acceleration = difference / size.width
+    const acceleration = size.width
+      ? difference / size.width
+      : difference / 1000
     const velocity = +acceleration
     const skew = velocity * 7.5
     if (refScroll.current) {

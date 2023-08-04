@@ -37,6 +37,10 @@ body {
   display: none;
 }
 
+.SSB::-webkit-scrollbar {
+  width: 2px;
+}
+
 .h-svh {
   height: 100vh;
   height: 100svh;
@@ -50,6 +54,21 @@ body {
 .h-lvh {
   height: 100vh;
   height: 100lvh;
+}
+
+.w-svw {
+  width: 100vw;
+  width: 100svw;
+}
+
+.w-dvw {
+  width: 100vw;
+  width: 100dvw;
+}
+
+.w-lvw {
+  width: 100vw;
+  width: 100lvw;
 }
 
 /* *! Animate */

@@ -4,25 +4,9 @@
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import Link from 'next/link'
-
-// import { State } from '@global/store'
 import { navSecondaryRoutes } from '@global/config/routes'
-// import InitPageState from '@aurora/views/init/pageState'
 
 function Layout({ children }: { children: React.ReactNode }) {
-  // const _setPage = State((state) => state.setPage)
-  // const _setNavRoute = State((state) => state.setNavRoute)
-  // const _setBackRoute = State((state) => state.setBackRoute)
-
-  // useEffect(() => {
-  //   InitPageState(
-  //     _setPage,
-  //     _setBackRoute,
-  //     _setNavRoute,
-  //     navSecondaryRoutes.status,
-  //   )
-  // }, [_setPage, _setNavRoute, _setBackRoute])
-
   const Pathname = usePathname().slice(8)
 
   return (
@@ -43,7 +27,7 @@ function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
           </div>
-          <div className='h-full grow overflow-y-scroll pb-16 pl-2'>
+          <div className='SSB h-full grow overflow-y-scroll pb-16 pl-2 pr-2'>
             {children}
           </div>
         </div>

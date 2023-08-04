@@ -2,7 +2,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import { useRef, useState, useCallback, useLayoutEffect } from 'react'
+import {
+  useRef,
+  useState,
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+} from 'react'
 import { ResizeObserver } from '@juggle/resize-observer'
 import {
   useScroll,
@@ -57,6 +63,10 @@ const UseSmoothScroll = ({
 
     Callback({ pageHeight, motionValue, scrollY })
   }
+
+  // useEffect(() => {
+  //   console.log('pageHeight', pageHeight)
+  // }, [pageHeight])
 
   return (
     <>

@@ -16,6 +16,10 @@ const GlobalStyles = (Darkmode = true) => (
       //   display: none;
       // }
 
+      *::-webkit-scrollbar:horizontal {
+        display: none;
+      }
+
       *::-webkit-scrollbar-track {
         border-radius: 10px;
         background-color: ${Darkmode ? '#ffffff11' : '#00000011'};
