@@ -1,15 +1,29 @@
 .ge_canvas_container {
-    border-radius: 20px;
-    overflow: hidden;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .ge_menu_bar {
-  /* position: absolute; */
-  /* background: #2f3034; */
+  position: fixed;
   background: #464c50;
-  width: 600px;
-  margin: 8px;
-  border-radius: 10px;
+  width: calc(100vw - 130px);
+  top: 48px;
+  margin: 0px;
+  font-size: 0px !important;
+  border-radius: 6px;
+  .ge_menu {
+    font-size: 0px !important;
+    margin: 8px 8px 8px 14px;
+  }
+  @media only screen and (min-width: 768px) {
+    top: 96px;
+    width: 600px;
+    margin: 8px;
+    .ge_menu {
+      font-size: 12px !important;
+      margin: 16px 32px 16px 16px;
+    }
+  }
 }
 
 /* .ge_menu_bar, */

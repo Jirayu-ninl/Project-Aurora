@@ -10,9 +10,16 @@ function Page() {
 
   useLayoutEffect(() => {
     const GlslEditor = require('glslEditor/build/glslEditor.min')
+    const canvasSize = window
+      ? window.innerWidth <= 768
+        ? 250
+        : window.innerWidth <= 1440
+        ? 350
+        : 500
+      : 500
     const InitEditor = () => {
       new GlslEditor(CanvasRef.current, {
-        canvas_size: 500,
+        canvas_size: canvasSize,
         canvas_draggable: true,
         theme: 'monokai',
         multipleBuffers: true,
@@ -26,7 +33,7 @@ function Page() {
   }, [])
 
   return (
-    <div className='h-screen w-screen p-5 pb-12 pt-24'>
+    <div className='NSB h-[calc(100dvh-56px)] w-screen p-5 pb-12 pt-24 md:h-screen'>
       <div className='relative h-full w-full overflow-x-hidden overflow-y-scroll rounded-lg bg-[#26272a]'>
         <div ref={CanvasRef} />
       </div>
