@@ -142,11 +142,11 @@ const Project = ({
         onMouseMove={() => setProjectHover(ProjectHover + 1)}
         onMouseLeave={() => setProjectHover(0)}
       >
-        <h6 className='text-base font-bold md:-mb-2 md:text-2xl xxl:-mb-6 xxl:text-4xl'>
+        <h6 className='text-base font-bold md:-mb-2 md:text-2xl lg:text-3xl xxl:-mb-6 xxl:text-4xl'>
           {year}
         </h6>
         <h3
-          className='Anim text-5xl text-8xl font-bold leading-tight text-black dark:text-white md:text-transparent xxl:text-10xl'
+          className='Anim text-5xl font-bold leading-tight text-black dark:text-white md:text-transparent lg:text-8xl xxl:text-10xl'
           onMouseEnter={() => _setCursor('go')}
           onMouseMove={() => _setCursor('go')}
           onMouseLeave={() => _setCursor(false)}
@@ -158,7 +158,7 @@ const Project = ({
           {tags.map((v, i) => (
             <p
               key={i}
-              className='Anim border px-2 text-xs hover:border-primary-0 hover:bg-primary-0 hover:text-black md:px-6 md:py-1 md:text-base'
+              className='Anim border px-2 text-xs hover:border-primary-0 hover:bg-primary-0 hover:text-black lg:px-6 lg:py-1 lg:text-base'
             >
               {v.title}
             </p>

@@ -342,6 +342,11 @@ body {
   height: calc(100dvh - 56px);
 }
 
+.m-nav-canvas {
+  height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
+}
+
 .m-state-page {
   top: calc(100vh - 90px);
   top: calc(100dvh - 90px);
