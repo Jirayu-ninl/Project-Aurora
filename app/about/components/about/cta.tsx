@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import clsx from 'clsx'
 
-export default function CTA({ animConf }) {
+export default function CTA({
+  animConf,
+  _dark,
+}: {
+  animConf: any
+  _dark: boolean
+}) {
   const { parent, children } = animConf.stagger_yUp
 
   return (
@@ -23,13 +30,19 @@ export default function CTA({ animConf }) {
       >
         <Link
           href='about/skills'
-          className='text-outline Anim-2 AnimOpacity-40 AnimScale-sm text-5xl font-bold uppercase lg:text-8xl xxl:text-10xl'
+          className={clsx(
+            'Anim-2 AnimOpacity-40 AnimScale-sm text-5xl font-bold uppercase lg:text-8xl xxl:text-10xl',
+            _dark ? 'text-outline-dark' : 'text-outline',
+          )}
         >
           My skills?
         </Link>
         <Link
           href='/project'
-          className='text-outline Anim-2 AnimOpacity-40 AnimScale-sm text-5xl font-bold uppercase lg:text-8xl xxl:text-10xl'
+          className={clsx(
+            'Anim-2 AnimOpacity-40 AnimScale-sm text-5xl font-bold uppercase lg:text-8xl xxl:text-10xl',
+            _dark ? 'text-outline-dark' : 'text-outline',
+          )}
         >
           projects
         </Link>

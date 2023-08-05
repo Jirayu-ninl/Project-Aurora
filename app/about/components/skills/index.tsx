@@ -1,10 +1,20 @@
+import type { Dispatch } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { config as animationConfig } from 'views/animations'
+import { PageSkillsAnimation as animationConfig } from '@global/config/defineAnimationConfig'
 
 import * as skillsSection from './skills'
-import Color from 'views/theme/color'
+import { theme } from '@global/config/defineConfig'
+const Color = theme.color
 
-export const Header = ({ MenuSection, setMenuSection }) => {
+export const Header = ({
+  MenuSection,
+  setMenuSection,
+  _dark,
+}: {
+  MenuSection: number
+  setMenuSection: Dispatch<number>
+  _dark: boolean
+}) => {
   const MenuItems = [
     { number: '01', name: 'Projects' },
     { number: '02', name: 'Dev Skills' },
@@ -27,7 +37,7 @@ export const Header = ({ MenuSection, setMenuSection }) => {
       >
         <motion.h1
           variants={children}
-          className='text-3xl font-semibold text-primary-0 sm:text-4xl lg:text-5xl xxl:text-7xl'
+          className='text-3xl font-semibold text-quaternary-2 dark:text-primary-0 sm:text-4xl lg:text-5xl xxl:text-7xl'
         >
           Hello, I'm <br />
           Jirayu Ninlapun
@@ -51,13 +61,13 @@ export const Header = ({ MenuSection, setMenuSection }) => {
       >
         {MenuItems.map((v: any, i: number) => (
           <motion.div variants={children} transition={transition} key={i}>
-            <motion.a
-              initial={{ color: '#FFFFFF' }}
-              exit={{ color: '#FFFFFF' }}
+            <motion.p
+              initial={{ color: _dark ? '#ffffff' : '#101010' }}
+              exit={{ color: _dark ? '#ffffff' : '#101010' }}
               animate={
                 MenuSection === i
-                  ? { color: Color.primary[0] }
-                  : { color: '#FFFFFF' }
+                  ? { color: _dark ? Color.primary[0] : Color.quaternary[2] }
+                  : { color: _dark ? '#ffffff' : '#101010' }
               }
               transition={transition}
               className='AnimOpacity-40 Anim flex cursor-pointer flex-col items-center bg-white/10 pb-2 md:flex-row md:bg-transparent'
@@ -68,21 +78,35 @@ export const Header = ({ MenuSection, setMenuSection }) => {
                 initial={{ opacity: 0 }}
                 exit={{ opacity: 0 }}
                 animate={{ opacity: MenuSection === i ? 1 : 0 }}
-                className='-mt-1 mb-2 h-3 w-3 rounded-md bg-primary-0 md:my-0 md:mr-3 md:-ml-2 md:w-5'
+                className='-mt-1 mb-2 h-3 w-3 rounded-md bg-quaternary-2 dark:bg-primary-0 md:my-0 md:-ml-2 md:mr-3 md:w-5'
               ></motion.div>
               <p className='-mb-px w-4'>{v.number}</p>
               <motion.div
-                initial={{ backgroundColor: '#FFFFFF', width: 16 }}
-                exit={{ backgroundColor: '#FFFFFF', width: 16 }}
+                initial={{
+                  backgroundColor: _dark ? '#ffffff' : '#101010',
+                  width: 16,
+                }}
+                exit={{
+                  backgroundColor: _dark ? '#ffffff' : '#101010',
+                  width: 16,
+                }}
                 animate={
                   MenuSection === i
-                    ? { backgroundColor: Color.primary[0], width: 32 }
-                    : { backgroundColor: '#FFFFFF', width: 16 }
+                    ? {
+                        backgroundColor: _dark
+                          ? Color.primary[0]
+                          : Color.quaternary[2],
+                        width: 32,
+                      }
+                    : {
+                        backgroundColor: _dark ? '#ffffff' : '#101010',
+                        width: 16,
+                      }
                 }
                 className='Anim mx-3 hidden h-px w-6 md:block'
               ></motion.div>
               <p className='text-xs md:text-base'>{v.name}</p>
-            </motion.a>
+            </motion.p>
           </motion.div>
         ))}
       </motion.div>
@@ -90,7 +114,15 @@ export const Header = ({ MenuSection, setMenuSection }) => {
   )
 }
 
-export const SkillSection = ({ MenuSection, data }) => {
+export const SkillSection = ({
+  MenuSection,
+  data,
+  _dark,
+}: {
+  MenuSection: number
+  data: any
+  _dark: boolean
+}) => {
   const { Section_Projects, Section_Skills, Section_Team, Section_Works } =
     skillsSection
 

@@ -16,6 +16,7 @@ export type tNavSecondaryRoutes = {
   app: tNavSecondaryRoute
   shop: tNavSecondaryRoute
   portfolio: tNavSecondaryRoute
+  about: tNavSecondaryRoute
   tools: tNavSecondaryRoute
   status: tNavSecondaryRoute
   example: tNavSecondaryRoute
@@ -117,6 +118,21 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       {
         title: 'Dev',
         path: '/portfolio/dev',
+      },
+    ],
+  },
+  about: {
+    id: 11,
+    title: 'About',
+    setBackRoute: '/about',
+    route: [
+      {
+        title: 'Overall',
+        path: '/about',
+      },
+      {
+        title: 'Skills',
+        path: '/about/skills',
       },
     ],
   },

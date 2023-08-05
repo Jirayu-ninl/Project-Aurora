@@ -2,9 +2,10 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 // import Link from 'next/link'
 import { motion } from 'framer-motion'
-import Header from './components/header'
+import Title from './components/title'
+import type { tFreeTimeItem } from './Type'
 
-export default function FreeTime({ data, animConf }) {
+export default function FreeTime({ data, animConf }: any) {
   useLayoutEffect(() => {
     if (window.innerWidth > 1199) {
       document.addEventListener('mousemove', onMouseMove)
@@ -17,11 +18,11 @@ export default function FreeTime({ data, animConf }) {
     }
   }, [])
 
-  const [Content, setContent] = useState('')
+  const [Content, setContent] = useState<tFreeTimeItem>({})
 
   const BigImg: any = useRef<HTMLDivElement>(null)
 
-  const onMouseMove = (event) => {
+  const onMouseMove = (event: MouseEvent) => {
     const { clientX, clientY } = event
     BigImg.current.style.transform = `translate3d(${20 + -clientX * 0.01}%, ${
       0 + (clientY - 150) * 0.005
@@ -64,13 +65,13 @@ export default function FreeTime({ data, animConf }) {
         </motion.div>
       </div>
       <div className='mx-auto h-screen w-screen items-start overflow-hidden px-4 sm:container sm:px-0 xxl:w-[1440px]'>
-        <Header title='HOBBIES' subTitle="What's my" icon className='-mt-36' />
+        <Title title='HOBBIES' subTitle="What's my" icon className='-mt-36' />
       </div>
     </>
   )
 }
 
-const CoverImg = ({ data, setContent, animChildren }) => {
+const CoverImg = ({ data, setContent, animChildren }: any) => {
   return (
     <motion.div
       variants={animChildren}
@@ -85,7 +86,7 @@ const CoverImg = ({ data, setContent, animChildren }) => {
           'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
         }
         quality={100}
-        alt='TheIceJI Singles and Alblums'
+        alt='TheIceJI Singles and Albums'
       />
     </motion.div>
   )

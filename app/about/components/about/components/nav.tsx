@@ -1,8 +1,17 @@
+import type { Dispatch } from 'react'
 import { motion } from 'framer-motion'
 import Arrow from './iconArrow'
 
-const Nav = ({ Page, setPage, animConf }) => {
-  const PageHandler = (method) => {
+const Nav = ({
+  Page,
+  setPage,
+  animConf,
+}: {
+  Page: number
+  setPage: Dispatch<number>
+  animConf: any
+}) => {
+  const PageHandler = (method: 'decrease' | 'increase') => {
     if (Page < 3 && Page > 0) {
       if (method == 'increase') {
         setPage(Page + 1)
@@ -30,14 +39,14 @@ const Nav = ({ Page, setPage, animConf }) => {
         <motion.div
           variants={children}
           onClick={() => PageHandler('decrease')}
-          className='Anim AnimOpacity-40 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-white/20 backdrop-blur-md backdrop-filter md:h-12 md:w-12 xxl:h-16 xxl:w-16'
+          className='Anim AnimOpacity-40 flex h-8 w-8 items-center justify-center rounded-full border-2 border-black bg-black/20 backdrop-blur-md backdrop-filter dark:border-white dark:bg-white/20 md:h-12 md:w-12 xxl:h-16 xxl:w-16'
         >
           <Arrow left />
         </motion.div>
         <motion.div
           variants={children}
           onClick={() => PageHandler('increase')}
-          className='Anim AnimOpacity-40 ml-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-white/20 backdrop-blur-md backdrop-filter md:ml-0 md:mt-3 md:h-12 md:w-12 xxl:h-16 xxl:w-16'
+          className='Anim AnimOpacity-40 ml-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-black bg-black/20 backdrop-blur-md backdrop-filter dark:border-white dark:bg-white/20 md:ml-0 md:mt-3 md:h-12 md:w-12 xxl:h-16 xxl:w-16'
         >
           <Arrow />
         </motion.div>
@@ -47,15 +56,15 @@ const Nav = ({ Page, setPage, animConf }) => {
         transition={{ delay: 1 }}
         className='flex items-center justify-center pt-4 md:flex-col md:pt-0'
       >
-        <div className='hidden h-16 bg-white md:relative md:mx-auto md:my-12 md:block md:rotate-0 xxl:my-16'>
+        <div className='hidden h-16 bg-black dark:bg-white md:relative md:mx-auto md:my-12 md:block md:rotate-0 xxl:my-16'>
           <motion.div
             initial={{ height: 16 }}
             exit={{ height: 16 }}
             animate={{ height: 16 * (Page + 1) }}
             transition={transitionL}
-            className='absolute h-4 w-0.5 bg-white'
+            className='absolute h-4 w-0.5 bg-black dark:bg-white'
           ></motion.div>
-          <div className='absolute h-16 w-0.5 bg-white/20'></div>
+          <div className='absolute h-16 w-0.5 bg-black/20 dark:bg-white/20'></div>
         </div>
         <p className='md:rotate-90 md:pr-4'>0{Page + 1}</p>
         <p className='opacity-40 md:rotate-90'>/ 04</p>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { faCodeFork } from '@fortawesome/free-solid-svg-icons'
 
 type DataType = {
   target?: number
@@ -21,7 +21,7 @@ type DataType = {
 
 const classRowContent = {
   container:
-    'w-full px-10 mb-2 Card-back-md-40 py-9 xl:hover:bg-primary-0 xl:hover:text-black Anim AnimTranslate-10',
+    'w-full px-10 mb-2 Card-back-md-40 py-9 xl:hover:bg-quaternary-2 dark:xl:hover:bg-primary-0 dark:xl:hover:text-black xl:hover:text-white Anim AnimTranslate-10',
   h5: 'text-xs tracking-wide uppercase',
   h4: 'text-2xl font-semibold',
   p: 'text-sm font-extralight',
@@ -32,7 +32,7 @@ const classRowContent = {
 
 const classGridContent = {
   container:
-    'flex flex-col justify-between pl-5 md:pl-7 xxl:pl-10 Card-back-md-40 h-[220px] md:h-[320px] py-5 md:py7 xxl:py-9 xl:hover:bg-primary-0 xl:hover:text-black Anim AnimTranslate-10',
+    'flex flex-col justify-between pl-5 md:pl-7 xxl:pl-10 Card-back-md-40 h-[220px] md:h-[320px] py-5 md:py7 xxl:py-9 xl:hover:bg-quaternary-2 dark:xl:hover:bg-primary-0 dark:xl:hover:text-black xl:hover:text-white Anim AnimTranslate-10',
   h5: 'tracking-wide uppercase text-2xs md:text-1xs lg:text-2xs xxl:text-xs',
   h6: 'mt-1 md:mt-3 text-xs font-light md:text-base opacity-60',
   h4: 'text-sm sm:text-base font-semibold md:text-xl lg:text-lg xxl:text-2xl',
@@ -45,7 +45,7 @@ export const Section_Projects = ({ type, name, des, star, Anim }: DataType) => (
       <h4 className={classRowContent.h4}>{name}</h4>
       <p className={classRowContent.p}>{des}</p>
       <div className={classRowContent.div.css}>
-        <FontAwesomeIcon icon={solid('code-fork')} className='h-4' />
+        <FontAwesomeIcon icon={faCodeFork} className='h-4' />
         <p className='ml-2'>fork</p>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import ImgHeader from 'public/page/about/Header@2x.png'
-import Header from './components/header'
+import Title from './components/title'
 
 export default function Hero() {
   return (
@@ -14,14 +14,14 @@ export default function Hero() {
       >
         <Image src={ImgHeader} width={1160} height={712} alt='IceJI Photo' />
       </motion.div>
-      <Header title='ABOUT' subTitle='Me?'>
+      <Title title='ABOUT' subTitle='Me?'>
         <p className='text-xs font-light md:text-xl xxl:text-2xl'>
           &emsp;&emsp;&emsp;Expertise was instilled in me at a young age. I'm
           unable to quit learning new things and expanding my skills. Front-end,
           WebGL, and animation are my areas of expertise. ThreeJS, GSAP, and
           Framer Motion are the most common tools I utilize.
         </p>
-      </Header>
+      </Title>
     </div>
   )
 }

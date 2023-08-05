@@ -1,18 +1,27 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import clsx from 'clsx'
 import { about as CSS } from '../../styles'
 import ImgFacts1 from 'public/page/about/Facts_1@2x.png'
 import ImgFacts2 from 'public/page/about/Facts_2@2x.png'
 
-import Header from './components/header'
+import Title from './components/title'
 
-export default function Facts({ animConf }) {
+export default function Facts({
+  animConf,
+  _dark,
+}: {
+  animConf: any
+  _dark: boolean
+}) {
   const { parent, children } = animConf.stagger_yUp_O
   const newParent = (delay: number) => {
     const X = parent(0.3)
     X.show.transition.delayChildren = delay
     return X
   }
+
+  const factsContentCSS = CSS.FactsContent
 
   return (
     <div className='relative h-screen w-full'>
@@ -37,12 +46,15 @@ export default function Facts({ animConf }) {
           </motion.div>
         </motion.div>
       </div>
-      <Header title='of me' subTitle='Facts'>
+      <Title title='of me' subTitle='Facts'>
         <motion.div
           variants={newParent(1)}
           initial='hidden'
           animate='show'
-          className={CSS.FactsContent}
+          className={clsx(
+            factsContentCSS.base,
+            _dark ? factsContentCSS.dark : factsContentCSS.light,
+          )}
         >
           <motion.div variants={children}>
             <p>I despise </p>
@@ -82,7 +94,7 @@ export default function Facts({ animConf }) {
             <p>stop doing it.</p>
           </motion.div>
         </motion.div>
-      </Header>
+      </Title>
     </div>
   )
 }

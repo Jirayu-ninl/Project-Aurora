@@ -162,3 +162,6 @@ export const stagger_xRight = {
     show: { visibility: 'visible', x: 0 },
   },
 }
+
+export const PageSkillsAnimation = { stagger_yUp_O, stagger_xLeft_O }
+export const PageAboutAnimation = { stagger_yUp, stagger_yUp_O, stagger_xRight }

@@ -18,7 +18,8 @@ const ScrollProgress = ({
       />
     )
   } else if (
-    _navRouteActiveState.scrollProgress &&
+    (_navRouteActiveState.scrollProgress ||
+      _navRouteActiveState.scrollProgress === 0) &&
     _navRouteActiveState.pages
   ) {
     const initialValue = progressBar.current?.style

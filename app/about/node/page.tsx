@@ -1,48 +1,24 @@
-import { css } from '@emotion/css'
-import Color from 'views/theme/color'
+'use client'
+
+import { useEffect } from 'react'
+import { State } from '@global/store'
 
 const AboutNode = () => {
-  const Container = css`
-    height: 95vh;
-    width: 100vw;
-    /* position: absolute; */
-  `
-
-  const Title = css`
-    font-size: 224px;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    /* color: rgba(0, 0, 0, 0); */
-    color: ${Color.Primary};
-    /* -webkit-text-stroke: 2px #fff; */
-    font-weight: 700;
-    opacity: 0.2;
-  `
-  const Node = css`
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    & > div {
-      overflow: visible !important;
-    }
-  `
-  const NodeItem = css`
-    position: relative;
-  `
+  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+  useEffect(() => {
+    _setNavRouteActiveState({
+      id: 99,
+    })
+  }, [_setNavRouteActiveState])
 
   return (
     <>
-      <div className={Container}>
-        <h1 className={Title}>ABOUT</h1>
-        <div className={Node}>
+      <div className='h-svh w-svw'>
+        <div className='absolute flex h-full w-full content-center items-center'>
           {/* <TransformWrapper> */}
           {/* <TransformComponent> */}
           <svg
-            className={NodeItem}
+            className='relative'
             xmlns='http://www.w3.org/2000/svg'
             width='1730'
             height='873'

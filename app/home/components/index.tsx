@@ -66,11 +66,11 @@ const LoaderComp = () => {
         <div className='relative mb-3 mt-5 h-[10px] w-full rounded-md'>
           <div
             className='absolute m-0.5 h-[4px] rounded-md bg-primary-0'
-            style={{ width: progress + '%' }}
+            style={{ width: progress.toFixed(2) + '%' }}
           />
           <div className='absolute m-0.5 h-[4px] w-full rounded-md bg-primary-0/10' />
         </div>
-        <p className='w-full text-center text-xs'>{progress} %</p>
+        <p className='w-full text-center text-xs'>{progress.toFixed(2)} %</p>
       </div>
     </Html>
   )
