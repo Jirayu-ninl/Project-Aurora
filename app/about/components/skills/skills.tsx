@@ -21,19 +21,19 @@ type DataType = {
 
 const classRowContent = {
   container:
-    'w-full px-10 mb-2 Card-back-md-40 py-9 xl:hover:bg-quaternary-2 dark:xl:hover:bg-primary-0 dark:xl:hover:text-black xl:hover:text-white Anim AnimTranslate-10',
+    'w-full px-4 sm:px-10 mb-2 Card-back-md-40 py-5 sm:py-9 xl:hover:bg-quaternary-2 dark:xl:hover:bg-primary-0 dark:xl:hover:text-black xl:hover:text-white Anim AnimTranslate-10 flex flex-col',
   h5: 'text-xs tracking-wide uppercase',
   h4: 'text-2xl font-semibold',
   p: 'text-sm font-extralight',
   div: {
-    css: 'flex items-center pt-6',
+    css: 'items-center pt-6 ml-auto hidden sm:flex',
   },
 }
 
 const classGridContent = {
   container:
-    'flex flex-col justify-between pl-5 md:pl-7 xxl:pl-10 Card-back-md-40 h-[220px] md:h-[320px] py-5 md:py7 xxl:py-9 xl:hover:bg-quaternary-2 dark:xl:hover:bg-primary-0 dark:xl:hover:text-black xl:hover:text-white Anim AnimTranslate-10',
-  h5: 'tracking-wide uppercase text-2xs md:text-1xs lg:text-2xs xxl:text-xs',
+    'w-full flex flex-col justify-between pl-5 md:pl-7 xxl:pl-10 Card-back-md-40 h-[220px] md:h-[320px] py-5 md:py7 xxl:py-9 xl:hover:bg-quaternary-2 dark:xl:hover:bg-primary-0 dark:xl:hover:text-black xl:hover:text-white Anim AnimTranslate-10',
+  h5: 'sm:tracking-wide uppercase text-2xs md:text-1xs lg:text-2xs xxl:text-xs',
   h6: 'mt-1 md:mt-3 text-xs font-light md:text-base opacity-60',
   h4: 'text-sm sm:text-base font-semibold md:text-xl lg:text-lg xxl:text-2xl',
 }
@@ -92,7 +92,7 @@ export const Section_Works = ({ name, des, pos, date, Anim }: DataType) => (
       <h5 className={classRowContent.h5}>{pos}</h5>
       <h4 className={classRowContent.h4}>{name}</h4>
       <p className={classRowContent.p}>{des}</p>
-      <p className='pt-8 text-sm'>{date}</p>
+      <p className='pt-5 text-sm sm:pt-8'>{date}</p>
     </div>
   </motion.div>
 )

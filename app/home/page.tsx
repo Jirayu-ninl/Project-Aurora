@@ -3,7 +3,7 @@ import Canvas from './components'
 function Page() {
   return (
     <>
-      <main className='relative h-screen w-screen overflow-hidden bg-white dark:bg-[#101010]'>
+      <main className='m-container w-svw relative overflow-hidden bg-white dark:bg-[#101010]'>
         <Canvas />
       </main>
     </>

@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 const UsePageTransition = ({ children }: { children: React.ReactNode }) => {
   const Variants = {
@@ -12,17 +13,20 @@ const UsePageTransition = ({ children }: { children: React.ReactNode }) => {
     ease: [0.43, 0.13, 0.23, 0.96],
   }
 
+  const pathname = usePathname()
+
   return (
-    <motion.div
-      // key={router.route}
-      key='TransitionPages'
-      initial='pageInitial'
-      animate='pageAnimate'
-      transition={Transition}
-      variants={Variants}
-    >
-      {children}
-    </motion.div>
+    <>
+      {/* <motion.div
+        key={pathname}
+        initial='pageInitial'
+        animate='pageAnimate'
+        transition={Transition}
+        variants={Variants}
+      > */}
+        {children}
+      {/* </motion.div> */}
+    </>
   )
 }
 

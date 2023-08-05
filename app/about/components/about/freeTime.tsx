@@ -3,7 +3,7 @@ import Image from 'next/image'
 // import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Title from './components/title'
-import type { tFreeTimeItem } from './Type'
+import type { tFreeTimeItem } from '../../types'
 
 export default function FreeTime({ data, animConf }: any) {
   useLayoutEffect(() => {
@@ -24,7 +24,7 @@ export default function FreeTime({ data, animConf }: any) {
 
   const onMouseMove = (event: MouseEvent) => {
     const { clientX, clientY } = event
-    BigImg.current.style.transform = `translate3d(${20 + -clientX * 0.01}%, ${
+    BigImg.current.style.transform = `translate3d(${8 + -clientX * 0.01}%, ${
       0 + (clientY - 150) * 0.005
     }%, 0px)`
   }
@@ -39,13 +39,13 @@ export default function FreeTime({ data, animConf }: any) {
           {Content.title}
         </h1>
       </div>
-      <div className='absolute h-screen w-screen overflow-hidden xl:w-[180%] xl:translate-x-[12%]'>
+      <div className='m-container absolute w-screen overflow-hidden xl:w-[180%] xl:-translate-x-[20%]'>
         <motion.div
           variants={parent(0.3)}
           initial='hidden'
           animate='show'
           ref={BigImg}
-          className='absolute flex h-full w-full items-center justify-center'
+          className='m-container absolute flex w-full items-center justify-center'
         >
           <CoverImg
             data={data[0]}

@@ -33,7 +33,7 @@ const Nav = ({
       variants={parent(0.3)}
       initial='hidden'
       animate='show'
-      className='fixed bottom-16 flex w-screen flex-col justify-center md:bottom-0 md:left-4 md:h-screen md:w-auto xxl:left-8'
+      className='fixed bottom-24 flex w-screen flex-col justify-center md:bottom-0 md:left-4 md:h-screen md:w-auto xxl:left-8'
     >
       <div className='flex flex-row items-center justify-center md:flex-col'>
         <motion.div

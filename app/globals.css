@@ -41,34 +41,36 @@ body {
   width: 2px;
 }
 
-.h-svh {
-  height: 100vh;
-  height: 100svh;
-}
+@layer base {
+  .h-svh {
+    height: 100vh;
+    height: 100svh;
+  }
 
-.h-dvh {
-  height: 100vh;
-  height: 100dvh;
-}
+  .h-dvh {
+    height: 100vh;
+    height: 100dvh;
+  }
 
-.h-lvh {
-  height: 100vh;
-  height: 100lvh;
-}
+  .h-lvh {
+    height: 100vh;
+    height: 100lvh;
+  }
 
-.w-svw {
-  width: 100vw;
-  width: 100svw;
-}
+  .w-svw {
+    width: 100vw;
+    width: 100svw;
+  }
 
-.w-dvw {
-  width: 100vw;
-  width: 100dvw;
-}
+  .w-dvw {
+    width: 100vw;
+    width: 100dvw;
+  }
 
-.w-lvw {
-  width: 100vw;
-  width: 100lvw;
+  .w-lvw {
+    width: 100vw;
+    width: 100lvw;
+  }
 }
 
 /* *! Animate */
@@ -365,18 +367,19 @@ body {
 }
 
 .m-container {
-  height: calc(100vh - 56px);
-  height: calc(100dvh - 56px);
+  height: calc(100vh - 3.5rem);
+  height: calc(100dvh - 3.5rem);
+  @apply sm:h-dvh;
 }
 
 .m-nav-canvas {
-  height: calc(100vh - 64px);
-  height: calc(100dvh - 64px);
+  height: calc(100vh - 4rem);
+  height: calc(100dvh - 4rem);
 }
 
 .m-state-page {
-  top: calc(100vh - 90px);
-  top: calc(100dvh - 90px);
+  top: calc(100vh - 5.625rem);
+  top: calc(100dvh - 5.625rem);
 }
 
 /* *! NavBar */

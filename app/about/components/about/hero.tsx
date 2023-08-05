@@ -5,14 +5,16 @@ import Title from './components/title'
 
 export default function Hero() {
   return (
-    <div className='relative flex h-full w-full items-center'>
+    <div className='m-container relative flex w-full items-center'>
       <motion.div
         initial={{ visibility: 'hidden', y: 50, opacity: 0 }}
         animate={{ visibility: 'visible', y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
         className='absolute right-16 -mb-16 flex h-2/5 w-3/5 items-start justify-center md:right-32 md:-mb-0 md:items-center xxl:right-6 xxl:h-full xxl:w-full xxl:justify-end'
       >
-        <Image src={ImgHeader} width={1160} height={712} alt='IceJI Photo' />
+        <div className='overflow-hidden rounded-xl'>
+          <Image src={ImgHeader} width={1160} height={712} alt='IceJI Photo' />
+        </div>
       </motion.div>
       <Title title='ABOUT' subTitle='Me?'>
         <p className='text-xs font-light md:text-xl xxl:text-2xl'>

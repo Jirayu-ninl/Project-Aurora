@@ -20,7 +20,7 @@ export const Header = ({
     { number: '02', name: 'Dev Skills' },
     { number: '03', name: 'Expertises' },
     { number: '04', name: 'Certificates' },
-    { number: '05', name: 'Team & Members' },
+    { number: '05', name: 'Teams' },
     { number: '06', name: 'Works' },
   ]
 
@@ -33,7 +33,7 @@ export const Header = ({
         variants={parent(0.5)}
         initial='hidden'
         animate='show'
-        className='p-7'
+        className='p-4 sm:p-7'
       >
         <motion.h1
           variants={children}
@@ -44,7 +44,7 @@ export const Header = ({
         </motion.h1>
         <motion.p
           variants={children}
-          className='mt-6 text-1xs font-light md:text-xs lg:text-base xl:mt-2 xxl:mt-6'
+          className='mt-2 text-1xs font-light sm:mt-6 md:text-xs lg:text-base xl:mt-2 xxl:mt-6'
         >
           I work as an Interactive Web Developer and Designer.
           <br />
@@ -70,7 +70,7 @@ export const Header = ({
                   : { color: _dark ? '#ffffff' : '#101010' }
               }
               transition={transition}
-              className='AnimOpacity-40 Anim flex cursor-pointer flex-col items-center bg-white/10 pb-2 md:flex-row md:bg-transparent'
+              className='AnimOpacity-40 Anim relative flex cursor-pointer flex-col items-center bg-white/10 pb-2 pt-2 sm:pt-0 md:flex-row md:bg-transparent'
               style={MenuSection === i && { opacity: 1 }}
               onClick={() => setMenuSection(i)}
             >
@@ -78,9 +78,9 @@ export const Header = ({
                 initial={{ opacity: 0 }}
                 exit={{ opacity: 0 }}
                 animate={{ opacity: MenuSection === i ? 1 : 0 }}
-                className='-mt-1 mb-2 h-3 w-3 rounded-md bg-quaternary-2 dark:bg-primary-0 md:my-0 md:-ml-2 md:mr-3 md:w-5'
+                className='absolute -left-[6px] top-[14px] -mt-1 mb-2 h-3 w-3 rounded-md bg-quaternary-2 dark:bg-primary-0 sm:relative sm:left-0 sm:top-px md:my-0 md:-ml-2 md:mr-3 md:w-5'
               ></motion.div>
-              <p className='-mb-px w-4'>{v.number}</p>
+              <p className='-mb-px hidden w-4 sm:block'>{v.number}</p>
               <motion.div
                 initial={{
                   backgroundColor: _dark ? '#ffffff' : '#101010',
@@ -152,7 +152,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 1 && (
         <motion.div
-          className='grid grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
+          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
           variants={parent(0.2)}
           initial='hidden'
           animate='show'
@@ -171,7 +171,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 2 && (
         <motion.div
-          className='grid grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
+          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
           variants={parent(0.2)}
           initial='hidden'
           animate='show'
@@ -190,7 +190,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 3 && (
         <motion.div
-          className='grid grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
+          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
           variants={parent(0.2)}
           initial='hidden'
           animate='show'

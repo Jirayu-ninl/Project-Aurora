@@ -24,7 +24,7 @@ export default function Facts({
   const factsContentCSS = CSS.FactsContent
 
   return (
-    <div className='relative h-screen w-full'>
+    <div className='m-container relative w-full'>
       <div className='absolute right-0 flex h-full items-center justify-end pr-12 xxl:justify-center xxl:px-0'>
         <motion.div
           variants={newParent(0.7)}

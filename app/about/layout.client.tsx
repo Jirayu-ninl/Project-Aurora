@@ -12,10 +12,8 @@ export default function SceneLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='relative flex h-screen w-screen items-center justify-center bg-gradient-to-r from-background-2 to-background-1'>
-      <div className='absolute z-10 flex w-full items-center justify-end'>
-        {children}
-      </div>
+    <div className='m-container w-svw relative flex overflow-hidden'>
+      <div className='absolute z-10 flex h-full w-full'>{children}</div>
       <Scene />
     </div>
   )
@@ -24,7 +22,7 @@ export default function SceneLayout({
 const Scene = () => {
   const _dark = UI((state) => state.dark)
   return (
-    <div className='absolute hidden h-screen w-screen overflow-hidden xl:block'>
+    <div className='absolute h-full w-full overflow-hidden'>
       <Canvas
         gl={{
           powerPreference: 'high-performance',

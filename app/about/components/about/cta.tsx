@@ -16,7 +16,7 @@ export default function CTA({
       variants={parent(0.2)}
       initial='hidden'
       animate='show'
-      className='flex h-full w-full flex-col items-center justify-center'
+      className='flex m-container w-full flex-col items-center justify-center'
     >
       <motion.h3
         variants={children}

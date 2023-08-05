@@ -71,10 +71,11 @@ function NavMobile({ children }: { children: React.ReactNode }) {
           </motion.div>
         </div>
       </nav>
-      <div className='pointer-events-none fixed bottom-20 z-50 h-[150px] w-screen bg-gradient-to-t from-white to-white/0 dark:from-[#101010] dark:to-[#101010]/0' />
-      <div className='pointer-events-none fixed bottom-14 z-40 h-[25px] w-screen rounded-b-3xl bg-white shadow-lg shadow-black/50 dark:bg-[#101010]' />
+      <div className='pointer-events-none fixed bottom-20 z-50 h-[9.375rem] w-screen bg-gradient-to-t from-white to-white/0 dark:from-[#101010] dark:to-[#101010]/0' />
+      <div className='pointer-events-none fixed bottom-14 z-40 h-[1.5625rem] w-screen rounded-b-3xl bg-white shadow-lg shadow-black/50 dark:bg-[#101010]' />
       <div className='NSB m-container absolute'>
-        <div>{children}</div>
+        {/* <div>{children}</div> */}
+        {children}
       </div>
       <div
         className='Anim fixed right-6 top-12 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'

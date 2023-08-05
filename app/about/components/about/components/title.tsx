@@ -26,7 +26,7 @@ export default function Header({
       initial='hidden'
       animate='show'
       className={clsx(
-        'pointer-events-none absolute flex h-full w-full flex-col justify-center pl-4 sm:pl-8 md:pl-20',
+        'm-container pointer-events-none absolute flex w-full flex-col justify-center pl-4 sm:pl-8 md:pl-20',
         className && className,
       )}
     >
