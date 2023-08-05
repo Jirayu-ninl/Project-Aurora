@@ -39,7 +39,8 @@ const nextConfig = {
     config.resolve.alias['@aurora'] = path.join(__dirname, 'aurora')
     config.resolve.alias['@app'] = path.join(__dirname, 'app')
     config.resolve.alias['@global'] = path.join(__dirname, 'global')
-    config.resolve.alias['@resources'] = path.join(__dirname, 'app/resources')
+    config.resolve.alias['@components'] = path.join(__dirname, 'app/components')
+    config.resolve.alias['@contents'] = path.join(__dirname, 'app/contents')
     config.resolve.alias['@server'] = path.join(__dirname, 'server')
     // config.resolve.alias['public'] = path.join(__dirname, 'public')
 

@@ -5,7 +5,7 @@ import { useScroll } from '@react-three/drei'
 import { getInviewAnimationValue } from '@aurora/views/animations'
 
 import { CircleParticles } from './skills.circleParticles'
-import { frontend, backend } from './skills.data'
+import { SkillsFrontendData, SkillsBackendData } from '@contents/pages/home'
 
 const R3F = ({
   _dark,
@@ -71,7 +71,7 @@ const R3F = ({
           <CircleParticles
             radius={1.8}
             numParticles={60}
-            data={frontend}
+            data={SkillsFrontendData}
             _dark={_dark}
           />
         </mesh>
@@ -79,7 +79,7 @@ const R3F = ({
           <CircleParticles
             radius={3.2}
             numParticles={80}
-            data={backend}
+            data={SkillsBackendData}
             _dark={_dark}
           />
         </mesh>

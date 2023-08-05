@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 
-function SetToast() {
+export const SetErrorToast = () => {
   const error = useSearchParams().get('error')
 
   useEffect(() => {
@@ -24,5 +24,3 @@ function SetToast() {
   }, [error])
   return null
 }
-
-export default SetToast

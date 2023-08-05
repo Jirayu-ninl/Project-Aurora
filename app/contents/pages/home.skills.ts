@@ -1,4 +1,4 @@
-export const frontend = [
+const SkillsFrontendData = [
   'NextJs',
   'React',
   'PUG',
@@ -21,7 +21,7 @@ export const frontend = [
   'Tailwind',
 ]
 
-export const backend = [
+const SkillsBackendData = [
   'RestAPI',
   'GraphQL',
   'Prisma',
@@ -43,3 +43,5 @@ export const backend = [
   'Sentry',
   'ExpressJs',
 ]
+
+export { SkillsFrontendData, SkillsBackendData }

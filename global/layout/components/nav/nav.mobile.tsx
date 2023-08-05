@@ -8,7 +8,7 @@ import { useAudio } from '@aurora/libs/hooks/audio'
 import { State, UI } from '@global/store'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 
-import IceJiLogo from '@resources/common/logo/IceJi'
+import IceJiLogo from '@components/logo/IceJi'
 import * as Icon from './assets'
 import { Panel } from './components/mobile'
 

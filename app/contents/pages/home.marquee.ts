@@ -1,4 +1,4 @@
-const ContentData = {
+export const MarqueeContent = {
   softSkills: [
     [
       {
@@ -165,5 +165,3 @@ const ContentData = {
     ],
   ],
 }
-
-export { ContentData }

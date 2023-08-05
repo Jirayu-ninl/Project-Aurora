@@ -7,8 +7,8 @@ import { useGLTF } from '@react-three/drei'
 
 import { UI, State } from '@global/store'
 
-import IceJiLoadingLogo from '@resources/common/logo/IceJiLoading'
-import IceJiLogo from '@resources/common/logo/IceJi'
+import IceJiLoadingLogo from '@components/logo/IceJiLoading'
+import IceJiLogo from '@components/logo/IceJi'
 
 export default function Home() {
   const _setShowNav = UI((state) => state.setShowNav)

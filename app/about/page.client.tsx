@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { UI } from '@global/store'
-import { SetNavState } from 'aurora/views/state'
-import { FreeTimeItems } from '@resources/content/pages/about'
+import { SetNavState } from '@aurora/views/state'
+import { FreeTimeItems } from '@contents/pages/about'
 import { PageAboutAnimation as animConf } from '@global/config/defineAnimationConfig'
 import { about } from './components'
 

@@ -1,8 +1,5 @@
 'use client'
 
-// import { useEffect } from 'react'
-// import { State } from '@global/store'
-
 import clsx from 'clsx'
 import { UI } from '@global/store'
 import app from './data'
@@ -11,14 +8,6 @@ function Page() {
   const _dark = UI((state) => state.dark)
   const _audio = UI((state) => state.audio)
   const _gpuTier = UI((state) => state.gpuTier)
-  // const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-
-  // useEffect(() => {
-  //   _setNavRouteActiveState({
-  //     id: 0,
-  //     scrollProgress: 20,
-  //   })
-  // }, [_setNavRouteActiveState])
 
   const appData = app(_gpuTier, _dark, _audio)
 

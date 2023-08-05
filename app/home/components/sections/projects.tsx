@@ -10,7 +10,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { UI } from '@global/store'
 import { setupCSS } from './projects.css'
-import Data from './projects.data'
+import { ProjectsData } from '@contents/pages/home'
 
 import vertexShader from './shaders/projectWave.v.glsl'
 import fragmentShader from './shaders/projectWave.f.glsl'
@@ -26,7 +26,7 @@ const HTML = ({
     <>
       <div className='absolute top-[1150vh] flex w-screen flex-col px-2 md:px-8'>
         {/* <h1 className='text-5xl font-bold uppercase'>Projects</h1> */}
-        {Data.map((v, i) => (
+        {ProjectsData.map((v, i) => (
           <Project
             title={v.title}
             link={v.link}
@@ -68,7 +68,7 @@ const R3F = ({
     }),
     [],
   )
-  const image = useTexture(Data.map((v) => v.image))
+  const image = useTexture(ProjectsData.map((v) => v.image))
 
   useFrame(({ mouse }) => {
     shader.uniforms.u_time.value += 0.01

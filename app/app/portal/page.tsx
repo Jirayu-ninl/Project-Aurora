@@ -2,7 +2,7 @@
 
 import { getCsrfToken } from 'next-auth/react'
 import { SignIn } from './components'
-import SetErrorToast from '@app/resources/common/components/toast/setErrorToast'
+import { SetErrorToast } from '@components/toast'
 
 const Page = async ({ ctx }: any) => {
   const csrfToken = await getCsrfToken(ctx)

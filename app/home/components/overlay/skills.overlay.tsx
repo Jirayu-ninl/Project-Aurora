@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { BtnlineEdge } from '@resources/common/components/button'
+import { BtnlineEdge } from '@components/button'
 
 const SkillsOverlay = ({
   _dark,

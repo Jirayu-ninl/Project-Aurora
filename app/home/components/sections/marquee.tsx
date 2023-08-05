@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
 import Text from './marquee.text'
 
-import { ContentData } from './marquee.data'
+import { MarqueeContent } from '@contents/pages/home'
 
 const MarqueeSection = ({ _dark }: { _dark: boolean }) => {
   const MarqueeRef = useRef<Mesh[] | null>([])
@@ -32,7 +32,7 @@ const MarqueeSection = ({ _dark }: { _dark: boolean }) => {
   return (
     <>
       <mesh position={[0, -13, -1]} rotation={[0, 0, Math.PI / 24]}>
-        {ContentData.softSkills.map((row, index) => (
+        {MarqueeContent.softSkills.map((row, index) => (
           <mesh
             position={[0, -index / 1.7, 0]}
             key={index}
@@ -54,7 +54,7 @@ const MarqueeSection = ({ _dark }: { _dark: boolean }) => {
         ))}
       </mesh>
       <mesh position={[0, -13, -2]} rotation={[0, 0, Math.PI / 24]} scale={1.2}>
-        {ContentData.hardSkills.map((row, index) => (
+        {MarqueeContent.hardSkills.map((row, index) => (
           <mesh
             position={[-5, -index / 1.7, 0]}
             key={index}

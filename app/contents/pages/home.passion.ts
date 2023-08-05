@@ -1,4 +1,4 @@
-const ContentData = [
+const PassionData = [
   [
     {
       index: 1,
@@ -29,4 +29,4 @@ const ContentData = [
   ],
 ]
 
-export { ContentData }
+export { PassionData }

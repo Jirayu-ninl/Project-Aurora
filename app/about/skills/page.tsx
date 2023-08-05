@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { UI } from '@global/store'
 import { SetNavState } from '@aurora/views/state'
 import { skills as Section } from '../components'
-import * as mySkills from '@resources/content/pages/about.skills'
+import * as mySkills from '@contents/pages/about.skills'
 
 const MySkill = () => {
   const _dark = UI((state) => state.dark)

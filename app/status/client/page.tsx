@@ -1,7 +1,5 @@
 'use client'
 
-// import { useEffect } from 'react'
-// import { State } from '@global/store'
 import clsx from 'clsx'
 import { UI } from '@global/store'
 import client from './data'
@@ -9,14 +7,6 @@ import client from './data'
 function Page() {
   const _gpuTier = UI((state) => state.gpuTier)
   const clientData = client(_gpuTier)
-  // const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-
-  // useEffect(() => {
-  //   _setNavRouteActiveState({
-  //     id: 2,
-  //     scrollProgress: 60,
-  //   })
-  // }, [_setNavRouteActiveState])
 
   return (
     <>

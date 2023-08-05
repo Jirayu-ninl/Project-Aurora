@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from 'next/link'
 import { gql, request as gqlRequest } from 'graphql-request'
-import SetState from '@app/resources/common/components/setDefaultNavActiveState'
+
+export const metadata = {
+  title: 'Projects',
+}
 
 const getPosts = async () => {
   try {
@@ -38,7 +41,6 @@ async function Page() {
 
   return (
     <>
-      <SetState />
       <main className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>
         <h1 className='text-xl'>Projects</h1>
         {data.projects ? (

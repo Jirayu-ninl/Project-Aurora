@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
 
-import { BtnlineEdge } from '@resources/common/components/button'
+import { BtnlineEdge } from '@components/button'
 
 function IntroSection({
   _dark,

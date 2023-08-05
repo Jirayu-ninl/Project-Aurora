@@ -1,7 +1,7 @@
 'use client'
 
 import { UI } from '@global/store'
-import { BtnlineEdge } from '@resources/common/components/button'
+import { BtnlineEdge } from '@components/button'
 
 function Page() {
   const _dark = UI((state) => state.dark)

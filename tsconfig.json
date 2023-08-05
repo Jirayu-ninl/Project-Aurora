@@ -28,8 +28,10 @@
       "@app/*": ["app/*"],
       "@global": ["global"],
       "@global/*": ["global/*"],
-      "@resources": ["app/resources"],
-      "@resources/*": ["app/resources/*"],
+      "@components": ["app/components"],
+      "@components/*": ["app/components/*"],
+      "@contents": ["app/contents"],
+      "@contents/*": ["app/contents/*"],
       "@server": ["server"],
       "@server/*": ["server/*"],
       "public/*": ["public/*"]

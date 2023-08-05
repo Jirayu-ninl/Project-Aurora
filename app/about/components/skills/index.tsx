@@ -59,56 +59,57 @@ export const Header = ({
         animate='show'
         transition={{ delay: 0.5 }}
       >
-        {MenuItems.map((v: any, i: number) => (
-          <motion.div variants={children} transition={transition} key={i}>
-            <motion.p
-              initial={{ color: _dark ? '#ffffff' : '#101010' }}
-              exit={{ color: _dark ? '#ffffff' : '#101010' }}
-              animate={
-                MenuSection === i
-                  ? { color: _dark ? Color.primary[0] : Color.quaternary[2] }
-                  : { color: _dark ? '#ffffff' : '#101010' }
-              }
-              transition={transition}
-              className='AnimOpacity-40 Anim relative flex cursor-pointer flex-col items-center bg-white/10 pb-2 pt-2 sm:pt-0 md:flex-row md:bg-transparent'
-              style={MenuSection === i && { opacity: 1 }}
-              onClick={() => setMenuSection(i)}
-            >
+        {MenuItems &&
+          MenuItems.map((v: any, i: number) => (
+            <motion.div variants={children} transition={transition} key={i}>
               <motion.div
-                initial={{ opacity: 0 }}
-                exit={{ opacity: 0 }}
-                animate={{ opacity: MenuSection === i ? 1 : 0 }}
-                className='absolute -left-[6px] top-[14px] -mt-1 mb-2 h-3 w-3 rounded-md bg-quaternary-2 dark:bg-primary-0 sm:relative sm:left-0 sm:top-px md:my-0 md:-ml-2 md:mr-3 md:w-5'
-              ></motion.div>
-              <p className='-mb-px hidden w-4 sm:block'>{v.number}</p>
-              <motion.div
-                initial={{
-                  backgroundColor: _dark ? '#ffffff' : '#101010',
-                  width: 16,
-                }}
-                exit={{
-                  backgroundColor: _dark ? '#ffffff' : '#101010',
-                  width: 16,
-                }}
+                initial={{ color: _dark ? '#ffffff' : '#101010' }}
+                exit={{ color: _dark ? '#ffffff' : '#101010' }}
                 animate={
                   MenuSection === i
-                    ? {
-                        backgroundColor: _dark
-                          ? Color.primary[0]
-                          : Color.quaternary[2],
-                        width: 32,
-                      }
-                    : {
-                        backgroundColor: _dark ? '#ffffff' : '#101010',
-                        width: 16,
-                      }
+                    ? { color: _dark ? Color.primary[0] : Color.quaternary[2] }
+                    : { color: _dark ? '#ffffff' : '#101010' }
                 }
-                className='Anim mx-3 hidden h-px w-6 md:block'
-              ></motion.div>
-              <p className='text-xs md:text-base'>{v.name}</p>
-            </motion.p>
-          </motion.div>
-        ))}
+                transition={transition}
+                className='AnimOpacity-40 Anim relative flex cursor-pointer flex-col items-center bg-white/10 pb-2 pt-2 sm:pt-0 md:flex-row md:bg-transparent'
+                style={MenuSection === i && { opacity: 1 }}
+                onClick={() => setMenuSection(i)}
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  exit={{ opacity: 0 }}
+                  animate={{ opacity: MenuSection === i ? 1 : 0 }}
+                  className='absolute -left-[6px] top-[14px] -mt-1 mb-2 h-3 w-3 rounded-md bg-quaternary-2 dark:bg-primary-0 sm:relative sm:left-0 sm:top-px md:my-0 md:-ml-2 md:mr-3 md:w-5'
+                ></motion.div>
+                <p className='-mb-px hidden w-4 sm:block'>{v.number}</p>
+                <motion.div
+                  initial={{
+                    backgroundColor: _dark ? '#ffffff' : '#101010',
+                    width: 16,
+                  }}
+                  exit={{
+                    backgroundColor: _dark ? '#ffffff' : '#101010',
+                    width: 16,
+                  }}
+                  animate={
+                    MenuSection === i
+                      ? {
+                          backgroundColor: _dark
+                            ? Color.primary[0]
+                            : Color.quaternary[2],
+                          width: 32,
+                        }
+                      : {
+                          backgroundColor: _dark ? '#ffffff' : '#101010',
+                          width: 16,
+                        }
+                  }
+                  className='Anim mx-3 hidden h-px w-6 md:block'
+                ></motion.div>
+                <p className='text-xs md:text-base'>{v.name}</p>
+              </motion.div>
+            </motion.div>
+          ))}
       </motion.div>
     </>
   )
@@ -152,7 +153,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 1 && (
         <motion.div
-          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
+          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 sm:w-full md:grid-cols-1 lg:grid-cols-2'
           variants={parent(0.2)}
           initial='hidden'
           animate='show'
@@ -171,7 +172,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 2 && (
         <motion.div
-          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
+          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 sm:w-full md:grid-cols-1 lg:grid-cols-2'
           variants={parent(0.2)}
           initial='hidden'
           animate='show'
@@ -190,7 +191,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 3 && (
         <motion.div
-          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 md:grid-cols-1 lg:grid-cols-2'
+          className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 sm:w-full md:grid-cols-1 lg:grid-cols-2'
           variants={parent(0.2)}
           initial='hidden'
           animate='show'

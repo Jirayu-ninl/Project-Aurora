@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
 import { UI } from '@global/store'
 import { app } from '@global/config/defineConfig'
-import MainLogo from '@resources/common/logo/IceJi'
-import RealMotionLogo from '@resources/common/logo/RealMotion'
-import IceJiTriangleLogo from '@resources/common/logo/IceJiTriangle'
-import ArtScapeLogo from '@resources/common/logo/ArtScape'
+import MainLogo from '@components/logo/IceJi'
+import RealMotionLogo from '@components/logo/RealMotion'
+import IceJiTriangleLogo from '@components/logo/IceJiTriangle'
+import ArtScapeLogo from '@components/logo/ArtScape'
 
 export default function AppInfo() {
   const _modalAppInfo = UI((state) => state.modalAppInfo)

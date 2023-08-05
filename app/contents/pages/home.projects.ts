@@ -1,4 +1,4 @@
-const Data = [
+const ProjectsData = [
   {
     title: 'Dimension AI',
     link: '/',
@@ -44,4 +44,4 @@ const Data = [
   },
 ]
 
-export default Data
+export { ProjectsData }

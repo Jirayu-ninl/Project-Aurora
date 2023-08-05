@@ -7,7 +7,7 @@ import {
   LogoutButton,
   ProfileButton,
   RegisterButton,
-} from '@app/resources/common/components/app/button'
+} from '@components/button/app'
 
 function Page() {
   // const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)

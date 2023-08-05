@@ -53,7 +53,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
   },
   project: {
     id: 1,
-    title: 'Project',
+    title: 'Projects',
     setBackRoute: '/project',
     route: [
       {
@@ -68,7 +68,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
   },
   post: {
     id: 2,
-    title: 'Post',
+    title: 'Posts',
     setBackRoute: '/post',
     route: [
       {

@@ -12,7 +12,7 @@ import { State, UI } from '@global/store'
 import { NavDropdownState } from '@global/store/ui'
 import { aNav, aNavChildren } from '@global/config/defineAnimationConfig'
 // import { navCanvasRoutes } from '@app/config/routes'
-import IceJiLogo from '@resources/common/logo/IceJi'
+import IceJiLogo from '@components/logo/IceJi'
 
 // import UserBlock from './components/user'
 import NotificationBlock from './components/notification'
