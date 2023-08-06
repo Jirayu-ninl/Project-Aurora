@@ -94,6 +94,12 @@ export const theme = {
       2: '#03131a',
       3: '#072c3b',
     },
+    backgroundLight: {
+      0: '#fffefa',
+      1: '#fffdf5',
+      2: '#fefbea',
+      3: '#fef9e2',
+    },
   },
 }
 

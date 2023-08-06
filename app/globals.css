@@ -363,7 +363,7 @@ body {
 }
 
 .PostTextTab {
-  @apply pl-16;
+  @apply pl-8 lg:pl-16;
 }
 
 .m-container {

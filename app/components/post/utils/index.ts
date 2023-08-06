@@ -1,2 +1,2 @@
-export { RawToHtml, ObjectText as RawObjectText } from './rawToHtml'
-export { BlogContentRaw, ObjectText as BlogObjectText } from './blogContentRaw'
+export { RawMap, ObjectText as BlogObjectText } from './rawToHtml'
+export type { tContent, tImage, tText } from './rawToHtml.d'

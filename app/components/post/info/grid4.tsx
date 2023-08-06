@@ -4,8 +4,8 @@ const Grid4 = ({ infoData }: { infoData: any }) => {
       {infoData.map((v: any, i: number) => (
         <div
           key={i}
-          className='Anim-1 AnimTranslate-4 rounded-md border border-primary-0
-          bg-black/30 py-2 text-primary-0 backdrop-blur-md hover:bg-primary-0 hover:text-black lg:py-4'
+          className='Anim-1 AnimTranslate-4 rounded-md border border-quaternary-2 bg-white/10
+          py-2 text-quaternary-2 backdrop-blur-md hover:bg-quaternary-2 hover:text-white dark:border-primary-0 dark:bg-black/30 dark:text-primary-0 dark:hover:bg-primary-0 dark:hover:text-black lg:py-4'
         >
           <h4 className='text-center text-xs font-bold sm:text-base'>
             {v.title} :

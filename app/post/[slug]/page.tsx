@@ -1,9 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { gql, request as gqlRequest } from 'graphql-request'
 import Client from './page.client'
+import * as FALLBACK from '@components/post/error'
+import type { tPost } from '../post'
 
-const getPosts = async (slug: string) => {
+enum FETCH {
+  SUCCESS,
+  ERROR,
+}
+
+const getPost = async (slug: string) => {
   try {
+    if (!process.env.GRAPHQL_CONTENT_URL) {
+      throw 'no api endpoint that request'
+    }
+
     const requestQL = gql`
       query PostsPage($slug: String!) {
         post(where: { slug: $slug }) {
@@ -20,15 +31,14 @@ const getPosts = async (slug: string) => {
           date
           content {
             raw
-            html
           }
           relatedContent {
             title
             slug
             tag
             coverImage {
-              width
               url
+              width
               height
             }
           }
@@ -36,7 +46,7 @@ const getPosts = async (slug: string) => {
       }
     `
 
-    const { post } = await gqlRequest<any>(
+    const { post } = await gqlRequest<{ post: tPost }>(
       process.env.GRAPHQL_CONTENT_URL as string,
       requestQL,
       {
@@ -44,20 +54,31 @@ const getPosts = async (slug: string) => {
       },
     )
 
-    return { status: 'success', post }
+    return { status: FETCH.SUCCESS, post }
   } catch (error) {
-    return { status: 'error', error }
+    return { status: FETCH.ERROR, error }
   }
 }
 
 async function Page({ params: { slug } }: { params: { slug: string } }) {
-  const data = await getPosts(slug)
+  const data = await getPost(slug)
 
-  return (
-    <>
-      <Client post={data.post} />
-    </>
-  )
+  if (data.status === FETCH.ERROR) {
+    console.log(data)
+    return (
+      <FALLBACK.ConnectionError
+        title='POST'
+        backURL='/post'
+        error={data.error}
+      />
+    )
+  }
+
+  if (!data.post) {
+    return <FALLBACK.NotFound title='POST' backURL='/post' />
+  }
+
+  return <>{data.post && <Client post={data.post} />}</>
 }
 
 export default Page

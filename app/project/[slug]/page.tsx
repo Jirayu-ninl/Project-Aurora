@@ -1,9 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { gql, request as gqlRequest } from 'graphql-request'
 import Client from './page.client'
+import * as FALLBACK from '@components/post/error'
+import type { tProject } from '../project'
 
-const getPosts = async (slug: string) => {
+enum FETCH {
+  SUCCESS,
+  ERROR,
+}
+
+const getProject = async (slug: string) => {
   try {
+    if (!process.env.GRAPHQL_PROJECT_URL) {
+      throw 'no api endpoint that request'
+    }
+
     const requestQL = gql`
       query Page($slug: String!) {
         project(where: { slug: $slug }) {
@@ -17,6 +28,14 @@ const getPosts = async (slug: string) => {
           projectCategory {
             title
             slug
+          }
+          headerType {
+            selectHeaderType
+            headerGallery {
+              height
+              width
+              url
+            }
           }
           coverImage {
             url
@@ -72,7 +91,7 @@ const getPosts = async (slug: string) => {
       }
     `
 
-    const { project } = await gqlRequest<any>(
+    const { project } = await gqlRequest<{ project: tProject }>(
       process.env.GRAPHQL_PROJECT_URL as string,
       requestQL,
       {
@@ -80,14 +99,28 @@ const getPosts = async (slug: string) => {
       },
     )
 
-    return { status: 'success', project }
+    return { status: FETCH.SUCCESS, project }
   } catch (error) {
-    return { status: 'error', error }
+    return { status: FETCH.ERROR, error }
   }
 }
 
 async function Page({ params: { slug } }: { params: { slug: string } }) {
-  const data = await getPosts(slug)
+  const data = await getProject(slug)
+
+  if (data.status === FETCH.ERROR) {
+    return (
+      <FALLBACK.ConnectionError
+        title='PROJECT'
+        backURL='/project'
+        error={data.error}
+      />
+    )
+  }
+
+  if (!data.project) {
+    return <FALLBACK.NotFound title='PROJECT' backURL='/project' />
+  }
 
   return (
     <>

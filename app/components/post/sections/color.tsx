@@ -5,7 +5,7 @@ const Color = ({ colorData }: { colorData: any }) => {
         <div
           className='Anim AnimTranslate-10 AnimRotate-1 relative overflow-hidden rounded-md'
           key={i}
-          style={{ backgroundColor: v.codeColor }}
+          style={{ backgroundColor: v.hex }}
         >
           <div className='absolute bottom-0 left-0 flex w-full flex-col items-center justify-center bg-white/60 py-3 backdrop-blur-md md:py-4'>
             <button className='pointer-events-none rounded-md border border-black/40 bg-white/60 px-2 py-0 text-xs text-black md:text-base'>

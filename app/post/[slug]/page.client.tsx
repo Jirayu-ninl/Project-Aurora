@@ -2,23 +2,25 @@
 'use client'
 
 import { FullScreenHeader } from '@components/post/header'
-import { BlogContentRaw } from '@components/post/utils'
+import { RawMap } from '@components/post/utils'
 
 // import { Footer } from '@global/layout/components/footer'
 import { useScrollState } from '@aurora/libs/hooks/animations'
 import { SmoothScroll } from '@aurora/views/animations'
 import { SetPage } from '@aurora/views/state'
 import { FloatingShare } from '@components/post/func'
+import type { tPost } from '../post'
 
-const Client = ({ post }: { post: any }) => {
+const Client = ({ post }: { post: tPost }) => {
   const basePath = 'https://theiceji.com/post/'
-  const shareMedia = post.title + '|' + post.tagline
+  const shareMedia = post.title + '|' + post.excerpt
 
   const { handleScroll } = useScrollState(2)
+  // console.log(post.content.raw.children)
 
   return (
     <>
-      <SetPage title={'Project | ' + post.title.slice(0, 8) + '..'} />
+      <SetPage title={'Post | ' + post.title.slice(0, 8) + '..'} />
       <FloatingShare
         slug={post.slug}
         basePath={basePath}
@@ -31,9 +33,9 @@ const Client = ({ post }: { post: any }) => {
           Tags={post.tag}
           lang='th'
         />
-        <div className='flex w-screen'>
+        <div className='w-dvw flex'>
           <div className='container px-4 py-48 xl:w-[1024px]'>
-            <BlogContentRaw RAW={post.content.raw.children} />
+            <RawMap RAW={post.content.raw.children} />
           </div>
         </div>
         {/* <Footer /> */}

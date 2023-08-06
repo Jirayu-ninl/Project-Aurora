@@ -50,7 +50,7 @@ const FullScreenHeader = ({
         >
           {Tags?.map((v: string, i: number) => (
             <motion.button
-              className='Btn-white-40 Anim AnimTranslate-4 mr-2 mt-2 uppercase hover:bg-primary-0 hover:text-black'
+              className='Btn-white-40 Anim AnimTranslate-4 mr-2 mt-2 uppercase hover:bg-quaternary-2 hover:text-white dark:hover:bg-primary-0 dark:hover:text-black'
               key={i}
               variants={animItem}
             >
@@ -82,7 +82,7 @@ const FullScreenHeader = ({
           }
         />
       </motion.div>
-      <div className='absolute h-80 w-screen bg-gradient-to-t from-background-1 to-background-1/0'></div>
+      <div className='absolute h-80 w-screen bg-gradient-to-t from-backgroundLight-1 to-backgroundLight-1/0 dark:from-background-1 dark:to-background-1/0'></div>
     </div>
   )
 }

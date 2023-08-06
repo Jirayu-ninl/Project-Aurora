@@ -9,17 +9,20 @@ export type tNavSecondaryRoute = {
   }[]
 }
 
+type routeKeys =
+  | 'home'
+  | 'project'
+  | 'post'
+  | 'app'
+  | 'shop'
+  | 'portfolio'
+  | 'about'
+  | 'tools'
+  | 'status'
+  | 'example'
+
 export type tNavSecondaryRoutes = {
-  home: tNavSecondaryRoute
-  project: tNavSecondaryRoute
-  post: tNavSecondaryRoute
-  app: tNavSecondaryRoute
-  shop: tNavSecondaryRoute
-  portfolio: tNavSecondaryRoute
-  about: tNavSecondaryRoute
-  tools: tNavSecondaryRoute
-  status: tNavSecondaryRoute
-  example: tNavSecondaryRoute
+  [Key in routeKeys]: tNavSecondaryRoute
 }
 
 export const navSecondaryRoutes: tNavSecondaryRoutes = {
