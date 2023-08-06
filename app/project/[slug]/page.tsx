@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { gql, request as gqlRequest } from 'graphql-request'
-// import { Project } from 'pages/posts'
+import Client from './page.client'
 
 const getPosts = async (slug: string) => {
   try {
@@ -88,14 +88,10 @@ const getPosts = async (slug: string) => {
 
 async function Page({ params: { slug } }: { params: { slug: string } }) {
   const data = await getPosts(slug)
-//   console.log(data)
 
   return (
     <>
-      <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
-        <h6>{data.project.title}</h6>
-        {/* <Blog content={project} /> */}
-      </main>
+      <Client project={data.project} />
     </>
   )
 }

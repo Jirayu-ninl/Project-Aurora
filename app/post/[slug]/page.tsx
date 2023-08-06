@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { gql, request as gqlRequest } from 'graphql-request'
-import { Blog } from '@aurora/views/post'
+import Client from './page.client'
 
 const getPosts = async (slug: string) => {
   try {
@@ -52,14 +52,10 @@ const getPosts = async (slug: string) => {
 
 async function Page({ params: { slug } }: { params: { slug: string } }) {
   const data = await getPosts(slug)
-  //   console.log(data)
 
   return (
     <>
-      {/* <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'> */}
-      {/* <h6>{data.post.title}</h6> */}
-      <Blog content={data.post} />
-      {/* </main> */}
+      <Client post={data.post} />
     </>
   )
 }

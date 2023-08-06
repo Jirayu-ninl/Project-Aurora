@@ -30,23 +30,23 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     scrollable: false,
     route: [
       {
-        title: 'INTRO',
+        title: 'Intro',
         path: '/home?id=intro',
       },
       {
-        title: 'PASSIONATE',
+        title: 'Passionate',
         path: '/home?id=passionate',
       },
       {
-        title: 'SKILLs',
+        title: 'Skills',
         path: '/home?id=skills',
       },
       {
-        title: 'PROJECTS',
+        title: 'Projects',
         path: '/home?id=projects',
       },
       {
-        title: 'SERVICES',
+        title: 'Services',
         path: '/home?id=services',
       },
     ],
@@ -57,12 +57,16 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     setBackRoute: '/project',
     route: [
       {
-        title: 'HIGHLIGHT',
+        title: 'Highlights',
         path: '/project/highlight',
       },
       {
-        title: 'CATEGORIES',
+        title: 'Categories',
         path: '/project/categories',
+      },
+      {
+        title: 'Content',
+        path: '/project',
       },
     ],
   },
@@ -72,15 +76,15 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     setBackRoute: '/post',
     route: [
       {
-        title: 'HIGHLIGHT',
+        title: 'Highlights',
         path: '/post/highlight',
       },
       {
-        title: 'CATEGORIES',
+        title: 'Categories',
         path: '/post/categories',
       },
       {
-        title: 'CONTENT',
+        title: 'Content',
         path: '/post',
       },
     ],
@@ -91,11 +95,11 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     setBackRoute: '/app',
     route: [
       {
-        title: 'DASHBOARD',
+        title: 'Dashboard',
         path: '/app/dashboard',
       },
       {
-        title: 'SETTINGS',
+        title: 'Settings',
         path: '/app/settings',
       },
     ],
@@ -154,15 +158,15 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     setBackRoute: '/status',
     route: [
       {
-        title: 'APP',
+        title: 'App',
         path: '/status/app',
       },
       {
-        title: 'SERVER',
+        title: 'Server',
         path: '/status/server',
       },
       {
-        title: 'CLIENT',
+        title: 'Client',
         path: '/status/client',
       },
       {

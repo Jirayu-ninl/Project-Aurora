@@ -1,0 +1,1 @@
+export { FullScreenHeader } from './fullScreen'

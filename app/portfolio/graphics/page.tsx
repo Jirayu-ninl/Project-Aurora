@@ -1,30 +1,18 @@
 'use client'
 
-// import { useEffect } from 'react'
-import { State } from '@global/store'
 import Header from './components/header'
-import {
-  SmoothScroll,
-  tCallbackReturnValue,
-} from '@aurora/libs/hooks/animations'
+import { SmoothScroll } from '@aurora/views/animations'
+import { useScrollState } from '@aurora/libs/hooks/animations'
 import TableOfContents from './components/tableOfContents'
 import Content from './contents'
 
 function Page() {
-  const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-
-  const handleProgress = ({ motionValue }: tCallbackReturnValue) => {
-    _setNavRouteActiveState({
-      id: 0,
-      scrollable: true,
-      motionValue: motionValue,
-    })
-  }
+  const { handleScroll } = useScrollState(0)
 
   return (
     <>
       <SmoothScroll
-        Callback={handleProgress}
+        Callback={handleScroll}
         physics={{ damping: 1, mass: 0.01, stiffness: 5 }}
       >
         <Header

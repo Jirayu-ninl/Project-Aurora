@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 // import { useSession, signOut } from 'next-auth/react'
 
-import useOnClickOutside from '@aurora/libs/hooks/useOnClickOutside'
+import { useOnClickOutside } from '@aurora/libs/hooks/events'
 import { useAudio } from '@aurora/libs/hooks/audio'
 
 import { State, UI } from '@global/store'

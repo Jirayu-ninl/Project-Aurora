@@ -3,17 +3,14 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
+import { AxiomWebVitals } from 'next-axiom'
 import clsx from 'clsx'
 
 import Tracker from '@aurora/libs/trackers'
 import Toast from '@aurora/modules/toast'
-import { PageTransition } from '@aurora/libs/hooks/animations'
-
 import Config from '@global/config'
-
 import Wrapper from '@global/layout/wrapper'
 
-// import 'tailwindcss/tailwind.css'
 import 'react-toastify/dist/ReactToastify.css'
 import 'nprogress/nprogress.css'
 import './globals.css'
@@ -48,10 +45,11 @@ const App = ({ children }: AppPropsWithLayout) => {
         `${fInter.variable} ${fPrompt.variable}`,
       )}
     >
+      <AxiomWebVitals />
       <body suppressHydrationWarning={true}>
         <Analytics />
         <Wrapper>
-          <PageTransition>{children}</PageTransition>
+          {children}
           <Toast />
         </Wrapper>
         <VercelAnalytics />
@@ -61,4 +59,3 @@ const App = ({ children }: AppPropsWithLayout) => {
 }
 
 export default App
-export { reportWebVitals } from 'next-axiom'
