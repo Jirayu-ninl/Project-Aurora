@@ -16,11 +16,16 @@ const Client = ({ post }: { post: tPost }) => {
   const shareMedia = post.title + '|' + post.excerpt
 
   const { handleScroll } = useScrollState(2)
-  // console.log(post.content.raw.children)
 
   return (
     <>
-      <SetPage title={'Post | ' + post.title.slice(0, 8) + '..'} />
+      <SetPage
+        title={
+          post.title.length >= 8
+            ? 'Post | ' + post.title.slice(0, 8) + '..'
+            : 'Post | ' + post.title
+        }
+      />
       <FloatingShare
         slug={post.slug}
         basePath={basePath}

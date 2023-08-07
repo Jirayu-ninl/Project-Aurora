@@ -1,21 +1,68 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
+import type { Metadata } from 'next'
 import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
+import { useFetchQL } from '@aurora/libs/hooks/data'
 // import type { tPost } from '../post'
+
+type PageProps = {
+  params: { slug: string }
+}
 
 enum FETCH {
   SUCCESS,
   ERROR,
 }
 
-const getPost = async (slug: string) => {
-  const endpointURL = process.env.GRAPHQL_CONTENT_URL
-  try {
-    if (!endpointURL) {
-      throw 'no api endpoint that request'
-    }
+const endpointURL = process.env.GRAPHQL_CONTENT_URL
 
+export const generateMetadata = async ({
+  params: { slug },
+}: PageProps): Promise<Metadata> => {
+  try {
+    const requestQL = gql`
+      query Post($slug: String!) {
+        post(where: { slug: $slug }) {
+          title
+          excerpt
+          coverImage {
+            url
+            width
+            height
+          }
+        }
+      }
+    `
+    const { post } = await useFetchQL(
+      endpointURL,
+      { query: requestQL, variables: { slug } },
+      180,
+    )
+
+    return {
+      title: post.title,
+      description: post.excerpt,
+      openGraph: {
+        title: post.title,
+        images: [post.coverImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title,
+        description: post.excerpt,
+        images: [post.coverImage],
+      },
+    }
+  } catch (error) {
+    return {
+      title: 'Post not found | IceJiVerse',
+    }
+  }
+}
+
+const getPost = async (slug: string) => {
+  try {
     const requestQL = gql`
       query Post($slug: String!) {
         post(where: { slug: $slug }) {
@@ -47,23 +94,11 @@ const getPost = async (slug: string) => {
       }
     `
 
-    const res = await fetch(endpointURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: requestQL,
-        variables: { slug },
-      }),
-      next: { revalidate: 180 },
-    }).then((res) => res.json())
-
-    if (!res.data) {
-      throw res.errors[0]?.message
-    }
-
-    const { post } = res.data
+    const { post } = await useFetchQL(
+      endpointURL,
+      { query: requestQL, variables: { slug } },
+      180,
+    )
 
     return { status: FETCH.SUCCESS, post }
   } catch (error) {
@@ -71,7 +106,7 @@ const getPost = async (slug: string) => {
   }
 }
 
-async function Page({ params: { slug } }: { params: { slug: string } }) {
+async function Page({ params: { slug } }: PageProps) {
   const data = await getPost(slug)
 
   if (data.status === FETCH.ERROR) {

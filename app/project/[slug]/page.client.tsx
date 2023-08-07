@@ -53,7 +53,13 @@ const Client = ({ project }: { project: tProject }) => {
 
   return (
     <>
-      <SetPage title={'Project | ' + project.title.slice(0, 8) + '..'} />
+      <SetPage
+        title={
+          project.title.length >= 8
+            ? 'Project | ' + project.title.slice(0, 8) + '..'
+            : 'Project | ' + project.title
+        }
+      />
       <FloatingShare
         slug={project.slug}
         basePath={basePath}

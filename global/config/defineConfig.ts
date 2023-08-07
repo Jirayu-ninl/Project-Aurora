@@ -1,5 +1,5 @@
 export const app = {
-  NAME: 'TheIceJI',
+  NAME: 'IceJiVerse',
   VERSION: '2023.08.03',
   UPDATE_DATE: 'Aug 3, 2023',
   Dependencies: {
@@ -19,7 +19,7 @@ export const app = {
 }
 
 export const metaData = {
-  appName: 'TheIceJi',
+  appName: 'IceJiVerse',
   title: 'IceJiVerse | Where the dream begins',
   url: 'https://TheIceJI.com',
   description:
@@ -27,6 +27,7 @@ export const metaData = {
   coverImg: '/og.jpg',
   author: 'Jirayu Ninlapun',
   keywords: [
+    'IceJiVerse',
     'TheIceJi',
     'Jirayu Ninlapun',
     'Web Developer',

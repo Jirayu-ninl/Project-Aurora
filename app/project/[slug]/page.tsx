@@ -1,21 +1,68 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
+import type { Metadata } from 'next'
 import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
+import { useFetchQL } from '@aurora/libs/hooks/data'
 // import type { tProject } from '../project'
+
+type PageProps = {
+  params: { slug: string }
+}
 
 enum FETCH {
   SUCCESS,
   ERROR,
 }
 
-const getProject = async (slug: string) => {
-  const endpointURL = process.env.GRAPHQL_PROJECT_URL
-  try {
-    if (!endpointURL) {
-      throw 'no api endpoint that request'
-    }
+const endpointURL = process.env.GRAPHQL_PROJECT_URL
 
+export const generateMetadata = async ({
+  params: { slug },
+}: PageProps): Promise<Metadata> => {
+  try {
+    const requestQL = gql`
+      query Project($slug: String!) {
+        project(where: { slug: $slug }) {
+          title
+          excerpt
+          coverImage {
+            url
+            width
+            height
+          }
+        }
+      }
+    `
+    const { project } = await useFetchQL(
+      endpointURL,
+      { query: requestQL, variables: { slug } },
+      180,
+    )
+
+    return {
+      title: project.title,
+      description: project.excerpt,
+      openGraph: {
+        title: project.title,
+        images: [project.coverImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: project.title,
+        description: project.excerpt,
+        images: [project.coverImage],
+      },
+    }
+  } catch (error) {
+    return {
+      title: 'Post not found | IceJiVerse',
+    }
+  }
+}
+
+const getProject = async (slug: string) => {
+  try {
     const requestQL = gql`
       query Project($slug: String!) {
         project(where: { slug: $slug }) {
@@ -92,23 +139,11 @@ const getProject = async (slug: string) => {
       }
     `
 
-    const res = await fetch(endpointURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: requestQL,
-        variables: { slug },
-      }),
-      next: { revalidate: 180 },
-    }).then((res) => res.json())
-
-    if (!res.data) {
-      throw res.errors[0]?.message
-    }
-
-    const { project } = res.data
+    const { project } = await useFetchQL(
+      endpointURL,
+      { query: requestQL, variables: { slug } },
+      180,
+    )
 
     return { status: FETCH.SUCCESS, project }
   } catch (error) {
@@ -116,7 +151,7 @@ const getProject = async (slug: string) => {
   }
 }
 
-async function Page({ params: { slug } }: { params: { slug: string } }) {
+async function Page({ params: { slug } }: PageProps) {
   const data = await getProject(slug)
 
   if (data.status === FETCH.ERROR) {

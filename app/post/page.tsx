@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/rules-of-hooks */
 import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
+import { useFetchQL } from '@aurora/libs/hooks/data'
 
 export const metadata = {
   title: 'Posts',
@@ -15,10 +16,6 @@ enum FETCH {
 const getPosts = async () => {
   const endpointURL = process.env.GRAPHQL_CONTENT_URL
   try {
-    if (!endpointURL) {
-      throw 'no api endpoint that request'
-    }
-
     const requestQL = gql`
       {
         posts {
@@ -37,22 +34,7 @@ const getPosts = async () => {
       }
     `
 
-    const res = await fetch(endpointURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: requestQL,
-      }),
-      next: { revalidate: 180 },
-    }).then((res) => res.json())
-
-    if (!res.data) {
-      throw res.errors[0]?.message
-    }
-
-    const { posts } = res.data
+    const { posts } = await useFetchQL(endpointURL, { query: requestQL }, 180)
 
     return { status: FETCH.SUCCESS, posts }
   } catch (error) {
