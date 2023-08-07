@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { gql, request as gqlRequest } from 'graphql-request'
+import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
-import type { tProject } from '../project'
+// import type { tProject } from '../project'
 
 enum FETCH {
   SUCCESS,
@@ -10,13 +10,14 @@ enum FETCH {
 }
 
 const getProject = async (slug: string) => {
+  const endpointURL = process.env.GRAPHQL_PROJECT_URL
   try {
-    if (!process.env.GRAPHQL_PROJECT_URL) {
+    if (!endpointURL) {
       throw 'no api endpoint that request'
     }
 
     const requestQL = gql`
-      query Page($slug: String!) {
+      query Project($slug: String!) {
         project(where: { slug: $slug }) {
           title
           projectType
@@ -91,13 +92,23 @@ const getProject = async (slug: string) => {
       }
     `
 
-    const { project } = await gqlRequest<{ project: tProject }>(
-      process.env.GRAPHQL_PROJECT_URL as string,
-      requestQL,
-      {
-        slug: slug,
+    const res = await fetch(endpointURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    )
+      body: JSON.stringify({
+        query: requestQL,
+        variables: { slug },
+      }),
+      next: { revalidate: 180 },
+    }).then((res) => res.json())
+
+    if (!res.data) {
+      throw res.errors[0]?.message
+    }
+
+    const { project } = res.data
 
     return { status: FETCH.SUCCESS, project }
   } catch (error) {

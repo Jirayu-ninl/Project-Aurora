@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { gql, request as gqlRequest } from 'graphql-request'
+import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
-import type { tPost } from '../post'
+// import type { tPost } from '../post'
 
 enum FETCH {
   SUCCESS,
@@ -10,13 +10,14 @@ enum FETCH {
 }
 
 const getPost = async (slug: string) => {
+  const endpointURL = process.env.GRAPHQL_CONTENT_URL
   try {
-    if (!process.env.GRAPHQL_CONTENT_URL) {
+    if (!endpointURL) {
       throw 'no api endpoint that request'
     }
 
     const requestQL = gql`
-      query PostsPage($slug: String!) {
+      query Post($slug: String!) {
         post(where: { slug: $slug }) {
           title
           tag
@@ -46,13 +47,23 @@ const getPost = async (slug: string) => {
       }
     `
 
-    const { post } = await gqlRequest<{ post: tPost }>(
-      process.env.GRAPHQL_CONTENT_URL as string,
-      requestQL,
-      {
-        slug: slug,
+    const res = await fetch(endpointURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    )
+      body: JSON.stringify({
+        query: requestQL,
+        variables: { slug },
+      }),
+      next: { revalidate: 180 },
+    }).then((res) => res.json())
+
+    if (!res.data) {
+      throw res.errors[0]?.message
+    }
+
+    const { post } = res.data
 
     return { status: FETCH.SUCCESS, post }
   } catch (error) {
@@ -78,7 +89,11 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
     return <FALLBACK.NotFound title='POST' backURL='/post' />
   }
 
-  return <>{data.post && <Client post={data.post} />}</>
+  return (
+    <>
+      <Client post={data.post} />
+    </>
+  )
 }
 
 export default Page
