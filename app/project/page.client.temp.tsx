@@ -80,7 +80,7 @@ const Project = ({ project, i }: { project: tProject; i: number }) => {
             {hover && (
               <>
                 <motion.div
-                  className='absolute bottom-0 z-10 m-4 w-[calc(100%-32px)] rounded-lg bg-black/20 p-4 backdrop-blur-lg'
+                  className='absolute bottom-0 z-10 m-4 hidden w-[calc(100%-32px)] rounded-lg bg-black/20 p-4 backdrop-blur-lg xl:block'
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 20, opacity: 0 }}
@@ -105,6 +105,31 @@ const Project = ({ project, i }: { project: tProject; i: number }) => {
               </>
             )}
           </AnimatePresence>
+          <>
+            <motion.div
+              className='absolute bottom-0 z-10 m-1 w-[calc(100%-8px)] rounded-md bg-black/20 p-1 backdrop-blur-lg lg:m-2 lg:w-[calc(100%-16px)] lg:p-2 xl:hidden'
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 20, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className='md:text-xl lg:text-2xl'>{project.title}</h3>
+            </motion.div>
+            <div className='absolute right-1 top-1 z-10 flex space-x-1 xl:hidden'>
+              {project.tag.map((v) => (
+                <motion.button
+                  key={v}
+                  className='rounded-sm bg-quaternary-2 px-1 py-px text-2xs text-white dark:bg-primary-0 dark:text-black md:px-2 md:py-1 md:text-xs'
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {v}
+                </motion.button>
+              ))}
+            </div>
+          </>
           <Image
             src={project.coverImage.url}
             alt={project.title}
