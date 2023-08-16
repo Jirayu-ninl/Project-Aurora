@@ -3,7 +3,7 @@ import { gql } from 'graphql-request'
 import Client from './page.client.temp'
 import * as FALLBACK from '@components/post/error'
 import { useFetchQL } from '@aurora/libs/hooks/data'
-import { DATA } from './data.demo'
+// import { DATA } from './data.demo'
 
 export const metadata = {
   title: 'Projects',
@@ -14,42 +14,42 @@ enum FETCH {
   ERROR,
 }
 
-// const getProjects = async () => {
-//   const endpointURL = process.env.GRAPHQL_PROJECT_URL
-//   try {
-//     const requestQL = gql`
-//       {
-//         projects {
-//           title
-//           slug
-//           featured
-//           tagline
-//           tag
-//           coverImage {
-//             url
-//             width
-//             height
-//           }
-//         }
-//       }
-//     `
+const getProjects = async () => {
+  const endpointURL = process.env.GRAPHQL_PROJECT_URL
+  try {
+    const requestQL = gql`
+      {
+        projects {
+          title
+          slug
+          featured
+          tagline
+          tag
+          coverImage {
+            url
+            width
+            height
+          }
+        }
+      }
+    `
 
-//     const { projects } = await useFetchQL(
-//       endpointURL,
-//       { query: requestQL },
-//       180,
-//     )
+    const { projects } = await useFetchQL(
+      endpointURL,
+      { query: requestQL },
+      180,
+    )
 
-//     return { status: FETCH.SUCCESS, projects }
-//   } catch (error) {
-//     return { status: FETCH.ERROR, error }
-//   }
-// }
+    return { status: FETCH.SUCCESS, projects }
+  } catch (error) {
+    return { status: FETCH.ERROR, error }
+  }
+}
 
 async function Page() {
-  // const data = await getProjects()
+  const data = await getProjects()
 
-  const data = DATA.demo
+  // const data = DATA.demo
 
   if (data.status === FETCH.ERROR) {
     return (
