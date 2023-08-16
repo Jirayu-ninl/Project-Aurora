@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { gql } from 'graphql-request'
-import Client from './page.client'
+import Client from './page.client.temp'
 import * as FALLBACK from '@components/post/error'
 import { useFetchQL } from '@aurora/libs/hooks/data'
+// import { DATA } from './data.demo'
 
 export const metadata = {
   title: 'Projects',
@@ -47,6 +48,8 @@ const getProjects = async () => {
 
 async function Page() {
   const data = await getProjects()
+
+  // const data = DATA.demo
 
   if (data.status === FETCH.ERROR) {
     return (

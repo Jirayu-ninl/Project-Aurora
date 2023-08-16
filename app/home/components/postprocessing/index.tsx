@@ -4,8 +4,7 @@ import {
   HueSaturation,
 } from '@react-three/postprocessing'
 import { BlendFunction, KernelSize } from 'postprocessing'
-import { ConstantNoisePass } from './constantNoisePass'
-import { FlowMapPass } from './flowMapPass'
+import { Effect } from '@aurora/libs/webGL/fx'
 
 const PostProcessing = () => (
   <EffectComposer>
@@ -18,8 +17,8 @@ const PostProcessing = () => (
       luminanceSmoothing={1}
       opacity={0.2}
     />
-    <ConstantNoisePass />
-    <FlowMapPass />
+    <Effect.ConstantNoisePass />
+    <Effect.FlowMapPass />
     <HueSaturation
       blendFunction={BlendFunction.NORMAL}
       hue={0.07}

@@ -88,7 +88,15 @@ body {
 }
 
 .AnimScale {
-  @apply xl:hover:scale-150;
+  @apply xl:hover:scale-150 hover:z-10;
+}
+
+.AnimScale-105 {
+  @apply xl:hover:scale-105 hover:z-10;
+}
+
+.AnimShadow-el {
+  @apply xl:hover:shadow-[0_35px_60px_15px_rgba(0,0,0,1)];
 }
 
 .AnimScale-sm {

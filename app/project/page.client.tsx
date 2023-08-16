@@ -1,25 +1,29 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import Link from 'next/link'
+import { Scene } from './components'
 
-const Client = ({ projects }: { projects: any }) => {
-  // console.log(data)
+const Client = ({ projects }: { projects: tProject[] }) => {
+  // projects = [...projects, projects[0]]
+
   return (
     <>
-      <main className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>
-        <h1 className='text-xl'>Projects</h1>
-        {projects ? (
-          projects.map((v: any, i: number) => (
-            <Link href={'/project/' + v.slug} key={i}>
-              {v.title}
-            </Link>
-          ))
-        ) : (
-          <h6>No data</h6>
-        )}
-      </main>
+      <Scene projects={projects} />
     </>
   )
+}
+
+type tProject = {
+  title: string
+  slug: string
+  featured: boolean
+  tagline: string
+  tag: string[]
+  coverImage: {
+    url: string
+    width: number
+    height: number
+  }
 }
 
 export default Client
