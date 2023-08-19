@@ -17,22 +17,17 @@ const Banner = ({
 }) => {
   return (
     <>
-      <div className='mr-4 flex h-4 fill-black dark:fill-white'>
+      <div className='flex h-4 fill-black dark:fill-white xxl:mr-4'>
         <Icon.SeparatorLine />
       </div>
-      <div
-        className='relative flex h-full cursor-pointer items-center'
-        onClick={() => {
-          _setNavDropdown(
-            _navDropdown !== eNavDropdownState.USER
-              ? eNavDropdownState.USER
-              : eNavDropdownState.NONE,
-          )
-        }}
-      >
-        <WalletBanner session={session} />
-        <UserBanner session={session} notificationCount={notificationCount} />
-      </div>
+
+      <WalletBanner session={session} />
+      <UserBanner
+        session={session}
+        notificationCount={notificationCount}
+        _setNavDropdown={_setNavDropdown}
+        _navDropdown={_navDropdown}
+      />
     </>
   )
 }

@@ -25,7 +25,7 @@ function NavMenuItem({
       animate={aNavChildren.animate}
       transition={aNavChildren.transition(index / 10)}
       className={clsx(
-        'flex xl:mr-6 xxl:mr-9 el:mr-12',
+        'flex xl:mr-6 el:mr-12',
         _navRouteActiveState.id !== index && 'Anim AnimOpacity-20',
       )}
     >
@@ -47,7 +47,7 @@ function NavMenuItem({
           >
             0{index + 1}
           </p>
-          <p className='pl-1 text-xl font-bold md:text-2xs xxl:text-sm el:pl-3'>
+          <p className='pl-1 text-xs font-bold xxl:text-sm el:pl-3'>
             {menuItem.title}
           </p>
         </div>

@@ -51,6 +51,7 @@ enum WalletChain {
   SOL
   NEAR
   AVAX
+  ALN
 }
 
 model User {
