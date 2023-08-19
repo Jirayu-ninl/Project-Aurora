@@ -12,7 +12,7 @@ import IceJiLogo from '@components/logo/IceJi'
 import * as Icon from './assets'
 import { Panel } from './components/mobile'
 
-function NavMobile({ children }: { children: React.ReactNode }) {
+const NavMobile = ({ children }: { children: React.ReactNode }) => {
   const _dark = UI((state) => state.dark)
   const _setDark = UI((state) => state.setDark)
   const _navShowCanvas = UI((state) => state.navShowCanvas)
@@ -184,4 +184,4 @@ function NavMobile({ children }: { children: React.ReactNode }) {
   // )
 }
 
-export default NavMobile
+export { NavMobile }

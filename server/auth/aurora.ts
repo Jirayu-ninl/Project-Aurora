@@ -34,7 +34,7 @@ declare module 'next-auth' {
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/app/portal',
-    signOut: '/app/portal',
+    signOut: '/',
     error: '/app/portal',
     newUser: '/app/user',
   },
@@ -48,11 +48,6 @@ export const authOptions: NextAuthOptions = {
         plane: user.plan,
       },
     }),
-
-    // redirect: async ({ baseUrl }) => {
-    //   const appUrl = baseUrl + '/app/user'
-    //   return appUrl
-    // },
     // signIn: async ({ user, account }) => SignInProvider(user, account),
   },
   adapter: PrismaAdapter(prisma),

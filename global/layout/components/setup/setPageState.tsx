@@ -7,13 +7,14 @@ import {
   navSecondaryRoutes,
   type tNavSecondaryRoutes,
 } from '@global/config/routes'
-import { State } from '@global/store'
+import { State, UI } from '@global/store'
 
 function SetPageState() {
   const _setPage = State((state) => state.setPage)
   const _setNavRoute = State((state) => state.setNavRoute)
   const _setBackRoute = State((state) => state.setBackRoute)
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
+  const _setCursor = UI((state) => state.setCursor)
 
   const pathName = usePathname()
 
@@ -40,6 +41,11 @@ function SetPageState() {
                 scrollProgress: 20,
               })
               _setPage(reqPath[0].slice(0, 4).toUpperCase() + '. ' + v.title)
+            } else {
+              _setNavRouteActiveState({
+                id: 99,
+                scrollProgress: 0,
+              })
             }
           },
         )
@@ -54,6 +60,11 @@ function SetPageState() {
       })
     }
   }, [_setPage, _setNavRoute, _setBackRoute, _setNavRouteActiveState, pathName])
+
+  useEffect(() => {
+    _setCursor(false)
+  }, [pathName, _setCursor])
+
   return null
 }
 

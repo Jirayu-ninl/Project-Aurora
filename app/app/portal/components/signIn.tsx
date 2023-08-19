@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// 'use client'
-
 import Link from 'next/link'
 import { getProviders } from 'next-auth/react'
 import SignInProviders from './signIn.providers'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@server/auth'
 
 const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
   const providers = await getProviders()
+  const session = await getServerSession(authOptions)
+
   return (
     <>
       <div className='Card-white-20 Border-white-40 relative ml-2 h-full rounded-lg p-8'>
@@ -49,7 +50,7 @@ const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
           <p className='px-3 text-xs'>or Continue with</p>
           <div className=' my-auto h-px w-12 bg-white/30' />
         </div>
-        <SignInProviders providers={providers} />
+        <SignInProviders providers={providers} session={session} />
       </div>
       <Link
         className='Anim AnimOpacity-40 mr-1 mt-1 cursor-pointer text-right text-xs'

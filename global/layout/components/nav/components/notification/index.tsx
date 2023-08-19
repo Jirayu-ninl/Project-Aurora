@@ -1,5 +1,5 @@
 import { User } from '@global/store'
-import type { tUI } from '@global/store'
+import { eNavDropdownState } from '@global/store/ui'
 import { Notification as NotiIcon } from '../../assets'
 
 import ListPopupDropdown from '../listPopupDropdown'
@@ -7,11 +7,9 @@ import ListPopupDropdown from '../listPopupDropdown'
 const NotificationBlock = ({
   _setNavDropdown,
   _navDropdown,
-  NavDropdownState,
 }: {
-  _setNavDropdown: (dropdown: string) => void
-  _navDropdown: string
-  NavDropdownState: tUI.tNavDropdownState
+  _setNavDropdown: (dropdown: eNavDropdownState) => void
+  _navDropdown: eNavDropdownState
 }) => {
   const _notifications = User((state) => state.notifications)
   const _setNotification = User((state) => state.setNotifications)
@@ -20,8 +18,7 @@ const NotificationBlock = ({
     <ListPopupDropdown
       _setNavDropdown={_setNavDropdown}
       _navDropdown={_navDropdown}
-      navDropdownState={NavDropdownState}
-      state='notifications'
+      state={eNavDropdownState.NOTIFICATIONS}
       icon={<NotiIcon />}
       items={_notifications}
       buttonText='clear all'

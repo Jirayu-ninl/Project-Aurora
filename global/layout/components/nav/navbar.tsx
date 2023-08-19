@@ -3,24 +3,23 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-// import { useSession, signOut } from 'next-auth/react'
 
 import { useOnClickOutside } from '@aurora/libs/hooks/events'
 import { useAudio } from '@aurora/libs/hooks/audio'
 
 import { State, UI } from '@global/store'
-import { NavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui'
 import { aNav, aNavChildren } from '@global/config/defineAnimationConfig'
 // import { navCanvasRoutes } from '@app/config/routes'
 import IceJiLogo from '@components/logo/IceJi'
 
-// import UserBlock from './components/user'
-import NotificationBlock from './components/notification'
+import UserBlock from './components/user'
+// import NotificationBlock from './components/notification'
 import CartBlock from './components/cart'
 import NavMenuItem from './components/navMenuItem'
 import * as Icon from './assets'
 
-export default function IJNNav() {
+const NavBar = ({ session }: any) => {
   const _setCursor = UI((state) => state.setCursor)
   const _dark = UI((state) => state.dark)
   const _setDark = UI((state) => state.setDark)
@@ -36,15 +35,13 @@ export default function IJNNav() {
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
 
   const NavRef = useRef(null)
-  useOnClickOutside(NavRef, () => _setNavDropdown(NavDropdownState.NONE))
+  useOnClickOutside(NavRef, () => _setNavDropdown(eNavDropdownState.NONE))
 
   const [audioPlaying, toggleAudio] = useAudio()
   const audioToggle = () => {
     toggleAudio()
     _setCursor(false)
   }
-
-  // const { data: session } = useSession()
 
   return (
     <>
@@ -94,17 +91,21 @@ export default function IJNNav() {
                     />
                   ))}
                 </motion.ul>
-                <div className='ml-auto flex h-full w-[200px] items-center justify-end xxl:w-[180px]'>
+                <div className='ml-auto flex h-full items-center justify-end '>
                   <div className='mr-4 flex h-4 space-x-6 fill-black dark:fill-white'>
                     <CartBlock
                       _setNavDropdown={_setNavDropdown}
                       _navDropdown={_navDropdown}
-                      NavDropdownState={NavDropdownState}
                     />
-                    <NotificationBlock
+                    {/* <NotificationBlock
                       _setNavDropdown={_setNavDropdown}
                       _navDropdown={_navDropdown}
                       NavDropdownState={NavDropdownState}
+                    /> */}
+                    <UserBlock
+                      _setNavDropdown={_setNavDropdown}
+                      _navDropdown={_navDropdown}
+                      session={session}
                     />
                     <Icon.SeparatorLine />
                   </div>
@@ -126,20 +127,21 @@ export default function IJNNav() {
                     >
                       {audioPlaying ? <Icon.SoundOn /> : <Icon.SoundOff />}
                     </motion.div>
+                    {/* <UserBlock /> */}
                     {/* {!session && (
-                <Link
-                  href='/app/portal'
-                  onClick={() => _setNavShowCanvas(false)}
-                >
-                  <Icon.User />
-                </Link>
-              )} */}
+                      <Link
+                        href='/app/portal'
+                        onClick={() => _setNavShowCanvas(false)}
+                      >
+                        <Icon.User />
+                      </Link>
+                    )} */}
                     <motion.div
                       className='cursor-pointer'
                       onClick={() => {
                         _setDark(!_dark)
                         _setCursor(false)
-                        _setNavDropdown(NavDropdownState.NONE)
+                        _setNavDropdown(eNavDropdownState.NONE)
                       }}
                       initial={aNavChildren.initial}
                       exit={aNavChildren.exit}
@@ -153,7 +155,7 @@ export default function IJNNav() {
                       onClick={() => {
                         _setNavShowCanvas(!_navShowCanvas)
                         _setCursor(false)
-                        _setNavDropdown(NavDropdownState.NONE)
+                        _setNavDropdown(eNavDropdownState.NONE)
                       }}
                       initial={aNavChildren.initial}
                       exit={aNavChildren.exit}
@@ -172,3 +174,5 @@ export default function IJNNav() {
     </>
   )
 }
+
+export { NavBar }

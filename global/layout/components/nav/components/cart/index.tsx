@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { User } from '@global/store'
-import type { tUI } from '@global/store'
+import { eNavDropdownState } from '@global/store/ui'
 import { Cart as CartIcon } from '../../assets'
 
 import ListPopupDropdown from '../listPopupDropdown'
@@ -8,11 +8,9 @@ import ListPopupDropdown from '../listPopupDropdown'
 const CartBlock = ({
   _setNavDropdown,
   _navDropdown,
-  NavDropdownState,
 }: {
-  _setNavDropdown: (dropdown: string) => void
-  _navDropdown: string
-  NavDropdownState: tUI.tNavDropdownState
+  _setNavDropdown: (dropdown: eNavDropdownState) => void
+  _navDropdown: eNavDropdownState
 }) => {
   const _cart = User((state) => state.cart)
   const router = useRouter()
@@ -21,8 +19,7 @@ const CartBlock = ({
     <ListPopupDropdown
       _setNavDropdown={_setNavDropdown}
       _navDropdown={_navDropdown}
-      navDropdownState={NavDropdownState}
-      state='cart'
+      state={eNavDropdownState.CART}
       icon={<CartIcon />}
       items={_cart}
       buttonText='view cart'

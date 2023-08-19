@@ -1,3 +1,3 @@
-export { default as NavBar } from './navbar'
-export { default as NavCanvas } from './canvas'
-export { default as NavMobile } from './nav.mobile'
+export { NavBar } from './navbar'
+export { NavCanvas } from './canvas'
+export { NavMobile } from './nav.mobile'

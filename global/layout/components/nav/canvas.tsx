@@ -12,7 +12,7 @@ import { navCanvas as CSS } from './styles'
 // Footer
 import { FooterMobile } from '../footer'
 
-export default function Canvas() {
+const NavCanvas = () => {
   const _setCursor = UI((state) => state.setCursor)
   const _dark = UI((state) => state.dark)
   const _navShowCanvas = UI((state) => state.navShowCanvas)
@@ -129,3 +129,5 @@ export default function Canvas() {
     </>
   )
 }
+
+export { NavCanvas }

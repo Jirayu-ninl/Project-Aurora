@@ -1,24 +1,22 @@
+import Link from 'next/link'
+import { signIn, signOut } from 'next-auth/react'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { eNavDropdownState } from '@global/store/ui'
-import Items from './items'
+import Items from '../listPopupDropdown/items'
 
 const DropdownPopup = ({
-  items,
-  itemsCount,
+  notifications,
+  notificationCount,
+  session,
   _setNavDropdown,
-  state,
-  buttonText,
-  buttonCallback,
 }: {
-  items: any[] | []
-  itemsCount: number
+  notifications: any[] | []
+  notificationCount: number
+  session: any
   _setNavDropdown: (dropdown: eNavDropdownState) => void
-  state: eNavDropdownState
-  buttonText: string
-  buttonCallback: () => void
 }) => {
-  const title = state === eNavDropdownState.CART ? 'Cart' : 'Notifications'
+  const user = session ? session.user : null
 
   return (
     <motion.div
@@ -27,30 +25,40 @@ const DropdownPopup = ({
       exit={{ opacity: 0, y: -10 }}
       className='Card-back-md-60 absolute -right-14 top-14 flex max-h-64 w-48 flex-col px-2 py-4 drop-shadow-md sm:right-0'
     >
-      <h5 className='mb-2 text-center text-base font-semibold'>{title}</h5>
-      {itemsCount === 0 ? (
+      <Link href='/app/dashboard'>
+        <div className='cursor-pointer text-center'>
+          <h5 className='text-base font-semibold'>{user.name}</h5>
+          <h6 className='text-xs opacity-80'>{user.email}</h6>
+        </div>
+      </Link>
+      {notificationCount === 0 ? (
         <div className='flex h-24 items-center justify-center'>
           <p className='text-center text-xs font-light opacity-60'>
-            {title} is empty
+            No notification
           </p>
         </div>
       ) : (
         <>
-          <Items list={items} />
+          <Items list={notifications} />
           <p
             className='cursor-pointer pt-2 text-center text-xs font-light opacity-60'
             onClick={() => {
-              buttonCallback()
               _setNavDropdown(eNavDropdownState.NONE)
               toast.success('Clear all')
             }}
           >
-            {buttonText}
+            mark as read
           </p>
         </>
       )}
+      <button
+        onClick={() => signOut()}
+        className='mx-auto cursor-pointer rounded border border-white/40 bg-black/10 px-2 py-1 text-center text-xs backdrop-blur-md'
+      >
+        LOG OUT
+      </button>
     </motion.div>
   )
 }
 
-export default DropdownPopup
+export { DropdownPopup }

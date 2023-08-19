@@ -1,3 +1,6 @@
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@server/auth'
+
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
@@ -15,7 +18,9 @@ import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
 // import Beta from './components/modal.beta'
 
-const Wrapper = ({ children }: { children: React.ReactNode }) => {
+const Wrapper = async ({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions)
+
   return (
     <>
       <CreateProgress />
@@ -23,7 +28,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
       {/* <Beta /> */}
       <AppInfo />
       <Setup />
-      <NavBar />
+      <NavBar session={session} />
       <NavCanvas />
       <WrapperMobile>{children}</WrapperMobile>
       <Footer />

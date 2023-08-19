@@ -16,7 +16,7 @@ const store: tStore = (set) => ({
   setShowNav: (show) => set(() => ({ showNav: show })),
   navShowCanvas: false,
   setNavShowCanvas: (show) => set(() => ({ navShowCanvas: show })),
-  navDropdown: 'none',
+  navDropdown: eNavDropdownState.NONE,
   setNavDropdown: (dropdown) => set(() => ({ navDropdown: dropdown })),
   modalAppInfo: false,
   setModalAppInfo: (toggle) => set(() => ({ modalAppInfo: toggle })),
@@ -31,19 +31,12 @@ const store: tStore = (set) => ({
     })),
 })
 
-export type tNavDropdownState = {
-  NONE: 'none'
-  NOTIFICATIONS: 'notifications'
-  CART: 'cart'
-  SETTINGS: 'settings'
-  USER: 'user'
-}
-export const NavDropdownState: tNavDropdownState = {
-  NONE: 'none',
-  NOTIFICATIONS: 'notifications',
-  CART: 'cart',
-  SETTINGS: 'settings',
-  USER: 'user',
+export enum eNavDropdownState {
+  NONE,
+  NOTIFICATIONS,
+  CART,
+  SETTINGS,
+  USER,
 }
 
 export type tStoreState = {
@@ -59,8 +52,8 @@ export type tStoreState = {
   setShowNav: (show: boolean) => void
   navShowCanvas: boolean
   setNavShowCanvas: (show: boolean) => void
-  navDropdown: string
-  setNavDropdown: (dropdown: string) => void
+  navDropdown: eNavDropdownState
+  setNavDropdown: (dropdown: eNavDropdownState) => void
   modalAppInfo: boolean
   setModalAppInfo: (toggle: boolean) => void
   cursor: boolean

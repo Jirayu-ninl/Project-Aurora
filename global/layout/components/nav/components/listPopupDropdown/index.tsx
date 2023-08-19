@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import type { tUser, tUI } from '@global/store'
+import { eNavDropdownState } from '@global/store/ui'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 
 import DropdownPopup from './dropdownPopup'
@@ -7,19 +7,17 @@ import DropdownPopup from './dropdownPopup'
 const ListPopupDropdown = ({
   _setNavDropdown,
   _navDropdown,
-  navDropdownState,
   state,
   icon,
   items,
   buttonText,
   buttonCallback,
 }: {
-  _setNavDropdown: (dropdown: string) => void
-  _navDropdown: string
-  navDropdownState: tUI.tNavDropdownState
-  state: 'notifications' | 'cart'
+  _setNavDropdown: (dropdown: eNavDropdownState) => void
+  _navDropdown: eNavDropdownState
+  state: eNavDropdownState
   icon: React.ReactNode
-  items: tUser.tNotification[] | tUser.tCart[] | []
+  items: any[] | []
   buttonText: string
   buttonCallback: () => void
 }) => {
@@ -31,12 +29,16 @@ const ListPopupDropdown = ({
       initial={aNavChildren.initial}
       exit={aNavChildren.exit}
       animate={aNavChildren.animate}
-      transition={aNavChildren.transition(state === 'cart' ? 0.7 : 0.8)}
+      transition={aNavChildren.transition(
+        state === eNavDropdownState.CART ? 0.7 : 0.8,
+      )}
     >
       <div
         className='h-[18px]'
         onClick={() => {
-          _setNavDropdown(state)
+          _setNavDropdown(
+            _navDropdown !== state ? state : eNavDropdownState.NONE,
+          )
         }}
       >
         {icon}
@@ -51,7 +53,6 @@ const ListPopupDropdown = ({
             items={items}
             itemsCount={itemsCount}
             _setNavDropdown={_setNavDropdown}
-            navDropdownState={navDropdownState}
             state={state}
             buttonText={buttonText}
             buttonCallback={buttonCallback}
