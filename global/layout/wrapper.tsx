@@ -30,7 +30,7 @@ const Wrapper = async ({ children }: { children: React.ReactNode }) => {
       <Setup />
       <NavBar session={session} />
       <NavCanvas />
-      <WrapperMobile>{children}</WrapperMobile>
+      <WrapperMobile session={session}>{children}</WrapperMobile>
       <Footer />
       <Cursor />
       <Audio />

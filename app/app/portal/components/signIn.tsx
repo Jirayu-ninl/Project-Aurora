@@ -52,11 +52,10 @@ const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
         </div>
         <SignInProviders providers={providers} session={session} />
       </div>
-      <Link
-        className='Anim AnimOpacity-40 mr-1 mt-1 cursor-pointer text-right text-xs'
-        href='/app/portal/signup'
-      >
-        Not have an Account?
+      <Link href='/app/portal/signup'>
+        <p className='Anim AnimOpacity-40 mt-1 cursor-pointer text-right text-xs'>
+          Not have an Account?
+        </p>
       </Link>
     </>
   )

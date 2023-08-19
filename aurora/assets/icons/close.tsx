@@ -1,4 +1,4 @@
-export default function close() {
+const Close = () => {
   return (
     <>
       <svg
@@ -23,3 +23,5 @@ export default function close() {
     </>
   )
 }
+
+export { Close }

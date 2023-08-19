@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { User } from '@global/store'
 import { eNavDropdownState } from '@global/store/ui'
-import { Cart as CartIcon } from '../../assets'
+import { Cart as CartIcon } from '@aurora/assets/icons'
 
 import ListPopupDropdown from '../listPopupDropdown'
 

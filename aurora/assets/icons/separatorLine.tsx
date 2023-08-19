@@ -4,4 +4,4 @@ const SeparatorLine = () => (
   </svg>
 )
 
-export default SeparatorLine
+export { SeparatorLine }

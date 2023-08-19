@@ -1,4 +1,4 @@
-export default function UserIcon() {
+export const User = () => {
   return (
     <>
       <svg

@@ -1,4 +1,4 @@
-const CartIcon = () => {
+const Cart = () => {
   return (
     <svg
       viewBox='0 0 20.015 19.599'
@@ -14,4 +14,4 @@ const CartIcon = () => {
   )
 }
 
-export default CartIcon
+export { Cart }

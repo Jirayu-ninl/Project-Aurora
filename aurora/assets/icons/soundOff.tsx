@@ -1,4 +1,4 @@
-export default function soundOff() {
+const SoundOff = () => {
   return (
     <>
       <svg
@@ -20,3 +20,5 @@ export default function soundOff() {
     </>
   )
 }
+
+export { SoundOff }

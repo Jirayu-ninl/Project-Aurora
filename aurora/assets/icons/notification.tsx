@@ -1,4 +1,4 @@
-const NotiIcon = () => {
+const Notification = () => {
   return (
     <svg
       viewBox='0 0 18.275 21.5'
@@ -14,4 +14,4 @@ const NotiIcon = () => {
   )
 }
 
-export default NotiIcon
+export { Notification }

@@ -1,5 +1,5 @@
 import { eNavDropdownState } from '@global/store/ui'
-import * as Icon from '../../assets'
+import { Icon } from '@aurora/assets'
 
 import { UserBanner } from './banner.user'
 import { WalletBanner } from './banner.wallet'

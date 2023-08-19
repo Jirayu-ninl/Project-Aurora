@@ -1,4 +1,4 @@
-export default function DarkIcon() {
+const Dark = () => {
   return (
     <>
       <svg
@@ -23,3 +23,5 @@ export default function DarkIcon() {
     </>
   )
 }
+
+export { Dark }

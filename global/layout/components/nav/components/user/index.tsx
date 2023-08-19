@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { eNavDropdownState } from '@global/store/ui'
-import * as Icon from '../../assets'
+import { Icon } from '@aurora/assets'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 import { DropdownPopup } from './dropdownPopup'
 import { Banner } from './banner'

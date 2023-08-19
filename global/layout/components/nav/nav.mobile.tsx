@@ -3,16 +3,20 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-import { useAudio } from '@aurora/libs/hooks/audio'
-
 import { State, UI } from '@global/store'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 
 import IceJiLogo from '@components/logo/IceJi'
-import * as Icon from './assets'
+import * as Icon from '@aurora/assets/icons'
 import { Panel } from './components/mobile'
 
-const NavMobile = ({ children }: { children: React.ReactNode }) => {
+const NavMobile = ({
+  children,
+  session,
+}: {
+  children: React.ReactNode
+  session: any
+}) => {
   const _dark = UI((state) => state.dark)
   const _setDark = UI((state) => state.setDark)
   const _navShowCanvas = UI((state) => state.navShowCanvas)
@@ -20,13 +24,8 @@ const NavMobile = ({ children }: { children: React.ReactNode }) => {
   const _page = State((state) => state.page)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
 
-  const [audioPlaying, toggleAudio] = useAudio()
-  const audioToggle = () => {
-    toggleAudio()
-  }
-
   const [showPanel, setShowPanel] = useState(false)
-  const [panelState, setPanelState] = useState('user')
+  const [panelState, setPanelState] = useState('')
 
   return (
     <>
@@ -56,24 +55,27 @@ const NavMobile = ({ children }: { children: React.ReactNode }) => {
                 setShowPanel(false)
               }}
             >
-              {_navShowCanvas ? <Icon.Close /> : <Icon.Menu />}
+              {_navShowCanvas ? <Icon.Close /> : <Icon.Home />}
             </div>
             <div
               className='pointer-events-auto cursor-pointer'
               onClick={() => {
-                setPanelState('user')
-                setShowPanel(panelState === 'user' ? !showPanel : true)
+                setPanelState('app')
+                setShowPanel(panelState === 'app' ? !showPanel : true)
                 _setNavShowCanvas(false)
               }}
             >
-              <Icon.User />
+              <Icon.Menu />
             </div>
           </motion.div>
         </div>
       </nav>
       <div className='pointer-events-none fixed bottom-20 z-50 h-[9.375rem] w-screen bg-gradient-to-t from-white to-white/0 dark:from-[#101010] dark:to-[#101010]/0' />
       <div className='pointer-events-none fixed bottom-14 z-40 h-[1.5625rem] w-screen rounded-b-3xl bg-white shadow-lg shadow-black/50 dark:bg-[#101010]' />
-      <div className='NSB m-container absolute'>
+      <div
+        className='NSB m-container absolute'
+        onClick={() => setShowPanel(false)}
+      >
         {/* <div>{children}</div> */}
         {children}
       </div>
@@ -82,6 +84,7 @@ const NavMobile = ({ children }: { children: React.ReactNode }) => {
         onClick={() => {
           _setNavShowCanvas(false)
           _setModalAppInfo(true)
+          setShowPanel(false)
         }}
       >
         <IceJiLogo dark={!_dark} />
@@ -95,13 +98,12 @@ const NavMobile = ({ children }: { children: React.ReactNode }) => {
       )}
       <div className='fixed bottom-20 right-6 z-60'>
         <Panel
+          session={session}
           showPanel={showPanel}
           panelState={panelState}
           _dark={_dark}
           _setDark={_setDark}
           setShowPanel={setShowPanel}
-          audioPlaying={audioPlaying}
-          audioToggle={audioToggle}
         />
       </div>
     </>

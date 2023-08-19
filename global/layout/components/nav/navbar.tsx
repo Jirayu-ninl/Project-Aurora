@@ -17,7 +17,7 @@ import UserBlock from './components/user'
 // import NotificationBlock from './components/notification'
 import CartBlock from './components/cart'
 import NavMenuItem from './components/navMenuItem'
-import * as Icon from './assets'
+import { Icon } from '@aurora/assets'
 
 const NavBar = ({ session }: any) => {
   const _setCursor = UI((state) => state.setCursor)

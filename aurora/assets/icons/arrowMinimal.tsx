@@ -1,4 +1,4 @@
-function ArrowMinimal() {
+const ArrowMinimal = () => {
   return (
     <>
       <svg viewBox='0 0 7 9' fill='none' className='h-full w-full'>
@@ -13,4 +13,4 @@ function ArrowMinimal() {
   )
 }
 
-export default ArrowMinimal
+export { ArrowMinimal }
