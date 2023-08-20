@@ -1,0 +1,202 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table IceJiVerse {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  title String [unique, not null]
+  description String
+  content Json [not null]
+}
+
+Table Announcement {
+  id String [pk]
+  title String [not null]
+  content String [not null]
+  emoji String
+  link String
+  color String [not null, default: 'primary']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  startsAt DateTime
+  endsAt DateTime
+  metadata Json
+}
+
+Table User {
+  id String [pk]
+  username String [unique]
+  name String
+  credential Credential [not null]
+  role Role [not null, default: 'USER']
+  plan UserPlan [not null, default: 'FREE']
+  subscriptionId String
+  subscription CustomerSubscription
+  email String [unique, not null]
+  emailVerified DateTime
+  createdAt DateTime [default: `now()`, not null]
+  image String
+  metadata Json
+  accounts Account [not null]
+  wallets Wallet [not null]
+  balance Float [not null, default: 0]
+  sessions Session [not null]
+  notifications Notification [not null]
+  purchase Purchase [not null]
+}
+
+Table Account {
+  id String [pk]
+  userId String [not null]
+  type String [not null]
+  provider String [not null]
+  providerAccountId String [not null]
+  refresh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  metadata Json [not null, default: '{}']
+  user User [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table Credential {
+  id String [pk]
+  email String [unique, not null]
+  password String [not null]
+  user User [not null]
+}
+
+Table Session {
+  id String [pk]
+  sessionToken String [unique, not null]
+  userId String [not null]
+  expires DateTime [not null]
+  user User [not null]
+}
+
+Table VerificationToken {
+  id String [pk]
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Table Notification {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  isRead Boolean [not null]
+  title String [not null]
+  content String [not null]
+  link String [not null]
+  userId String [not null]
+  user User [not null]
+}
+
+Table Wallet {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime
+  address String [not null]
+  title String [not null]
+  content String [not null]
+  balance Int [not null]
+  latestBalanceUpdate DateTime [default: `now()`, not null]
+  chain WalletChain [not null]
+  userId String [not null]
+  user User [not null]
+}
+
+Table CustomerSubscription {
+  id String [pk]
+  userId String [unique, not null]
+  user User [not null]
+  metadata Json [not null]
+  status String
+  price Int [not null]
+  productId String [not null]
+  product Product [not null]
+  cancelAtPeriodEnd Boolean [not null]
+  cancelAt DateTime
+  canceledAt DateTime
+  currentPeriodStart DateTime [not null]
+  currentPeriodEnd DateTime [not null]
+  createdAt DateTime [not null]
+  endedAt DateTime
+  updatedAt DateTime
+}
+
+Table Product {
+  id String [pk]
+  active Boolean [not null]
+  name String [not null]
+  description String
+  metadata Json [not null]
+  price Int [not null]
+  image String
+  gallery String[] [not null]
+  customerSubscriptions CustomerSubscription [not null]
+  purchases Purchase [not null]
+}
+
+Table Purchase {
+  id String [pk]
+  userId String [not null]
+  customer User [not null]
+  productId String [not null]
+  product Product
+  status String
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Enum Role {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+Enum UserPlan {
+  FREE
+  PLUS
+  PRO
+  ELITE
+}
+
+Enum WalletChain {
+  ETH
+  BEP20
+  SOL
+  NEAR
+  AVAX
+  ALN
+  IJN
+}
+
+Ref: Account.userId > User.id [delete: Cascade]
+
+Ref: Credential.email > User.email [delete: Cascade]
+
+Ref: Session.userId > User.id [delete: Cascade]
+
+Ref: Notification.userId > User.id [delete: Cascade]
+
+Ref: Wallet.userId > User.id [delete: Cascade]
+
+Ref: CustomerSubscription.userId - User.id [delete: Cascade]
+
+Ref: CustomerSubscription.productId > Product.id
+
+Ref: Purchase.userId > User.id
+
+Ref: Purchase.productId > Product.id

@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
     signIn: '/app/portal',
     signOut: '/',
     error: '/app/portal',
-    newUser: '/app/user',
+    newUser: '/app/dashboard?newUser=true',
   },
   callbacks: {
     session: ({ session, user }: any) => ({
@@ -46,6 +46,7 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
         role: user.role,
         plane: user.plan,
+        balance: user.balance,
       },
     }),
     // signIn: async ({ user, account }) => SignInProvider(user, account),

@@ -4,6 +4,8 @@ import Prisma from '@aurora/libs/database/prisma'
 
 const SignIn_Provider = async (user: any, account: any) => {
   const isAllowedToSignIn = true
+  // console.log(user, account)
+
   if (isAllowedToSignIn) {
     try {
       if (user.provider === 'credentials') {
@@ -16,7 +18,6 @@ const SignIn_Provider = async (user: any, account: any) => {
         })
 
         if (isUser) {
-          await addProvider(isUser, account)
           return true
         }
 
@@ -30,29 +31,5 @@ const SignIn_Provider = async (user: any, account: any) => {
     return false
   }
 }
-
-const addProvider = (isUser: any, account: any) => {
-  // isUser.Providers
-
-  // user.accounts = {
-  //   ...user.accounts,
-  //   [account.provider]: {
-  //     email: account.email,
-  //     providerAccountId: account.providerAccountId,
-  //   },
-  // }
-  return true
-}
-
-// const linkAccount = (user: any, account: any) => {
-//   user.accounts = {
-//     ...user.accounts,
-//     [account.provider]: {
-//       email: account.email,
-//       providerAccountId: account.providerAccountId,
-//     },
-//   }
-//   return user
-// }
 
 export default SignIn_Provider

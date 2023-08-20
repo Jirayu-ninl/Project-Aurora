@@ -1,0 +1,3150 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Account {
+  id Int [pk, increment]
+  userId Int [not null]
+  type String [not null]
+  provider String [not null]
+  providerAccountId String [not null]
+  refresh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  metadata Json [not null, default: '{}']
+  user User [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table Session {
+  id Int [pk, increment]
+  sessionToken String [unique, not null]
+  userId Int [not null]
+  expires DateTime [not null]
+  user User [not null]
+}
+
+Table SessionInvalidation {
+  userId Int [not null]
+  user User [not null]
+  invalidatedAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, invalidatedAt) [pk]
+  }
+}
+
+Table User {
+  id Int [pk, increment]
+  name String
+  username String [unique]
+  email String [unique]
+  emailVerified DateTime
+  image String
+  showNsfw Boolean [default: false]
+  blurNsfw Boolean [default: true]
+  isModerator Boolean [default: false]
+  tos Boolean [default: false]
+  onboarded Boolean [default: false]
+  createdAt DateTime [default: `now()`, not null]
+  deletedAt DateTime
+  customerId String [unique]
+  subscriptionId String
+  subscription CustomerSubscription
+  muted Boolean [default: false]
+  bannedAt DateTime
+  autoplayGifs Boolean [default: true]
+  filePreferences Json [not null, default: '{"size": "pruned", "fp": "fp16", "format": "SafeTensor"}']
+  leaderboardShowcase String
+  accounts Account [not null]
+  sessions Session [not null]
+  images Image [not null]
+  models Model [not null]
+  deletedModels Model [not null]
+  saves SavedModel [not null]
+  imports Import [not null]
+  keys ApiKey [not null]
+  links UserLink [not null]
+  comments Comment [not null]
+  commentReactions CommentReaction [not null]
+  notifications Notification [not null]
+  notificationSettings UserNotificationSettings [not null]
+  webhooks Webhook [not null]
+  interests ModelInterest [not null]
+  engagingUsers UserEngagement [not null]
+  engagedUsers UserEngagement [not null]
+  engagedModels ModelEngagement [not null]
+  engagedModelVersions ModelVersionEngagement [not null]
+  metrics UserMetric [not null]
+  reports Report [not null]
+  questions Question [not null]
+  answers Answer [not null]
+  commentsv2 CommentV2 [not null]
+  questionReactions QuestionReaction [not null]
+  answerReactions AnswerReaction [not null]
+  commentV2Reactions CommentV2Reaction [not null]
+  answerVotes AnswerVote [not null]
+  tagsEngaged TagEngagement [not null]
+  imageReactions ImageReaction [not null]
+  sessionInvalidation SessionInvalidation [not null]
+  stats UserStat
+  rank UserRank
+  downloads DownloadHistory [not null]
+  purchases Purchase [not null]
+  cosmetics UserCosmetic [not null]
+  postReactions PostReaction [not null]
+  posts Post [not null]
+  resourceReviews ResourceReview [not null]
+  tagImageVotes TagsOnImageVote [not null]
+  tagModelVotes TagsOnModelsVote [not null]
+  tagPostVotes TagsOnPostVote [not null]
+  resourceReviewReactions ResourceReviewReaction [not null]
+  articleReactions ArticleReaction [not null]
+  articles Article [not null]
+  articleEngagements ArticleEngagement [not null]
+  leaderboardResults LeaderboardResult [not null]
+  receivedReports UserReport [not null]
+  engagedImages ImageEngagement [not null]
+  collections Collection [not null]
+  collectionItems CollectionItem [not null]
+  contributingCollections CollectionContributor [not null]
+  homeBlocks HomeBlock [not null]
+}
+
+Table CustomerSubscription {
+  id String [pk]
+  userId Int [unique, not null]
+  user User [not null]
+  metadata Json [not null]
+  status String [not null]
+  priceId String [not null]
+  price Price [not null]
+  productId String [not null]
+  product Product [not null]
+  cancelAtPeriodEnd Boolean [not null]
+  cancelAt DateTime
+  canceledAt DateTime
+  currentPeriodStart DateTime [not null]
+  currentPeriodEnd DateTime [not null]
+  createdAt DateTime [not null]
+  endedAt DateTime
+  updatedAt DateTime
+}
+
+Table Product {
+  id String [pk]
+  active Boolean [not null]
+  name String [not null]
+  description String
+  metadata Json [not null]
+  defaultPriceId String
+  prices Price [not null]
+  customerSubscriptions CustomerSubscription [not null]
+  purchases Purchase [not null]
+}
+
+Table Price {
+  id String [pk]
+  productId String [not null]
+  product Product [not null]
+  active Boolean [not null]
+  currency String [not null]
+  description String
+  type String [not null]
+  unitAmount Int
+  interval String
+  intervalCount Int
+  metadata Json [not null]
+  customerSubscriptions CustomerSubscription [not null]
+  purchases Purchase [not null]
+}
+
+Table Purchase {
+  id Int [pk, increment]
+  customerId String [not null]
+  customer User [not null]
+  productId String
+  product Product
+  priceId String
+  price Price
+  status String
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Table UserEngagement {
+  userId Int [not null]
+  user User [not null]
+  targetUserId Int [not null]
+  targetUser User [not null]
+  type UserEngagementType [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, targetUserId) [pk]
+  }
+}
+
+Table UserMetric {
+  user User [not null]
+  userId Int [not null]
+  timeframe MetricTimeframe [not null]
+  followingCount Int [not null, default: 0]
+  followerCount Int [not null, default: 0]
+  hiddenCount Int [not null, default: 0]
+  uploadCount Int [not null, default: 0]
+  reviewCount Int [not null, default: 0]
+  answerCount Int [not null, default: 0]
+  answerAcceptCount Int [not null, default: 0]
+
+  indexes {
+    (userId, timeframe) [pk]
+  }
+}
+
+Table UserLink {
+  id Int [pk, increment]
+  userId Int [not null]
+  user User [not null]
+  url String [not null]
+  type LinkType [not null]
+}
+
+Table VerificationToken {
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Table Import {
+  id Int [pk, increment]
+  userId Int
+  user User
+  createdAt DateTime [default: `now()`, not null]
+  startedAt DateTime
+  finishedAt DateTime
+  source String [not null]
+  status ImportStatus [not null, default: 'Pending']
+  data Json
+  parentId Int
+  parent Import
+  modelVersion ModelVersion [not null]
+  model Model
+  children Import [not null]
+  importId Int
+}
+
+Table Model {
+  id Int [pk, increment]
+  name String [not null]
+  description String
+  type ModelType [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  lastVersionAt DateTime
+  nsfw Boolean [not null, default: false]
+  tosViolation Boolean [not null, default: false]
+  poi Boolean [not null, default: false]
+  userId Int [not null]
+  user User [not null]
+  status ModelStatus [not null, default: 'Draft']
+  publishedAt DateTime
+  fromImport Import
+  fromImportId Int [unique]
+  meta Json [not null, default: '{}']
+  deletedAt DateTime
+  deletedBy Int
+  deletedByUser User
+  checkpointType CheckpointType
+  locked Boolean [not null, default: false]
+  underAttack Boolean [not null, default: false]
+  earlyAccessDeadline DateTime
+  mode ModelModifier
+  allowNoCredit Boolean [not null, default: true]
+  allowCommercialUse CommercialUse [not null, default: 'Sell']
+  allowDerivatives Boolean [not null, default: true]
+  allowDifferentLicense Boolean [not null, default: true]
+  modelVersions ModelVersion [not null]
+  tagsOnModels TagsOnModels [not null]
+  tagsOnModelsVotes TagsOnModelsVote [not null]
+  tags ModelTag [not null]
+  metrics ModelMetric [not null]
+  saves SavedModel [not null]
+  reports ModelReport [not null]
+  engagements ModelEngagement [not null]
+  comments Comment [not null]
+  interests ModelInterest [not null]
+  licenses License [not null]
+  rank ModelRank
+  reportStats ModelReportStat
+  hashes ModelHash [not null]
+  threads Thread [not null]
+  resourceReviews ResourceReview [not null]
+  metricsDaily ModelMetricDaily [not null]
+  associatedFrom ModelAssociations [not null]
+  associations ModelAssociations [not null]
+  collectionItems CollectionItem [not null]
+  generationCoverage GenerationCoverage [not null]
+}
+
+Table License {
+  id Int [pk, increment]
+  name String [not null]
+  url String [not null]
+  models Model [not null]
+}
+
+Table ModelInterest {
+  userId Int [not null]
+  user User [not null]
+  modelId Int [not null]
+  model Model [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, modelId) [pk]
+  }
+}
+
+Table ModelEngagement {
+  userId Int [not null]
+  user User [not null]
+  modelId Int [not null]
+  model Model [not null]
+  type ModelEngagementType [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, modelId) [pk]
+  }
+}
+
+Table ModelVersion {
+  id Int [pk, increment]
+  index Int
+  name String [not null]
+  description String
+  modelId Int [not null]
+  model Model [not null]
+  trainedWords String[] [not null]
+  steps Int
+  epochs Int
+  clipSkip Int
+  vaeId Int
+  vae ModelVersion
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  publishedAt DateTime
+  status ModelStatus [not null, default: 'Draft']
+  fromImport Import
+  fromImportId Int
+  inaccurate Boolean [not null, default: false]
+  baseModel String [not null]
+  baseModelType String
+  meta Json [not null, default: '{}']
+  earlyAccessTimeFrame Int [not null, default: 0]
+  metrics ModelVersionMetric [not null]
+  files ModelFile [not null]
+  runStrategies RunStrategy [not null]
+  engagements ModelVersionEngagement [not null]
+  rank ModelVersionRank
+  downloads DownloadHistory [not null]
+  imageResources ImageResource [not null]
+  posts Post [not null]
+  resourceReviews ResourceReview [not null]
+  hashes ModelHash [not null]
+  metricsDaily ModelMetricDaily [not null]
+  modelVersionExploration ModelVersionExploration [not null]
+  vaeFor ModelVersion [not null]
+  generationCoverage GenerationCoverage
+}
+
+Table ModelVersionEngagement {
+  userId Int [not null]
+  user User [not null]
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+  type ModelVersionEngagementType [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, modelVersionId) [pk]
+  }
+}
+
+Table ModelFileHash {
+  file ModelFile [not null]
+  fileId Int [not null]
+  type ModelHashType [not null]
+  hash String [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (fileId, type) [pk]
+  }
+}
+
+Table ModelFile {
+  id Int [pk, increment]
+  name String [not null]
+  url String [not null]
+  sizeKB Float [not null]
+  createdAt DateTime [default: `now()`, not null]
+  type String [not null, default: 'Model']
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+  pickleScanResult ScanResultCode [not null, default: 'Pending']
+  exists Boolean
+  pickleScanMessage String
+  virusScanResult ScanResultCode [not null, default: 'Pending']
+  virusScanMessage String
+  scannedAt DateTime
+  scanRequestedAt DateTime
+  rawScanResult Json
+  hashes ModelFileHash [not null]
+  metadata Json
+}
+
+Table File {
+  id Int [pk, increment]
+  name String [not null]
+  url String [not null]
+  sizeKB Float [not null]
+  createdAt DateTime [default: `now()`, not null]
+  articleId Int
+  article Article
+  metadata Json
+}
+
+Table ModelMetric {
+  model Model [not null]
+  modelId Int [not null]
+  timeframe MetricTimeframe [not null]
+  rating Float [not null, default: 0]
+  ratingCount Int [not null, default: 0]
+  downloadCount Int [not null, default: 0]
+  favoriteCount Int [not null, default: 0]
+  commentCount Int [not null, default: 0]
+  collectedCount Int [not null, default: 0]
+  imageCount Int [not null, default: 0]
+
+  indexes {
+    (modelId, timeframe) [pk]
+  }
+}
+
+Table ModelVersionMetric {
+  modelVersion ModelVersion [not null]
+  modelVersionId Int [not null]
+  timeframe MetricTimeframe [not null]
+  rating Float [not null, default: 0]
+  ratingCount Int [not null, default: 0]
+  downloadCount Int [not null, default: 0]
+  favoriteCount Int [not null, default: 0]
+  commentCount Int [not null, default: 0]
+  collectedCount Int [not null, default: 0]
+  imageCount Int [not null, default: 0]
+
+  indexes {
+    (modelVersionId, timeframe) [pk]
+  }
+}
+
+Table ModelMetricDaily {
+  modelId Int [not null]
+  model Model [not null]
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+  type String [not null]
+  date DateTime [not null]
+  count Int [not null]
+
+  indexes {
+    (modelId, modelVersionId, type, date) [pk]
+  }
+}
+
+Table ModelAssociations {
+  id Int [pk, increment]
+  fromModelId Int [not null]
+  fromModel Model [not null]
+  toModelId Int
+  toModel Model
+  toArticleId Int
+  toArticle Article
+  associatedById Int
+  createdAt DateTime [default: `now()`, not null]
+  type AssociationType [not null]
+  index Int
+}
+
+Table DownloadHistory {
+  userId Int [not null]
+  modelVersionId Int [not null]
+  user User [not null]
+  modelVersion ModelVersion [not null]
+  downloadAt DateTime [not null]
+  hidden Boolean [not null, default: false]
+
+  indexes {
+    (userId, modelVersionId) [pk]
+  }
+}
+
+Table ModActivity {
+  id Int [pk, increment]
+  userId Int
+  activity String [not null]
+  entityType String
+  entityId Int
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (activity, entityType, entityId) [unique]
+  }
+}
+
+Table Report {
+  id Int [pk, increment]
+  userId Int [not null]
+  user User [not null]
+  reason ReportReason [not null]
+  createdAt DateTime [default: `now()`, not null]
+  details Json
+  internalNotes String
+  previouslyReviewedCount Int [not null, default: 0]
+  alsoReportedBy Int[] [not null]
+  status ReportStatus [not null]
+  statusSetAt DateTime
+  statusSetBy Int
+  model ModelReport
+  comment CommentReport
+  commentV2 CommentV2Report
+  image ImageReport
+  resourceReview ResourceReviewReport
+  article ArticleReport
+  post PostReport
+  reportedUser UserReport
+  collection CollectionReport
+}
+
+Table ResourceReviewReport {
+  resourceReviewId Int [not null]
+  resourceReview ResourceReview [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, resourceReviewId) [pk]
+  }
+}
+
+Table ModelReport {
+  modelId Int [not null]
+  model Model [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, modelId) [pk]
+  }
+}
+
+Table CommentReport {
+  commentId Int [not null]
+  comment Comment [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, commentId) [pk]
+  }
+}
+
+Table CommentV2Report {
+  commentV2Id Int [not null]
+  commentV2 CommentV2 [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, commentV2Id) [pk]
+  }
+}
+
+Table ImageReport {
+  imageId Int [not null]
+  image Image [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, imageId) [pk]
+  }
+}
+
+Table ArticleReport {
+  articleId Int [not null]
+  article Article [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, articleId) [pk]
+  }
+}
+
+Table PostReport {
+  postId Int [not null]
+  post Post [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, postId) [pk]
+  }
+}
+
+Table UserReport {
+  userId Int [not null]
+  user User [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, userId) [pk]
+  }
+}
+
+Table CollectionReport {
+  collectionId Int [not null]
+  collection Collection [not null]
+  reportId Int [unique, not null]
+  report Report [not null]
+
+  indexes {
+    (reportId, collectionId) [pk]
+  }
+}
+
+Table ResourceReview {
+  id Int [pk, increment]
+  modelId Int [not null]
+  model Model [not null]
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+  rating Int [not null]
+  details String
+  userId Int [not null]
+  user User [not null]
+  thread Thread
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  exclude Boolean [not null, default: false]
+  nsfw Boolean [not null, default: false]
+  tosViolation Boolean [not null, default: false]
+  metadata Json
+  reactions ResourceReviewReaction [not null]
+  helper ResourceReviewHelper
+  reports ResourceReviewReport [not null]
+
+  indexes {
+    (modelVersionId, userId) [unique]
+  }
+}
+
+Table ResourceReviewReaction {
+  id Int [pk, increment]
+  review ResourceReview [not null]
+  reviewId Int [not null]
+  user User [not null]
+  userId Int [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (reviewId, userId, reaction) [unique]
+  }
+}
+
+Table Post {
+  id Int [pk, increment]
+  nsfw Boolean [not null, default: false]
+  title String
+  detail String
+  userId Int [not null]
+  user User [not null]
+  modelVersionId Int
+  modelVersion ModelVersion
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  publishedAt DateTime
+  metadata Json
+  tosViolation Boolean [not null, default: false]
+  collectionId Int
+  collection Collection
+  images Image [not null]
+  tags TagsOnPost [not null]
+  reactions PostReaction [not null]
+  thread Thread
+  helper PostHelper
+  stats PostStat
+  rank PostRank
+  metrics PostMetric [not null]
+  resourceHelper PostResourceHelper [not null]
+  imageTags PostImageTag [not null]
+  tagsComposite PostTag [not null]
+  tagVotes TagsOnPostVote [not null]
+  reports PostReport [not null]
+  collectionItems CollectionItem [not null]
+}
+
+Table PostMetric {
+  postId Int [not null]
+  post Post [not null]
+  timeframe MetricTimeframe [not null]
+  likeCount Int [not null, default: 0]
+  dislikeCount Int [not null, default: 0]
+  laughCount Int [not null, default: 0]
+  cryCount Int [not null, default: 0]
+  heartCount Int [not null, default: 0]
+  commentCount Int [not null, default: 0]
+
+  indexes {
+    (postId, timeframe) [pk]
+  }
+}
+
+Table Image {
+  id Int [pk, increment]
+  name String
+  url String [not null]
+  user User [not null]
+  userId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  meta Json
+  hash String
+  height Int
+  width Int
+  type MediaType [not null, default: 'image']
+  metadata Json [not null, default: '{}']
+  nsfw NsfwLevel [not null, default: 'None']
+  tosViolation Boolean [not null, default: false]
+  analysis Json
+  generationProcess ImageGenerationProcess
+  featuredAt DateTime
+  postId Int
+  post Post
+  needsReview String
+  hideMeta Boolean [not null, default: false]
+  index Int
+  scannedAt DateTime
+  scanRequestedAt DateTime
+  mimeType String
+  sizeKB Int
+  ingestion ImageIngestionStatus [not null, default: 'Pending']
+  blockedFor String
+  reports ImageReport [not null]
+  reactions ImageReaction [not null]
+  thread Thread
+  tags TagsOnImage [not null]
+  tagVotes TagsOnImageVote [not null]
+  tagComposites ImageTag [not null]
+  metrics ImageMetric [not null]
+  stats ImageStat
+  rank ImageRank
+  modHelper ImageModHelper
+  resources ImageResource [not null]
+  resourceHelper ImageResourceHelper [not null]
+  engagements ImageEngagement [not null]
+  collectionItems CollectionItem [not null]
+  collections Collection [not null]
+}
+
+Table ImageEngagement {
+  userId Int [not null]
+  user User [not null]
+  imageId Int [not null]
+  image Image [not null]
+  type ImageEngagementType [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, imageId) [pk]
+  }
+}
+
+Table ImageResource {
+  id Int [pk, increment]
+  modelVersionId Int
+  modelVersion ModelVersion
+  name String
+  hash String
+  imageId Int [not null]
+  image Image [not null]
+  detected Boolean [not null, default: false]
+
+  indexes {
+    (modelVersionId, name, imageId) [unique]
+  }
+}
+
+Table ImageMetric {
+  image Image [not null]
+  imageId Int [not null]
+  timeframe MetricTimeframe [not null]
+  likeCount Int [not null, default: 0]
+  dislikeCount Int [not null, default: 0]
+  laughCount Int [not null, default: 0]
+  cryCount Int [not null, default: 0]
+  heartCount Int [not null, default: 0]
+  commentCount Int [not null, default: 0]
+
+  indexes {
+    (imageId, timeframe) [pk]
+  }
+}
+
+Table Tag {
+  id Int [pk, increment]
+  name String [unique, not null]
+  color String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  target TagTarget[] [not null]
+  type TagType [not null, default: 'UserGenerated']
+  nsfw NsfwLevel [not null, default: 'None']
+  unlisted Boolean [not null, default: false]
+  unfeatured Boolean [not null, default: false]
+  isCategory Boolean [not null, default: false]
+  adminOnly Boolean [not null, default: false]
+  toTags TagsOnTags [not null]
+  fromTags TagsOnTags [not null]
+  tagsOnModels TagsOnModels [not null]
+  tagsOnModelsVotes TagsOnModelsVote [not null]
+  tagsOnQuestion TagsOnQuestions [not null]
+  tagsOnImage TagsOnImage [not null]
+  tagsOnImageVotes TagsOnImageVote [not null]
+  tagsOnPosts TagsOnPost [not null]
+  tagsOnArticles TagsOnArticle [not null]
+  tagsOnCollection TagsOnCollection [not null]
+  tagsOnImageComposite ImageTag [not null]
+  tagsOnModelComposite ModelTag [not null]
+  usersEngaged TagEngagement [not null]
+  metrics TagMetric [not null]
+  stats TagStat
+  rank TagRank
+  tagsOnPostComposite PostTag [not null]
+  tagsOnPostVotes TagsOnPostVote [not null]
+}
+
+Table TagsOnTags {
+  fromTagId Int [not null]
+  fromTag Tag [not null]
+  toTagId Int [not null]
+  toTag Tag [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (fromTagId, toTagId) [pk]
+  }
+}
+
+Table TagsOnModels {
+  model Model [not null]
+  modelId Int [not null]
+  tag Tag [not null]
+  tagId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (modelId, tagId) [pk]
+  }
+}
+
+Table TagsOnModelsVote {
+  modelId Int [not null]
+  model Model [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  userId Int [not null]
+  user User [not null]
+  vote Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (tagId, modelId, userId) [pk]
+  }
+}
+
+Table TagsOnQuestions {
+  question Question [not null]
+  questionId Int [not null]
+  tag Tag [not null]
+  tagId Int [not null]
+
+  indexes {
+    (tagId, questionId) [pk]
+  }
+}
+
+Table TagsOnImage {
+  imageId Int [not null]
+  image Image [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  createdAt DateTime [default: `now()`, not null]
+  automated Boolean [not null, default: false]
+  confidence Int
+  disabled Boolean [not null, default: false]
+  disabledAt DateTime
+  needsReview Boolean [not null, default: false]
+
+  indexes {
+    (tagId, imageId) [pk]
+  }
+}
+
+Table TagsOnImageVote {
+  imageId Int [not null]
+  image Image [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  userId Int [not null]
+  user User [not null]
+  vote Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (tagId, imageId, userId) [pk]
+  }
+}
+
+Table TagsOnPost {
+  postId Int [not null]
+  post Post [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  createdAt DateTime [default: `now()`, not null]
+  confidence Int
+  disabled Boolean [not null, default: false]
+  needsReview Boolean [not null, default: false]
+
+  indexes {
+    (tagId, postId) [pk]
+  }
+}
+
+Table TagsOnArticle {
+  articleId Int [not null]
+  article Article [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (tagId, articleId) [pk]
+  }
+}
+
+Table TagsOnPostVote {
+  postId Int [not null]
+  post Post [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  userId Int [not null]
+  user User [not null]
+  vote Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (tagId, postId, userId) [pk]
+  }
+}
+
+Table TagMetric {
+  tag Tag [not null]
+  tagId Int [not null]
+  timeframe MetricTimeframe [not null]
+  modelCount Int [not null, default: 0]
+  imageCount Int [not null, default: 0]
+  postCount Int [not null, default: 0]
+  articleCount Int [not null, default: 0]
+  hiddenCount Int [not null, default: 0]
+  followerCount Int [not null, default: 0]
+
+  indexes {
+    (tagId, timeframe) [pk]
+  }
+}
+
+Table SavedModel {
+  model Model [not null]
+  modelId Int [not null]
+  user User [not null]
+  userId Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (modelId, userId) [pk]
+  }
+}
+
+Table RunStrategy {
+  id Int [pk, increment]
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+  partnerId Int [not null]
+  partner Partner [not null]
+  url String [not null]
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Table Partner {
+  id Int [pk, increment]
+  name String [not null]
+  homepage String
+  tos String
+  privacy String
+  startupTime Int
+  onDemand Boolean [not null]
+  onDemandStrategy String
+  onDemandTypes ModelType[] [not null]
+  stepsPerSecond Int [not null]
+  pricingModel PartnerPricingModel [not null]
+  price String [not null]
+  about String
+  createdAt DateTime [default: `now()`, not null]
+  nsfw Boolean [not null, default: false]
+  poi Boolean [not null, default: false]
+  personal Boolean [not null, default: false]
+  token String [unique]
+  runStrategies RunStrategy [not null]
+}
+
+Table KeyValue {
+  key String [pk]
+  value Json [not null]
+}
+
+Table ApiKey {
+  id Int [pk, increment]
+  key String [unique, not null]
+  name String [not null]
+  scope KeyScope[] [not null]
+  userId Int [not null]
+  user User [not null]
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Table Comment {
+  id Int [pk, increment]
+  content String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  nsfw Boolean [not null, default: false]
+  tosViolation Boolean [not null, default: false]
+  parent Comment
+  parentId Int
+  user User [not null]
+  userId Int [not null]
+  model Model [not null]
+  modelId Int [not null]
+  locked Boolean [default: false]
+  hidden Boolean [default: false]
+  comments Comment [not null]
+  reactions CommentReaction [not null]
+  reports CommentReport [not null]
+}
+
+Table CommentReaction {
+  id Int [pk, increment]
+  commentId Int [not null]
+  comment Comment [not null]
+  userId Int [not null]
+  user User [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (commentId, userId, reaction) [unique]
+  }
+}
+
+Table Log {
+  id String [pk]
+  event String [not null]
+  details Json
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Table Notification {
+  id String [pk]
+  userId Int [not null]
+  user User [not null]
+  type String [not null]
+  details Json
+  createdAt DateTime [default: `now()`, not null]
+  viewedAt DateTime
+}
+
+Table UserNotificationSettings {
+  id Int [pk, increment]
+  userId Int [not null]
+  user User [not null]
+  type String [not null]
+  disabledAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, type) [unique]
+  }
+}
+
+Table Webhook {
+  id Int [pk, increment]
+  url String [not null]
+  notifyOn String[] [not null]
+  active Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  userId Int [not null]
+  user User [not null]
+
+  indexes {
+    (url, userId) [unique]
+  }
+}
+
+Table Question {
+  id Int [pk, increment]
+  userId Int [not null]
+  user User [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  title String [not null]
+  content String [not null]
+  selectedAnswerId Int [unique]
+  selectedAnswer Answer
+  tags TagsOnQuestions [not null]
+  reactions QuestionReaction [not null]
+  answers Answer [not null]
+  metrics QuestionMetric [not null]
+  rank QuestionRank
+  thread Thread
+}
+
+Table QuestionMetric {
+  questionId Int [not null]
+  question Question [not null]
+  timeframe MetricTimeframe [not null]
+  heartCount Int [not null, default: 0]
+  commentCount Int [not null, default: 0]
+  answerCount Int [not null, default: 0]
+
+  indexes {
+    (questionId, timeframe) [pk]
+  }
+}
+
+Table Answer {
+  id Int [pk, increment]
+  questionId Int [not null]
+  question Question [not null]
+  userId Int [not null]
+  user User [not null]
+  content String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  reactions AnswerReaction [not null]
+  metrics AnswerMetric [not null]
+  answerFor Question
+  votes AnswerVote [not null]
+  rank AnswerRank
+  thread Thread
+}
+
+Table AnswerVote {
+  answer Answer [not null]
+  answerId Int [not null]
+  user User [not null]
+  userId Int [not null]
+  vote Boolean
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (answerId, userId) [pk]
+  }
+}
+
+Table MetricUpdateQueue {
+  type String [not null]
+  id Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (type, id) [pk]
+  }
+}
+
+Table AnswerMetric {
+  answerId Int [not null]
+  answer Answer [not null]
+  timeframe MetricTimeframe [not null]
+  checkCount Int [not null]
+  crossCount Int [not null]
+  heartCount Int [not null]
+  commentCount Int [not null]
+
+  indexes {
+    (answerId, timeframe) [pk]
+  }
+}
+
+Table CommentV2 {
+  id Int [pk, increment]
+  content String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  nsfw Boolean [not null, default: false]
+  tosViolation Boolean [not null, default: false]
+  userId Int [not null]
+  user User [not null]
+  threadId Int [not null]
+  thread Thread [not null]
+  childThread Thread
+  metadata Json
+  reactions CommentV2Reaction [not null]
+  reports CommentV2Report [not null]
+}
+
+Table Thread {
+  id Int [pk, increment]
+  locked Boolean [not null, default: false]
+  questionId Int [unique]
+  question Question
+  answerId Int [unique]
+  answer Answer
+  imageId Int [unique]
+  image Image
+  postId Int [unique]
+  post Post
+  reviewId Int [unique]
+  review ResourceReview
+  commentId Int [unique]
+  comment CommentV2
+  modelId Int [unique]
+  model Model
+  articleId Int [unique]
+  article Article
+  metadata Json [not null, default: '{}']
+  comments CommentV2 [not null]
+}
+
+Table QuestionReaction {
+  id Int [pk, increment]
+  question Question [not null]
+  questionId Int [not null]
+  user User [not null]
+  userId Int [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (questionId, userId, reaction) [unique]
+  }
+}
+
+Table AnswerReaction {
+  id Int [pk, increment]
+  answer Answer [not null]
+  answerId Int [not null]
+  user User [not null]
+  userId Int [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (answerId, userId, reaction) [unique]
+  }
+}
+
+Table CommentV2Reaction {
+  id Int [pk, increment]
+  comment CommentV2 [not null]
+  commentId Int [not null]
+  user User [not null]
+  userId Int [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (commentId, userId, reaction) [unique]
+  }
+}
+
+Table ImageReaction {
+  id Int [pk, increment]
+  imageId Int [not null]
+  image Image [not null]
+  userId Int [not null]
+  user User [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (imageId, userId, reaction) [unique]
+  }
+}
+
+Table PostReaction {
+  id Int [pk, increment]
+  postId Int [not null]
+  post Post [not null]
+  userId Int [not null]
+  user User [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (postId, userId, reaction) [unique]
+  }
+}
+
+Table ArticleReaction {
+  id Int [pk, increment]
+  articleId Int [not null]
+  article Article [not null]
+  userId Int [not null]
+  user User [not null]
+  reaction ReviewReactions [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (articleId, userId, reaction) [unique]
+  }
+}
+
+Table TagEngagement {
+  userId Int [not null]
+  user User [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  type TagEngagementType [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, tagId) [pk]
+  }
+}
+
+Table Announcement {
+  id Int [pk, increment]
+  title String [not null]
+  content String [not null]
+  emoji String
+  color String [not null, default: 'blue']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  startsAt DateTime
+  endsAt DateTime
+  metadata Json
+}
+
+Table Cosmetic {
+  id Int [pk, increment]
+  name String [not null]
+  description String
+  type CosmeticType [not null]
+  source CosmeticSource [not null]
+  permanentUnlock Boolean [not null]
+  data Json [not null]
+  createdAt DateTime [default: `now()`]
+  updatedAt DateTime
+  availableStart DateTime
+  availableEnd DateTime
+  productId String
+  leaderboardId String
+  leaderboardPosition Int
+  UserCosmetic UserCosmetic [not null]
+}
+
+Table UserCosmetic {
+  userId Int [not null]
+  user User [not null]
+  cosmeticId Int [not null]
+  cosmetic Cosmetic [not null]
+  obtainedAt DateTime [default: `now()`, not null]
+  equippedAt DateTime
+
+  indexes {
+    (userId, cosmeticId) [pk]
+  }
+}
+
+Table Article {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`]
+  updatedAt DateTime
+  nsfw Boolean [not null, default: false]
+  tosViolation Boolean [not null, default: false]
+  metadata Json
+  title String [not null]
+  content String [not null]
+  cover String [not null]
+  publishedAt DateTime
+  userId Int [not null]
+  user User [not null]
+  thread Thread
+  reactions ArticleReaction [not null]
+  tags TagsOnArticle [not null]
+  reports ArticleReport [not null]
+  metrics ArticleMetric [not null]
+  rank ArticleRank
+  stats ArticleStat
+  attachments File [not null]
+  engagements ArticleEngagement [not null]
+  associations ModelAssociations [not null]
+  collectionItems CollectionItem [not null]
+}
+
+Table ArticleEngagement {
+  userId Int [not null]
+  user User [not null]
+  articleId Int [not null]
+  article Article [not null]
+  type ArticleEngagementType [not null]
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (userId, articleId) [pk]
+  }
+}
+
+Table ArticleMetric {
+  article Article [not null]
+  articleId Int [not null]
+  timeframe MetricTimeframe [not null]
+  likeCount Int [not null, default: 0]
+  dislikeCount Int [not null, default: 0]
+  laughCount Int [not null, default: 0]
+  cryCount Int [not null, default: 0]
+  heartCount Int [not null, default: 0]
+  commentCount Int [not null, default: 0]
+  viewCount Int [not null, default: 0]
+  favoriteCount Int [not null, default: 0]
+  hideCount Int [not null, default: 0]
+
+  indexes {
+    (articleId, timeframe) [pk]
+  }
+}
+
+Table Leaderboard {
+  id String [pk]
+  index Int [not null]
+  title String [not null]
+  description String [not null]
+  scoringDescription String [not null]
+  query String [not null]
+  active Boolean [not null]
+  public Boolean [not null]
+  results LeaderboardResult [not null]
+}
+
+Table LeaderboardResult {
+  leaderboardId String [not null]
+  leaderboard Leaderboard [not null]
+  date DateTime [not null]
+  position Int [not null]
+  userId Int [not null]
+  user User [not null]
+  score Int [not null, default: 0]
+  metrics Json [not null, default: '{}']
+  createdAt DateTime [default: `now()`, not null]
+
+  indexes {
+    (leaderboardId, date, position) [pk]
+    (leaderboardId, date, userId) [unique]
+  }
+}
+
+Table ModelVersionExploration {
+  index Int [not null]
+  name String [not null]
+  prompt String [not null]
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+
+  indexes {
+    (modelVersionId, name) [pk]
+  }
+}
+
+Table GenerationServiceProvider {
+  name String [pk]
+  schedulers GenerationSchedulers[] [not null]
+
+  indexes {
+    (name) [pk]
+  }
+}
+
+Table SearchIndexUpdateQueue {
+  type String [not null]
+  id Int [not null]
+  createdAt DateTime [default: `now()`, not null]
+  action SearchIndexUpdateQueueAction [not null, default: 'Update']
+
+  indexes {
+    (type, id, action) [pk]
+  }
+}
+
+Table Collection {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`]
+  updatedAt DateTime
+  name String [not null]
+  description String
+  nsfw Boolean [default: false]
+  userId Int [not null]
+  user User [not null]
+  imageId Int
+  image Image
+  write CollectionWriteConfiguration [not null, default: 'Private']
+  read CollectionReadConfiguration [not null, default: 'Private']
+  type CollectionType
+  items CollectionItem [not null]
+  contributors CollectionContributor [not null]
+  tags TagsOnCollection [not null]
+  post Post [not null]
+  reports CollectionReport [not null]
+}
+
+Table CollectionItem {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`]
+  updatedAt DateTime
+  collectionId Int [not null]
+  collection Collection [not null]
+  articleId Int
+  article Article
+  postId Int
+  post Post
+  imageId Int
+  image Image
+  modelId Int
+  model Model
+  addedById Int
+  addedBy User
+  note String
+  status CollectionItemStatus [not null, default: 'ACCEPTED']
+
+  indexes {
+    (collectionId, articleId, postId, imageId, modelId) [unique]
+  }
+}
+
+Table CollectionContributor {
+  createdAt DateTime [default: `now()`]
+  updatedAt DateTime
+  userId Int [not null]
+  user User [not null]
+  collectionId Int [not null]
+  collection Collection [not null]
+  permissions CollectionContributorPermission[] [not null]
+
+  indexes {
+    (userId, collectionId) [pk]
+  }
+}
+
+Table TagsOnCollection {
+  collectionId Int [not null]
+  tagId Int [not null]
+  createdAt DateTime [default: `now()`]
+  collection Collection [not null]
+  tag Tag [not null]
+
+  indexes {
+    (tagId, collectionId) [pk]
+  }
+}
+
+Table HomeBlock {
+  id Int [pk, increment]
+  createdAt DateTime [default: `now()`]
+  updatedAt DateTime
+  userId Int [not null]
+  user User [not null]
+  metadata Json [not null, default: '{}']
+  index Int
+  type HomeBlockType [not null]
+  permanent Boolean [not null, default: false]
+  sourceId Int
+  source HomeBlock
+  clones HomeBlock [not null]
+}
+
+Table QuestionRank {
+  questionId Int [pk]
+  question Question [not null]
+  answerCountDay Int [not null]
+  answerCountWeek Int [not null]
+  answerCountMonth Int [not null]
+  answerCountYear Int [not null]
+  answerCountAllTime Int [not null]
+  heartCountDay Int [not null]
+  heartCountWeek Int [not null]
+  heartCountMonth Int [not null]
+  heartCountYear Int [not null]
+  heartCountAllTime Int [not null]
+  commentCountDay Int [not null]
+  commentCountWeek Int [not null]
+  commentCountMonth Int [not null]
+  commentCountYear Int [not null]
+  commentCountAllTime Int [not null]
+  answerCountDayRank Int [not null]
+  answerCountWeekRank Int [not null]
+  answerCountMonthRank Int [not null]
+  answerCountYearRank Int [not null]
+  answerCountAllTimeRank Int [not null]
+  heartCountDayRank Int [not null]
+  heartCountWeekRank Int [not null]
+  heartCountMonthRank Int [not null]
+  heartCountYearRank Int [not null]
+  heartCountAllTimeRank Int [not null]
+  commentCountDayRank Int [not null]
+  commentCountWeekRank Int [not null]
+  commentCountMonthRank Int [not null]
+  commentCountYearRank Int [not null]
+  commentCountAllTimeRank Int [not null]
+
+  Note: '@view'
+}
+
+Table AnswerRank {
+  answerId Int [pk]
+  answer Answer [not null]
+  checkCountDay Int [not null]
+  checkCountWeek Int [not null]
+  checkCountMonth Int [not null]
+  checkCountYear Int [not null]
+  checkCountAllTime Int [not null]
+  crossCountDay Int [not null]
+  crossCountWeek Int [not null]
+  crossCountMonth Int [not null]
+  crossCountYear Int [not null]
+  crossCountAllTime Int [not null]
+  heartCountDay Int [not null]
+  heartCountWeek Int [not null]
+  heartCountMonth Int [not null]
+  heartCountYear Int [not null]
+  heartCountAllTime Int [not null]
+  commentCountDay Int [not null]
+  commentCountWeek Int [not null]
+  commentCountMonth Int [not null]
+  commentCountYear Int [not null]
+  commentCountAllTime Int [not null]
+  checkCountDayRank Int [not null]
+  checkCountWeekRank Int [not null]
+  checkCountMonthRank Int [not null]
+  checkCountYearRank Int [not null]
+  checkCountAllTimeRank Int [not null]
+  crossCountDayRank Int [not null]
+  crossCountWeekRank Int [not null]
+  crossCountMonthRank Int [not null]
+  crossCountYearRank Int [not null]
+  crossCountAllTimeRank Int [not null]
+  heartCountDayRank Int [not null]
+  heartCountWeekRank Int [not null]
+  heartCountMonthRank Int [not null]
+  heartCountYearRank Int [not null]
+  heartCountAllTimeRank Int [not null]
+  commentCountDayRank Int [not null]
+  commentCountWeekRank Int [not null]
+  commentCountMonthRank Int [not null]
+  commentCountYearRank Int [not null]
+  commentCountAllTimeRank Int [not null]
+
+  Note: '@view'
+}
+
+Table ModelRank {
+  model Model [not null]
+  modelId Int [pk]
+  downloadCountDay Int [not null, default: 0]
+  downloadCountWeek Int [not null, default: 0]
+  downloadCountMonth Int [not null, default: 0]
+  downloadCountYear Int [not null, default: 0]
+  downloadCountAllTime Int [not null, default: 0]
+  ratingCountDay Int [not null, default: 0]
+  ratingCountWeek Int [not null, default: 0]
+  ratingCountMonth Int [not null, default: 0]
+  ratingCountYear Int [not null, default: 0]
+  ratingCountAllTime Int [not null, default: 0]
+  ratingDay Float [not null, default: 0]
+  ratingWeek Float [not null, default: 0]
+  ratingMonth Float [not null, default: 0]
+  ratingYear Float [not null, default: 0]
+  ratingAllTime Float [not null, default: 0]
+  favoriteCountDay Int [not null, default: 0]
+  favoriteCountWeek Int [not null, default: 0]
+  favoriteCountMonth Int [not null, default: 0]
+  favoriteCountYear Int [not null, default: 0]
+  favoriteCountAllTime Int [not null, default: 0]
+  commentCountDay Int [not null, default: 0]
+  commentCountWeek Int [not null, default: 0]
+  commentCountMonth Int [not null, default: 0]
+  commentCountYear Int [not null, default: 0]
+  commentCountAllTime Int [not null, default: 0]
+  downloadCountDayRank Int [not null, default: 0]
+  downloadCountWeekRank Int [not null, default: 0]
+  downloadCountMonthRank Int [not null, default: 0]
+  downloadCountYearRank Int [not null, default: 0]
+  downloadCountAllTimeRank Int [not null, default: 0]
+  ratingCountDayRank Int [not null, default: 0]
+  ratingCountWeekRank Int [not null, default: 0]
+  ratingCountMonthRank Int [not null, default: 0]
+  ratingCountYearRank Int [not null, default: 0]
+  ratingCountAllTimeRank Int [not null, default: 0]
+  ratingDayRank Int [not null, default: 0]
+  ratingWeekRank Int [not null, default: 0]
+  ratingMonthRank Int [not null, default: 0]
+  ratingYearRank Int [not null, default: 0]
+  ratingAllTimeRank Int [not null, default: 0]
+  favoriteCountDayRank Int [not null, default: 0]
+  favoriteCountWeekRank Int [not null, default: 0]
+  favoriteCountMonthRank Int [not null, default: 0]
+  favoriteCountYearRank Int [not null, default: 0]
+  favoriteCountAllTimeRank Int [not null, default: 0]
+  collectedCountDay Int [not null, default: 0]
+  collectedCountWeek Int [not null, default: 0]
+  collectedCountMonth Int [not null, default: 0]
+  collectedCountYear Int [not null, default: 0]
+  collectedCountAllTime Int [not null, default: 0]
+  collectedCountDayRank Int [not null, default: 0]
+  collectedCountWeekRank Int [not null, default: 0]
+  collectedCountMonthRank Int [not null, default: 0]
+  collectedCountYearRank Int [not null, default: 0]
+  collectedCountAllTimeRank Int [not null, default: 0]
+  imageCountDay Int [not null, default: 0]
+  imageCountWeek Int [not null, default: 0]
+  imageCountMonth Int [not null, default: 0]
+  imageCountYear Int [not null, default: 0]
+  imageCountAllTime Int [not null, default: 0]
+  imageCountDayRank Int [not null, default: 0]
+  imageCountWeekRank Int [not null, default: 0]
+  imageCountMonthRank Int [not null, default: 0]
+  imageCountYearRank Int [not null, default: 0]
+  imageCountAllTimeRank Int [not null, default: 0]
+  commentCountDayRank Int [not null, default: 0]
+  commentCountWeekRank Int [not null, default: 0]
+  commentCountMonthRank Int [not null, default: 0]
+  commentCountYearRank Int [not null, default: 0]
+  commentCountAllTimeRank Int [not null, default: 0]
+  newRank Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ModelReportStat {
+  model Model [not null]
+  modelId Int [pk]
+  tosViolationPending Int [not null]
+  tosViolationUnactioned Int [not null]
+  tosViolationActioned Int [not null]
+  nsfwPending Int [not null]
+  nsfwUnactioned Int [not null]
+  nsfwActioned Int [not null]
+  ownershipPending Int [not null]
+  ownershipProcessing Int [not null]
+  ownershipActioned Int [not null]
+  ownershipUnactioned Int [not null]
+  adminAttentionPending Int [not null]
+  adminAttentionActioned Int [not null]
+  adminAttentionUnactioned Int [not null]
+  claimPending Int [not null]
+  claimActioned Int [not null]
+  claimUnactioned Int [not null]
+
+  Note: '@view'
+}
+
+Table ModelVersionRank {
+  modelVersion ModelVersion [not null]
+  modelVersionId Int [pk]
+  downloadCountDay Int [not null, default: 0]
+  downloadCountWeek Int [not null, default: 0]
+  downloadCountMonth Int [not null, default: 0]
+  downloadCountYear Int [not null, default: 0]
+  downloadCountAllTime Int [not null, default: 0]
+  ratingCountDay Int [not null, default: 0]
+  ratingCountWeek Int [not null, default: 0]
+  ratingCountMonth Int [not null, default: 0]
+  ratingCountYear Int [not null, default: 0]
+  ratingCountAllTime Int [not null, default: 0]
+  ratingDay Float [not null, default: 0]
+  ratingWeek Float [not null, default: 0]
+  ratingMonth Float [not null, default: 0]
+  ratingYear Float [not null, default: 0]
+  ratingAllTime Float [not null, default: 0]
+  downloadCountDayRank Int [not null, default: 0]
+  downloadCountWeekRank Int [not null, default: 0]
+  downloadCountMonthRank Int [not null, default: 0]
+  downloadCountYearRank Int [not null, default: 0]
+  downloadCountAllTimeRank Int [not null, default: 0]
+  ratingCountDayRank Int [not null, default: 0]
+  ratingCountWeekRank Int [not null, default: 0]
+  ratingCountMonthRank Int [not null, default: 0]
+  ratingCountYearRank Int [not null, default: 0]
+  ratingCountAllTimeRank Int [not null, default: 0]
+  ratingDayRank Int [not null, default: 0]
+  ratingWeekRank Int [not null, default: 0]
+  ratingMonthRank Int [not null, default: 0]
+  ratingYearRank Int [not null, default: 0]
+  ratingAllTimeRank Int [not null, default: 0]
+  imageCountDay Int [not null, default: 0]
+  imageCountWeek Int [not null, default: 0]
+  imageCountMonth Int [not null, default: 0]
+  imageCountYear Int [not null, default: 0]
+  imageCountAllTime Int [not null, default: 0]
+  imageCountDayRank Int [not null, default: 0]
+  imageCountWeekRank Int [not null, default: 0]
+  imageCountMonthRank Int [not null, default: 0]
+  imageCountYearRank Int [not null, default: 0]
+  imageCountAllTimeRank Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ArticleStat {
+  articleId Int [pk]
+  article Article [not null]
+  cryCountDay Int [not null, default: 0]
+  cryCountWeek Int [not null, default: 0]
+  cryCountMonth Int [not null, default: 0]
+  cryCountYear Int [not null, default: 0]
+  cryCountAllTime Int [not null, default: 0]
+  dislikeCountDay Int [not null, default: 0]
+  dislikeCountWeek Int [not null, default: 0]
+  dislikeCountMonth Int [not null, default: 0]
+  dislikeCountYear Int [not null, default: 0]
+  dislikeCountAllTime Int [not null, default: 0]
+  heartCountDay Int [not null, default: 0]
+  heartCountWeek Int [not null, default: 0]
+  heartCountMonth Int [not null, default: 0]
+  heartCountYear Int [not null, default: 0]
+  heartCountAllTime Int [not null, default: 0]
+  laughCountDay Int [not null, default: 0]
+  laughCountWeek Int [not null, default: 0]
+  laughCountMonth Int [not null, default: 0]
+  laughCountYear Int [not null, default: 0]
+  laughCountAllTime Int [not null, default: 0]
+  likeCountDay Int [not null, default: 0]
+  likeCountWeek Int [not null, default: 0]
+  likeCountMonth Int [not null, default: 0]
+  likeCountYear Int [not null, default: 0]
+  likeCountAllTime Int [not null, default: 0]
+  commentCountDay Int [not null, default: 0]
+  commentCountWeek Int [not null, default: 0]
+  commentCountMonth Int [not null, default: 0]
+  commentCountYear Int [not null, default: 0]
+  commentCountAllTime Int [not null, default: 0]
+  reactionCountDay Int [not null, default: 0]
+  reactionCountWeek Int [not null, default: 0]
+  reactionCountMonth Int [not null, default: 0]
+  reactionCountYear Int [not null, default: 0]
+  reactionCountAllTime Int [not null, default: 0]
+  viewCountDay Int [not null, default: 0]
+  viewCountWeek Int [not null, default: 0]
+  viewCountMonth Int [not null, default: 0]
+  viewCountYear Int [not null, default: 0]
+  viewCountAllTime Int [not null, default: 0]
+  favoriteCountDay Int [not null, default: 0]
+  favoriteCountWeek Int [not null, default: 0]
+  favoriteCountMonth Int [not null, default: 0]
+  favoriteCountYear Int [not null, default: 0]
+  favoriteCountAllTime Int [not null, default: 0]
+  hideCountDay Int [not null, default: 0]
+  hideCountWeek Int [not null, default: 0]
+  hideCountMonth Int [not null, default: 0]
+  hideCountYear Int [not null, default: 0]
+  hideCountAllTime Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ArticleRank {
+  articleId Int [pk]
+  article Article [not null]
+  cryCountDayRank Int [not null, default: 0]
+  cryCountWeekRank Int [not null, default: 0]
+  cryCountMonthRank Int [not null, default: 0]
+  cryCountYearRank Int [not null, default: 0]
+  cryCountAllTimeRank Int [not null, default: 0]
+  dislikeCountDayRank Int [not null, default: 0]
+  dislikeCountWeekRank Int [not null, default: 0]
+  dislikeCountMonthRank Int [not null, default: 0]
+  dislikeCountYearRank Int [not null, default: 0]
+  dislikeCountAllTimeRank Int [not null, default: 0]
+  heartCountDayRank Int [not null, default: 0]
+  heartCountWeekRank Int [not null, default: 0]
+  heartCountMonthRank Int [not null, default: 0]
+  heartCountYearRank Int [not null, default: 0]
+  heartCountAllTimeRank Int [not null, default: 0]
+  laughCountDayRank Int [not null, default: 0]
+  laughCountWeekRank Int [not null, default: 0]
+  laughCountMonthRank Int [not null, default: 0]
+  laughCountYearRank Int [not null, default: 0]
+  laughCountAllTimeRank Int [not null, default: 0]
+  likeCountDayRank Int [not null, default: 0]
+  likeCountWeekRank Int [not null, default: 0]
+  likeCountMonthRank Int [not null, default: 0]
+  likeCountYearRank Int [not null, default: 0]
+  likeCountAllTimeRank Int [not null, default: 0]
+  commentCountDayRank Int [not null, default: 0]
+  commentCountWeekRank Int [not null, default: 0]
+  commentCountMonthRank Int [not null, default: 0]
+  commentCountYearRank Int [not null, default: 0]
+  commentCountAllTimeRank Int [not null, default: 0]
+  reactionCountDayRank Int [not null, default: 0]
+  reactionCountWeekRank Int [not null, default: 0]
+  reactionCountMonthRank Int [not null, default: 0]
+  reactionCountYearRank Int [not null, default: 0]
+  reactionCountAllTimeRank Int [not null, default: 0]
+  viewCountDayRank Int [not null, default: 0]
+  viewCountWeekRank Int [not null, default: 0]
+  viewCountMonthRank Int [not null, default: 0]
+  viewCountYearRank Int [not null, default: 0]
+  viewCountAllTimeRank Int [not null, default: 0]
+  favoriteCountDayRank Int [not null, default: 0]
+  favoriteCountWeekRank Int [not null, default: 0]
+  favoriteCountMonthRank Int [not null, default: 0]
+  favoriteCountYearRank Int [not null, default: 0]
+  favoriteCountAllTimeRank Int [not null, default: 0]
+  hideCountDayRank Int [not null, default: 0]
+  hideCountWeekRank Int [not null, default: 0]
+  hideCountMonthRank Int [not null, default: 0]
+  hideCountYearRank Int [not null, default: 0]
+  hideCountAllTimeRank Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table UserStat {
+  user User [not null]
+  userId Int [pk]
+  uploadCountDay Int [not null]
+  uploadCountWeek Int [not null]
+  uploadCountMonth Int [not null]
+  uploadCountYear Int [not null]
+  uploadCountAllTime Int [not null]
+  reviewCountDay Int [not null]
+  reviewCountWeek Int [not null]
+  reviewCountMonth Int [not null]
+  reviewCountYear Int [not null]
+  reviewCountAllTime Int [not null]
+  downloadCountDay Int [not null]
+  downloadCountWeek Int [not null]
+  downloadCountMonth Int [not null]
+  downloadCountYear Int [not null]
+  downloadCountAllTime Int [not null]
+  ratingCountDay Int [not null]
+  ratingCountWeek Int [not null]
+  ratingCountMonth Int [not null]
+  ratingCountYear Int [not null]
+  ratingCountAllTime Int [not null]
+  followingCountDay Int [not null]
+  followingCountWeek Int [not null]
+  followingCountMonth Int [not null]
+  followingCountYear Int [not null]
+  followingCountAllTime Int [not null]
+  followerCountDay Int [not null]
+  followerCountWeek Int [not null]
+  followerCountMonth Int [not null]
+  followerCountYear Int [not null]
+  followerCountAllTime Int [not null]
+  hiddenCountDay Int [not null]
+  hiddenCountWeek Int [not null]
+  hiddenCountMonth Int [not null]
+  hiddenCountYear Int [not null]
+  hiddenCountAllTime Int [not null]
+  ratingDay Float [not null]
+  ratingWeek Float [not null]
+  ratingMonth Float [not null]
+  ratingYear Float [not null]
+  ratingAllTime Float [not null]
+  favoriteCountDay Int [not null]
+  favoriteCountWeek Int [not null]
+  favoriteCountMonth Int [not null]
+  favoriteCountYear Int [not null]
+  favoriteCountAllTime Int [not null]
+  answerCountDay Int [not null]
+  answerCountWeek Int [not null]
+  answerCountMonth Int [not null]
+  answerCountYear Int [not null]
+  answerCountAllTime Int [not null]
+  answerAcceptCountDay Int [not null]
+  answerAcceptCountWeek Int [not null]
+  answerAcceptCountMonth Int [not null]
+  answerAcceptCountYear Int [not null]
+  answerAcceptCountAllTime Int [not null]
+
+  Note: '@view'
+}
+
+Table UserRank {
+  user User [not null]
+  userId Int [pk]
+  downloadCountDayRank Int [not null, default: 0]
+  downloadCountWeekRank Int [not null, default: 0]
+  downloadCountMonthRank Int [not null, default: 0]
+  downloadCountYearRank Int [not null, default: 0]
+  downloadCountAllTimeRank Int [not null, default: 0]
+  ratingCountDayRank Int [not null, default: 0]
+  ratingCountWeekRank Int [not null, default: 0]
+  ratingCountMonthRank Int [not null, default: 0]
+  ratingCountYearRank Int [not null, default: 0]
+  ratingCountAllTimeRank Int [not null, default: 0]
+  followerCountDayRank Int [not null, default: 0]
+  followerCountWeekRank Int [not null, default: 0]
+  followerCountMonthRank Int [not null, default: 0]
+  followerCountYearRank Int [not null, default: 0]
+  followerCountAllTimeRank Int [not null, default: 0]
+  ratingDayRank Int [not null, default: 0]
+  ratingWeekRank Int [not null, default: 0]
+  ratingMonthRank Int [not null, default: 0]
+  ratingYearRank Int [not null, default: 0]
+  ratingAllTimeRank Int [not null, default: 0]
+  favoriteCountDayRank Int [not null, default: 0]
+  favoriteCountWeekRank Int [not null, default: 0]
+  favoriteCountMonthRank Int [not null, default: 0]
+  favoriteCountYearRank Int [not null, default: 0]
+  favoriteCountAllTimeRank Int [not null, default: 0]
+  answerCountDayRank Int [not null, default: 0]
+  answerCountWeekRank Int [not null, default: 0]
+  answerCountMonthRank Int [not null, default: 0]
+  answerCountYearRank Int [not null, default: 0]
+  answerCountAllTimeRank Int [not null, default: 0]
+  answerAcceptCountDayRank Int [not null, default: 0]
+  answerAcceptCountWeekRank Int [not null, default: 0]
+  answerAcceptCountMonthRank Int [not null, default: 0]
+  answerAcceptCountYearRank Int [not null, default: 0]
+  answerAcceptCountAllTimeRank Int [not null, default: 0]
+  leaderboardRank Int
+  leaderboardId String
+  leaderboardTitle String
+  leaderboardCosmetic String
+
+  Note: '@view'
+}
+
+Table TagStat {
+  tag Tag [not null]
+  tagId Int [pk]
+  followerCountDay Int [not null]
+  followerCountWeek Int [not null]
+  followerCountMonth Int [not null]
+  followerCountYear Int [not null]
+  followerCountAllTime Int [not null]
+  hiddenCountDay Int [not null]
+  hiddenCountWeek Int [not null]
+  hiddenCountMonth Int [not null]
+  hiddenCountYear Int [not null]
+  hiddenCountAllTime Int [not null]
+  modelCountDay Int [not null]
+  modelCountWeek Int [not null]
+  modelCountMonth Int [not null]
+  modelCountYear Int [not null]
+  modelCountAllTime Int [not null]
+  imageCountDay Int [not null]
+  imageCountWeek Int [not null]
+  imageCountMonth Int [not null]
+  imageCountYear Int [not null]
+  imageCountAllTime Int [not null]
+  postCountDay Int [not null]
+  postCountWeek Int [not null]
+  postCountMonth Int [not null]
+  postCountYear Int [not null]
+  postCountAllTime Int [not null]
+
+  Note: '@view'
+}
+
+Table TagRank {
+  tag Tag [not null]
+  tagId Int [pk]
+  followerCountDayRank Int [not null, default: 0]
+  followerCountWeekRank Int [not null, default: 0]
+  followerCountMonthRank Int [not null, default: 0]
+  followerCountYearRank Int [not null, default: 0]
+  followerCountAllTimeRank Int [not null, default: 0]
+  hiddenCountDayRank Int [not null, default: 0]
+  hiddenCountWeekRank Int [not null, default: 0]
+  hiddenCountMonthRank Int [not null, default: 0]
+  hiddenCountYearRank Int [not null, default: 0]
+  hiddenCountAllTimeRank Int [not null, default: 0]
+  modelCountDayRank Int [not null, default: 0]
+  modelCountWeekRank Int [not null, default: 0]
+  modelCountMonthRank Int [not null, default: 0]
+  modelCountYearRank Int [not null, default: 0]
+  modelCountAllTimeRank Int [not null, default: 0]
+  imageCountDayRank Int [not null, default: 0]
+  imageCountWeekRank Int [not null, default: 0]
+  imageCountMonthRank Int [not null, default: 0]
+  imageCountYearRank Int [not null, default: 0]
+  imageCountAllTimeRank Int [not null, default: 0]
+  postCountDayRank Int [not null, default: 0]
+  postCountWeekRank Int [not null, default: 0]
+  postCountMonthRank Int [not null, default: 0]
+  postCountYearRank Int [not null, default: 0]
+  postCountAllTimeRank Int [not null, default: 0]
+  articleCountDayRank Int [not null, default: 0]
+  articleCountWeekRank Int [not null, default: 0]
+  articleCountMonthRank Int [not null, default: 0]
+  articleCountYearRank Int [not null, default: 0]
+  articleCountAllTimeRank Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ImageStat {
+  imageId Int [pk]
+  image Image [not null]
+  cryCountDay Int [not null, default: 0]
+  cryCountWeek Int [not null, default: 0]
+  cryCountMonth Int [not null, default: 0]
+  cryCountYear Int [not null, default: 0]
+  cryCountAllTime Int [not null, default: 0]
+  dislikeCountDay Int [not null, default: 0]
+  dislikeCountWeek Int [not null, default: 0]
+  dislikeCountMonth Int [not null, default: 0]
+  dislikeCountYear Int [not null, default: 0]
+  dislikeCountAllTime Int [not null, default: 0]
+  heartCountDay Int [not null, default: 0]
+  heartCountWeek Int [not null, default: 0]
+  heartCountMonth Int [not null, default: 0]
+  heartCountYear Int [not null, default: 0]
+  heartCountAllTime Int [not null, default: 0]
+  laughCountDay Int [not null, default: 0]
+  laughCountWeek Int [not null, default: 0]
+  laughCountMonth Int [not null, default: 0]
+  laughCountYear Int [not null, default: 0]
+  laughCountAllTime Int [not null, default: 0]
+  likeCountDay Int [not null, default: 0]
+  likeCountWeek Int [not null, default: 0]
+  likeCountMonth Int [not null, default: 0]
+  likeCountYear Int [not null, default: 0]
+  likeCountAllTime Int [not null, default: 0]
+  commentCountDay Int [not null, default: 0]
+  commentCountWeek Int [not null, default: 0]
+  commentCountMonth Int [not null, default: 0]
+  commentCountYear Int [not null, default: 0]
+  commentCountAllTime Int [not null, default: 0]
+  reactionCountDay Int [not null, default: 0]
+  reactionCountWeek Int [not null, default: 0]
+  reactionCountMonth Int [not null, default: 0]
+  reactionCountYear Int [not null, default: 0]
+  reactionCountAllTime Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ImageRank {
+  imageId Int [pk]
+  image Image [not null]
+  cryCountDayRank Int [not null, default: 0]
+  cryCountWeekRank Int [not null, default: 0]
+  cryCountMonthRank Int [not null, default: 0]
+  cryCountYearRank Int [not null, default: 0]
+  cryCountAllTimeRank Int [not null, default: 0]
+  dislikeCountDayRank Int [not null, default: 0]
+  dislikeCountWeekRank Int [not null, default: 0]
+  dislikeCountMonthRank Int [not null, default: 0]
+  dislikeCountYearRank Int [not null, default: 0]
+  dislikeCountAllTimeRank Int [not null, default: 0]
+  heartCountDayRank Int [not null, default: 0]
+  heartCountWeekRank Int [not null, default: 0]
+  heartCountMonthRank Int [not null, default: 0]
+  heartCountYearRank Int [not null, default: 0]
+  heartCountAllTimeRank Int [not null, default: 0]
+  laughCountDayRank Int [not null, default: 0]
+  laughCountWeekRank Int [not null, default: 0]
+  laughCountMonthRank Int [not null, default: 0]
+  laughCountYearRank Int [not null, default: 0]
+  laughCountAllTimeRank Int [not null, default: 0]
+  likeCountDayRank Int [not null, default: 0]
+  likeCountWeekRank Int [not null, default: 0]
+  likeCountMonthRank Int [not null, default: 0]
+  likeCountYearRank Int [not null, default: 0]
+  likeCountAllTimeRank Int [not null, default: 0]
+  commentCountDayRank Int [not null, default: 0]
+  commentCountWeekRank Int [not null, default: 0]
+  commentCountMonthRank Int [not null, default: 0]
+  commentCountYearRank Int [not null, default: 0]
+  commentCountAllTimeRank Int [not null, default: 0]
+  reactionCountDayRank Int [not null, default: 0]
+  reactionCountWeekRank Int [not null, default: 0]
+  reactionCountMonthRank Int [not null, default: 0]
+  reactionCountYearRank Int [not null, default: 0]
+  reactionCountAllTimeRank Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ImageModHelper {
+  imageId Int [pk]
+  image Image [not null]
+  assessedNSFW Boolean [default: false]
+  nsfwReportCount Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ModelHash {
+  modelId Int [pk]
+  model Model [not null]
+  modelVersionId Int [not null]
+  modelVersion ModelVersion [not null]
+  hashType ModelHashType [not null]
+  fileType String [not null]
+  hash String [not null]
+
+  Note: '@view'
+}
+
+Table PostHelper {
+  postId Int [pk]
+  post Post [not null]
+  scanned Boolean [not null]
+
+  Note: '@view'
+}
+
+Table PostStat {
+  postId Int [pk]
+  post Post [not null]
+  cryCountDay Int [not null, default: 0]
+  cryCountWeek Int [not null, default: 0]
+  cryCountMonth Int [not null, default: 0]
+  cryCountYear Int [not null, default: 0]
+  cryCountAllTime Int [not null, default: 0]
+  dislikeCountDay Int [not null, default: 0]
+  dislikeCountWeek Int [not null, default: 0]
+  dislikeCountMonth Int [not null, default: 0]
+  dislikeCountYear Int [not null, default: 0]
+  dislikeCountAllTime Int [not null, default: 0]
+  heartCountDay Int [not null, default: 0]
+  heartCountWeek Int [not null, default: 0]
+  heartCountMonth Int [not null, default: 0]
+  heartCountYear Int [not null, default: 0]
+  heartCountAllTime Int [not null, default: 0]
+  laughCountDay Int [not null, default: 0]
+  laughCountWeek Int [not null, default: 0]
+  laughCountMonth Int [not null, default: 0]
+  laughCountYear Int [not null, default: 0]
+  laughCountAllTime Int [not null, default: 0]
+  likeCountDay Int [not null, default: 0]
+  likeCountWeek Int [not null, default: 0]
+  likeCountMonth Int [not null, default: 0]
+  likeCountYear Int [not null, default: 0]
+  likeCountAllTime Int [not null, default: 0]
+  commentCountDay Int [not null, default: 0]
+  commentCountWeek Int [not null, default: 0]
+  commentCountMonth Int [not null, default: 0]
+  commentCountYear Int [not null, default: 0]
+  commentCountAllTime Int [not null, default: 0]
+  reactionCountDay Int [not null, default: 0]
+  reactionCountWeek Int [not null, default: 0]
+  reactionCountMonth Int [not null, default: 0]
+  reactionCountYear Int [not null, default: 0]
+  reactionCountAllTime Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table PostRank {
+  postId Int [pk]
+  post Post [not null]
+  cryCountDayRank Int [not null, default: 0]
+  cryCountWeekRank Int [not null, default: 0]
+  cryCountMonthRank Int [not null, default: 0]
+  cryCountYearRank Int [not null, default: 0]
+  cryCountAllTimeRank Int [not null, default: 0]
+  dislikeCountDayRank Int [not null, default: 0]
+  dislikeCountWeekRank Int [not null, default: 0]
+  dislikeCountMonthRank Int [not null, default: 0]
+  dislikeCountYearRank Int [not null, default: 0]
+  dislikeCountAllTimeRank Int [not null, default: 0]
+  heartCountDayRank Int [not null, default: 0]
+  heartCountWeekRank Int [not null, default: 0]
+  heartCountMonthRank Int [not null, default: 0]
+  heartCountYearRank Int [not null, default: 0]
+  heartCountAllTimeRank Int [not null, default: 0]
+  laughCountDayRank Int [not null, default: 0]
+  laughCountWeekRank Int [not null, default: 0]
+  laughCountMonthRank Int [not null, default: 0]
+  laughCountYearRank Int [not null, default: 0]
+  laughCountAllTimeRank Int [not null, default: 0]
+  likeCountDayRank Int [not null, default: 0]
+  likeCountWeekRank Int [not null, default: 0]
+  likeCountMonthRank Int [not null, default: 0]
+  likeCountYearRank Int [not null, default: 0]
+  likeCountAllTimeRank Int [not null, default: 0]
+  commentCountDayRank Int [not null, default: 0]
+  commentCountWeekRank Int [not null, default: 0]
+  commentCountMonthRank Int [not null, default: 0]
+  commentCountYearRank Int [not null, default: 0]
+  commentCountAllTimeRank Int [not null, default: 0]
+  reactionCountDayRank Int [not null, default: 0]
+  reactionCountWeekRank Int [not null, default: 0]
+  reactionCountMonthRank Int [not null, default: 0]
+  reactionCountYearRank Int [not null, default: 0]
+  reactionCountAllTimeRank Int [not null, default: 0]
+
+  Note: '@view'
+}
+
+Table ImageTag {
+  imageId Int [not null]
+  image Image [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  tagName String [not null]
+  tagType TagType [not null]
+  tagNsfw NsfwLevel [not null]
+  automated Boolean [not null]
+  confidence Int
+  score Int [not null]
+  upVotes Int [not null]
+  downVotes Int [not null]
+  needsReview Boolean [not null]
+  concrete Boolean [not null]
+  lastUpvote DateTime
+
+  indexes {
+    (imageId, tagId) [pk]
+  }
+
+  Note: '@view'
+}
+
+Table ModelTag {
+  modelId Int [not null]
+  model Model [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  tagName String [not null]
+  tagType TagType [not null]
+  score Int [not null]
+  upVotes Int [not null]
+  downVotes Int [not null]
+  needsReview Boolean [not null]
+
+  indexes {
+    (modelId, tagId) [pk]
+  }
+
+  Note: '@view'
+}
+
+Table ImageResourceHelper {
+  id Int [pk]
+  imageId Int [not null]
+  image Image [not null]
+  reviewId Int
+  reviewRating Int
+  reviewDetails String
+  reviewCreatedAt DateTime
+  name String
+  hash String
+  modelVersionId Int
+  modelVersionName String
+  modelVersionCreatedAt DateTime
+  modelId Int
+  modelName String
+  modelRating Float
+  modelRatingCount Int
+  modelDownloadCount Int
+  modelCommentCount Int
+  modelFavoriteCount Int
+  modelType ModelType
+
+  indexes {
+    (imageId, name, modelVersionId) [unique]
+  }
+
+  Note: '@view'
+}
+
+Table PostResourceHelper {
+  id Int [pk]
+  postId Int [not null]
+  post Post [not null]
+  reviewId Int
+  reviewRating Int
+  reviewDetails String
+  reviewCreatedAt DateTime
+  name String
+  modelVersionId Int
+  modelVersionName String
+  modelVersionCreatedAt DateTime
+  modelId Int
+  modelName String
+  modelRating Int
+  modelRatingCount Int
+  modelDownloadCount Int
+  modelCommentCount Int
+  modelFavoriteCount Int
+  modelType ModelType
+
+  indexes {
+    (postId, name, modelVersionId) [unique]
+  }
+
+  Note: '@view'
+}
+
+Table PostImageTag {
+  postId Int [not null]
+  post Post [not null]
+  tagId Int [not null]
+
+  indexes {
+    (postId, tagId) [pk]
+  }
+
+  Note: '@view'
+}
+
+Table PostTag {
+  postId Int [not null]
+  post Post [not null]
+  tagId Int [not null]
+  tag Tag [not null]
+  tagName String [not null]
+  tagType TagType [not null]
+  score Int [not null]
+  upVotes Int [not null]
+  downVotes Int [not null]
+
+  indexes {
+    (postId, tagId) [pk]
+  }
+
+  Note: '@view'
+}
+
+Table ResourceReviewHelper {
+  resourceReviewId Int [pk]
+  resourceReview ResourceReview [not null]
+  imageCount Int [not null]
+
+  Note: '@view'
+}
+
+Table GenerationCoverage {
+  modelId Int [not null]
+  model Model [not null]
+  modelVersionId Int [unique, not null]
+  modelVersion ModelVersion [not null]
+  covered Boolean [not null]
+
+  indexes {
+    (modelId, modelVersionId) [pk]
+  }
+
+  Note: '@view'
+}
+
+Enum UserEngagementType {
+  Follow
+  Hide
+}
+
+Enum LinkType {
+  Sponsorship
+  Social
+  Other
+}
+
+Enum ModelType {
+  Checkpoint
+  TextualInversion
+  Hypernetwork
+  AestheticGradient
+  LORA
+  LoCon
+  Controlnet
+  Upscaler
+  VAE
+  Poses
+  Wildcards
+  Workflows
+  Other
+}
+
+Enum ImportStatus {
+  Pending
+  Processing
+  Failed
+  Completed
+}
+
+Enum ModelStatus {
+  Draft
+  Published
+  Scheduled
+  Unpublished
+  UnpublishedViolation
+  GatherInterest
+  Deleted
+}
+
+Enum CommercialUse {
+  None
+  Image
+  Rent
+  Sell
+}
+
+Enum CheckpointType {
+  Trained
+  Merge
+}
+
+Enum ModelModifier {
+  Archived
+  TakenDown
+}
+
+Enum ContentType {
+  Image
+  Character
+  Text
+  Audio
+}
+
+Enum ModelEngagementType {
+  Favorite
+  Hide
+}
+
+Enum ModelVersionEngagementType {
+  Notify
+}
+
+Enum ModelHashType {
+  AutoV1
+  AutoV2
+  SHA256
+  CRC32
+  BLAKE3
+}
+
+Enum ScanResultCode {
+  Pending
+  Success
+  Danger
+  Error
+}
+
+Enum MetricTimeframe {
+  Day
+  Week
+  Month
+  Year
+  AllTime
+}
+
+Enum AssociationType {
+  Suggested
+}
+
+Enum ReportReason {
+  TOSViolation
+  NSFW
+  Ownership
+  AdminAttention
+  Claim
+}
+
+Enum ReportStatus {
+  Pending
+  Processing
+  Actioned
+  Unactioned
+}
+
+Enum ReviewReactions {
+  Like
+  Dislike
+  Laugh
+  Cry
+  Heart
+}
+
+Enum ImageGenerationProcess {
+  txt2img
+  txt2imgHiRes
+  img2img
+  inpainting
+}
+
+Enum NsfwLevel {
+  None
+  Soft
+  Mature
+  X
+  Blocked
+}
+
+Enum ImageIngestionStatus {
+  Pending
+  Scanned
+  Error
+  Blocked
+  NotFound
+}
+
+Enum MediaType {
+  image
+  video
+  audio
+}
+
+Enum ImageEngagementType {
+  Favorite
+  Hide
+}
+
+Enum ImageOnModelType {
+  Example
+  Training
+}
+
+Enum TagTarget {
+  Model
+  Question
+  Image
+  Post
+  Tag
+  Article
+}
+
+Enum TagType {
+  UserGenerated
+  Label
+  Moderation
+  System
+}
+
+Enum PartnerPricingModel {
+  Duration
+  PerImage
+}
+
+Enum KeyScope {
+  Read
+  Write
+}
+
+Enum TagEngagementType {
+  Hide
+  Follow
+  Allow
+}
+
+Enum CosmeticType {
+  Badge
+  NamePlate
+}
+
+Enum CosmeticSource {
+  Trophy
+  Purchase
+  Event
+  Membership
+}
+
+Enum ArticleEngagementType {
+  Favorite
+  Hide
+}
+
+Enum GenerationSchedulers {
+  EulerA
+  Euler
+  LMS
+  Heun
+  DPM2
+  DPM2A
+  DPM2SA
+  DPM2M
+  DPMSDE
+  DPMFast
+  DPMAdaptive
+  LMSKarras
+  DPM2Karras
+  DPM2AKarras
+  DPM2SAKarras
+  DPM2MKarras
+  DPMSDEKarras
+  DDIM
+}
+
+Enum SearchIndexUpdateQueueAction {
+  Update
+  Delete
+}
+
+Enum CollectionWriteConfiguration {
+  Private
+  Public
+  Review
+}
+
+Enum CollectionReadConfiguration {
+  Private
+  Public
+  Unlisted
+}
+
+Enum CollectionType {
+  Model
+  Article
+  Post
+  Image
+}
+
+Enum CollectionItemStatus {
+  ACCEPTED
+  REVIEW
+  REJECTED
+}
+
+Enum CollectionContributorPermission {
+  VIEW
+  ADD
+  ADD_REVIEW
+  MANAGE
+}
+
+Enum HomeBlockType {
+  Collection
+  Announcement
+  Leaderboard
+}
+
+Ref: Account.userId > User.id [delete: Cascade]
+
+Ref: Session.userId > User.id [delete: Cascade]
+
+Ref: SessionInvalidation.userId > User.id [delete: Cascade]
+
+Ref: CustomerSubscription.userId - User.id [delete: Cascade]
+
+Ref: CustomerSubscription.priceId > Price.id
+
+Ref: CustomerSubscription.productId > Product.id
+
+Ref: Price.productId > Product.id
+
+Ref: Purchase.customerId > User.customerId
+
+Ref: Purchase.productId > Product.id
+
+Ref: Purchase.priceId > Price.id
+
+Ref: UserEngagement.userId > User.id [delete: Cascade]
+
+Ref: UserEngagement.targetUserId > User.id [delete: Cascade]
+
+Ref: UserMetric.userId > User.id [delete: Cascade]
+
+Ref: UserLink.userId > User.id [delete: Cascade]
+
+Ref: Import.userId > User.id [delete: Set Null]
+
+Ref: Import.parentId - Import.id [delete: Set Null]
+
+Ref: Model.userId > User.id
+
+Ref: Model.fromImportId - Import.id [delete: Set Null]
+
+Ref: Model.deletedBy > User.id
+
+Ref: ModelInterest.userId > User.id [delete: Cascade]
+
+Ref: ModelInterest.modelId > Model.id [delete: Cascade]
+
+Ref: ModelEngagement.userId > User.id [delete: Cascade]
+
+Ref: ModelEngagement.modelId > Model.id [delete: Cascade]
+
+Ref: ModelVersion.modelId > Model.id [delete: Cascade]
+
+Ref: ModelVersion.vaeId - ModelVersion.id [delete: Set Null]
+
+Ref: ModelVersion.fromImportId > Import.id [delete: Set Null]
+
+Ref: ModelVersionEngagement.userId > User.id [delete: Cascade]
+
+Ref: ModelVersionEngagement.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: ModelFileHash.fileId > ModelFile.id [delete: Cascade]
+
+Ref: ModelFile.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: File.articleId > Article.id [delete: Cascade]
+
+Ref: ModelMetric.modelId > Model.id [delete: Cascade]
+
+Ref: ModelVersionMetric.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: ModelMetricDaily.modelId > Model.id [delete: Cascade]
+
+Ref: ModelMetricDaily.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: ModelAssociations.fromModelId > Model.id [delete: Cascade]
+
+Ref: ModelAssociations.toModelId > Model.id [delete: Cascade]
+
+Ref: ModelAssociations.toArticleId > Article.id [delete: Cascade]
+
+Ref: DownloadHistory.userId > User.id [delete: Cascade]
+
+Ref: DownloadHistory.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: Report.userId > User.id [delete: Cascade]
+
+Ref: ResourceReviewReport.resourceReviewId > ResourceReview.id [delete: Cascade]
+
+Ref: ResourceReviewReport.reportId - Report.id [delete: Cascade]
+
+Ref: ModelReport.modelId > Model.id [delete: Cascade]
+
+Ref: ModelReport.reportId - Report.id [delete: Cascade]
+
+Ref: CommentReport.commentId > Comment.id [delete: Cascade]
+
+Ref: CommentReport.reportId - Report.id [delete: Cascade]
+
+Ref: CommentV2Report.commentV2Id > CommentV2.id [delete: Cascade]
+
+Ref: CommentV2Report.reportId - Report.id [delete: Cascade]
+
+Ref: ImageReport.imageId > Image.id [delete: Cascade]
+
+Ref: ImageReport.reportId - Report.id [delete: Cascade]
+
+Ref: ArticleReport.articleId > Article.id [delete: Cascade]
+
+Ref: ArticleReport.reportId - Report.id [delete: Cascade]
+
+Ref: PostReport.postId > Post.id [delete: Cascade]
+
+Ref: PostReport.reportId - Report.id [delete: Cascade]
+
+Ref: UserReport.userId > User.id [delete: Cascade]
+
+Ref: UserReport.reportId - Report.id [delete: Cascade]
+
+Ref: CollectionReport.collectionId > Collection.id [delete: Cascade]
+
+Ref: CollectionReport.reportId - Report.id [delete: Cascade]
+
+Ref: ResourceReview.modelId > Model.id [delete: Cascade]
+
+Ref: ResourceReview.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: ResourceReview.userId > User.id [delete: Cascade]
+
+Ref: ResourceReviewReaction.reviewId > ResourceReview.id [delete: Cascade]
+
+Ref: ResourceReviewReaction.userId > User.id [delete: Cascade]
+
+Ref: Post.userId > User.id [delete: Cascade]
+
+Ref: Post.modelVersionId > ModelVersion.id [delete: Set Null]
+
+Ref: Post.collectionId > Collection.id [delete: Cascade]
+
+Ref: PostMetric.postId > Post.id [delete: Cascade]
+
+Ref: Image.userId > User.id [delete: Cascade]
+
+Ref: Image.postId > Post.id [delete: Set Null]
+
+Ref: ImageEngagement.userId > User.id [delete: Cascade]
+
+Ref: ImageEngagement.imageId > Image.id [delete: Cascade]
+
+Ref: ImageResource.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: ImageResource.imageId > Image.id [delete: Cascade]
+
+Ref: ImageMetric.imageId > Image.id [delete: Cascade]
+
+Ref: TagsOnTags.fromTagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnTags.toTagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnModels.modelId > Model.id [delete: Cascade]
+
+Ref: TagsOnModels.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnModelsVote.modelId > Model.id [delete: Cascade]
+
+Ref: TagsOnModelsVote.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnModelsVote.userId > User.id [delete: Cascade]
+
+Ref: TagsOnQuestions.questionId > Question.id [delete: Cascade]
+
+Ref: TagsOnQuestions.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnImage.imageId > Image.id [delete: Cascade]
+
+Ref: TagsOnImage.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnImageVote.imageId > Image.id [delete: Cascade]
+
+Ref: TagsOnImageVote.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnImageVote.userId > User.id [delete: Cascade]
+
+Ref: TagsOnPost.postId > Post.id [delete: Cascade]
+
+Ref: TagsOnPost.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnArticle.articleId > Article.id [delete: Cascade]
+
+Ref: TagsOnArticle.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnPostVote.postId > Post.id [delete: Cascade]
+
+Ref: TagsOnPostVote.tagId > Tag.id [delete: Cascade]
+
+Ref: TagsOnPostVote.userId > User.id [delete: Cascade]
+
+Ref: TagMetric.tagId > Tag.id [delete: Cascade]
+
+Ref: SavedModel.modelId > Model.id [delete: Cascade]
+
+Ref: SavedModel.userId > User.id [delete: Cascade]
+
+Ref: RunStrategy.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: RunStrategy.partnerId > Partner.id [delete: Cascade]
+
+Ref: ApiKey.userId > User.id [delete: Cascade]
+
+Ref: Comment.parentId - Comment.id [delete: Cascade]
+
+Ref: Comment.userId > User.id [delete: Cascade]
+
+Ref: Comment.modelId > Model.id [delete: Cascade]
+
+Ref: CommentReaction.commentId > Comment.id [delete: Cascade]
+
+Ref: CommentReaction.userId > User.id [delete: Cascade]
+
+Ref: Notification.userId > User.id [delete: Cascade]
+
+Ref: UserNotificationSettings.userId > User.id [delete: Cascade]
+
+Ref: Webhook.userId > User.id [delete: Cascade]
+
+Ref: Question.userId > User.id
+
+Ref: Question.selectedAnswerId - Answer.id
+
+Ref: QuestionMetric.questionId > Question.id [delete: Cascade]
+
+Ref: Answer.questionId - Question.id [delete: Cascade]
+
+Ref: Answer.userId > User.id [delete: Cascade]
+
+Ref: AnswerVote.answerId > Answer.id [delete: Cascade]
+
+Ref: AnswerVote.userId > User.id [delete: Cascade]
+
+Ref: AnswerMetric.answerId > Answer.id [delete: Cascade]
+
+Ref: CommentV2.userId > User.id [delete: Cascade]
+
+Ref: CommentV2.threadId - Thread.id [delete: Cascade]
+
+Ref: Thread.questionId - Question.id [delete: Set Null]
+
+Ref: Thread.answerId - Answer.id [delete: Set Null]
+
+Ref: Thread.imageId - Image.id [delete: Set Null]
+
+Ref: Thread.postId - Post.id [delete: Set Null]
+
+Ref: Thread.reviewId - ResourceReview.id [delete: Set Null]
+
+Ref: Thread.commentId - CommentV2.id [delete: Set Null]
+
+Ref: Thread.modelId > Model.id [delete: Set Null]
+
+Ref: Thread.articleId - Article.id [delete: Set Null]
+
+Ref: QuestionReaction.questionId > Question.id [delete: Cascade]
+
+Ref: QuestionReaction.userId > User.id [delete: Cascade]
+
+Ref: AnswerReaction.answerId > Answer.id [delete: Cascade]
+
+Ref: AnswerReaction.userId > User.id [delete: Cascade]
+
+Ref: CommentV2Reaction.commentId > CommentV2.id [delete: Cascade]
+
+Ref: CommentV2Reaction.userId > User.id [delete: Cascade]
+
+Ref: ImageReaction.imageId > Image.id [delete: Cascade]
+
+Ref: ImageReaction.userId > User.id [delete: Cascade]
+
+Ref: PostReaction.postId > Post.id [delete: Cascade]
+
+Ref: PostReaction.userId > User.id [delete: Cascade]
+
+Ref: ArticleReaction.articleId > Article.id [delete: Cascade]
+
+Ref: ArticleReaction.userId > User.id [delete: Cascade]
+
+Ref: TagEngagement.userId > User.id [delete: Cascade]
+
+Ref: TagEngagement.tagId > Tag.id [delete: Cascade]
+
+Ref: UserCosmetic.userId > User.id [delete: Cascade]
+
+Ref: UserCosmetic.cosmeticId > Cosmetic.id [delete: Cascade]
+
+Ref: Article.userId > User.id [delete: Cascade]
+
+Ref: ArticleEngagement.userId > User.id [delete: Cascade]
+
+Ref: ArticleEngagement.articleId > Article.id [delete: Cascade]
+
+Ref: ArticleMetric.articleId > Article.id [delete: Cascade]
+
+Ref: LeaderboardResult.leaderboardId > Leaderboard.id [delete: Cascade]
+
+Ref: LeaderboardResult.userId > User.id [delete: Cascade]
+
+Ref: ModelVersionExploration.modelVersionId > ModelVersion.id [delete: Cascade]
+
+Ref: Collection.userId > User.id [delete: Cascade]
+
+Ref: Collection.imageId > Image.id [delete: Set Null]
+
+Ref: CollectionItem.collectionId > Collection.id [delete: Cascade]
+
+Ref: CollectionItem.articleId > Article.id [delete: Cascade]
+
+Ref: CollectionItem.postId > Post.id [delete: Cascade]
+
+Ref: CollectionItem.imageId > Image.id [delete: Cascade]
+
+Ref: CollectionItem.modelId > Model.id [delete: Cascade]
+
+Ref: CollectionItem.addedById > User.id [delete: Set Null]
+
+Ref: CollectionContributor.userId > User.id [delete: Cascade]
+
+Ref: CollectionContributor.collectionId > Collection.id [delete: Cascade]
+
+Ref: TagsOnCollection.collectionId > Collection.id [delete: Cascade]
+
+Ref: TagsOnCollection.tagId > Tag.id [delete: Cascade]
+
+Ref: HomeBlock.userId > User.id [delete: Cascade]
+
+Ref: HomeBlock.sourceId - HomeBlock.id [delete: Set Null]
+
+Ref: QuestionRank.questionId - Question.id [delete: No Action]
+
+Ref: AnswerRank.answerId - Answer.id [delete: No Action]
+
+Ref: ModelRank.modelId - Model.id [delete: No Action]
+
+Ref: ModelReportStat.modelId - Model.id [delete: No Action]
+
+Ref: ModelVersionRank.modelVersionId - ModelVersion.id [delete: No Action]
+
+Ref: ArticleStat.articleId - Article.id [delete: No Action]
+
+Ref: ArticleRank.articleId - Article.id [delete: Cascade]
+
+Ref: UserStat.userId - User.id [delete: No Action]
+
+Ref: UserRank.userId - User.id [delete: No Action]
+
+Ref: TagStat.tagId - Tag.id [delete: No Action]
+
+Ref: TagRank.tagId - Tag.id [delete: No Action]
+
+Ref: ImageStat.imageId - Image.id [delete: No Action]
+
+Ref: ImageRank.imageId - Image.id [delete: No Action]
+
+Ref: ImageModHelper.imageId - Image.id [delete: No Action]
+
+Ref: ModelHash.modelId > Model.id
+
+Ref: ModelHash.modelVersionId > ModelVersion.id
+
+Ref: PostHelper.postId - Post.id [delete: No Action]
+
+Ref: PostStat.postId - Post.id [delete: No Action]
+
+Ref: PostRank.postId - Post.id [delete: No Action]
+
+Ref: ImageTag.imageId > Image.id [delete: Cascade]
+
+Ref: ImageTag.tagId > Tag.id [delete: Cascade]
+
+Ref: ModelTag.modelId > Model.id [delete: Cascade]
+
+Ref: ModelTag.tagId > Tag.id [delete: Cascade]
+
+Ref: ImageResourceHelper.imageId > Image.id
+
+Ref: PostResourceHelper.postId > Post.id
+
+Ref: PostImageTag.postId > Post.id [delete: No Action]
+
+Ref: PostTag.postId > Post.id
+
+Ref: PostTag.tagId > Tag.id [delete: No Action]
+
+Ref: ResourceReviewHelper.resourceReviewId - ResourceReview.id
+
+Ref: GenerationCoverage.modelId > Model.id
+
+Ref: GenerationCoverage.modelVersionId - ModelVersion.id

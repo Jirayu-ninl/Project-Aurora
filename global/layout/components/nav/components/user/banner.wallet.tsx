@@ -4,9 +4,9 @@ import { toast } from 'react-toastify'
 // import * as Icon from '../../assets'
 
 const WalletBanner = ({ session }: { session: any }) => {
-  const wallet = {
-    Address: '0x09C9aF72F196b6Ca7fD733DdAd4feb8C03e48b6b',
-    Balance: 151.22645787,
+  const wallet = session.user && {
+    Address: '0x' + session.user.id,
+    Balance: session.user.balance,
   }
 
   return (

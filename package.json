@@ -179,6 +179,7 @@
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "prisma": "^5.1.0",
+    "prisma-dbml-generator": "^0.10.0",
     "raw-loader": "^4.0.2",
     "rimraf": "^5.0.1",
     "stylelint": "^15.10.2",
