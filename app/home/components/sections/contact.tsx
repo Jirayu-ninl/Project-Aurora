@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Text } from '@react-three/drei'
 import { toast } from 'react-toastify'
 import { subscribeCall } from './contact.subscribeCall'
+import { Send } from '@aurora/assets/icons'
 
 const HTML = () => {
   const [email, setEmail] = useState('')
@@ -12,7 +13,7 @@ const HTML = () => {
 
   return (
     <>
-      <div className='absolute top-[1380vh] flex h-[100vh] w-screen flex-col items-center justify-between md:top-[1380vh] xl:top-[1400vh]'>
+      <div className='absolute top-[1280dvh] flex h-[100vh] w-screen flex-col items-center justify-between sm:top-[1380vh] md:top-[1380vh] xl:top-[1400vh]'>
         <form
           className='relative'
           onSubmit={async (event) => {
@@ -36,12 +37,12 @@ const HTML = () => {
             className='bg-black/5 px-4 py-2 text-lg font-light text-white backdrop-blur-lg dark:bg-white/5 md:px-12 md:py-4 md:text-4xl xl:text-6xl el:text-8xl'
           />
           <button
-            className='Anim AnimOpacity-60 absolute bottom-2 right-2 bg-black px-4 py-2 text-3xl uppercase text-white dark:bg-white dark:text-black'
+            className='Anim AnimOpacity-60 absolute right-0 top-0 h-full w-10 fill-black p-2.5 dark:fill-white md:right-2 md:w-16 md:p-4 xl:w-24 el:right-4 el:w-32 el:p-6'
             aria-label='Subscribe to my newsletter'
             title='Subscribe to my newsletter'
             type='submit'
           >
-            Drop
+            <Send />
           </button>
         </form>
       </div>

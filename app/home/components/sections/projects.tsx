@@ -24,7 +24,7 @@ const HTML = ({
 }) => {
   return (
     <>
-      <div className='absolute top-[1150vh] flex w-screen flex-col px-2 md:px-8'>
+      <div className='absolute top-[1050dvh] flex w-screen flex-col px-2 sm:top-[1150vh] md:px-8'>
         {/* <h1 className='text-5xl font-bold uppercase'>Projects</h1> */}
         {ProjectsData.map((v, i) => (
           <Project

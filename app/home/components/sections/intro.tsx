@@ -25,7 +25,7 @@ function IntroSection({
 
   return (
     <>
-      <div className='absolute top-[140vh] flex flex-col px-6 md:left-[10vw] lg:left-[40vw] lg:px-0'>
+      <div className='absolute top-[135dvh] flex flex-col px-6 sm:top-[140vh] md:left-[10vw] lg:left-[40vw] lg:px-0'>
         <h1
           className='mb-10 pl-24 text-2xl font-bold uppercase md:pl-0 md:text-6xl'
           ref={rTextTitle}

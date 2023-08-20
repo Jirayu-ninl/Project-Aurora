@@ -112,7 +112,8 @@ export default function AppInfo() {
                   blurDataURL={
                     'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
                   }
-                  style={{ objectFit: 'cover' }}
+                  objectFit='cover'
+                  // fill
                   className='h-full duration-300 hover:scale-110 hover:duration-150'
                 />
               </div>

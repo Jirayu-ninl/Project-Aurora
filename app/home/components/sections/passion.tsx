@@ -7,7 +7,7 @@ import { PassionData } from '@contents/pages/home'
 const HTML = () => {
   return (
     <>
-      <div className='absolute top-[315vh] flex h-[70vh] w-screen flex-col items-center justify-between md:top-[350vh]'>
+      <div className='absolute top-[310dvh] flex h-[70vh] w-screen flex-col items-center justify-between md:top-[350vh]'>
         {PassionData.map((row, index) => (
           <div
             className='flex w-full flex-col justify-between px-6 lg:w-2/3 xl:w-[960px] xl:flex-row xl:px-0 el:w-[1440px]'
