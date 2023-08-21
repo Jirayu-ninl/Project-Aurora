@@ -70,6 +70,7 @@ model User {
   createdAt      DateTime              @default(now()) @db.Timestamp
   image          String?
   metadata       Json?
+  active         Boolean               @default(true)
   accounts       Account[]
   wallets        Wallet[]
   balance        Float                 @default(0)

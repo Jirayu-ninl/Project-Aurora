@@ -1,48 +1,36 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+// import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
 import cryptoRandomString from 'crypto-random-string'
-import Res from '@aurora/utils/server/response.status'
+import { setResponse as setRes } from '@aurora/utils/server/response.status'
 import cookie from 'cookie'
 
-export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { method } = req
-  const setRes = new Res(res)
-  switch (method) {
-    case 'POST':
-      try {
-        if (req.body.setHeader === true) {
-          const csrfToken = await cryptoRandomString({
-            length: 32,
-            type: 'alphanumeric',
-          })
-          res.setHeader(
-            'Set-Cookie',
-            cookie.serialize('tempToken', csrfToken, {
-              httpOnly: true,
-              secure: true,
-              sameSite: 'lax',
-              path: '/',
-              maxAge: 60, // 1 min
-            }),
-          )
-          setRes.success({
-            msg: 'Authorized',
-            token: csrfToken,
-          })
-        } else {
-          setRes.invalidHeader({
-            msg: 'Invalid Header',
-          })
-        }
-      } catch (error) {
-        setRes.success({
-          msg: error,
-        })
-      }
-      break
-    default:
-      setRes.invalidMethod({
-        msg: 'Invalid method',
+const POST = async (request: Request) => {
+  const req = await request.json()
+  try {
+    if (req.setHeader === true) {
+      const csrfToken = cryptoRandomString({
+        length: 32,
+        type: 'alphanumeric',
       })
-      break
+
+      return new NextResponse(csrfToken, {
+        status: 200,
+        headers: {
+          'Set-Cookie': cookie.serialize('tempToken', csrfToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 60, // 1 min
+          }),
+        },
+      })
+    } else {
+      setRes.invalidHeader('Invalid Header')
+    }
+  } catch (e) {
+    setRes.internalError('Authorization failed')
   }
 }
+
+export { POST }

@@ -15,9 +15,14 @@ const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
         <form
           className='Form-white flex flex-col pt-6'
           method='post'
-          action='/api/auth/callback/theiceji'
+          action='/api/auth/callback/icejiverse'
         >
-          <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
+          <input
+            name='csrfToken'
+            type='hidden'
+            defaultValue={csrfToken}
+            value={csrfToken}
+          />
           <input
             className='Border-white-40 rounded-md'
             type='email'

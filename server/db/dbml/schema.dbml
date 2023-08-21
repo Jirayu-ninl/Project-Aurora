@@ -38,6 +38,7 @@ Table User {
   createdAt DateTime [default: `now()`, not null]
   image String
   metadata Json
+  active Boolean [not null, default: true]
   accounts Account [not null]
   wallets Wallet [not null]
   balance Float [not null, default: 0]

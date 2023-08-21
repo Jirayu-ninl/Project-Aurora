@@ -3,9 +3,9 @@ export const app = {
   VERSION: '2023.08.07',
   UPDATE_DATE: 'Aug 7, 2023',
   Dependencies: {
-    Aurora: '0.11-pre',
+    Aurora: '0.12',
     React: '18.2.0',
-    NextJs: '13.4.12',
+    NextJs: '13.4.19',
     ThreeJs: '155.0',
   },
   // GOOGLE_ANALYTICS: 'UA-102194632-3',

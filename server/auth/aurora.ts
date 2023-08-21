@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import { type GetServerSidePropsContext } from 'next'
 import {
   getServerSession,
   type NextAuthOptions,
   type DefaultSession,
 } from 'next-auth'
-import { SignInCredentials, SignInProvider } from '@aurora/libs/auth/signIn'
+import {
+  CredentialsSignIn /*, SignInProvider */,
+} from '@aurora/libs/auth/signIn'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
@@ -24,14 +26,9 @@ declare module 'next-auth' {
       // role: UserRole;
     } & DefaultSession['user']
   }
-
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
 }
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions | { adapter: any } = {
   pages: {
     signIn: '/app/portal',
     signOut: '/',
@@ -70,8 +67,8 @@ export const authOptions: NextAuthOptions = {
     //   clientSecret: env.AUTH_DISCORD_CLIENT_SECRET,
     // }),
     CredentialsProvider({
-      name: 'Email',
-      id: 'theiceji',
+      name: 'IceJiVerse',
+      id: 'icejiverse',
       type: 'credentials',
       credentials: {
         email: { label: 'E-mail', type: 'text', placeholder: 'E-mail' },
@@ -82,7 +79,7 @@ export const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        return SignInCredentials(credentials)
+        return await CredentialsSignIn(credentials)
       },
     }),
   ],

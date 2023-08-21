@@ -11,7 +11,7 @@ import {
   email as emailValidator,
   password as passwordValidator,
 } from '@aurora/utils/validator'
-import { RES } from '@aurora/utils/server/response.status'
+import { ResponseCode as RES } from '@aurora/utils/server/response.code'
 
 const SignUp = () => {
   const router = useRouter()
@@ -54,33 +54,40 @@ const SignUp = () => {
         const getToken = await axios.post('/api/auth/token', {
           setHeader: true,
         })
-        const csrfToken = getToken.data.token
 
-        const body = { token: csrfToken, ...formData }
-        await axios
-          .post('/api/auth/credentials', body)
-          .then((res) => {
-            if (res.status === RES.created) {
-              Cookies.remove('tempToken')
-              toast.success(res.data.msg)
-              router.push('/app')
-            } else if (res.status === RES.success) {
-              toast.warn(res.data.msg)
-            }
-          })
-          .catch((error) => {
-            if (error.response) {
-              toast.error(
-                `Error ${error.response.status}: ${error.response.data.error}`,
-              )
-            } else if (error.request) {
-              toast.error(`Error: ${error.request.toString()}`)
-            } else {
-              toast.error(`Error: ${error.message.toString()}`)
-            }
-          })
+        try {
+          const body = { token: getToken.data, ...formData }
+          await axios
+            .post('/api/auth/credentials', body)
+            .then((res) => {
+              if (res.status === RES.created) {
+                Cookies.remove('tempToken')
+                toast.success(res.data)
+                router.push('/app/dashboard')
+              } else if (res.status === RES.success) {
+                toast.warn(res.data)
+              }
+            })
+            .catch((error) => {
+              if (error.response.data) {
+                error.response.status === 404
+                  ? toast.error(`Error 404: Not Found (API Request)`)
+                  : toast.error(
+                      `Error ${error.response.status}: ${error.response.data}`,
+                    )
+              } else if (error.request) {
+                toast.error(
+                  `Error ${error.request.status}: ${error.request.statusText}`,
+                )
+              } else {
+                toast.error(`Error: ${error.message.toString()}`)
+              }
+            })
+        } catch (error) {
+          toast.error("Can't connect to server")
+        }
       } catch (error) {
-        toast.error("Can't connect to server")
+        toast.error('Server connection denied')
       }
     } catch (error) {
       toast.error(error?.toString())
