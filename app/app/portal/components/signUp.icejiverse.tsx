@@ -4,14 +4,13 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
-import Cookies from 'js-cookie'
 import type { toast } from 'react-toastify'
 import {
   email as emailValidator,
   password as passwordValidator,
 } from '@aurora/utils/validator'
-import { ResponseCode as RES } from '@aurora/utils/server/response.code'
+import { ErrorHandler } from '@aurora/utils/server/error'
+import { SignUp } from '@/server/auth/icejiverse'
 import { formHandler } from '../functions'
 
 const SignUpIceJiVerse = () => {
@@ -19,17 +18,13 @@ const SignUpIceJiVerse = () => {
   const [confirmPassword, setConfirmPassword] = useState(null)
 
   const { handleChange, executeForm } = formHandler({
-    type: 'signup',
     email: '',
     password: '',
   })
   const handleSubmit = async (e: any) =>
     executeForm(
       e,
-      async (
-        f: { email: string; password: string; type: string },
-        t: typeof toast,
-      ) => {
+      async (f: { email: string; password: string }, t: typeof toast) => {
         try {
           if (emailValidator(f.email) === null) {
             t.warn('Please enter a valid E-mail')
@@ -48,47 +43,18 @@ const SignUpIceJiVerse = () => {
             return
           }
 
-          try {
-            const getToken = await axios.post('/api/auth/token', {
-              setHeader: true,
-            })
-
-            try {
-              const body = { token: getToken.data, ...f }
-              await axios
-                .post('/api/auth/credentials', body)
-                .then((res) => {
-                  if (res.status === RES.created) {
-                    Cookies.remove('tempToken')
-                    t.success(res.data)
-                    router.push('/app/portal')
-                  } else if (res.status === RES.success) {
-                    t.warn(res.data)
-                  }
-                })
-                .catch((error) => {
-                  if (error.response.data) {
-                    error.response.status === 404
-                      ? t.error(`Error 404: Not Found (API Request)`)
-                      : t.error(
-                          `Error ${error.response.status}: ${error.response.data}`,
-                        )
-                  } else if (error.request) {
-                    t.error(
-                      `Error ${error.request.status}: ${error.request.statusText}`,
-                    )
-                  } else {
-                    t.error(`Error: ${error.message.toString()}`)
-                  }
-                })
-            } catch (error) {
-              t.error("Can't connect to server")
-            }
-          } catch (error) {
-            t.error('Server connection denied')
+          const res = await SignUp(f)
+          if (res?.error) {
+            t.error(`Error: ${res?.error}`)
+            return
           }
-        } catch (error) {
-          t.error(error?.toString())
+
+          t.success('Sign up successfully, please login')
+          router.refresh()
+          router.push('/app/portal')
+        } catch (e) {
+          const message = ErrorHandler(e)
+          t.error(message)
         }
       },
     )

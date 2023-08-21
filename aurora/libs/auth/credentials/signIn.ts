@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { compare } from 'bcrypt'
 import Prisma from '@aurora/libs/database/prisma'
-import { env } from '@aurora/env.mjs'
+import { ErrorHandler } from '@aurora/utils/server/error'
 
-const CredentialsSignIn = async (credentials: any) => {
+const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
+  user?: any
+  error?: string
+} | void> = async (credentials) => {
   if (!credentials.email || !credentials.password) {
-    return null
+    throw new Error('Invalid credential')
   }
 
   try {
@@ -16,21 +19,21 @@ const CredentialsSignIn = async (credentials: any) => {
       },
     })
     if (!reqCredential) {
-      return null
+      throw new Error('No credential that requested')
     }
     if (
       reqCredential.password &&
       !(await compare(password, reqCredential.password))
     ) {
-      return null
+      throw new Error('Password not matched')
     }
     const user = await Prisma.user.findUnique({
       where: { email },
     })
-    return user
-  } catch (error) {
-    if (env.NODE_ENV !== 'production') console.log(error)
-    return null
+    return { user }
+  } catch (e) {
+    const message = ErrorHandler(e)
+    return { error: message }
   }
 }
 

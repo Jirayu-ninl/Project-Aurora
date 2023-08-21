@@ -1,2 +1,2 @@
-export { authOptions as authOptions } from './aurora'
+export { authOptions } from './aurora'
 export { getServerAuthSession as getServerAuthSession } from './aurora'

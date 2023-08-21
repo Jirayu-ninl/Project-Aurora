@@ -1,28 +1,54 @@
 'use client'
 
 import Link from 'next/link'
-// import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import type { toast } from 'react-toastify'
 import { formHandler } from '../functions'
+import { SignIn } from '@server/auth/icejiverse'
 
 const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter()
   const { handleChange, executeForm } = formHandler()
   const handleSubmit = async (e: any) =>
     executeForm(
       e,
       async (f: { email: string; password: string }, t: typeof toast) => {
-        // await signIn('icejiverse', {
-        //   redirect: false,
-        //   email: f.email,
-        //   password: f.password,
-        // })
-        //   .then((response) => {
-        //     console.log(response)
-        //   })
-        //   .catch((error) => {
-        //     console.log(error)
-        //   })
-        t.error('Unauthorized access to login')
+        try {
+          const session = await SignIn(f)
+          if (session?.error) {
+            t.error(`Error: ${session?.error}`)
+            return
+          }
+
+          if (!session?.session) {
+            t.error(`Error: Get session failed`)
+            return
+          }
+
+          const body = {
+            do: 'set',
+            res: 'set session complete',
+            resCode: 201,
+            cookies: {
+              key: 'next-auth.session-token',
+              value: session?.session,
+            },
+            maxAge: 60 * 60 * 24 * 30,
+          }
+
+          await fetch('/api/auth/cookies', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+          })
+          t.success('Sign in complete')
+          router.refresh()
+          router.push('/app/dashboard')
+        } catch (e) {
+          t.error("Error: Can't set session")
+        }
       },
     )
 
