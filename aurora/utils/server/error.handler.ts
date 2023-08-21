@@ -1,6 +1,8 @@
 import { env } from '@aurora/env.mjs'
+import { captureToSentry } from '@aurora/libs/monitor/sentry.capture'
 
 const ErrorHandler = (e: any) => {
+  captureToSentry(e, 'error')
   let message: string = 'Database connection failed'
   if (
     typeof e === 'object' &&
