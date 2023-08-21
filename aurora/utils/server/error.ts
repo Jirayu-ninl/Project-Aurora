@@ -1,1 +1,1 @@
-export { ErrorHandler } from './error.handler'
+export { getErrorMessage } from './error.getMessage'

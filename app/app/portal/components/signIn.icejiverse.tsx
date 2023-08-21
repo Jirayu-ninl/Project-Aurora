@@ -5,9 +5,12 @@ import { useRouter } from 'next/navigation'
 import type { toast } from 'react-toastify'
 import { formHandler } from '../functions'
 import { SignIn } from '@server/auth/icejiverse'
+import { clientLog } from '@aurora/libs/monitor'
 
 const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
+  const log = clientLog()
+
   const { handleChange, executeForm } = formHandler()
   const handleSubmit = async (e: any) =>
     executeForm(
@@ -53,6 +56,7 @@ const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
           router.push('/app/dashboard')
         } catch (e) {
           t.error("Error: Can't set session")
+          log.error('AUTH Error', { message: "Can't set session" })
           throw new Error('AUTH: Set session failed')
         }
       },

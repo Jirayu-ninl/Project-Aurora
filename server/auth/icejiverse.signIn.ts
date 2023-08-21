@@ -3,7 +3,8 @@
 import { v4 as uuidv4 } from 'uuid'
 import Prisma from '@aurora/libs/database/prisma'
 import { CredentialsSignIn } from '@aurora/libs/auth/credentials'
-import { ErrorHandler } from '@aurora/utils/server/error'
+import { getErrorMessage } from '@aurora/utils/server/error'
+import { ErrorHandler } from '@server/services/monitoring'
 
 const SignIn: (c: { email: string; password: string }) => Promise<{
   session?: string
@@ -39,7 +40,8 @@ const SignIn: (c: { email: string; password: string }) => Promise<{
 
     return { session: session.sessionToken }
   } catch (e) {
-    const message = ErrorHandler(e)
+    ErrorHandler(e)
+    const message = getErrorMessage(e)
     return { error: message }
   }
 }

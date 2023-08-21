@@ -1,7 +1,8 @@
 'use server'
 
 import { CredentialsSignUp } from '@aurora/libs/auth/credentials'
-import { ErrorHandler } from '@aurora/utils/server/error'
+import { getErrorMessage } from '@aurora/utils/server/error'
+import { ErrorHandler } from '@server/services/monitoring'
 
 const SignUp: (c: { email: string; password: string }) => Promise<{
   session?: string
@@ -19,7 +20,8 @@ const SignUp: (c: { email: string; password: string }) => Promise<{
 
     return { data: res }
   } catch (e) {
-    const message = ErrorHandler(e)
+    ErrorHandler(e)
+    const message = getErrorMessage(e)
     return { error: message }
   }
 }

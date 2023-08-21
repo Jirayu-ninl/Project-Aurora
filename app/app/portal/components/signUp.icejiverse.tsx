@@ -9,12 +9,13 @@ import {
   email as emailValidator,
   password as passwordValidator,
 } from '@aurora/utils/validator'
-import { ErrorHandler } from '@aurora/utils/server/error'
-import { SignUp } from '@/server/auth/icejiverse'
+import { SignUp } from '@server/auth/icejiverse'
+import { clientLog } from '@/aurora/libs/monitor'
 import { formHandler } from '../functions'
 
 const SignUpIceJiVerse = () => {
   const router = useRouter()
+  const log = clientLog()
   const [confirmPassword, setConfirmPassword] = useState(null)
 
   const { handleChange, executeForm } = formHandler({
@@ -57,8 +58,8 @@ const SignUpIceJiVerse = () => {
           router.refresh()
           router.push('/app/portal')
         } catch (e) {
-          const message = ErrorHandler(e)
-          t.error(message)
+          t.error("Error: Can't sign up")
+          log.error('AUTH Error', { message: "Can't sign up" })
           throw new Error('AUTH: Sign up failed')
         }
       },

@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import Prisma from '@aurora/libs/database/prisma'
-import { ErrorHandler } from '@aurora/utils/server/error'
+import { getErrorMessage } from '@aurora/utils/server/error'
+import { ErrorHandler } from '@server/services/monitoring'
 
 const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
   session?: string
@@ -62,7 +63,8 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
 
     return { data: 'success' }
   } catch (e) {
-    const message = ErrorHandler(e)
+    ErrorHandler(e)
+    const message = getErrorMessage(e)
     return { error: message }
   }
 }

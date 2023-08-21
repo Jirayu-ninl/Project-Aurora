@@ -1,8 +1,10 @@
 import { env } from '@aurora/env.mjs'
+import { serverLog } from '@aurora/libs/monitor/log.server'
 import { captureToSentry } from '@aurora/libs/monitor/sentry.capture'
 
 const ErrorHandler = (e: any) => {
   captureToSentry(e, 'error')
+  const log = serverLog()
   let message: string = 'Database connection failed'
   if (
     typeof e === 'object' &&
@@ -13,7 +15,7 @@ const ErrorHandler = (e: any) => {
     if (env.NODE_ENV !== 'production') console.log(e)
     message = e.message
   }
-  return message
+  log.error(message)
 }
 
 export { ErrorHandler }

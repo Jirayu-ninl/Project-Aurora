@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { compare } from 'bcrypt'
 import Prisma from '@aurora/libs/database/prisma'
-import { ErrorHandler } from '@aurora/utils/server/error'
+import { getErrorMessage } from '@aurora/utils/server/error'
+import { ErrorHandler } from '@server/services/monitoring'
 
 const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
   user?: any
@@ -37,7 +38,8 @@ const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
     })
     return { user }
   } catch (e) {
-    const message = ErrorHandler(e)
+    ErrorHandler(e)
+    const message = getErrorMessage(e)
     return { error: message }
   }
 }
