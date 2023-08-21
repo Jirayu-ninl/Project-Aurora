@@ -7,19 +7,23 @@ import { ErrorHandler } from '@aurora/utils/server/error'
 
 const SignIn: (c: { email: string; password: string }) => Promise<{
   session?: string
+  warn?: string
   error?: string
 } | void> = async (credential) => {
   try {
     const res = await CredentialsSignIn(credential)
     if (res?.error) {
-      throw new Error(res.error)
+      return { error: res.error }
+    }
+    if (res?.warn) {
+      return { warn: res.warn }
     }
 
     const sessionToken = uuidv4()
     const sessionExpiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
 
     if (!res?.user.id) {
-      throw new Error('No user found')
+      return { error: 'No user found' }
     }
 
     const session = await Prisma.session.create({
@@ -30,7 +34,7 @@ const SignIn: (c: { email: string; password: string }) => Promise<{
       },
     })
     if (!session) {
-      throw new Error("Can't create session")
+      return { error: 'Create session failed' }
     }
 
     return { session: session.sessionToken }

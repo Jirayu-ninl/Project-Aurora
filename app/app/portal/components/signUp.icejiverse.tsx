@@ -48,6 +48,10 @@ const SignUpIceJiVerse = () => {
             t.error(`Error: ${res?.error}`)
             return
           }
+          if (res?.warn) {
+            t.warn(`${res?.warn}`)
+            return
+          }
 
           t.success('Sign up successfully, please login')
           router.refresh()
@@ -55,6 +59,7 @@ const SignUpIceJiVerse = () => {
         } catch (e) {
           const message = ErrorHandler(e)
           t.error(message)
+          throw new Error('AUTH: Sign up failed')
         }
       },
     )

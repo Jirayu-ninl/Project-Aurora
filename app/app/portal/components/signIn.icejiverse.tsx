@@ -20,6 +20,11 @@ const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
             return
           }
 
+          if (session?.warn) {
+            t.warn(`${session?.warn}`)
+            return
+          }
+
           if (!session?.session) {
             t.error(`Error: Get session failed`)
             return
@@ -48,6 +53,7 @@ const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
           router.push('/app/dashboard')
         } catch (e) {
           t.error("Error: Can't set session")
+          throw new Error('AUTH: Set session failed')
         }
       },
     )

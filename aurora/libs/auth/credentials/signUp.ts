@@ -4,17 +4,22 @@ import { ErrorHandler } from '@aurora/utils/server/error'
 
 const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
   session?: string
+  warn?: string
   error?: string
 } | void> = async (credential) => {
   try {
+    if (!Prisma) {
+      throw new Error('DB: Connection failed')
+    }
+
     const { email, password } = credential
     const existingEmail = await Prisma.user.findUnique({
       where: { email },
     })
     if (existingEmail) {
-      throw new Error(
-        'This email was signup, Please login with your email or your social account',
-      )
+      return {
+        warn: 'This email was signup, Please login with your email or your social account',
+      }
     }
 
     const user = await Prisma.user.create({
@@ -26,7 +31,9 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
       },
     })
     if (!user) {
-      throw new Error('Create user data failed')
+      return {
+        error: 'Create user data failed',
+      }
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -38,7 +45,9 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
       },
     })
     if (!cred) {
-      throw new Error('Create login info failed')
+      return {
+        error: 'Create login info failed',
+      }
     }
 
     await Prisma.user.update({

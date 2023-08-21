@@ -18,7 +18,6 @@ import plugins from 'next-compose-plugins'
 import { withSentryConfig } from '@sentry/nextjs'
 import { withAxiom } from 'next-axiom'
 import bundleAnalyzer from '@next/bundle-analyzer'
-// import SentryCliPlugin from '@sentry/webpack-plugin'
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',

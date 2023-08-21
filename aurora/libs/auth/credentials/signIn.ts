@@ -5,10 +5,15 @@ import { ErrorHandler } from '@aurora/utils/server/error'
 
 const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
   user?: any
+  warn?: string
   error?: string
 } | void> = async (credentials) => {
+  if (!Prisma) {
+    throw new Error('DB: Connection failed')
+  }
+
   if (!credentials.email || !credentials.password) {
-    throw new Error('Invalid credential')
+    return { error: 'Invalid credential' }
   }
 
   try {
@@ -19,13 +24,13 @@ const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
       },
     })
     if (!reqCredential) {
-      throw new Error('No credential that requested')
+      return { error: 'No credential that requested' }
     }
     if (
       reqCredential.password &&
       !(await compare(password, reqCredential.password))
     ) {
-      throw new Error('Password not matched')
+      return { warn: 'Password not matched' }
     }
     const user = await Prisma.user.findUnique({
       where: { email },
