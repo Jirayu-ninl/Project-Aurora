@@ -1,2 +1,3 @@
-export { default as SignIn } from './signIn'
-export { default as SignUp } from './signUp'
+export { SignUpIceJiVerse } from './signUp.icejiverse'
+export { SignInIceJiVerse } from './signIn.icejiverse'
+export { SignInProviders } from './signIn.providers'

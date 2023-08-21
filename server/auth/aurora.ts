@@ -79,11 +79,12 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
         },
       },
       async authorize(credentials) {
-        return await CredentialsSignIn(credentials)
+        return CredentialsSignIn(credentials)
       },
     }),
   ],
   secret: env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development',
 }
 
 export const getServerAuthSession = (ctx: {

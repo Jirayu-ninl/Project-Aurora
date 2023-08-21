@@ -4,32 +4,26 @@ import Prisma from '@aurora/libs/database/prisma'
 import { env } from '@aurora/env.mjs'
 
 const CredentialsSignIn = async (credentials: any) => {
-  console.log('start')
-  if (!credentials?.email || !credentials.password) {
-    console.log('invalid credentials')
+  if (!credentials.email || !credentials.password) {
     return null
   }
 
   try {
     const { email, password } = credentials
-
     const reqCredential = await Prisma.credential.findUnique({
       where: {
         email,
       },
     })
     if (!reqCredential) {
-      console.log('no user')
       return null
     }
     if (
       reqCredential.password &&
       !(await compare(password, reqCredential.password))
     ) {
-      console.log('invalid password')
       return null
     }
-
     const user = await Prisma.user.findUnique({
       where: { email },
     })

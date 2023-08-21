@@ -1,7 +1,7 @@
-import { SignUp } from '../components'
+import { SignUpIceJiVerse } from '../components'
 
 function Page() {
-  return <SignUp />
+  return <SignUpIceJiVerse />
 }
 
 export default Page

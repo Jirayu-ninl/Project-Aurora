@@ -1,34 +1,43 @@
-import Link from 'next/link'
-import { getProviders } from 'next-auth/react'
-import SignInProviders from './signIn.providers'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@server/auth'
+'use client'
 
-const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
-  const providers = await getProviders()
-  const session = await getServerSession(authOptions)
+import Link from 'next/link'
+// import { signIn } from 'next-auth/react'
+import type { toast } from 'react-toastify'
+import { formHandler } from '../functions'
+
+const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
+  const { handleChange, executeForm } = formHandler()
+  const handleSubmit = async (e: any) =>
+    executeForm(
+      e,
+      async (f: { email: string; password: string }, t: typeof toast) => {
+        // await signIn('icejiverse', {
+        //   redirect: false,
+        //   email: f.email,
+        //   password: f.password,
+        // })
+        //   .then((response) => {
+        //     console.log(response)
+        //   })
+        //   .catch((error) => {
+        //     console.log(error)
+        //   })
+        t.error('Unauthorized access to login')
+      },
+    )
 
   return (
     <>
       <div className='Card-white-20 Border-white-40 relative ml-2 h-full rounded-lg p-8'>
         <h3 className='text-2xl font-semibold uppercase'>Signin</h3>
-        <form
-          className='Form-white flex flex-col pt-6'
-          method='post'
-          action='/api/auth/callback/icejiverse'
-        >
-          <input
-            name='csrfToken'
-            type='hidden'
-            defaultValue={csrfToken}
-            value={csrfToken}
-          />
+        <form className='Form-white flex flex-col pt-6' onSubmit={handleSubmit}>
           <input
             className='Border-white-40 rounded-md'
             type='email'
             name='email'
             placeholder='Email'
             required={true}
+            onChange={handleChange}
           />
           <input
             className='Border-white-40 mt-2 rounded-md'
@@ -36,6 +45,7 @@ const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
             name='password'
             placeholder='Password'
             required={true}
+            onChange={handleChange}
           />
           <button
             className='Btn-white-40 Anim AnimOpacity-60 mt-5'
@@ -55,7 +65,7 @@ const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
           <p className='px-3 text-xs'>or Continue with</p>
           <div className=' my-auto h-px w-12 bg-white/30' />
         </div>
-        <SignInProviders providers={providers} session={session} />
+        {children}
       </div>
       <Link href='/app/portal/signup'>
         <p className='Anim AnimOpacity-40 mt-1 cursor-pointer text-right text-xs'>
@@ -66,4 +76,4 @@ const SignInPage = async ({ csrfToken }: { csrfToken: any }) => {
   )
 }
 
-export default SignInPage
+export { SignInIceJiVerse }

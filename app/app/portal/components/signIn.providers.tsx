@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { signIn } from 'next-auth/react'
 
-function SignInProviders({ providers, session }: any) {
+const SignInProviders = ({ providers, session }: any) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -50,4 +50,4 @@ function SignInProviders({ providers, session }: any) {
   )
 }
 
-export default SignInProviders
+export { SignInProviders }
