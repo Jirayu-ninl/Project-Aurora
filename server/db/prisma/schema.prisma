@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["jsonProtocol", "filteredRelationCount", "orderByNulls"]
+  previewFeatures = ["clientExtensions", "jsonProtocol", "filteredRelationCount", "orderByNulls"]
 }
 
 generator dbml {
@@ -9,8 +9,10 @@ generator dbml {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGODB_URI")
+  provider  = "mongodb"
+  url       = env("MONGODB_URI")
+  // url       = env("ACCELERATE_URI")
+  // directUrl = env("MONGODB_URI")
 }
 
 // ** ---------------------------  ** //
@@ -39,7 +41,7 @@ model Announcement {
   metadata  Json?
 }
 
-enum Role {
+enum UserRole {
   SUPER_ADMIN
   ADMIN
   USER
@@ -60,8 +62,8 @@ model User {
   id             String                @id @default(auto()) @map("_id") @db.ObjectId
   username       String?               @unique
   name           String?
-  credential     Credential[]
-  role           Role                  @default(USER)
+  credential     Credential?
+  role           UserRole              @default(USER)
   plan           UserPlan              @default(FREE)
   subscriptionId String?
   subscription   CustomerSubscription?
@@ -76,7 +78,9 @@ model User {
   balance        Float                 @default(0)
   sessions       Session[]
   notifications  Notification[]
-  purchase       Purchase[]
+  purchases      Purchase[]
+  projectIds     String[]              @default([]) @db.ObjectId
+  Projects       Project[]             @relation(fields: [projectIds], references: [id])
 }
 
 model Account {
@@ -207,6 +211,60 @@ model Purchase {
   createdAt DateTime @default(now())
 }
 
-// ** ---------------------------  ** //
-// **        Initialization        ** //
-// ** ---------------------------  ** //
+// ** ----------------------  ** //
+// **           APP           ** //
+// ** ----------------------  ** //
+
+enum ProjectName {
+  WEBSITE
+}
+
+model Project {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String[]    @default([]) @db.ObjectId
+  users       User[]      @relation(fields: [userId], references: [id])
+  projectName ProjectName
+  createdAt   DateTime    @default(now()) @db.Timestamp
+  updatedAt   DateTime?   @updatedAt
+  metadata    Json        @default("{}")
+  websites    Website[]
+}
+
+// ** ------------------------------  ** //
+// **           APP WEBSITE           ** //
+// ** ------------------------------  ** //
+
+model Website {
+  id              String              @id @default(auto()) @map("_id") @db.ObjectId
+  projectIds      String              @db.ObjectId
+  project         Project             @relation(fields: [projectIds], references: [id], onDelete: Cascade)
+  createdAt       DateTime            @default(now()) @db.Timestamp
+  updatedAt       DateTime?           @updatedAt
+  name            String
+  description     String?
+  domain          String?
+  metadata        Json                @default("{}")
+  extenstions     WebsiteExtenstion[]
+  websiteSections WebsiteSection[]
+}
+
+model WebsiteSection {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  websiteId   String    @db.ObjectId
+  website     Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now()) @db.Timestamp
+  updatedAt   DateTime? @updatedAt
+  name        String
+  description String?
+  metadata    Json      @default("{}")
+}
+
+model WebsiteExtenstion {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  websiteId String    @db.ObjectId
+  website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now()) @db.Timestamp
+  updatedAt DateTime? @updatedAt
+  name      String
+  metadata  Json      @default("{}")
+}

@@ -28,8 +28,8 @@ Table User {
   id String [pk]
   username String [unique]
   name String
-  credential Credential [not null]
-  role Role [not null, default: 'USER']
+  credential Credential
+  role UserRole [not null, default: 'USER']
   plan UserPlan [not null, default: 'FREE']
   subscriptionId String
   subscription CustomerSubscription
@@ -44,7 +44,9 @@ Table User {
   balance Float [not null, default: 0]
   sessions Session [not null]
   notifications Notification [not null]
-  purchase Purchase [not null]
+  purchases Purchase [not null]
+  projectIds String[] [not null]
+  Projects Project [not null]
 }
 
 Table Account {
@@ -161,7 +163,53 @@ Table Purchase {
   createdAt DateTime [default: `now()`, not null]
 }
 
-Enum Role {
+Table Project {
+  id String [pk]
+  userId String[] [not null]
+  users User [not null]
+  projectName ProjectName [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime
+  metadata Json [not null, default: '{}']
+  websites Website [not null]
+}
+
+Table Website {
+  id String [pk]
+  projectIds String [not null]
+  project Project [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime
+  name String [not null]
+  description String
+  domain String
+  metadata Json [not null, default: '{}']
+  extenstions WebsiteExtenstion [not null]
+  websiteSections WebsiteSection [not null]
+}
+
+Table WebsiteSection {
+  id String [pk]
+  websiteId String [not null]
+  website Website [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime
+  name String [not null]
+  description String
+  metadata Json [not null, default: '{}']
+}
+
+Table WebsiteExtenstion {
+  id String [pk]
+  websiteId String [not null]
+  website Website [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime
+  name String [not null]
+  metadata Json [not null, default: '{}']
+}
+
+Enum UserRole {
   SUPER_ADMIN
   ADMIN
   USER
@@ -184,9 +232,15 @@ Enum WalletChain {
   IJN
 }
 
+Enum ProjectName {
+  WEBSITE
+}
+
+Ref: User.projectIds > Project.id
+
 Ref: Account.userId > User.id [delete: Cascade]
 
-Ref: Credential.email > User.email [delete: Cascade]
+Ref: Credential.email - User.email [delete: Cascade]
 
 Ref: Session.userId > User.id [delete: Cascade]
 
@@ -201,3 +255,11 @@ Ref: CustomerSubscription.productId > Product.id
 Ref: Purchase.userId > User.id
 
 Ref: Purchase.productId > Product.id
+
+Ref: Project.userId > User.id
+
+Ref: Website.projectIds > Project.id [delete: Cascade]
+
+Ref: WebsiteSection.websiteId > Website.id [delete: Cascade]
+
+Ref: WebsiteExtenstion.websiteId > Website.id [delete: Cascade]
