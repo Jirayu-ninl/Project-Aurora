@@ -3,7 +3,7 @@ import { gql } from 'graphql-request'
 import Client from './page.client.temp'
 import * as FALLBACK from '@components/post/error'
 import { useFetchQL } from '@aurora/libs/hooks/data'
-// import { DATA } from './data.demo'
+import { env } from '@aurora/env.mjs'
 
 export const metadata = {
   title: 'Projects',
@@ -15,7 +15,7 @@ enum FETCH {
 }
 
 const getProjects = async () => {
-  const endpointURL = process.env.GRAPHQL_PROJECT_URL
+  const endpointURL = env.GRAPHQL_PROJECT_URL
   try {
     const requestQL = gql`
       {

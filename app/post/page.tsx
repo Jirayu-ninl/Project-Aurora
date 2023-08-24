@@ -3,6 +3,7 @@ import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
 import { useFetchQL } from '@aurora/libs/hooks/data'
+import { env } from '@aurora/env.mjs'
 
 export const metadata = {
   title: 'Posts',
@@ -14,7 +15,7 @@ enum FETCH {
 }
 
 const getPosts = async () => {
-  const endpointURL = process.env.GRAPHQL_CONTENT_URL
+  const endpointURL = env.GRAPHQL_CONTENT_URL
   try {
     const requestQL = gql`
       {

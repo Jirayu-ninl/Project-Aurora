@@ -37,6 +37,9 @@ export const env = createEnv({
     AUTH_GOOGLE_CLIENT_SECRET: z.string(),
     AUTH_DISCORD_CLIENT_ID: z.string(),
     AUTH_DISCORD_CLIENT_SECRET: z.string(),
+    MINIO_ENDPOINT: z.string(),
+    MINIO_ACCESS_KEY: z.string(),
+    MINIO_SECRET_KEY: z.string(),
   },
 
   /**
@@ -74,6 +77,9 @@ export const env = createEnv({
     AUTH_GOOGLE_CLIENT_SECRET: process.env.AUTH_GOOGLE_CLIENT_SECRET,
     AUTH_DISCORD_CLIENT_ID: process.env.AUTH_DISCORD_CLIENT_ID,
     AUTH_DISCORD_CLIENT_SECRET: process.env.AUTH_DISCORD_CLIENT_SECRET,
+    MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
+    MINIO_ACCESS_KEY: process.env.MINIO_ACCESS_KEY,
+    MINIO_SECRET_KEY: process.env.MINIO_SECRET_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

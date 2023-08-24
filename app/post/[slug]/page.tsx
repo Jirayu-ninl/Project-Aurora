@@ -4,7 +4,7 @@ import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
 import { useFetchQL } from '@aurora/libs/hooks/data'
-// import type { tPost } from '../post'
+import { env } from '@aurora/env.mjs'
 
 type PageProps = {
   params: { slug: string }
@@ -15,7 +15,7 @@ enum FETCH {
   ERROR,
 }
 
-const endpointURL = process.env.GRAPHQL_CONTENT_URL
+const endpointURL = env.GRAPHQL_CONTENT_URL
 
 export const generateMetadata = async ({
   params: { slug },
