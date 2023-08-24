@@ -39,7 +39,7 @@ const Block = ({
       >
         {!session ? (
           <>
-            <Link className='h-[18px]' href='/app/portal'>
+            <Link className='h-[18px]' href='/portal'>
               <Icon.User />
             </Link>
           </>

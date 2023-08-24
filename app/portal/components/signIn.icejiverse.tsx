@@ -65,7 +65,7 @@ const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className='Card-white-20 Border-white-40 relative ml-2 h-full rounded-lg p-8'>
-        <h3 className='text-2xl font-semibold uppercase'>Signin</h3>
+        <h3 className='text-2xl font-semibold uppercase'>Sign in</h3>
         <form className='Form-white flex flex-col pt-6' onSubmit={handleSubmit}>
           <input
             className='Border-white-40 rounded-md'
@@ -103,7 +103,7 @@ const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
         </div>
         {children}
       </div>
-      <Link href='/app/portal/signup'>
+      <Link href='/portal/signup'>
         <p className='Anim AnimOpacity-40 mt-1 cursor-pointer text-right text-xs'>
           Not have an Account?
         </p>

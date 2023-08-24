@@ -27,9 +27,9 @@ declare module 'next-auth' {
 
 export const authOptions: NextAuthOptions | { adapter: any } = {
   pages: {
-    signIn: '/app/portal',
+    signIn: '/portal',
     signOut: '/',
-    error: '/app/portal',
+    error: '/portal',
     newUser: '/app/dashboard?newUser=true',
   },
   callbacks: {

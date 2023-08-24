@@ -14,6 +14,7 @@ type routeKeys =
   | 'project'
   | 'post'
   | 'app'
+  | 'portal'
   | 'shop'
   | 'portfolio'
   | 'about'
@@ -92,29 +93,14 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       },
     ],
   },
-  app: {
-    id: 3,
-    title: 'App',
-    setBackRoute: '/app',
-    route: [
-      {
-        title: 'Dashboard',
-        path: '/app/dashboard',
-      },
-      {
-        title: 'Settings',
-        path: '/app/settings',
-      },
-    ],
-  },
   shop: {
-    id: 4,
+    id: 3,
     title: 'Shop',
     setBackRoute: '/shop',
     route: [],
   },
   portfolio: {
-    id: 11,
+    id: 4,
     title: 'Portfolio',
     setBackRoute: '/portfolio',
     route: [
@@ -129,7 +115,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     ],
   },
   about: {
-    id: 11,
+    id: 10,
     title: 'About',
     setBackRoute: '/about',
     route: [
@@ -143,8 +129,38 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       },
     ],
   },
-  tools: {
+  portal: {
+    id: 20,
+    title: 'Portal',
+    setBackRoute: '/portal',
+    route: [
+      {
+        title: 'Sign in',
+        path: '/portal',
+      },
+      {
+        title: 'Sign up',
+        path: '/portal/signup',
+      },
+    ],
+  },
+  app: {
     id: 21,
+    title: 'App',
+    setBackRoute: '/app',
+    route: [
+      {
+        title: 'Dashboard',
+        path: '/app/dashboard',
+      },
+      {
+        title: 'Settings',
+        path: '/app/settings',
+      },
+    ],
+  },
+  tools: {
+    id: 30,
     title: 'Tools',
     setBackRoute: '/tools',
     scrollable: false,
@@ -156,7 +172,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     ],
   },
   status: {
-    id: 31,
+    id: 40,
     title: 'Status',
     setBackRoute: '/status',
     route: [

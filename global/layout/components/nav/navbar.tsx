@@ -127,15 +127,6 @@ const NavBar = ({ session }: any) => {
                     >
                       {audioPlaying ? <Icon.SoundOn /> : <Icon.SoundOff />}
                     </motion.div>
-                    {/* <UserBlock /> */}
-                    {/* {!session && (
-                      <Link
-                        href='/app/portal'
-                        onClick={() => _setNavShowCanvas(false)}
-                      >
-                        <Icon.User />
-                      </Link>
-                    )} */}
                     <motion.div
                       className='cursor-pointer'
                       onClick={() => {

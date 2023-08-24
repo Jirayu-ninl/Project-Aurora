@@ -1,20 +1,33 @@
-// 'use client'
+import Link from 'next/link'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@server/auth'
 
-// import { useEffect } from 'react'
-// import { State } from '@global/store'
-// import { navSecondaryRoutes } from '@global/config/routes'
-// import InitPageState from '@aurora/views/init/pageState'
+const Layout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions)
 
-function Layout({ children }: { children: React.ReactNode }) {
-  // const _setPage = State((state) => state.setPage)
-  // const _setNavRoute = State((state) => state.setNavRoute)
-  // const _setBackRoute = State((state) => state.setBackRoute)
+  if (!session) {
+    return (
+      <main className='m-container w-dvw relative flex flex-col items-center justify-center overflow-hidden'>
+        <h4 className='pb-3 text-4xl font-light uppercase'>
+          You're <span className='font-bold'>not</span> login
+        </h4>
+        <Link
+          className='Anim rounded-md border border-black bg-white/10 px-2 py-1 hover:bg-white/30 dark:border-white'
+          href='/portal'
+        >
+          LOG IN
+        </Link>
+      </main>
+    )
+  }
 
-  // useEffect(() => {
-  //   InitPageState(_setPage, _setBackRoute, _setNavRoute, navSecondaryRoutes.app)
-  // }, [_setPage, _setNavRoute, _setBackRoute])
-
-  return <div className='relative h-screen w-screen'>{children}</div>
+  return (
+    <>
+      <div className='m-container w-svw flex items-center justify-center bg-gradient-to-br from-backgroundLight-1 to-blue-200 dark:from-background-3 dark:to-background-0'>
+        {children}
+      </div>
+    </>
+  )
 }
 
 export default Layout

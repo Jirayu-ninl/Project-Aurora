@@ -56,7 +56,7 @@ const SignUpIceJiVerse = () => {
 
           t.success('Sign up successfully, please login')
           router.refresh()
-          router.push('/app/portal')
+          router.push('/portal')
         } catch (e) {
           t.error("Error: Can't sign up")
           log.error('AUTH Error', { message: "Can't sign up" })
@@ -67,7 +67,7 @@ const SignUpIceJiVerse = () => {
 
   return (
     <div className='Card-white-20 Border-white-40 relative ml-2 h-full rounded-lg p-8'>
-      <h3 className='text-3xl font-semibold uppercase'>Signup</h3>
+      <h3 className='text-3xl font-semibold uppercase'>Sign up</h3>
       <form className='Form-white flex flex-col pt-6' onSubmit={handleSubmit}>
         <input
           className='Border-white-40 rounded-md'
@@ -102,9 +102,9 @@ const SignUpIceJiVerse = () => {
           <p className='mr-1 opacity-60'>Have an Account?</p>
           <Link
             className='Anim cursor-pointer font-bold uppercase opacity-80 hover:opacity-100'
-            href='/app/portal'
+            href='/portal'
           >
-            SignIn
+            Sign In
           </Link>
         </div>
       </form>

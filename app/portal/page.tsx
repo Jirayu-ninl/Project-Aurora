@@ -6,6 +6,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@server/auth'
 import { SignInIceJiVerse, SignInProviders } from './components'
 import { SetErrorToast } from '@components/toast'
+import { SetNavState } from './components'
 
 const Page = async () => {
   const log = serverLog()
@@ -17,6 +18,7 @@ const Page = async () => {
   return (
     <>
       <SetErrorToast />
+      <SetNavState id={0} title='Log in' />
       <SignInIceJiVerse>
         <SignInProviders providers={providers} session={session} />
       </SignInIceJiVerse>
