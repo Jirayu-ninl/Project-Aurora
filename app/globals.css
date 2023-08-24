@@ -88,11 +88,11 @@ body {
 }
 
 .AnimScale {
-  @apply xl:hover:scale-150 hover:z-10;
+  @apply hover:z-10 xl:hover:scale-150;
 }
 
 .AnimScale-105 {
-  @apply xl:hover:scale-105 hover:z-10;
+  @apply hover:z-10 xl:hover:scale-105;
 }
 
 .AnimShadow-el {
@@ -303,11 +303,11 @@ body {
 /* *! Form */
 
 .Form-white input {
-  @apply bg-white/10 px-2 py-1 text-white;
+  @apply bg-white/10 px-2 py-1;
 }
 
 .Form-white input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  @apply text-black/40 dark:text-white/40;
 }
 
 .Form-white input:-webkit-autofill,
@@ -337,11 +337,11 @@ body {
 }
 
 .Form-white-checkbox:checked + label:before {
-  @apply bg-primary-0;
+  @apply bg-quaternary-2 dark:bg-primary-0;
 }
 
 .Form-white-checkbox:disabled + label {
-  @apply cursor-auto text-white/30;
+  @apply cursor-auto text-black/30 dark:text-white/30;
 }
 
 .Form-white-checkbox:disabled + label:before {

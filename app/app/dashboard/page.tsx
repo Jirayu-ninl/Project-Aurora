@@ -1,18 +1,23 @@
-// 'use client'
+import { getServerSession } from 'next-auth'
+import { signIn } from 'next-auth/react'
+import { authOptions } from '@server/auth'
 
-// import { useEffect } from 'react'
-// import { State } from '@global/store'
+const Page = async () => {
+  const session = await getServerSession(authOptions)
 
-function Page() {
-  // const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
-
-  // useEffect(() => {
-  //   _setNavRouteActiveState({
-  //     id: 0,
-  //     scrollProgress: 20,
-  //   })
-  // }, [_setNavRouteActiveState])
-
+  if (!session) {
+    return (
+      <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
+        <h4 className='text-xl'>You're not login</h4>
+        <button
+          className='border border-black dark:border-white'
+          onClick={() => signIn()}
+        >
+          LOG IN
+        </button>
+      </main>
+    )
+  }
   return (
     <main className='relative flex h-screen w-screen items-center justify-center overflow-hidden'>
       <h1 className='text-xl'>DASHBOARD</h1>

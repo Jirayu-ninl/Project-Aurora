@@ -21,7 +21,7 @@ const SignInProviders = ({ providers, session }: any) => {
   return (
     <>
       <div className='flex h-8 justify-center'>
-        <div className=' cursor-pointer rounded-full bg-blue-500 px-2 py-1'>
+        <div className=' cursor-pointer rounded-full bg-blue-500 px-2 py-1 text-white'>
           <FontAwesomeIcon
             icon={faFacebook}
             size='xs'
@@ -29,7 +29,7 @@ const SignInProviders = ({ providers, session }: any) => {
             onClick={() => signIn(providers.facebook.id)}
           />
         </div>
-        <div className='ml-3 cursor-pointer rounded-full bg-red-500 px-2 py-1'>
+        <div className='ml-3 cursor-pointer rounded-full bg-red-500 px-2 py-1 text-white'>
           <FontAwesomeIcon
             icon={faGoogle}
             size='xs'
@@ -37,7 +37,7 @@ const SignInProviders = ({ providers, session }: any) => {
             onClick={() => signIn(providers.google.id)}
           />
         </div>
-        <div className='ml-3 cursor-pointer rounded-full bg-slate-800 px-2 py-1'>
+        <div className='ml-3 cursor-pointer rounded-full bg-slate-800 px-2 py-1 text-white'>
           <FontAwesomeIcon
             icon={faGithub}
             size='xs'
