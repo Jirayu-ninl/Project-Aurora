@@ -23,10 +23,28 @@ export const aNav = (_showNav: boolean) =>
     WrongCurve,
     0.8,
   )
+
+export const aSideLeft = (_showNav: boolean) =>
+  setAnimationConfig(
+    { x: '-200%' },
+    { x: _showNav ? 0 : '-200%' },
+    { x: '-200%' },
+    WrongCurve,
+    0.8,
+  )
+
 export const aNavChildren = setAnimationConfig(
   { y: '-100%', visibility: 'hidden' },
   { y: 0, visibility: 'visible' },
   { y: '-100%', visibility: 'hidden' },
+  WrongCurve,
+  0.2,
+)
+
+export const aSideChildrenLeft = setAnimationConfig(
+  { x: '-200%', visibility: 'hidden' },
+  { x: 0, visibility: 'visible' },
+  { x: '-200%', visibility: 'hidden' },
   WrongCurve,
   0.2,
 )

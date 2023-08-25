@@ -34,7 +34,6 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
   },
   callbacks: {
     session: ({ session, user }: any) => {
-      console.log(session, user)
       return {
         ...session,
         user: {

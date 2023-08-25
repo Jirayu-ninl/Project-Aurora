@@ -1,14 +1,14 @@
 const Cart: tCart[] = [
-  {
-    id: 'firstProduct',
-    itemId: 'firstProduct',
-    createdAt: new Date(1686999450000),
-    updatedAt: new Date(1686999451034),
-    name: '1,350 Mobile Lr Preset',
-    quantity: 1,
-    link: '',
-    userId: '',
-  },
+  // {
+  //   id: 'firstProduct',
+  //   itemId: 'firstProduct',
+  //   createdAt: new Date(1686999450000),
+  //   updatedAt: new Date(1686999451034),
+  //   name: '1,350 Mobile Lr Preset',
+  //   quantity: 1,
+  //   link: '',
+  //   userId: '',
+  // },
 ]
 
 export type tCart = {

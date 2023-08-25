@@ -21,10 +21,13 @@ export default function CreditText() {
         >
           TheIceJI Aurora
         </button>
-        <span className='opacity-40'>
+        <span className='hidden opacity-40 md:inline-flex'>
           | Copyright©{new Date().getFullYear()} by{' '}
         </span>
-        <a href='http://TheIceJI.com/home' className='Anim AnimOpacity-60'>
+        <a
+          href='http://TheIceJI.com/home'
+          className='Anim AnimOpacity-60 hidden md:inline-flex'
+        >
           Jirayu Ninlapun
         </a>
       </motion.p>

@@ -150,6 +150,10 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     setBackRoute: '/app',
     route: [
       {
+        title: 'Profile',
+        path: '/app',
+      },
+      {
         title: 'Dashboard',
         path: '/app/dashboard',
       },

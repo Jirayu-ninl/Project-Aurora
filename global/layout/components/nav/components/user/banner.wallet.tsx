@@ -12,7 +12,7 @@ const WalletBanner = ({ session }: { session: any }) => {
   return (
     <>
       <div
-        className='hidden h-6 items-center rounded-sm border border-white/20 bg-black pl-2 xxl:flex el:h-8 el:rounded-md el:pl-3'
+        className='hidden h-6 items-center rounded-sm border border-black/10 bg-white/30 pl-2 dark:border-white/20 dark:bg-black xxl:flex el:h-8 el:rounded-md el:pl-3'
         onClick={() => {
           navigator.clipboard.writeText(wallet.Address)
           toast('Copy address to clipboard')
@@ -22,7 +22,7 @@ const WalletBanner = ({ session }: { session: any }) => {
           {wallet.Balance.toFixed(2)}{' '}
           <span className='mr-2 font-bold uppercase'>ijn</span>
         </p>
-        <p className='rounded-sm px-2 py-1 text-xs dark:bg-[#363636] el:rounded-md el:text-sm'>
+        <p className='rounded-sm bg-white px-2 py-1 text-xs dark:bg-[#363636] el:rounded-md el:text-sm'>
           {wallet.Address.slice(0, 5) + '...' + wallet.Address.slice(-4)}
         </p>
       </div>

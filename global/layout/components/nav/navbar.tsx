@@ -10,11 +10,9 @@ import { useAudio } from '@aurora/libs/hooks/audio'
 import { State, UI } from '@global/store'
 import { eNavDropdownState } from '@global/store/ui'
 import { aNav, aNavChildren } from '@global/config/defineAnimationConfig'
-// import { navCanvasRoutes } from '@app/config/routes'
 import IceJiLogo from '@components/logo/IceJi'
 
 import UserBlock from './components/user'
-// import NotificationBlock from './components/notification'
 import CartBlock from './components/cart'
 import NavMenuItem from './components/navMenuItem'
 import { Icon } from '@aurora/assets'
@@ -52,7 +50,7 @@ const NavBar = ({ session }: any) => {
             exit={aNav(_showNav).exit}
             animate={aNav(_showNav).animate}
             transition={aNav(_showNav).transition(0)}
-            className='fixed left-0 top-0 z-[400] hidden w-screen px-5 py-4 md:block'
+            className='fixed left-0 top-0 z-[400] hidden w-screen px-5 py-4 sm:block'
             ref={NavRef}
           >
             <div className='bg-back/[0.05] flex h-12 rounded-md shadow-md backdrop-blur-md dark:shadow-xl el:h-16'>
