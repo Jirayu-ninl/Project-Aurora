@@ -1,10 +1,7 @@
 const Settings = () => {
   return (
     <>
-      <svg
-        viewBox='0 0 15.551 16.369'
-        className='Anim AnimScale h-full w-full fill-inherit'
-      >
+      <svg viewBox='0 0 15.551 16.369' className='h-full w-full fill-inherit'>
         <path
           d='M0,2.316A2.342,2.342,0,0,1,2.375,0a2.312,2.312,0,1,1,0,4.624A2.335,2.335,0,0,1,0,2.316Z'
           transform='translate(5.41 5.877)'

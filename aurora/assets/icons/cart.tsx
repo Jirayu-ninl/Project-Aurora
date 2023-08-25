@@ -1,8 +1,10 @@
-const Cart = () => {
+import clsx from 'clsx'
+
+const Cart = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox='0 0 20.015 19.599'
-      className='Anim AnimScale h-full w-full fill-inherit'
+      className={clsx('h-full w-full fill-inherit', className)}
     >
       <path
         d='M11.25,1.52a1.515,1.515,0,1,1,1.52,1.51A1.52,1.52,0,0,1,11.25,1.52ZM0,1.52A1.515,1.515,0,1,1,1.52,3.03,1.52,1.52,0,0,1,0,1.52Z'

@@ -20,7 +20,7 @@ const CartBlock = ({
       _setNavDropdown={_setNavDropdown}
       _navDropdown={_navDropdown}
       state={eNavDropdownState.CART}
-      icon={<CartIcon />}
+      icon={<CartIcon className='Anim AnimScale' />}
       items={_cart}
       buttonText='view cart'
       buttonCallback={() => router.push('/shop/cart')}

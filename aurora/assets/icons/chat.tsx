@@ -3,7 +3,7 @@ const Chat = () => {
     <>
       <svg
         viewBox='0 0 20 20'
-        className='Anim AnimScale h-full w-full fill-inherit'
+        className='h-full w-full fill-inherit'
       >
         <g opacity='0.4'>
           <path d='M0 10C0 11.68 0.49 13.41 1.35 14.99C1.51 15.25 1.53 15.58 1.42 15.89L0.75 18.13C0.6 18.67 1.06 19.07 1.57 18.91L3.59 18.31C4.14 18.13 4.57 18.36 5.081 18.67C6.541 19.53 8.36 19.97 10 19.97C14.96 19.97 20 16.14 20 9.97C20 4.65 15.7 0 10.02 0C4.21 0 0 4.74 0 10Z' />

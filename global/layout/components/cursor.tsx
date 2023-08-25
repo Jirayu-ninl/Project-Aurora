@@ -58,6 +58,12 @@ function Cursor() {
       mix-blend-mode: difference;
       transition-duration: 250ms;
     }
+    &.expanse {
+      height: 100px;
+      width: 100px;
+      background-color: #ffffff22;
+      transition-duration: 250ms;
+    }
     &.go {
       height: 57px;
       width: 57px;

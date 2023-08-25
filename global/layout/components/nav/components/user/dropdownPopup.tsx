@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { signIn, signOut } from 'next-auth/react'
+import { Icon } from '@aurora/assets'
+import { signOut } from 'next-auth/react'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { eNavDropdownState } from '@global/store/ui'
@@ -26,7 +27,7 @@ const DropdownPopup = ({
       className='Card-back-md-60 absolute -right-14 top-14 flex max-h-64 w-48 flex-col px-2 py-4 drop-shadow-md sm:right-0'
     >
       <Link href='/app/dashboard'>
-        <div className='cursor-pointer text-center'>
+        <div className='mb-6 cursor-pointer text-center'>
           <h5 className='text-base font-semibold'>{user.name}</h5>
           <h6 className='text-xs opacity-80'>{user.email}</h6>
         </div>
@@ -40,7 +41,7 @@ const DropdownPopup = ({
       ) : (
         <>
           <Items list={notifications} />
-          <p
+          {/* <p
             className='cursor-pointer pt-2 text-center text-xs font-light opacity-60'
             onClick={() => {
               _setNavDropdown(eNavDropdownState.NONE)
@@ -48,15 +49,35 @@ const DropdownPopup = ({
             }}
           >
             mark as read
-          </p>
+          </p> */}
         </>
       )}
-      <button
-        onClick={() => signOut()}
-        className='mx-auto cursor-pointer rounded border border-white/40 bg-black/10 px-2 py-1 text-center text-xs backdrop-blur-md'
-      >
-        LOG OUT
-      </button>
+      <div className='mt-4 flex h-8 justify-center space-x-2 fill-black dark:fill-white'>
+        <Link
+          href='/app/dashboard'
+          className='Anim AnimTranslate-4 h-8 w-8 rounded-md border border-black/20 p-2 hover:bg-quaternary-2 hover:fill-white dark:border-white/20 hover:dark:bg-primary-0 hover:dark:fill-black'
+        >
+          <Icon.Graph />
+        </Link>
+        <Link
+          href='/app/chat?type=notification'
+          className='Anim AnimTranslate-4 h-8 w-8 rounded-md border border-black/20 p-2 hover:bg-quaternary-2 hover:fill-white dark:border-white/20 hover:dark:bg-primary-0 hover:dark:fill-black'
+        >
+          <Icon.Notification />
+        </Link>
+        <Link
+          href='/app/settings'
+          className='Anim AnimTranslate-4 h-8 w-8 rounded-md border border-black/20 p-2 hover:bg-quaternary-2 hover:fill-white dark:border-white/20 hover:dark:bg-primary-0 hover:dark:fill-black'
+        >
+          <Icon.Settings />
+        </Link>
+        <div
+          className='Anim AnimTranslate-4 h-8 w-8 rounded-md border border-black/20 p-2 hover:bg-quaternary-2 hover:fill-white dark:border-white/20 hover:dark:bg-primary-0 hover:dark:fill-black'
+          onClick={() => signOut()}
+        >
+          <Icon.LogOut />
+        </div>
+      </div>
     </motion.div>
   )
 }

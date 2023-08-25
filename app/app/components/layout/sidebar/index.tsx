@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { Icon } from '@aurora/assets'
 import clsx from 'clsx'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { UI } from '@global/store'
 import {
   aSideLeft,
   aSideChildrenLeft,
@@ -27,6 +28,8 @@ const SideBar = ({
     | 'Folder'
     | 'Cart'
 
+  const _setCursor = UI((state) => state.setCursor)
+
   return (
     <>
       <div className='fixed top-12 z-[300] pr-5 sm:relative sm:top-0 sm:h-full'>
@@ -37,14 +40,19 @@ const SideBar = ({
           animate={aSideLeft(true).animate}
           transition={aSideLeft(true).transition(0.2)}
         >
-          <div className='flex w-full space-x-4 overflow-hidden rounded-t-md bg-black/[0.07] p-3 dark:bg-white/[0.07] dark:fill-white sm:flex-col sm:space-x-0 sm:space-y-8 sm:p-3 sm:pb-8 sm:pt-5 el:p-5 el:pt-5'>
+          <div
+            onMouseOver={() => _setCursor('expanse')}
+            onMouseMove={() => _setCursor('expanse')}
+            onMouseLeave={() => _setCursor(false)}
+            className='flex w-full space-x-4 overflow-hidden rounded-t-md bg-black/[0.07] p-3 dark:bg-white/[0.07] dark:fill-white sm:flex-col sm:space-x-0 sm:p-0 sm:pb-2 xl:py-2 el:pb-4 xl:[&>div:hover>a>svg]:-translate-y-1 xl:[&>div:hover>a>svg]:translate-x-1 xl:[&>div:hover>a>svg]:scale-125 xl:[&>div:hover>a>svg]:duration-150 xl:[&>div>a>svg]:duration-500'
+          >
             {Routes.map((v, i) => {
               const I = Icon[v.icon as tIconList]
               return (
                 <>
                   <motion.div
                     className={clsx(
-                      'Anim h-4 w-4 cursor-pointer sm:w-full',
+                      'Anim w-full cursor-pointer sm:p-3 xl:p-4 el:p-5',
                       i === pageIndex
                         ? 'opacity-100'
                         : 'opacity-20 xl:hover:opacity-100',
