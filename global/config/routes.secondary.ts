@@ -3,6 +3,8 @@ export type tNavSecondaryRoute = {
   title: string
   setBackRoute: string
   scrollable?: boolean
+  showFooter?: boolean
+  showNav?: boolean
   route: {
     title: string
     path: string
@@ -148,6 +150,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     id: 21,
     title: 'App',
     setBackRoute: '/app',
+    showFooter: false,
     route: [
       {
         title: 'Profile',

@@ -15,6 +15,8 @@ function SetPageState() {
   const _setBackRoute = State((state) => state.setBackRoute)
   const _setNavRouteActiveState = State((state) => state.setNavRouteActiveState)
   const _setCursor = UI((state) => state.setCursor)
+  const _setShowFooter = UI((state) => state.setShowFooter)
+  const _setShowNav = UI((state) => state.setShowNav)
 
   const pathName = usePathname()
 
@@ -27,6 +29,14 @@ function SetPageState() {
       _setPage(routeData.title)
       _setBackRoute(routeData.setBackRoute)
       _setNavRoute(routeData.route)
+
+      typeof routeData.showFooter === 'boolean'
+        ? _setShowFooter(routeData.showFooter)
+        : _setShowFooter(true)
+      typeof routeData.showNav === 'boolean'
+        ? _setShowNav(routeData.showNav)
+        : _setShowNav(true)
+
       if (!reqPath[1]) {
         _setNavRouteActiveState({
           id: 99,
