@@ -22,6 +22,7 @@ type routeKeys =
   | 'about'
   | 'tools'
   | 'status'
+  | 'help'
   | 'example'
 
 export type tNavSecondaryRoutes = {
@@ -198,6 +199,21 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       {
         title: 'PKGs',
         path: '/status/packages',
+      },
+    ],
+  },
+  help: {
+    id: 80,
+    title: 'Help',
+    setBackRoute: '/help',
+    route: [
+      {
+        title: 'Privacy Policy',
+        path: '/help/privacy-policy',
+      },
+      {
+        title: 'Terms of Service',
+        path: '/help/terms-of-service',
       },
     ],
   },
