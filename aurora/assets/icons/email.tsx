@@ -1,4 +1,4 @@
-export const Email = () => {
+const Email = () => {
   return (
     <>
       <svg
@@ -15,3 +15,5 @@ export const Email = () => {
     </>
   )
 }
+
+export { Email }

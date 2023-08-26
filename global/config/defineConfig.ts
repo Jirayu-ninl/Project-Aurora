@@ -16,6 +16,9 @@ export const app = {
     useAuth: true,
     useWeb3: true,
   },
+  user: {
+    rateSwap: 59.2,
+  },
 }
 
 export const metaData = {

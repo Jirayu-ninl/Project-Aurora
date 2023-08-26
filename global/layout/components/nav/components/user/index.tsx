@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { eNavDropdownState } from '@global/store/ui'
 import { Icon } from '@aurora/assets'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
-import { DropdownPopup } from './dropdownPopup'
-import { Banner } from './banner'
+import { User } from './user'
+import { Wallet } from './wallet'
 
 const Block = ({
   _setNavDropdown,
@@ -45,18 +45,27 @@ const Block = ({
           </>
         ) : (
           <>
-            <Banner
+            <div className='flex h-4 fill-black dark:fill-white xxl:mr-4'>
+              <Icon.SeparatorLine />
+            </div>
+            <Wallet
               _setNavDropdown={_setNavDropdown}
               _navDropdown={_navDropdown}
               session={session}
+            />
+            <User
+              _setNavDropdown={_setNavDropdown}
+              _navDropdown={_navDropdown}
+              session={session}
+              notifications={notifications}
               notificationCount={notificationCount}
             />
           </>
         )}
 
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {_navDropdown === eNavDropdownState.USER && (
-            <DropdownPopup
+            <UserDropdown
               key='NAV_User'
               session={session}
               notifications={notifications}
@@ -64,7 +73,7 @@ const Block = ({
               _setNavDropdown={_setNavDropdown}
             />
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </motion.span>
     </>
   )

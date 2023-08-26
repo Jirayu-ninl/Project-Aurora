@@ -1,10 +1,7 @@
 const LogOut = () => {
   return (
     <>
-      <svg
-        viewBox='0 0 20 20'
-        className='h-full w-full fill-inherit'
-      >
+      <svg viewBox='0 0 20 20' className='h-full w-full fill-inherit'>
         <g opacity='0.4'>
           <path d='M4.52453 0H9.48564C11.9748 0 14 1.99 14 4.437V15.553C14 18.005 11.9698 20 9.47445 20H4.51537C2.02515 20 0 18.01 0 15.563V14.623V4.447C0 1.996 2.03024 0 4.52453 0Z' />
         </g>

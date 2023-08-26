@@ -37,6 +37,7 @@ export enum eNavDropdownState {
   CART,
   SETTINGS,
   USER,
+  WALLET,
 }
 
 export type tStoreState = {

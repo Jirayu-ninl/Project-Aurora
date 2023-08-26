@@ -1,10 +1,7 @@
 export const User = () => {
   return (
     <>
-      <svg
-        viewBox='0 0 13.091 16.369'
-        className='Anim AnimScale h-full w-full fill-inherit'
-      >
+      <svg viewBox='0 0 13.091 16.369' className='h-full w-full fill-inherit'>
         <path
           d='M0,2.783c0,2.227,3,2.8,6.545,2.8,3.53,0,6.545-.556,6.545-2.783S10.1,0,6.545,0C3.015,0,0,.557,0,2.783Z'
           transform='translate(0 10.783)'
