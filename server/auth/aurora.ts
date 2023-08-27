@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import { type GetServerSidePropsContext } from 'next'
-import {
-  getServerSession,
-  type NextAuthOptions,
-  type DefaultSession,
-} from 'next-auth'
+import type { NextAuthOptions, DefaultSession } from 'next-auth'
 
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
@@ -68,11 +63,4 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
   ],
   secret: env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === 'development',
-}
-
-export const getServerAuthSession = (ctx: {
-  req: GetServerSidePropsContext['req']
-  res: GetServerSidePropsContext['res']
-}) => {
-  return getServerSession(ctx.req, ctx.res, authOptions)
 }

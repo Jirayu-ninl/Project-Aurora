@@ -7,6 +7,7 @@ config.autoAddCss = false
 
 import CreateProgress from '@aurora/modules/nprogress'
 
+import { TrpcProvider } from './wrapper.trpc'
 import WrapperMobile from './wrapper.mobile'
 import { Audio, Setup /*, SetPageState */ } from './components/setup'
 import { SetPageState } from './components/setup'
@@ -23,17 +24,19 @@ const Wrapper = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <CreateProgress />
-      <SetPageState />
-      {/* <Beta /> */}
-      <AppInfo />
-      <Setup />
-      <NavBar session={session} />
-      <NavCanvas />
-      <WrapperMobile session={session}>{children}</WrapperMobile>
-      <Footer />
-      <Cursor />
-      <Audio />
+      <TrpcProvider>
+        <CreateProgress />
+        <SetPageState />
+        {/* <Beta /> */}
+        <AppInfo />
+        <Setup />
+        <NavBar session={session} />
+        <NavCanvas />
+        <WrapperMobile session={session}>{children}</WrapperMobile>
+        <Footer />
+        <Cursor />
+        <Audio />
+      </TrpcProvider>
     </>
   )
 }
