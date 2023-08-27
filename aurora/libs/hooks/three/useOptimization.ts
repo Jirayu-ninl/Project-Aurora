@@ -36,4 +36,4 @@ const useOptimization = (value: number, type: string) => {
   return { status: 'done', drp }
 }
 
-export default useOptimization
+export { useOptimization }

@@ -65,7 +65,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     route: [
       {
         title: 'Highlights',
-        path: '/project/highlight',
+        path: '/project',
       },
       {
         title: 'Categories',
@@ -84,7 +84,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     route: [
       {
         title: 'Highlights',
-        path: '/post/highlight',
+        path: '/post',
       },
       {
         title: 'Categories',
@@ -176,6 +176,10 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       {
         title: 'GLSL Editor',
         path: '/tools/glslEditor',
+      },
+      {
+        title: 'Clock',
+        path: '/tools/clock',
       },
     ],
   },

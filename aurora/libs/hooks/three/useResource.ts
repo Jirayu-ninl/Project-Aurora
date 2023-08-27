@@ -1,6 +1,6 @@
 import { useRef, useState, useLayoutEffect } from 'react'
 
-function useResource(optionalRef) {
+function useResource(optionalRef: any) {
   const [_, forceUpdate] = useState(false)
   const localRef = useRef(undefined)
   const ref = optionalRef ? optionalRef : localRef
@@ -8,4 +8,4 @@ function useResource(optionalRef) {
   return [ref, ref.current]
 }
 
-export default useResource
+export { useResource }

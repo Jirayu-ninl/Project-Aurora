@@ -29,6 +29,11 @@ const store: tStore = (set) => ({
     set(() => ({
       footerOption: { ...iFooterOption, ...options },
     })),
+  toggleUI: () =>
+    set((state: tStoreState) => ({
+      showNav: !state.showNav,
+      showFooter: !state.showFooter,
+    })),
 })
 
 export enum eNavDropdownState {
@@ -65,6 +70,7 @@ export type tStoreState = {
   setShowFooter: (show: boolean) => void
   footerOption: tFooterOption
   setFooterOption: (options: tFooterOption) => void
+  toggleUI: () => void
 }
 
 const iFooterOption = {

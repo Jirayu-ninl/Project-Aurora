@@ -8,7 +8,7 @@ import {
   EffectPass,
 } from 'postprocessing'
 
-export default function usePostprocessing(reflectorPipeline = []) {
+function usePostprocessing(reflectorPipeline = []) {
   const { gl, size, scene, camera } = useThree()
   const [composer] = useMemo(() => {
     OverrideMaterialManager.workaroundEnabled = true
@@ -29,3 +29,5 @@ export default function usePostprocessing(reflectorPipeline = []) {
   )
   useFrame((_, delta) => void composer.render(delta), -1)
 }
+
+export { usePostprocessing }

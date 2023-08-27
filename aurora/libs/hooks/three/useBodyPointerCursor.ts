@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export default function useBodyPointerCursor(hoverState: boolean) {
+function useBodyPointerCursor(hoverState: boolean) {
   useEffect(() => {
     const body = document.body
     if (hoverState) {
@@ -10,3 +10,5 @@ export default function useBodyPointerCursor(hoverState: boolean) {
     }
   })
 }
+
+export { useBodyPointerCursor }

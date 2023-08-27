@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { useEffect, useRef } from 'react'
 
-export default function useUpdate(callback: Function, dependencies: any[]) {
+function useUpdate(callback: Function, dependencies: any[]) {
   const isFirstRender = useRef(true)
 
   useEffect(() => {
@@ -15,3 +15,5 @@ export default function useUpdate(callback: Function, dependencies: any[]) {
     return callback()
   }, dependencies)
 }
+
+export { useUpdate }

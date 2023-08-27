@@ -1,9 +1,7 @@
 import { MutableRefObject, useEffect } from 'react'
 import { Light, PerspectiveCamera } from 'three'
 
-export default function useLightShadowConfigs(
-  lightRef: MutableRefObject<Light | undefined>,
-) {
+function useLightShadowConfigs(lightRef: MutableRefObject<Light | undefined>) {
   useEffect(() => {
     const light = lightRef.current
     if (light && light.shadow) {
@@ -16,3 +14,5 @@ export default function useLightShadowConfigs(
     }
   })
 }
+
+export { useLightShadowConfigs }

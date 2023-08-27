@@ -43,7 +43,7 @@ const Posts = ({ posts }: { posts: tPost[] }) => {
       <div className='grid grid-cols-3 gap-2 xl:grid-cols-4 xl:gap-4'>
         {posts.map((v: any, i: number) => (
           <>
-            <Card cardData={v} i={i} key={i} />
+            <Card cardData={v} i={i} key={i} baseUrl='/post/' />
           </>
         ))}
       </div>

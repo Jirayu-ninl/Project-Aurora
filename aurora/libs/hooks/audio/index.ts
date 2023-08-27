@@ -1,1 +1,1 @@
-export { default as useAudio } from './useAudio'
+export { useAudio } from './useAudio'

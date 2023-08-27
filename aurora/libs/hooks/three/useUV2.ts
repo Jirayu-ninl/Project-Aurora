@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { BoxGeometry, Float32BufferAttribute } from 'three'
 // import { useFrame } from '@react-three/fiber'
 
-export default function useUV2() {
+function useUV2() {
   const geomRef = useRef<BoxGeometry>(null)
 
   useEffect(() => {
@@ -27,3 +27,5 @@ export default function useUV2() {
 
   return geomRef
 }
+
+export { useUV2 }

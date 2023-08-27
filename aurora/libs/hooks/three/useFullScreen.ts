@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export default function useFullScreen(ref: MutableRefObject<Element | null>) {
+function useFullScreen(ref: MutableRefObject<Element | null>) {
   useEffect(() => {
     const view = ref.current as HTMLElement
 
@@ -46,3 +46,5 @@ export default function useFullScreen(ref: MutableRefObject<Element | null>) {
     }
   })
 }
+
+export { useFullScreen }

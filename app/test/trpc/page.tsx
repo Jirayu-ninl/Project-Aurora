@@ -2,7 +2,7 @@ import { Client } from './page.client'
 import { getServerSession } from 'next-auth'
 import prisma from '@aurora/libs/database/prisma'
 import { authOptions } from '@server/auth'
-import { appRouter } from '@server/api/root'
+import { appRouter } from '@server/api/routers'
 
 const Page = async () => {
   const session = await getServerSession(authOptions)

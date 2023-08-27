@@ -44,7 +44,13 @@ const Projects = ({ projects }: { projects: tProject[] }) => {
       <div className='grid grid-cols-3 gap-2 xl:grid-cols-4 xl:gap-4'>
         {projects.map((v: any, i: number) => (
           <>
-            <Card cardData={v} i={i} key={i} options={{ showTags: true }} />
+            <Card
+              cardData={v}
+              i={i}
+              key={i}
+              options={{ showTags: true }}
+              baseUrl='/project/'
+            />
           </>
         ))}
       </div>

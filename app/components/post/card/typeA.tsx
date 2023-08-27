@@ -26,19 +26,21 @@ type tOptions = {
 const Card = ({
   cardData,
   i,
+  baseUrl,
   options = {
     showTags: false,
   },
 }: {
   cardData: tCard
   i: number
+  baseUrl: string
   options?: tOptions
 }) => {
   const [hover, setHover] = useState(false)
   return (
     <>
       <Link
-        href={'/project/' + cardData.slug}
+        href={baseUrl + cardData.slug}
         className={clsx(
           'Anim-1 AnimOpacity-40 AnimSaturate-0 AnimTranslate-4 AnimShadow-el AnimScale-105 AnimRotate-1 flex min-h-[6rem] w-full overflow-hidden rounded-md sm:min-h-[8rem] md:min-h-[14rem] lg:rounded-xl xl:min-h-[20rem]',
           i % 2 && 'row-span-2',
@@ -63,7 +65,7 @@ const Card = ({
                   exit={{ y: 20, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className='text-2xl'>{cardData.title}</h3>
+                  <h3 className='text-2xl text-white'>{cardData.title}</h3>
                 </motion.div>
                 {options.showTags && (
                   <>

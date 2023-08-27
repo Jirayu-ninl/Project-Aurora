@@ -1,6 +1,4 @@
 import { RefObject, useEffect, useRef } from 'react'
-
-// See: https://usehooks-ts.com/react-hook/use-isomorphic-layout-effect
 import { useIsomorphicLayoutEffect } from '../layouts'
 
 function useEventListener<K extends keyof WindowEventMap>(
