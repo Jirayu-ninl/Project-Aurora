@@ -1,48 +1,59 @@
 export const Projects = [
   {
-    name: 'FILMEX',
+    name: 'ARTSCAPE',
     type: 'Web-App',
-    description: 'A short film review aggregation and community website.',
+    description: 'Discover, Showcase, and Connect with Artists Worldwide,',
+    icon: 'website',
+    link: 'https://www.artscape.day/',
     star: '99',
   },
   {
     name: 'AXIE ONE',
     type: 'Web-App',
     description: 'Scholar and account management for Axie Infinity.',
+    icon: 'website',
+    link: 'https://axieone.com/',
     star: '99',
   },
   {
-    name: 'ALR Network',
-    type: 'Blockchain',
-    description: 'Bridge with Solana and BSC on the Metaverse Blockchain.',
+    name: 'ProFantasy',
+    type: 'AI Generated Art',
+    description: 'Stable Diffusion Model for fantasy art purposes',
+    icon: 'download',
+    link: 'https://civitai.com/models/52298',
     star: '99',
   },
   {
-    name: 'iFramework',
+    name: 'ProPortrait',
+    type: 'AI Generated Art',
+    description: 'Stable Diffusion Model for portrait photography purposes',
+    icon: 'download',
+    link: 'https://civitai.com/models/72093',
+    star: '99',
+  },
+  {
+    name: 'Aurora Framework',
     type: 'Boilerplate',
-    description: 'A NextJs boilerplate for creating a 3D-Interactive Website.',
-    star: '2,159',
+    description: 'Full-stack app, based on NextJs, Prisma, NextAuth and tRPC',
+    icon: 'fork',
+    link: 'https://github.com/Jirayu-ninl/Aurora-Framework',
+    star: '99',
   },
 ]
 
 export const DevSkills = [
   {
-    name: ['HTML', 'CSS, SCSS', 'Query'],
+    name: ['HTML', 'CSS, SCSS', 'Tailwind'],
     type: ['Front-end'],
-    level: 'Expert',
+    level: 'Specialist',
   },
   {
-    name: ['React', 'NextJS'],
+    name: ['React', 'NextJS', 'T3 Stack'],
     type: ['Framework'],
-    level: 'Expert',
+    level: 'Excellent',
   },
   {
-    name: ['NodeJS', 'Express', 'GraphQL'],
-    type: ['Back-end'],
-    level: 'Skilled',
-  },
-  {
-    name: ['MongoDB', 'Redis', 'MySQL'],
+    name: ['Prisma', 'MongoDB', 'Firebase'],
     type: ['Database'],
     level: 'Average',
   },
@@ -56,33 +67,38 @@ export const DevSkills = [
     type: ['WebGL'],
     level: 'Average',
   },
+  {
+    name: ['NodeJS', 'Express', 'GraphQL'],
+    type: ['Back-end'],
+    level: 'Skilled',
+  },
 ]
 
 export const Expertises = [
-  {
-    name: ['V. Editing', 'Motion Graphics', 'Visual Effects'],
-    category: ['Video & Motion'],
-    level: 'Expert',
-  },
   {
     name: ['Website', 'WebApp', 'Wordpress'],
     category: ['developer'],
     level: 'Specialist',
   },
   {
+    name: ['V. Editing', 'Motion Graphics', 'Visual Effects'],
+    category: ['Video & Motion'],
+    level: 'Specialist',
+  },
+  {
     name: ['S. Editing', 'Mixing', 'Mastering'],
     category: ['Sound & Music'],
-    level: 'Specialist',
+    level: 'Excellent',
   },
   {
     name: ['Adobe XD', 'Illustrator', 'Photoshop'],
     category: ['Graphics Design'],
-    level: 'Specialist',
+    level: 'Average',
   },
   {
     name: ['MAYA', 'vRay, Arnold', 'Sub. Painter'],
     category: ['3D & LookDev'],
-    level: 'Average',
+    level: 'Skilled',
   },
 ]
 
@@ -94,7 +110,7 @@ export const Certificates = [
   },
   {
     name: ['React', 'Development'],
-    academy: ['Google Developer Launchpad'],
+    academy: ['Google Developer'],
     date: 'Jun 17, 2021',
   },
   {
@@ -115,6 +131,11 @@ export const Certificates = [
   {
     name: ['Merging WebGL', 'and HTML Worlds'],
     academy: ['Awwwards'],
+    date: 'Aug 25, 2021',
+  },
+  {
+    name: ['JavaScript:', 'Advanced Concepts'],
+    academy: ['ZeroToMastery'],
     date: 'Aug 25, 2021',
   },
 ]
@@ -138,32 +159,39 @@ export const Works = [
   {
     company: 'Agital Advertise Co., Ltd.',
     position: 'WordPress DeveLoper',
-    description: 'Creating a WordPress sale and landing page.',
+    description: 'Making a WordPress sales page for a client of the business',
     date: '2017 / Jun-2018',
   },
   {
     company: 'Freelancer',
     position: 'WordPress DeveLoper',
-    description: 'Creating a landing page and an e-commerce site',
+    description: 'Building an online store and a landing page',
     date: '2018 / Sept-2019',
   },
   {
     company: 'Posxible Lab Co., Ltd.',
     position: 'Full-Stack Developer',
-    description: 'Developing a Wednesday CMS, based on PHP, and MySQL',
+    description: 'Developing a Wednesday CMS, using on PHP, and MySQL',
     date: '2021 / Aug-2021',
   },
   {
     company: 'Infinity One Co., Ltd.',
     position: 'React Developer',
-    description: "I'm a NextJS front-end and interactive web developer.",
-    date: '2021 / Currently working',
+    description: 'I create interactive and front-end NextJS websites.',
+    date: '2021 / Jul-2022',
   },
   {
     company: 'Insight Technology Co., Ltd.',
     position: 'Post-Production Artist',
     description:
-      'Manage Post-Production pipeline, creating VFX, CGI, and compose sound for film',
-    date: '2022 / Currently working',
+      'Control the post-production workflow, produce VFX, CGI, and film sound',
+    date: '2022 / June-2023',
+  },
+  {
+    company: 'ArtScape, team project',
+    position: 'Full-Stack Developer',
+    description:
+      'Building an Artist Community with T3-Stack and integrating Web3',
+    date: '2023 / Currently working',
   },
 ]

@@ -1,6 +1,12 @@
+import Link from 'next/link'
+import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCodeFork } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCodeFork,
+  faDownload,
+  faDesktop,
+} from '@fortawesome/free-solid-svg-icons'
 
 type DataType = {
   target?: number
@@ -12,6 +18,7 @@ type DataType = {
   type?: string | []
   des?: string | []
   details?: string | string[]
+  link?: string
   star?: string | []
   pos?: string | []
   location?: string | string[]
@@ -38,37 +45,67 @@ const classGridContent = {
   h4: 'text-sm sm:text-base font-semibold md:text-xl lg:text-lg xxl:text-2xl',
 }
 
-export const Section_Projects = ({ type, name, des, star, Anim }: DataType) => (
-  <motion.div variants={Anim.children} transition={Anim.transition}>
-    <div className={classRowContent.container}>
-      <h5 className={classRowContent.h5}>{type}</h5>
-      <h4 className={classRowContent.h4}>{name}</h4>
-      <p className={classRowContent.p}>{des}</p>
-      <div className={classRowContent.div.css}>
-        <FontAwesomeIcon icon={faCodeFork} className='h-4' />
-        <p className='ml-2'>fork</p>
+export const Section_Projects = ({
+  type,
+  name,
+  des,
+  star,
+  Anim,
+  icon,
+  link,
+}: DataType & { icon: 'fork' | 'download' | 'website' }) => {
+  const IconList = {
+    fork: {
+      text: 'fork',
+      icon: faCodeFork,
+    },
+    download: {
+      text: 'download',
+      icon: faDownload,
+    },
+    website: {
+      text: 'website',
+      icon: faDesktop,
+    },
+  }
+
+  return (
+    <motion.div variants={Anim.children} transition={Anim.transition}>
+      <div className={classRowContent.container}>
+        <h5 className={classRowContent.h5}>{type}</h5>
+        <h4 className={classRowContent.h4}>{name}</h4>
+        <p className={classRowContent.p}>{des}</p>
+        <Link
+          className={clsx(classRowContent.div.css, 'cursor-pointer')}
+          href={link as string}
+        >
+          <FontAwesomeIcon icon={IconList[icon].icon} className='h-4' />
+          <p className='ml-2'>{IconList[icon].text}</p>
+        </Link>
       </div>
-    </div>
-  </motion.div>
-)
+    </motion.div>
+  )
+}
 
 export const Section_Skills = ({ title, sub, details, Anim }: DataType) => (
   <motion.div variants={Anim.children} transition={Anim.transition}>
     <div className={classGridContent.container}>
       <div>
-        {sub?.map((v: string, i: number) => (
-          <h5 key={i} className={classGridContent.h5}>
-            {v}
-          </h5>
-        ))}
+        {Array.isArray(sub) &&
+          sub?.map((v: string, i: number) => (
+            <h5 key={i} className={classGridContent.h5}>
+              {v}
+            </h5>
+          ))}
         <h6 className={classGridContent.h6}>{details}</h6>
       </div>
       <div>
-        {title?.map((v: string, i: number) => (
-          <h4 key={i} className={classGridContent.h4}>
-            {v}
-          </h4>
-        ))}
+        {Array.isArray(title) &&
+          title?.map((v: string, i: number) => (
+            <h4 key={i} className={classGridContent.h4}>
+              {v}
+            </h4>
+          ))}
       </div>
     </div>
   </motion.div>

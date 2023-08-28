@@ -6,6 +6,10 @@ import * as skillsSection from './skills'
 import { theme } from '@global/config/defineConfig'
 const Color = theme.color
 
+type tVariants = {
+  [key: string]: any
+}
+
 export const Header = ({
   MenuSection,
   setMenuSection,
@@ -30,20 +34,20 @@ export const Header = ({
   return (
     <>
       <motion.div
-        variants={parent(0.5)}
+        variants={parent(0.5) as tVariants}
         initial='hidden'
         animate='show'
         className='p-4 sm:p-7'
       >
         <motion.h1
-          variants={children}
+          variants={children as tVariants}
           className='text-3xl font-semibold text-quaternary-2 dark:text-primary-0 sm:text-4xl lg:text-5xl xxl:text-7xl'
         >
           Hello, I'm <br />
           Jirayu Ninlapun
         </motion.h1>
         <motion.p
-          variants={children}
+          variants={children as tVariants}
           className='mt-2 text-1xs font-light sm:mt-6 md:text-xs lg:text-base xl:mt-2 xxl:mt-6'
         >
           I work as an Interactive Web Developer and Designer.
@@ -54,14 +58,18 @@ export const Header = ({
       </motion.div>
       <motion.div
         className='grid grid-cols-3 pb-0 md:block md:pb-6'
-        variants={parent(0.2)}
+        variants={parent(0.2) as tVariants}
         initial='hidden'
         animate='show'
         transition={{ delay: 0.5 }}
       >
         {MenuItems &&
           MenuItems.map((v: any, i: number) => (
-            <motion.div variants={children} transition={transition} key={i}>
+            <motion.div
+              variants={children as tVariants}
+              transition={transition}
+              key={i}
+            >
               <motion.div
                 initial={{ color: _dark ? '#ffffff' : '#101010' }}
                 exit={{ color: _dark ? '#ffffff' : '#101010' }}
@@ -134,7 +142,7 @@ export const SkillSection = ({
     <AnimatePresence>
       {MenuSection === 0 && (
         <motion.div
-          variants={parent(0.2)}
+          variants={parent(0.2) as tVariants}
           initial='hidden'
           animate='show'
           key='AboutSkill_01'
@@ -146,6 +154,8 @@ export const SkillSection = ({
               type={v.type}
               des={v.description}
               star={v.star}
+              icon={v.icon}
+              link={v.link}
               key={i}
             />
           ))}
@@ -154,7 +164,7 @@ export const SkillSection = ({
       {MenuSection === 1 && (
         <motion.div
           className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 sm:w-full md:grid-cols-1 lg:grid-cols-2'
-          variants={parent(0.2)}
+          variants={parent(0.2) as tVariants}
           initial='hidden'
           animate='show'
           key='AboutSkill_02'
@@ -173,7 +183,7 @@ export const SkillSection = ({
       {MenuSection === 2 && (
         <motion.div
           className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 sm:w-full md:grid-cols-1 lg:grid-cols-2'
-          variants={parent(0.2)}
+          variants={parent(0.2) as tVariants}
           initial='hidden'
           animate='show'
           key='AboutSkill_03'
@@ -192,7 +202,7 @@ export const SkillSection = ({
       {MenuSection === 3 && (
         <motion.div
           className='grid w-[calc(100vw-2rem)] grid-cols-2 gap-2 sm:w-full md:grid-cols-1 lg:grid-cols-2'
-          variants={parent(0.2)}
+          variants={parent(0.2) as tVariants}
           initial='hidden'
           animate='show'
           key='AboutSkill_04'
@@ -210,7 +220,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 4 && (
         <motion.div
-          variants={parent(0.2)}
+          variants={parent(0.2) as tVariants}
           initial='hidden'
           animate='show'
           key='AboutSkill_05'
@@ -228,7 +238,7 @@ export const SkillSection = ({
       )}
       {MenuSection === 5 && (
         <motion.div
-          variants={parent(0.2)}
+          variants={parent(0.2) as tVariants}
           initial='hidden'
           animate='show'
           key='AboutSkill_06'

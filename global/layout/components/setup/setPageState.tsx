@@ -69,7 +69,15 @@ function SetPageState() {
         scrollProgress: 0,
       })
     }
-  }, [_setPage, _setNavRoute, _setBackRoute, _setNavRouteActiveState, pathName])
+  }, [
+    _setPage,
+    _setNavRoute,
+    _setBackRoute,
+    _setNavRouteActiveState,
+    pathName,
+    _setShowFooter,
+    _setShowNav,
+  ])
 
   useEffect(() => {
     _setCursor(false)
