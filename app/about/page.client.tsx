@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { UI } from '@global/store'
-import { SetNavState } from '@aurora/views/state'
+import { SetNavStateWithRoutes } from '@aurora/views/state'
 import { FreeTimeItems } from '@contents/pages/about'
 import { PageAboutAnimation as animConf } from '@global/config/defineAnimationConfig'
 import { about } from './components'
@@ -22,7 +22,12 @@ const Client = () => {
 
   return (
     <>
-      <SetNavState Page={Page} Pages={4} id={0} Routes={InPageRoute} />
+      <SetNavStateWithRoutes
+        Page={Page}
+        Pages={4}
+        id={0}
+        Routes={InPageRoute}
+      />
       {Page === 2 && <FreeTime data={FreeTimeItems} animConf={animConf} />}
       {!(Page === 2) && (
         <div className='m-container mx-auto w-screen items-start overflow-hidden px-4 sm:container sm:px-0 xxl:w-[1440px]'>

@@ -24,6 +24,7 @@ const UserBanner = ({
   }
 
   const displayUser = getDisplayUser(user.name)
+  const avatarImg: string | undefined = user?.metadata.profile.image.avatar.name
 
   return (
     <>
@@ -37,7 +38,11 @@ const UserBanner = ({
       </div>
       <div className='relative h-7 w-7 el:h-9 el:w-9'>
         <Image
-          src={user.image}
+          src={
+            avatarImg
+              ? `https://s3.theiceji.com/icejiverse-profiles/${avatarImg}`
+              : user.image
+          }
           alt='Profile'
           fill
           objectFit='cover'

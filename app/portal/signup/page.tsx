@@ -1,4 +1,5 @@
-import { SignUpIceJiVerse, SetNavState } from '../components'
+import { SetNavState } from '@aurora/views/state'
+import { SignUpIceJiVerse } from '../components'
 
 function Page() {
   return (

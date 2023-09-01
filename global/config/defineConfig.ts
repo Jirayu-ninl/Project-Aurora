@@ -19,6 +19,9 @@ export const app = {
   user: {
     rateSwap: 59.2,
   },
+  objectStorage: {
+    bucketName: 'icejiverse',
+  },
 }
 
 export const metaData = {

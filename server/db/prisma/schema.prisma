@@ -1,5 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 generator dbml {
@@ -76,7 +76,7 @@ model User {
   emailVerified  DateTime?
   createdAt      DateTime              @default(now()) @db.Timestamp
   image          String?
-  metadata       Json?
+  metadata       Json                  @default("{}")
   active         Boolean               @default(true)
   accounts       Account[]
   wallets        Wallet[]

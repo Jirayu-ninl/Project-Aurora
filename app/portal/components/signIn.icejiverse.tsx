@@ -53,7 +53,7 @@ const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
           })
           t.success('Sign in complete')
           router.refresh()
-          router.push('/app/dashboard')
+          router.push('/app/profile')
         } catch (e) {
           t.error("Error: Can't set session")
           log.error('AUTH Error', { message: "Can't set session" })

@@ -3,7 +3,7 @@
 
 import { useState } from 'react'
 import { UI } from '@global/store'
-import { SetNavState } from '@aurora/views/state'
+import { SetNavStateWithRoutes } from '@aurora/views/state'
 import { skills as Section } from '../components'
 import * as mySkills from '@contents/pages/about.skills'
 
@@ -21,7 +21,12 @@ const MySkill = () => {
 
   return (
     <>
-      <SetNavState Page={MenuSection} Pages={6} id={1} Routes={InPageRoute} />
+      <SetNavStateWithRoutes
+        Page={MenuSection}
+        Pages={6}
+        id={1}
+        Routes={InPageRoute}
+      />
       <div className='m-container mx-auto flex flex-col items-start overflow-hidden px-4 sm:container sm:px-0 md:flex-row xxl:w-[1440px]'>
         <div className='Card-back-md-40 mx-0 mt-10 w-full sm:mt-28 md:mx-5 md:w-1/2'>
           <Section.Header

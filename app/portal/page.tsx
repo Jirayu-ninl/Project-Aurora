@@ -6,7 +6,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@server/auth'
 import { SignInIceJiVerse, SignInProviders } from './components'
 import { SetErrorToast } from '@components/toast'
-import { SetNavState } from './components'
+import { SetNavState } from '@aurora/views/state'
 
 const Page = async () => {
   const log = serverLog()

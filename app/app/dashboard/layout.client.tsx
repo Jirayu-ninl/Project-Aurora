@@ -2,19 +2,20 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { SetNavState } from '@aurora/views/state'
-import { Layout } from './components'
+import { SetNavStateWithRoutes } from '@aurora/views/state'
+import { DashboardLayout } from '../components'
 import { Routes } from './routes'
 
 const LayoutClient = ({ session }: { session: any }) => {
   const reqPath = usePathname()
-  const pathname = reqPath.split('/')[2]
+  const pathname = reqPath.split('/')[3]
   const [pageIndex, setPageIndex] = useState(99)
 
   useEffect(() => {
     setPageIndex(99)
     Routes.map((v, i) => {
-      if (v.path === pathname) {
+      const path = v.path.split('/')[1]
+      if (path === pathname) {
         setPageIndex(i)
       }
     })
@@ -25,13 +26,17 @@ const LayoutClient = ({ session }: { session: any }) => {
 
   return (
     <>
-      <SetNavState
+      <SetNavStateWithRoutes
         Page={pageIndex}
         Pages={Routes.length}
-        id={!pathname ? 0 : pathname && pageIndex === 80 ? 2 : 1}
+        id={1}
         Routes={Routes.map((v) => v.name)}
       />
-      <Layout.SideBar Routes={Routes} pageIndex={pageIndex} session={session} />
+      <DashboardLayout.SideBar
+        Routes={Routes}
+        pageIndex={pageIndex}
+        session={session}
+      />
     </>
   )
 }

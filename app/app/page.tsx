@@ -1,7 +1,20 @@
+import Link from 'next/link'
+
 const Page = () => {
   return (
     <>
-      <h1 className='text-xl'>Profile</h1>
+      <div className='m-container w-dvw flex flex-col items-center justify-center'>
+        <h6 className='text-3xl font-light'>First app is coming.</h6>
+        <p>
+          Now you can access your{' '}
+          <Link
+            href='/app/profile'
+            className='font-bold text-quaternary-2 dark:text-primary-0'
+          >
+            profile
+          </Link>
+        </p>
+      </div>
     </>
   )
 }

@@ -1,23 +1,14 @@
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@server/auth'
-
+import { getSession } from '@server/auth/aurora'
+import { SetNavState } from '@aurora/views/state'
 import { Client } from './page.client'
 
 const Page = async () => {
-  const session = await getServerSession(authOptions)
-  const data = {
-    session,
-  }
-
+  const session = await getSession()
   return (
-    <main className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>
-      <h1 className='text-xl'>Profile</h1>
-      <h1>Server Session</h1>
-      <Client data={data} />
-      <div className=''>
-        <pre>{JSON.stringify(session, undefined, 2)}</pre>
-      </div>
-    </main>
+    <>
+      <SetNavState id={0} title={session?.user.name ?? 'Profile'} />
+      <Client session={session} />
+    </>
   )
 }
 

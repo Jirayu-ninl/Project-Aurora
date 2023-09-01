@@ -43,7 +43,7 @@ Table User {
   emailVerified DateTime
   createdAt DateTime [default: `now()`, not null]
   image String
-  metadata Json
+  metadata Json [not null, default: '{}']
   active Boolean [not null, default: true]
   accounts Account [not null]
   wallets Wallet [not null]

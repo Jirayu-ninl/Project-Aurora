@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PrismaAdapter } from '@auth/prisma-adapter'
+import { getServerSession } from 'next-auth'
 import type { NextAuthOptions, DefaultSession } from 'next-auth'
 
 import GoogleProvider from 'next-auth/providers/google'
@@ -16,6 +17,7 @@ declare module 'next-auth' {
       role: 'USER' | 'ADMIN' | 'SUPER_ADMIN'
       plane: 'FREE' | 'PLUS' | 'PRO' | 'ELITE'
       balance: number
+      metadata: any
     } & DefaultSession['user']
   }
 }
@@ -25,7 +27,7 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
     signIn: '/portal',
     signOut: '/',
     error: '/portal',
-    newUser: '/app/dashboard?newUser=true',
+    newUser: '/app/profile/edit',
   },
   callbacks: {
     session: ({ session, user }: any) => {
@@ -37,6 +39,7 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
           role: user.role,
           plane: user.plan,
           balance: user.balance,
+          metadata: user.metadata,
         },
       }
     },
@@ -64,3 +67,5 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
   secret: env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === 'development',
 }
+
+export const getSession = async () => await getServerSession(authOptions)

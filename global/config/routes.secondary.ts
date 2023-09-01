@@ -155,7 +155,7 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     route: [
       {
         title: 'Profile',
-        path: '/app',
+        path: '/app/profile',
       },
       {
         title: 'Dashboard',

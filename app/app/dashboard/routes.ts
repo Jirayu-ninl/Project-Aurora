@@ -7,32 +7,32 @@ const Routes = [
   {
     name: 'Activity',
     icon: 'Activity',
-    path: 'activity',
+    path: 'dashboard/activity',
   },
   {
     name: 'Wallet',
     icon: 'Wallet',
-    path: 'wallet',
+    path: 'dashboard/wallet',
   },
   {
     name: 'Projects',
     icon: 'Work',
-    path: 'projects',
+    path: 'dashboard/projects',
   },
   {
     name: 'Chat',
     icon: 'Chat',
-    path: 'chat',
+    path: 'dashboard/chat',
   },
   {
     name: 'Space',
     icon: 'Folder',
-    path: 'space',
+    path: 'dashboard/space',
   },
   {
     name: 'Shop',
     icon: 'Cart',
-    path: 'shop',
+    path: 'dashboard/shop',
   },
 ]
 

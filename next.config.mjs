@@ -100,6 +100,9 @@ const nextConfig = {
       'avatars.githubusercontent.com',
       'platform-lookaside.fbsbx.com',
       'lh3.googleusercontent.com',
+      's3.theiceji.com',
+      'assets.theiceji.com',
+      'scontent.fbkk28-1.fna.fbcdn.net',
     ],
   },
   pwa: {

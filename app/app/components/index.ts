@@ -1,1 +1,2 @@
-export * as Layout from './layout'
+export { DashboardLayout } from './layouts'
+export * as Layouts from './layouts'
