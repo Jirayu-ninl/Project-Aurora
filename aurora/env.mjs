@@ -37,9 +37,16 @@ export const env = createEnv({
     AUTH_GOOGLE_CLIENT_SECRET: z.string(),
     AUTH_DISCORD_CLIENT_ID: z.string(),
     AUTH_DISCORD_CLIENT_SECRET: z.string(),
-    MINIO_ENDPOINT: z.string(),
-    MINIO_ACCESS_KEY: z.string(),
-    MINIO_SECRET_KEY: z.string(),
+    // ** S3
+    S3_ORIGINS: z.preprocess((value) => {
+      const str = String(value)
+      return str.split(',')
+    }, z.array(z.string().url()).optional()),
+    S3_UPLOAD_ENDPOINT: z.string().url(),
+    S3_UPLOAD_KEY: z.string(),
+    S3_UPLOAD_SECRET: z.string(),
+    S3_UPLOAD_REGION: z.string(),
+    S3_UPLOAD_BUCKET: z.string(),
   },
 
   /**
@@ -77,9 +84,13 @@ export const env = createEnv({
     AUTH_GOOGLE_CLIENT_SECRET: process.env.AUTH_GOOGLE_CLIENT_SECRET,
     AUTH_DISCORD_CLIENT_ID: process.env.AUTH_DISCORD_CLIENT_ID,
     AUTH_DISCORD_CLIENT_SECRET: process.env.AUTH_DISCORD_CLIENT_SECRET,
-    MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
-    MINIO_ACCESS_KEY: process.env.MINIO_ACCESS_KEY,
-    MINIO_SECRET_KEY: process.env.MINIO_SECRET_KEY,
+    // ** S3
+    S3_ORIGINS: process.env.S3_ORIGINS,
+    S3_UPLOAD_ENDPOINT: process.env.S3_UPLOAD_ENDPOINT,
+    S3_UPLOAD_KEY: process.env.S3_UPLOAD_KEY,
+    S3_UPLOAD_SECRET: process.env.S3_UPLOAD_SECRET,
+    S3_UPLOAD_REGION: process.env.S3_UPLOAD_REGION,
+    S3_UPLOAD_BUCKET: process.env.S3_UPLOAD_BUCKET,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

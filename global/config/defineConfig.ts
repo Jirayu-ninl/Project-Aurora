@@ -19,8 +19,8 @@ export const app = {
   user: {
     rateSwap: 59.2,
   },
-  objectStorage: {
-    bucketName: 'icejiverse',
+  s3: {
+    bucketName: process.env.S3_UPLOAD_BUCKET ?? 'icejiverse',
   },
 }
 
