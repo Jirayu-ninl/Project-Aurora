@@ -24,7 +24,8 @@ const UserBanner = ({
   }
 
   const displayUser = getDisplayUser(user.name)
-  const avatarImg: string | undefined = user?.metadata.profile.image.avatar.name
+  const avatarImg: string | undefined =
+    user?.metadata?.profile?.image?.avatar?.name ?? undefined
 
   return (
     <>

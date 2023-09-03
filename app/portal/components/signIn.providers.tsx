@@ -21,29 +21,23 @@ const SignInProviders = ({ providers, session }: any) => {
   return (
     <>
       <div className='flex h-8 justify-center'>
-        <div className=' cursor-pointer rounded-full bg-blue-500 px-2 py-1 text-white'>
-          <FontAwesomeIcon
-            icon={faFacebook}
-            size='xs'
-            className='w-4'
-            onClick={() => signIn(providers.facebook.id)}
-          />
+        <div
+          className=' cursor-pointer rounded-full bg-blue-500 px-2 py-1 text-white'
+          onClick={() => signIn(providers.facebook.id)}
+        >
+          <FontAwesomeIcon icon={faFacebook} size='xs' className='w-4' />
         </div>
-        <div className='ml-3 cursor-pointer rounded-full bg-red-500 px-2 py-1 text-white'>
-          <FontAwesomeIcon
-            icon={faGoogle}
-            size='xs'
-            className='w-4'
-            onClick={() => signIn(providers.google.id)}
-          />
+        <div
+          className='ml-3 cursor-pointer rounded-full bg-red-500 px-2 py-1 text-white'
+          onClick={() => signIn(providers.google.id)}
+        >
+          <FontAwesomeIcon icon={faGoogle} size='xs' className='w-4' />
         </div>
-        <div className='ml-3 cursor-pointer rounded-full bg-slate-800 px-2 py-1 text-white'>
-          <FontAwesomeIcon
-            icon={faGithub}
-            size='xs'
-            className='w-4'
-            onClick={() => signIn(providers.github.id)}
-          />
+        <div
+          className='ml-3 cursor-pointer rounded-full bg-slate-800 px-2 py-1 text-white'
+          onClick={() => signIn(providers.github.id)}
+        >
+          <FontAwesomeIcon icon={faGithub} size='xs' className='w-4' />
         </div>
       </div>
     </>

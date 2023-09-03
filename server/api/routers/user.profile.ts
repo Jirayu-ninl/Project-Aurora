@@ -16,12 +16,10 @@ export const userProfileRouter = createTRPCRouter({
         image: z.object({
           avatar: z.object({
             name: z.string(),
-            contentType: z.string(),
             imageId: z.string(),
           }),
           cover: z.object({
             name: z.string(),
-            contentType: z.string(),
             imageId: z.string(),
           }),
         }),
@@ -54,12 +52,10 @@ export const userProfileRouter = createTRPCRouter({
                 image: {
                   avatar: {
                     name: input.image.avatar.name,
-                    contentType: input.image.avatar.contentType,
                     imageId: input.image.avatar.imageId,
                   },
                   cover: {
                     name: input.image.cover.name,
-                    contentType: input.image.cover.contentType,
                     imageId: input.image.cover.imageId,
                   },
                 },

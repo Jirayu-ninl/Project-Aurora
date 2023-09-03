@@ -9,7 +9,8 @@ import { Edit as EditIcon } from '@aurora/assets/icons'
 
 const Client = ({ session }: { session: Session | null }) => {
   const user = session?.user
-  const coverImg: string | undefined = user?.metadata.profile.image.cover.name
+  const coverImg: string | undefined =
+    user?.metadata?.profile?.image?.cover?.name ?? undefined
 
   return (
     <>
@@ -32,7 +33,8 @@ const Client = ({ session }: { session: Session | null }) => {
 }
 
 const Header = ({ user }: any) => {
-  const avatarImg: string | undefined = user?.metadata.profile.image.avatar.name
+  const avatarImg: string | undefined =
+    user?.metadata?.profile?.image?.avatar?.name ?? undefined
   return (
     <>
       <div className='-mt-32 flex items-end'>

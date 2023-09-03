@@ -3,7 +3,7 @@ type tUploadResult = {
 }
 
 type tUploadToS3 = (
-  file: File,
+  file: File | ArrayBuffer,
   fileName: string,
   bucketSuffix: string | undefined,
   metadata?: Record<string, string>,

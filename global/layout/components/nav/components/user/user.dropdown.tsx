@@ -20,7 +20,7 @@ const UserDropdown = ({
 }) => {
   const user = session ? session.user : null
   const [showTooltip, setShowTooltip] = useState(0)
-  const tooltipText = ['Profile', 'Dashboard', 'Inbox', 'Log out']
+  const tooltipText = ['Profile', 'Dashboard', 'Settings', 'Log out']
 
   return (
     <motion.div
@@ -57,7 +57,7 @@ const UserDropdown = ({
       )}
       <div className='relative mt-4 flex h-8 justify-center space-x-2 fill-black dark:fill-white'>
         <Link
-          href='/app'
+          href='/app/profile'
           className='Anim AnimTranslate-4 h-8 w-8 rounded-md border border-black/20 p-2 hover:bg-quaternary-2 hover:fill-white dark:border-white/20 hover:dark:bg-primary-0 hover:dark:fill-black'
           onMouseEnter={() => setShowTooltip(1)}
           onMouseMove={() => setShowTooltip(1)}

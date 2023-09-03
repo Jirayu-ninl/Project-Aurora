@@ -8,9 +8,9 @@ import { SetCoverImage } from './setup.profile.coverImage'
 import { SetProfileInfo } from './setup.profile.userInfo'
 import { ProfileSubmit } from './setup.profile.submit'
 
-import { presignedUpload } from '@aurora/libs/storage/func/upload.presigned'
+import { uploadFile } from '@aurora/libs/storage/func/upload'
 
-const SetupProfile = ({ session }: { session: Session }) => {
+const SetupProfile = () => {
   const [userInfo, setUserInfo] = useState({
     name: '',
     username: '',
@@ -50,12 +50,14 @@ const SetupProfile = ({ session }: { session: Session }) => {
 
     const uploadImage = async (file: File, _flag: 'avatar' | 'cover') => {
       try {
-        const _id = session.user.id
-        const _extension = file.type === 'image/jpeg' ? 'jpg' : 'png'
-        const name = `${_id}-img-profile-${_flag}.${_extension}`
-
-        const { id } = await presignedUpload(file, name, 'profiles')
-        return { name, id }
+        const res: any = await uploadFile(file, '/api/upload/image/profile', {
+          bucketSuffix: 'profiles',
+          flag: _flag,
+        })
+        if (!res) {
+          throw new Error('Upload image failed')
+        }
+        return res
       } catch (e) {
         if (
           typeof e === 'object' &&
@@ -80,12 +82,10 @@ const SetupProfile = ({ session }: { session: Session }) => {
         image: {
           avatar: {
             name: avatarImageData.name,
-            contentType: profileImage[0].type,
             imageId: avatarImageData.id,
           },
           cover: {
             name: coverImageData.name,
-            contentType: coverImage[0].type,
             imageId: coverImageData.id,
           },
         },
