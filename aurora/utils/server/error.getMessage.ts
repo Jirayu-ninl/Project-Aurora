@@ -1,4 +1,4 @@
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 
 const getErrorMessage = (e: any) => {
   let message: string = 'Database connection failed'

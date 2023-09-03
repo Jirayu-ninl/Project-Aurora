@@ -4,7 +4,7 @@ import { gql } from 'graphql-request'
 import Client from './page.client'
 import * as FALLBACK from '@components/post/error'
 import { useFetchQL } from '@aurora/libs/hooks/data'
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 
 type PageProps = {
   params: { slug: string }

@@ -1,5 +1,5 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 import { appRouter } from '@server/api/routers'
 import { createTRPCContext } from '@server/api/trpc'
 

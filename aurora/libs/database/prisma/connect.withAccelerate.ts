@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 
 const globalForPrisma: any = globalThis as unknown as {
   prisma: PrismaClient | undefined

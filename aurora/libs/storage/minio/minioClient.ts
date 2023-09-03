@@ -1,5 +1,5 @@
 import * as minio from 'minio'
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 
 const MinioClient: minio.Client = new minio.Client({
   endPoint: env.S3_UPLOAD_ENDPOINT,

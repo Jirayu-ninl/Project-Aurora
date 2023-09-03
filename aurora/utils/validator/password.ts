@@ -24,7 +24,7 @@ const noSpace = (pass: string) => {
 
 const finalize = (pass: string) => {
   return String(pass).match(
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_-]).{8,}$/,
   )
 }
 
@@ -58,7 +58,7 @@ const Func = (pass: string) => {
     }
   }
   if (noSpace(pass) === null) {
-    return { error: true, type: 'minimum', msg: 'Passwords mustn\'t have space' }
+    return { error: true, type: 'minimum', msg: "Passwords mustn't have space" }
   }
   if (minEight(pass) === null) {
     return {

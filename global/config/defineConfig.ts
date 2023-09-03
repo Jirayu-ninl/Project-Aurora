@@ -8,8 +8,6 @@ export const app = {
     NextJs: '13.4.19',
     ThreeJs: '155.0',
   },
-  // GOOGLE_ANALYTICS: 'UA-102194632-3',
-  // GOOGLE_TAG_MANAGER: 'GTM-KWRQQVP',
   Functions: {
     useThree: true,
     useAudio: true,

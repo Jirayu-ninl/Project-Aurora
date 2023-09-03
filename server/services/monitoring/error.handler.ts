@@ -1,4 +1,4 @@
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 import { serverLog } from '@aurora/libs/monitor/log.server'
 import { captureToSentry } from '@aurora/libs/monitor/sentry.capture'
 

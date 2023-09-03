@@ -1,4 +1,4 @@
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 import {
   S3Client,
   GetObjectCommand,

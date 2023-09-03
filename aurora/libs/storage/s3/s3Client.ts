@@ -1,5 +1,5 @@
 import { S3Client } from '@aws-sdk/client-s3'
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 
 const missingEnvs = (): string[] => {
   const keys = []

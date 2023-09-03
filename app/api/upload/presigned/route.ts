@@ -20,8 +20,8 @@ export const GET = async (req: Request) => {
   const imageKey = randomUUID()
 
   const bucketName = bucketSuffix
-    ? Config.app.objectStorage.bucketName + '-' + bucketSuffix
-    : Config.app.objectStorage.bucketName
+    ? Config.app.s3.bucketName + '-' + bucketSuffix
+    : Config.app.s3.bucketName
 
   try {
     const url = await MinioClient.presignedPutObject(

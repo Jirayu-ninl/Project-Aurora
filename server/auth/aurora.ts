@@ -7,7 +7,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GithubProvider from 'next-auth/providers/github'
 // import DiscordProvider from 'next-auth/providers/discord'
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 import Prisma from '@aurora/libs/database/prisma'
 
 declare module 'next-auth' {

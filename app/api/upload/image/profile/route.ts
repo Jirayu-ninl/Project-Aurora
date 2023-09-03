@@ -36,7 +36,7 @@ export const PUT = async (req: Request) => {
   if (_fileSize !== data.length) throw new Error('Lost data while uploading')
 
   const upload = await MinioClient.putObject(
-    Config.app.objectStorage.bucketName,
+    Config.app.s3.bucketName,
     `${_id}-img-profile-${_fileFlag}.${
       _fileType === 'image/jpeg' ? 'jpg' : 'png'
     }`,

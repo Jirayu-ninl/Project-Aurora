@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { env } from '@aurora/env.mjs'
+import { env } from '@global/env.mjs'
 import Prisma from '@aurora/libs/database/prisma'
 
 const SignIn_Provider = async (user: any, account: any) => {
