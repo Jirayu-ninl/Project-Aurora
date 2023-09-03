@@ -40,7 +40,7 @@ export const serverSchema = {
   S3_ORIGINS: z.preprocess((value) => {
     const str = String(value)
     return str.split(',')
-  }, z.array(z.string().url()).optional()),
+  }, z.array(z.string()).optional()),
   S3_UPLOAD_ENDPOINT: z.string(),
   S3_UPLOAD_KEY: z.string(),
   S3_UPLOAD_SECRET: z.string(),
