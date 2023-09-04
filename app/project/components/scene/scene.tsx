@@ -1,4 +1,4 @@
-import { ScrollControls, Scroll, useScroll } from '@react-three/drei'
+import { ScrollControls, Scroll } from '@react-three/drei'
 import { Environment, Lightformer } from '@react-three/drei'
 
 function Scene({ _dark, projects }: { _dark: boolean; projects: any[] }) {
@@ -6,14 +6,11 @@ function Scene({ _dark, projects }: { _dark: boolean; projects: any[] }) {
     <>
       <Environments />
       <ScrollControls damping={0.3} distance={1} pages={2}>
-        <Scroll>
-
-        </Scroll>
+        <Scroll></Scroll>
       </ScrollControls>
     </>
   )
 }
-
 
 const Environments = () => (
   <>

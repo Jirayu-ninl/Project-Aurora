@@ -6,7 +6,7 @@ const Immersive = (p: { glow: boolean; setGlow: Dispatch<boolean> }) => {
   const _toggleUI = UI((state) => state.toggleUI)
 
   const pressF = useKeyPress('f')
-  //   const pressG = useKeyPress('g')
+  const pressG = useKeyPress('g')
 
   useEffect(() => {
     if (pressF) {
@@ -14,14 +14,14 @@ const Immersive = (p: { glow: boolean; setGlow: Dispatch<boolean> }) => {
     }
   }, [pressF, _toggleUI])
 
-  //   useEffect(() => {
-  //     const toggle = () => {
-  //       p.setGlow(!p.glow)
-  //     }
-  //     if (pressG) {
-  //       toggle()
-  //     }
-  //   }, [pressG, p])
+  useEffect(() => {
+    const toggle = () => {
+      p.setGlow(!p.glow)
+    }
+    if (pressG) {
+      toggle()
+    }
+  }, [pressG, p])
 
   return (
     <>

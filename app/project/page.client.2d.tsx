@@ -5,7 +5,6 @@ import {
   useRef,
   useState,
   forwardRef,
-  useCallback,
   useLayoutEffect,
   useEffect,
   createRef,
@@ -19,9 +18,7 @@ import {
   useSpring,
   motion,
   MotionValue,
-  useMotionValueEvent,
 } from 'framer-motion'
-import { ResizeObserver } from '@juggle/resize-observer'
 import { InnerHeight } from '@aurora/libs/hooks/layouts'
 
 type tProject = {
@@ -106,7 +103,6 @@ const Instances = ({
   $container,
   spring,
   diffMargin,
-  instanceHeight,
 }: {
   projects: tProject[]
   $container: RefObject<HTMLDivElement>
@@ -160,7 +156,7 @@ const Instance = forwardRef(
           className='absolute flex w-full flex-col items-center'
           ref={ref as RefObject<HTMLDivElement>}
           // style={{ top: 0 }}
-          style={...style}
+          // style={...style}
         >
           {projects.map((v: any, i: number) => (
             <>

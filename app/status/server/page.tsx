@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import serverData from './data'
 
 function Page() {
-
   return (
     <>
       {serverData().contents.map((v, i) =>

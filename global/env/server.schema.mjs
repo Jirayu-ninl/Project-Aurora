@@ -24,6 +24,7 @@ export const serverSchema = {
   GRAPHQL_PROJECT_URL: z.string().url(),
   GRAPHQL_SHOP_URL: z.string().url(),
   MONGODB_URI: z.string().url(),
+  ACCELERATE_URI: z.string().url(),
   SQL_URL: z.string().url(),
   SQL_PSC_URL: z.string().url(),
   REDIS_URL: z.string().url(),
