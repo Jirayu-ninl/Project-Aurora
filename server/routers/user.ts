@@ -1,9 +1,9 @@
 import { z } from 'zod'
-import { createTRPCRouter, publicProcedure } from '@server/api/trpc'
+import { createTRPCRouter, p } from '@server/trpc'
 import { userProfileRouter } from './user.profile'
 
 export const userRouter = createTRPCRouter({
-  getUser: publicProcedure
+  getUser: p.publicProcedure
     .input(z.object({ username: z.string() }))
     .query(async ({ ctx: { prisma }, input }) => {
       const user = await prisma.user.findUnique({

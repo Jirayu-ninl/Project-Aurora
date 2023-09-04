@@ -1,6 +1,10 @@
 import { create } from 'zustand'
-import { iHomeCamera, iNavRouteActiveState, iNavRoute } from './state.e'
-export type { tHomeCamera, tNavRouteActiveState, tNavRoute } from './state.e'
+import { iHomeCamera, iNavRouteActiveState, iNavRoute } from './state.extend'
+export type {
+  tHomeCamera,
+  tNavRouteActiveState,
+  tNavRoute,
+} from './state.extend'
 
 const store: tStore = (set) => ({
   page: 'Home',

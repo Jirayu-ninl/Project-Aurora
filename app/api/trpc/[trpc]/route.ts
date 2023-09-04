@@ -1,7 +1,7 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 import { env } from '@global/env.mjs'
-import { appRouter } from '@server/api/routers'
-import { createTRPCContext } from '@server/api/trpc'
+import { appRouter } from '@server/routers'
+import { createTRPCContext } from '@server/trpc/trpc.context'
 
 const handler = (request: Request) => {
   if (env.NODE_ENV === 'development') {

@@ -1,13 +1,12 @@
 import { Client } from './page.client'
 import { getServerSession } from 'next-auth'
-import prisma from '@aurora/libs/database/prisma'
 import { authOptions } from '@server/auth'
-import { appRouter } from '@server/api/routers'
+import { trpcCaller } from '@server/trpc'
 
 const Page = async () => {
   const session = await getServerSession(authOptions)
 
-  const caller = appRouter.createCaller({ session, prisma })
+  const caller = await trpcCaller()
   const result = await caller.example.hello({ text: 'tRPC' })
 
   return (

@@ -1,6 +1,5 @@
 'use client'
 
-import type { Session } from 'next-auth'
 import { SetupProfile } from './setup.profile'
 
 const Client = () => {

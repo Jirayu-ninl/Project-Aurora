@@ -5,7 +5,7 @@ import { httpBatchLink, getFetch, loggerLink } from '@trpc/client'
 import superjson from 'superjson'
 import { useState } from 'react'
 
-import { trpc } from '@server/api'
+import { trpc } from '@server/trpc/client'
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') return ''
