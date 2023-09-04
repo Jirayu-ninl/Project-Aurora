@@ -11,11 +11,9 @@ const Fade = ({ _dark }: { _dark: boolean }) => {
 
   return (
     <>
-      return (
       <Plane args={[14, 2.5]} scale={0.8} position={[0, -2.21, -1.2]}>
         <shaderMaterial args={[fadeShader]} transparent />
       </Plane>
-      )
     </>
   )
 }

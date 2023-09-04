@@ -66,9 +66,10 @@ export default function App({
       <ScrollControls damping={0.3} distance={1} pages={16}>
         <Scroll ref={$scroll}>
           <PageState />
-          <Hero _dark={_dark} isMobile={isVertical} />
+          <Hero.R3F _dark={_dark} isMobile={isVertical} />
           <Cube _dark={_dark} isMobile={isVertical} />
           <Scroll html style={{ width: '100%' }}>
+            <Hero.HTML _dark={_dark} isMobile={isVertical} />
             <IntroSection _dark={_dark} isMobile={isMobile} w={w} />
             <PassionSection.HTML />
             <ProjectsSection.HTML
