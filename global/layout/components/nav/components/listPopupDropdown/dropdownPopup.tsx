@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
-import { eNavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui.store'
 import Items from './items'
 
 const DropdownPopup = ({

@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion'
-import { eNavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui.store'
 
 import { UserBanner } from './user.banner'
 import { UserDropdown } from './user.dropdown'

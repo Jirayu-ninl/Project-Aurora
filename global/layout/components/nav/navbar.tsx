@@ -8,7 +8,7 @@ import { useOnClickOutside } from '@aurora/libs/hooks/events'
 import { useAudio } from '@aurora/libs/hooks/audio'
 
 import { State, UI } from '@global/store'
-import { eNavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui.store'
 import { aNav, aNavChildren } from '@global/config/defineAnimationConfig'
 import IceJiLogo from '@components/logo/IceJi'
 

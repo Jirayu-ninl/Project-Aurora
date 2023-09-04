@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'react-toastify'
-import { eNavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui.store'
 
 import { WalletBanner } from './wallet.banner'
 import { WalletDropdown } from './wallet.dropdown'

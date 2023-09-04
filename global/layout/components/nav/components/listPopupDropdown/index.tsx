@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { eNavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui.store'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 
 import DropdownPopup from './dropdownPopup'
