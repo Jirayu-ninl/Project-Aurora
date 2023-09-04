@@ -1,4 +1,4 @@
-const readableStreamToBuffer = async (readableStream: ReadableStream) => {
+const toBuffer = async (readableStream: ReadableStream) => {
   const chunks = []
 
   const reader = readableStream.getReader()
@@ -11,4 +11,4 @@ const readableStreamToBuffer = async (readableStream: ReadableStream) => {
   return Buffer.concat(chunks)
 }
 
-export { readableStreamToBuffer }
+export { toBuffer }

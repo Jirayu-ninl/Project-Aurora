@@ -1,1 +1,5 @@
-export { readableStreamToBuffer } from './readableStreamToBuffer'
+export * as convertFromReadableStream from './readableStream.convert'
+export * as convertFromDataStream from './dataStream.convert'
+export * as convertFromBuffer from './buffer.convert'
+export * as convertFromBlob from './blob.convert'
+export * as convertFromBase64 from './base64.covert'

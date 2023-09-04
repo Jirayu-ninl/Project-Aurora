@@ -1,4 +1,4 @@
-const convertToBlob = (
+const toBlob = (
   dataStream: any,
   resolve: (value: Blob | MediaSource) => void,
   reject: (reason?: any) => void,
@@ -15,7 +15,7 @@ const convertToBlob = (
   dataStream.on('error', (error: Error) => reject(error))
 }
 
-const convertToBase64 = (
+const toBase64 = (
   dataStream: any,
   resolve: (base64: string) => void,
   reject: (reason?: any) => void,
@@ -35,4 +35,4 @@ const convertToBase64 = (
   dataStream.on('error', (error: Error) => reject(error))
 }
 
-export { convertToBlob, convertToBase64 }
+export { toBlob, toBase64 }

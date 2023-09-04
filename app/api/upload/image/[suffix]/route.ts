@@ -5,7 +5,7 @@ import { MinioClient } from '@aurora/libs/storage'
 import Config from '@global/config'
 import { getSession } from '@server/auth/aurora'
 import { convertToOptimizeJpg } from '@aurora/utils/optimization/image'
-import { readableStreamToBuffer } from '@aurora/utils/data'
+import { convertFromReadableStream } from '@aurora/utils/data'
 import { setResponse } from '@aurora/utils/server/response.status'
 
 export const PUT = async (
@@ -34,7 +34,9 @@ export const PUT = async (
     // if (!name) throw new Error('File name not provided')
     const imageKey = randomUUID()
 
-    const data = await readableStreamToBuffer(req.body as ReadableStream)
+    const data = await convertFromReadableStream.toBuffer(
+      req.body as ReadableStream,
+    )
     if (_fileSize !== data.length) throw new Error('Lost data while uploading')
     const name = `${_id}-img${_suffix && `-${_suffix}`}${
       _flag && `-${_flag}`

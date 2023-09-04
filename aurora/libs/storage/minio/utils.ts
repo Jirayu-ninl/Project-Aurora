@@ -1,5 +1,5 @@
 import { MinioClient } from './minioClient'
-import { dataStream as DataStream } from '../func'
+import { convertFromDataStream } from '@aurora/utils/data'
 
 const getImageBlob: (
   bucketName: string,
@@ -14,7 +14,7 @@ const getImageBlob: (
         reject(err)
         return
       }
-      DataStream.convertToBlob(dataStream, resolve, reject, option)
+      convertFromDataStream.toBlob(dataStream, resolve, reject, option)
     })
   })
 }
@@ -32,7 +32,7 @@ const getImageBase64: (
         reject(err)
         return
       }
-      DataStream.convertToBase64(dataStream, resolve, reject, option)
+      convertFromDataStream.toBase64(dataStream, resolve, reject, option)
     })
   })
 }
