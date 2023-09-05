@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { getGPUTier } from 'detect-gpu'
 import { UI } from '@global/store'
-import { GlobalStyles } from '@aurora/default/theme'
+import { GlobalStyles } from '@aurora/views/theme/global.css'
 import Console from './console'
 
 const Theme = () => {

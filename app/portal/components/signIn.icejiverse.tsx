@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import type { toast } from 'react-toastify'
 import { formHandler } from '../functions'
 import { SignIn } from '@server/auth/icejiverse'
-import { clientLog } from '@aurora/libs/monitor'
+import { clientLog } from '@aurora/libs/log'
 
 const SignInIceJiVerse = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()

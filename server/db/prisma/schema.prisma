@@ -9,9 +9,9 @@ generator dbml {
 
 datasource db {
   provider = "mongodb"
-  // url      = env("MONGODB_URI")
-  url       = env("ACCELERATE_URI")
-  directUrl = env("MONGODB_URI")
+  url      = env("MONGODB_URI")
+  // url       = env("ACCELERATE_URI")
+  // directUrl = env("MONGODB_URI")
 }
 
 model Example {

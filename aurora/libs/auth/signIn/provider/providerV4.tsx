@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { env } from '@global/env.mjs'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 
 const SignIn_Provider = async (user: any, account: any) => {
   const isAllowedToSignIn = true
@@ -11,7 +11,7 @@ const SignIn_Provider = async (user: any, account: any) => {
       if (user.provider === 'credentials') {
         return true
       } else {
-        const isUser = await Prisma.user.findUnique({
+        const isUser = await prisma.user.findUnique({
           where: {
             email: user.email,
           },

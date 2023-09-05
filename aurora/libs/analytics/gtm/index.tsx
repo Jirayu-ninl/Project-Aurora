@@ -4,4 +4,4 @@ const GoogleAnalytics = () => {
   return <Component />
 }
 
-export default GoogleAnalytics
+export { GoogleAnalytics }

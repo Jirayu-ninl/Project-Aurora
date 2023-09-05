@@ -2,14 +2,14 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
-import 'glslEditor/build/glslEditor.css'
+import './libs/glslEditor.css'
 import './patch.css'
 
 function Page() {
   const CanvasRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    const GlslEditor = require('glslEditor/build/glslEditor.min')
+    const GlslEditor = require('./libs/glslEditor.min.js')
     const canvasSize = window
       ? window.innerWidth <= 768
         ? 250

@@ -8,7 +8,7 @@ import FacebookProvider from 'next-auth/providers/facebook'
 import GithubProvider from 'next-auth/providers/github'
 // import DiscordProvider from 'next-auth/providers/discord'
 import { env } from '@global/env.mjs'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {
@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions | { adapter: any } = {
     },
     // signIn: async ({ user, account }) => SignInProvider(user, account),
   },
-  adapter: PrismaAdapter(Prisma),
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: env.AUTH_GOOGLE_CLIENT_ID,

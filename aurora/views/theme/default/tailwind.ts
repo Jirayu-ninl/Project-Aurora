@@ -13,9 +13,9 @@
 function Extend(Color: any, Plugins: [any]) {
   return {
     content: [
-      './app/**/**/**/**/**/*.{js,ts,jsx,tsx}',
-      './global/**/**/**/**/*.{js,ts,jsx,tsx}',
-      './aurora/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
+      './app/**/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
+      './global/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
+      './aurora/**/**/**/**/**/**/**/**/*.{js,ts,jsx,tsx}',
     ],
     darkMode: 'class',
     theme: {
@@ -63,6 +63,6 @@ function Extend(Color: any, Plugins: [any]) {
   }
 }
 
-const DefaultConfig = { Extend }
+const DefaultTailwindConfig = { Extend }
 
-export default DefaultConfig
+export { DefaultTailwindConfig }

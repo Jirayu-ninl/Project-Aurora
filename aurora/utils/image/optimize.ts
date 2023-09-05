@@ -2,7 +2,7 @@
 
 import sharp from 'sharp'
 
-const convertToOptimizeJpg = async (
+const andConvertToJpg = async (
   inputArray: ArrayBuffer,
   option: {
     maxWidth: number
@@ -28,4 +28,4 @@ const convertToOptimizeJpg = async (
   }
 }
 
-export { convertToOptimizeJpg }
+export { andConvertToJpg }

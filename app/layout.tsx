@@ -6,8 +6,8 @@ import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { AxiomWebVitals } from 'next-axiom'
 import clsx from 'clsx'
 
-import Tracker from '@aurora/libs/trackers'
-import Toast from '@aurora/modules/toast'
+import { GoogleAnalytics } from '@aurora/libs/analytics'
+import { Toast } from '@aurora/views/module.toast'
 import Config from '@global/config'
 import Wrapper from '@global/layout/wrapper'
 
@@ -35,7 +35,6 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const App = ({ children }: AppPropsWithLayout) => {
-  const Analytics = Tracker.gtm.component
 
   return (
     <html
@@ -47,7 +46,7 @@ const App = ({ children }: AppPropsWithLayout) => {
     >
       <AxiomWebVitals />
       <body suppressHydrationWarning={true}>
-        <Analytics />
+        <GoogleAnalytics />
         <Wrapper>
           {children}
           <Toast />

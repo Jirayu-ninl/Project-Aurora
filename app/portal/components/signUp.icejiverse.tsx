@@ -10,7 +10,7 @@ import {
   password as passwordValidator,
 } from '@aurora/utils/validator'
 import { SignUp } from '@server/auth/icejiverse'
-import { clientLog } from '@/aurora/libs/monitor'
+import { clientLog } from '@/aurora/libs/log'
 import { formHandler } from '../functions'
 
 const SignUpIceJiVerse = () => {

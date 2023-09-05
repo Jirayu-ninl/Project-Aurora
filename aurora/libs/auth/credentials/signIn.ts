@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { compare } from 'bcrypt'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 import { getErrorMessage } from '@aurora/utils/server/error'
 import { ErrorHandler } from '@server/services/monitoring'
 
@@ -9,7 +9,7 @@ const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
   warn?: string
   error?: string
 } | void> = async (credentials) => {
-  if (!Prisma) {
+  if (!prisma) {
     throw new Error('DB: Connection failed')
   }
 
@@ -19,7 +19,7 @@ const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
 
   try {
     const { email, password } = credentials
-    const reqCredential = await Prisma.credential.findUnique({
+    const reqCredential = await prisma.credential.findUnique({
       where: {
         email,
       },
@@ -33,7 +33,7 @@ const CredentialsSignIn: (c: { email: string; password: string }) => Promise<{
     ) {
       return { warn: 'Password not matched' }
     }
-    const user = await Prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     })
     return { user }

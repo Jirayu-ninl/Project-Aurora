@@ -1,6 +1,6 @@
 import { getSession } from '@server/auth'
 import { appRouter } from '@server/routers'
-import prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 import { MinioClient as minio } from '@aurora/libs/storage'
 
 const trpcCaller = async () => {

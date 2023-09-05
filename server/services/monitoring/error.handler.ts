@@ -1,6 +1,6 @@
 import { env } from '@global/env.mjs'
-import { serverLog } from '@aurora/libs/monitor/log.server'
-import { captureToSentry } from '@aurora/libs/monitor/sentry.capture'
+import { serverLog } from '@aurora/libs/log/log.server'
+import { captureToSentry } from '@aurora/libs/log/sentry.capture'
 
 const ErrorHandler = (e: any) => {
   captureToSentry(e, 'error')

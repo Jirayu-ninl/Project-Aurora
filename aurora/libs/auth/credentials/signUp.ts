@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 import { getErrorMessage } from '@aurora/utils/server/error'
 import { ErrorHandler } from '@server/services/monitoring'
 
@@ -9,12 +9,12 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
   error?: string
 } | void> = async (credential) => {
   try {
-    if (!Prisma) {
+    if (!prisma) {
       throw new Error('DB: Connection failed')
     }
 
     const { email, password } = credential
-    const existingEmail = await Prisma.user.findUnique({
+    const existingEmail = await prisma.user.findUnique({
       where: { email },
     })
     if (existingEmail) {
@@ -23,7 +23,7 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
       }
     }
 
-    const user = await Prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         username: email.split('@')[0],
         name: email.split('@')[0],
@@ -38,7 +38,7 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
-    const cred = await Prisma.credential.create({
+    const cred = await prisma.credential.create({
       data: {
         id: user.id,
         email,
@@ -51,7 +51,7 @@ const CredentialsSignUp: (c: { email: string; password: string }) => Promise<{
       }
     }
 
-    await Prisma.user.update({
+    await prisma.user.update({
       where: { email },
       data: {
         credential: {

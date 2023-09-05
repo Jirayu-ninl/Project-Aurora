@@ -510,4 +510,4 @@ const GlobalStyles = (Darkmode = true) => (
   />
 )
 
-export default GlobalStyles
+export { GlobalStyles }

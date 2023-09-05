@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@server/auth'
 import { type Session } from 'next-auth'
-import prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 import minio from '@aurora/libs/storage'
 
 type CreateContextOptions = {

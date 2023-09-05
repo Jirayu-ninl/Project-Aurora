@@ -1,15 +1,14 @@
 import Link from 'next/link'
-import { cookies } from 'next/headers'
-// import { getServerSession } from 'next-auth'
-// import { authOptions } from '@server/auth'
+// import { cookies } from 'next/headers'
+import { getSession } from '@server/auth'
 
 const AppLayout = async ({ children }: { children: React.ReactNode }) => {
-  // const session = await getServerSession(authOptions)
-  const cookieStore = cookies()
-  const sessionToken = cookieStore.get('next-auth.session-token')
-  const sessionSecureToken = cookieStore.get('__Secure-next-auth.session-token')
+  const session = await getSession()
+  // const cookieStore = cookies()
+  // const sessionToken = cookieStore.get('next-auth.session-token')
+  // const sessionSecureToken = cookieStore.get('__Secure-next-auth.session-token')
 
-  if (!sessionToken || !sessionSecureToken) {
+  if (!session) {
     return (
       <main className='m-container w-dvw relative flex flex-col items-center justify-center overflow-hidden'>
         <h4 className='pb-3 text-xl font-light uppercase md:text-2xl xl:text-4xl'>

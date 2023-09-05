@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 import bcrypt from 'bcrypt'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 import { setResponse as setRes } from '@aurora/utils/server/response.status'
 
 const CredentialsSignUp = async (request: Request) => {
@@ -19,7 +19,7 @@ const CredentialsSignUp = async (request: Request) => {
     ) {
       try {
         const { email, password } = req
-        const existingEmail = await Prisma.user.findUnique({
+        const existingEmail = await prisma.user.findUnique({
           where: { email },
         })
         if (existingEmail) {
@@ -34,7 +34,7 @@ const CredentialsSignUp = async (request: Request) => {
           email,
           image: '/user/default/profile.png',
         }
-        const user = await Prisma.user.create({
+        const user = await prisma.user.create({
           data: userData,
         })
 
@@ -45,8 +45,8 @@ const CredentialsSignUp = async (request: Request) => {
           password: hashedPassword,
         }
 
-        await Prisma.credential.create({ data: credentialData })
-        await Prisma.user.update({
+        await prisma.credential.create({ data: credentialData })
+        await prisma.user.update({
           where: { email },
           data: {
             credential: {

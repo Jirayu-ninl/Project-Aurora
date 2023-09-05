@@ -10,7 +10,7 @@ type PushStateInput = [
   url?: string | URL | null | undefined,
 ]
 
-export default function ProgressBar() {
+export const CreateProgress = () => {
   const height = 2 + 'px'
   const color = theme.color.primary[0]
 

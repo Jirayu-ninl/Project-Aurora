@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { serverLog } from 'aurora/libs/monitor/log.server'
+import { serverLog } from 'aurora/libs/log/log.server'
 
 import { getProviders } from 'next-auth/react'
 import { getServerSession } from 'next-auth'

@@ -60,5 +60,6 @@
     "import/resolver": {
       "typescript": {}
     }
-  }
+  },
+  "ignorePatterns": ["/app/tools/glslEditor/libs"]
 }

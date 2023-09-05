@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto'
 import { MinioClient } from '@aurora/libs/storage'
 import Config from '@global/config'
 import { getSession } from '@server/auth/aurora'
-import { convertToOptimizeJpg } from '@aurora/utils/optimization/image'
+import { Optimize } from '@aurora/utils/image'
 import { convertFromReadableStream } from '@aurora/utils/data'
 import { setResponse } from '@aurora/utils/server/response.status'
 
@@ -59,7 +59,10 @@ export const PUT = async (
             quality: 50,
           }
 
-    const optimizeImageBuffer = await convertToOptimizeJpg(data, optimizeConfig)
+    const optimizeImageBuffer = await Optimize.andConvertToJpg(
+      data,
+      optimizeConfig,
+    )
     const upload = await MinioClient.putObject(
       bucketName,
       name,

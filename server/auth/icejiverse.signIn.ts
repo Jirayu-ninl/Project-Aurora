@@ -1,7 +1,7 @@
 'use server'
 
 import { v4 as uuidv4 } from 'uuid'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 import { CredentialsSignIn } from '@aurora/libs/auth/credentials'
 import { getErrorMessage } from '@aurora/utils/server/error'
 import { ErrorHandler } from '@server/services/monitoring'
@@ -27,7 +27,7 @@ const SignIn: (c: { email: string; password: string }) => Promise<{
       return { error: 'No user found' }
     }
 
-    const session = await Prisma.session.create({
+    const session = await prisma.session.create({
       data: {
         sessionToken: sessionToken,
         userId: res?.user.id,

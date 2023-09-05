@@ -1,10 +1,10 @@
 import { theme } from './global/config/defineConfig'
-import TailwindDefaultConfig from './aurora/default/theme/tailwind'
+import { DefaultTailwindConfig } from './aurora/views/theme'
 import PluginTypography from '@tailwindcss/typography'
-// import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss'
 
 const TailwindConfig = {
-  ...TailwindDefaultConfig.Extend(theme.color, [PluginTypography]),
-} /* satisfies Config */
+  ...DefaultTailwindConfig.Extend(theme.color, [PluginTypography]),
+} as Config
 
 export default TailwindConfig

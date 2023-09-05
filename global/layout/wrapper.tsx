@@ -5,7 +5,7 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-import CreateProgress from '@aurora/modules/nprogress'
+import { CreateProgress } from '@aurora/views/module.nprogress'
 
 import { TrpcProvider } from './wrapper.trpc'
 import WrapperMobile from './wrapper.mobile'

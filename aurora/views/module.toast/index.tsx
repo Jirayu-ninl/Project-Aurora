@@ -24,7 +24,7 @@ const Toast = () => {
       }
       bodyClassName={() => 'text-sm font-white font-med block p-3 flex'}
       closeButton={ToastCloseButton}
-    // progressClassName={(css) => 'h-64'}
+      // progressClassName={(css) => 'h-64'}
     />
   )
 }
@@ -40,4 +40,4 @@ const ToastCloseButton = ({ closeToast }: { closeToast: any }) => (
   </div>
 )
 
-export default Toast
+export { Toast }
