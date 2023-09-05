@@ -39,6 +39,14 @@ export const Projects = [
     link: 'https://github.com/Jirayu-ninl/Aurora-Framework',
     star: '99',
   },
+  {
+    name: 'Discord Glass Theme',
+    type: 'Discord Theme',
+    description: 'Glassmorphism design theme for Discord app',
+    icon: 'download',
+    link: 'https://github.com/Jirayu-ninl/T6i-Discord-Glass-Theme',
+    star: '99',
+  },
 ]
 
 export const DevSkills = [
