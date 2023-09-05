@@ -2,7 +2,7 @@ const Rand: {
   str?: (
     length: number,
     multiply: { numbers: number; characters: number; alts: number },
-    includeAlts: boolean
+    includeAlts: boolean,
   ) => string
   newArr?: (arr: any[], newArrLength: number, duplicate: boolean) => any[]
 } = new Object()
@@ -10,7 +10,7 @@ const Rand: {
 Rand.str = (
   length,
   multiply = { numbers: 1, characters: 1, alts: 0 },
-  includeAlts = false
+  includeAlts = false,
 ) => {
   let result = ''
   const numbers = '0123456789'

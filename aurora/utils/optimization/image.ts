@@ -24,7 +24,7 @@ const convertToOptimizeJpg = async (
 
     return jpegBuffer
   } catch (error) {
-    throw new Error('Error converting and optimize to JPEG')
+    throw new Error('Error while optimizing and converting to JPEG')
   }
 }
 

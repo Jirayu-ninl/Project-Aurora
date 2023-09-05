@@ -7,9 +7,9 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   // const session = await getServerSession(authOptions)
   const cookieStore = cookies()
   const sessionToken = cookieStore.get('next-auth.session-token')
-  // console.log(sessionToken)
+  const sessionSecureToken = cookieStore.get('__Secure-next-auth.session-token')
 
-  if (!sessionToken) {
+  if (!sessionToken || !sessionSecureToken) {
     return (
       <main className='m-container w-dvw relative flex flex-col items-center justify-center overflow-hidden'>
         <h4 className='pb-3 text-xl font-light uppercase md:text-2xl xl:text-4xl'>
