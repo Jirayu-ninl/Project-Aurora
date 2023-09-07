@@ -23,7 +23,7 @@
     "dev": "next dev -p 8989",
     "build": "next build",
     "start": "next start",
-    "deploy": "yarn db:generate && yarn db:push && yarn build",
+    "deploy": "yarn db:generate:acc && yarn db:push && yarn build",
     "server": "NODE_ENV=production node server.js",
     "export": "EXPORT=true next build && EXPORT=true next export",
     "analyze": "cross-env ANALYZE=true next build",
