@@ -1,5 +1,14 @@
 export const Projects = [
   {
+    name: 'Aurora Framework',
+    type: 'Boilerplate',
+    description:
+      'Full-stack WebApp, Unleash Limitless Scalability and Type-Safe Master',
+    icon: 'website',
+    link: 'https://aurora.theiceji.com/',
+    star: '99',
+  },
+  {
     name: 'ARTSCAPE',
     type: 'Web-App',
     description: 'Discover, Showcase, and Connect with Artists Worldwide,',
@@ -8,11 +17,11 @@ export const Projects = [
     star: '99',
   },
   {
-    name: 'AXIE ONE',
-    type: 'Web-App',
-    description: 'Scholar and account management for Axie Infinity.',
-    icon: 'website',
-    link: 'https://axieone.com/',
+    name: 'Discord Glass Theme',
+    type: 'Discord Theme',
+    description: 'Glassmorphism design theme for Discord app',
+    icon: 'download',
+    link: 'https://github.com/Jirayu-ninl/T6i-Discord-Glass-Theme',
     star: '99',
   },
   {
@@ -32,19 +41,11 @@ export const Projects = [
     star: '99',
   },
   {
-    name: 'Aurora Framework',
-    type: 'Boilerplate',
-    description: 'Full-stack app, based on NextJs, Prisma, NextAuth and tRPC',
-    icon: 'fork',
-    link: 'https://github.com/Jirayu-ninl/Aurora-Framework',
-    star: '99',
-  },
-  {
-    name: 'Discord Glass Theme',
-    type: 'Discord Theme',
-    description: 'Glassmorphism design theme for Discord app',
-    icon: 'download',
-    link: 'https://github.com/Jirayu-ninl/T6i-Discord-Glass-Theme',
+    name: 'AXIE ONE',
+    type: 'Web-App',
+    description: 'Scholar and account management for Axie Infinity.',
+    icon: 'website',
+    link: 'https://axieone.com/',
     star: '99',
   },
 ]
