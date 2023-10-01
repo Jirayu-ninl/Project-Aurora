@@ -19,11 +19,7 @@ const PostProcessing = () => (
     />
     <Effect.ConstantNoisePass />
     <Effect.FlowMapPass />
-    <HueSaturation
-      blendFunction={BlendFunction.NORMAL}
-      hue={0.07}
-      // saturation={-0.1}
-    />
+    <HueSaturation blendFunction={BlendFunction.NORMAL} hue={0.07} />
   </EffectComposer>
 )
 
