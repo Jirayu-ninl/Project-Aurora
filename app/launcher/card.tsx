@@ -53,7 +53,7 @@ export const Card = ({
                   src={imageBg.src}
                   alt={imageBg.alt}
                   fill
-                  style={{ ObjectFit: 'cover' }}
+                  objectFit='cover'
                 />
               )}
             </div>
