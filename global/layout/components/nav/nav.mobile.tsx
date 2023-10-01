@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { State, UI } from '@global/store'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 
-import IceJiLogo from '@components/logo/IceJi'
+import { IceJiLogo } from '@components/logo/IceJi'
 import * as Icon from '@aurora/assets/icons'
 import { Panel } from './components/mobile'
 
@@ -19,6 +19,7 @@ const NavMobile = ({
 }) => {
   const _dark = UI((state) => state.dark)
   const _setDark = UI((state) => state.setDark)
+  const _showNav = UI((state) => state.showNav)
   const _navShowCanvas = UI((state) => state.navShowCanvas)
   const _setNavShowCanvas = UI((state) => state.setNavShowCanvas)
   const _page = State((state) => state.page)
@@ -79,16 +80,21 @@ const NavMobile = ({
         {/* <div>{children}</div> */}
         {children}
       </div>
-      <div
-        className='Anim fixed right-6 top-12 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'
-        onClick={() => {
-          _setNavShowCanvas(false)
-          _setModalAppInfo(true)
-          setShowPanel(false)
-        }}
-      >
-        <IceJiLogo dark={!_dark} />
-      </div>
+      {_showNav && (
+        <>
+          <div
+            className='Anim fixed right-6 top-12 z-90 flex h-16 w-16 items-center rounded-md bg-quaternary-2 p-2 dark:bg-primary-0'
+            onClick={() => {
+              _setNavShowCanvas(false)
+              _setModalAppInfo(true)
+              setShowPanel(false)
+            }}
+          >
+            <IceJiLogo dark={!_dark} />
+          </div>
+        </>
+      )}
+
       {_page !== 'NOT FOUND' && (
         <div className='m-state-page pointer-events-none fixed z-60 flex w-screen'>
           <p className='mx-auto rounded-md bg-black/10 px-3 py-1 text-xs backdrop-blur-lg dark:bg-white/10'>

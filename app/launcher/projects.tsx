@@ -37,18 +37,18 @@ export const Project = () => {
                   delay: 0.8,
                   ease: [0.43, 0.13, 0.23, 0.96],
                 }}
-                className='pb-4 pt-12 text-xs font-bold uppercase tracking-wide text-primary-0'
+                className='pb-4 pt-12 text-center text-xs font-bold uppercase tracking-wide text-primary-0 md:text-left'
               >
                 Currently Projects
               </motion.h1>
-              <div className='flex h-10 w-full space-x-12'>
+              <div className='grid h-10 w-full grid-cols-3 gap-x-12 gap-y-6 md:flex md:space-x-8 xl:space-x-12'>
                 <Link
                   href='https://aurora.theiceji.com/'
                   className='Anim AnimOpacity-20 '
                 >
                   <AnimatedLogo
                     transitionDelay={0 + initialDelay}
-                    className='h-full fill-black hover:cursor-pointer dark:fill-white'
+                    className='h-8 fill-black hover:cursor-pointer dark:fill-white md:h-full'
                   >
                     <AuroraLogo brandColor />
                   </AnimatedLogo>
@@ -81,7 +81,7 @@ export const Project = () => {
                 >
                   <AnimatedLogo
                     transitionDelay={0.3 + initialDelay}
-                    className='h-full fill-black hover:cursor-pointer dark:fill-white'
+                    className='my-4 h-4 fill-black hover:cursor-pointer dark:fill-white md:my-0 md:h-full'
                   >
                     <ArtScapeLogo brandColor />
                   </AnimatedLogo>
@@ -103,7 +103,7 @@ export const Project = () => {
                 >
                   <AnimatedLogo
                     transitionDelay={0.5 + initialDelay}
-                    className='h-full fill-black hover:cursor-pointer dark:fill-white'
+                    className='my-2 h-6 fill-black hover:cursor-pointer dark:fill-white md:my-0 md:h-full'
                   >
                     <RealMotionLogo brandColor />
                   </AnimatedLogo>

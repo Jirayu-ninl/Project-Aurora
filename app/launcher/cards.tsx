@@ -8,7 +8,7 @@ export const Cards = () => {
   const routerOn = useSearchParams().get('routerOn')
   return (
     <>
-      <div className='grid h-[600px] w-full grid-cols-3 grid-rows-2 gap-3'>
+      <div className='grid h-[calc(100vh-320px)] w-full grid-cols-2 grid-rows-3 gap-1 md:gap-3 xl:h-[450px] xl:grid-cols-3 xl:grid-rows-2 xxl:h-[600px]'>
         <Link
           href='/?routerOn=true&target=/home'
           className='Anim AnimTranslate-4 col-span-2'
@@ -20,10 +20,9 @@ export const Cards = () => {
               src: '/page/launcher/bg_home.png',
               alt: 'ThreeJs showcase',
             }}
-          >
-            <h1 className='text-xl font-bold uppercase'>Home (3D)</h1>
-            <h2 className='text-xs'>ThreeJs & GLSL showcase page</h2>
-          </Card>
+            title='Home (3D)'
+            description='ThreeJs & GLSL showcase page'
+          />
         </Link>
         <Link
           href='/?routerOn=true&target=/app'
@@ -36,10 +35,9 @@ export const Cards = () => {
               src: '/page/launcher/bg_app.jpg',
               alt: 'Aurora App',
             }}
-          >
-            <h1 className='text-xl font-bold uppercase'>App</h1>
-            <p className='text-xs'>Launch TheIceJi app</p>
-          </Card>
+            title='App'
+            description='Launch TheIceJi app'
+          />
         </Link>
         <Link
           href='/?routerOn=true&target=/about'
@@ -52,10 +50,9 @@ export const Cards = () => {
               src: '/page/launcher/bg_about.jpg',
               alt: 'About Me',
             }}
-          >
-            <h1 className='text-xl font-bold uppercase'>About</h1>
-            <p className='text-xs'>Overview about myself</p>
-          </Card>
+            title='About'
+            description='Overview about myself'
+          />
         </Link>
         <Link
           href='/?routerOn=true&target=/about/skills'
@@ -68,10 +65,9 @@ export const Cards = () => {
               src: '/page/launcher/bg_projects.jpg',
               alt: 'Projects',
             }}
-          >
-            <h1 className='text-xl font-bold uppercase'>My Skills</h1>
-            <p className='text-xs'>What I can do, come and see</p>
-          </Card>
+            title='My Skills'
+            description='What I can do, come and see'
+          />
         </Link>
         <Link
           href='/?routerOn=true&target=/services'
@@ -84,10 +80,9 @@ export const Cards = () => {
               src: '/page/launcher/bg_services.jpg',
               alt: 'Services',
             }}
-          >
-            <h1 className='text-xl font-bold uppercase'>Services</h1>
-            <h2 className='text-xs'>Let's build your dream project</h2>
-          </Card>
+            title='Services'
+            description="Let's build your dream project"
+          />
         </Link>
       </div>
     </>
