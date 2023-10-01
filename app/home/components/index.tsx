@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState /*, Suspense*/ } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { StatsGl, Html, useProgress } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
@@ -48,10 +48,10 @@ function CanvasApp() {
         linear={true}
         shadows
       >
-        <Suspense fallback={<LoaderComp />}>
-          <Scene _dark={_dark} isMobile={isMobile} />
-          {debug && <StatsGl />}
-        </Suspense>
+        {/* <Suspense fallback={<LoaderComp />}> */}
+        <Scene _dark={_dark} isMobile={isMobile} />
+        {debug && <StatsGl />}
+        {/* </Suspense> */}
       </Canvas>
     </>
   )
