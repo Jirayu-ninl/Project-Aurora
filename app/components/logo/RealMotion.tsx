@@ -1,16 +1,10 @@
-function RealMotionLogo(props: {
-  type?: string
-  darkmode?: boolean
-  style?: JSON
-}) {
+import clsx from 'clsx'
+
+function RealMotionLogo({ brandColor }: { brandColor?: boolean }) {
   return (
     <>
-      <svg
-        viewBox='0 0 49.802 21.792'
-        style={{ fill: props.darkmode ? '#FFF' : '#000', ...props.style }}
-        className='h-full w-full'
-      >
-        <g id='RealMotion_White' transform='translate(-122.08 -155.22)'>
+      <svg viewBox='0 0 49.802 21.792' className='h-full w-full fill-inherit'>
+        <g transform='translate(-122.08 -155.22)'>
           <path
             d='M649.25,360.121l.15-3.491,2.772,1.577-.1.435Z'
             transform='translate(-484.356 -185.052)'
@@ -36,18 +30,22 @@ function RealMotionLogo(props: {
             transform='translate(-479.661 -162.202)'
           />
           <path
+            className={clsx(brandColor && 'fill-[#673090]')}
             d='M122.08,156.24h6.054a5.9,5.9,0,0,1,4.172,1.278,3.5,3.5,0,0,1,1.137,2.742v.034a3.74,3.74,0,0,1-2.634,3.617l3.055,4.106h-4.1l-2.58-3.566h-1.554v3.566H122.08Zm5.89,5.653c1.207,0,1.9-.538,1.9-1.4v-.034c0-.926-.731-1.4-1.921-1.4h-2.324v2.825Z'
             transform='translate(0 -0.937)'
           />
           <path
+            className={clsx(brandColor && 'fill-[#673090]')}
             d='M284,156.24h10.3v2.775h-6.787V160.8h6.15v2.574h-6.15v1.868H294.4v2.776H284Z'
             transform='translate(-148.77 -0.937)'
           />
           <path
+            className={clsx(brandColor && 'fill-[#673090]')}
             d='M427.121,155.22h3.421l5.452,11.857h-3.806l-.932-2.1h-4.939l-.915,2.1H421.67Zm3.11,7.216-1.425-3.348-1.446,3.348Z'
             transform='translate(-275.259)'
           />
           <path
+            className={clsx(brandColor && 'fill-[#673090]')}
             d='M613.36,156.24h3.549v8.914h6.2v2.86H613.36Z'
             transform='translate(-451.381 -0.937)'
           />
@@ -77,4 +75,4 @@ function RealMotionLogo(props: {
   )
 }
 
-export default RealMotionLogo
+export { RealMotionLogo }

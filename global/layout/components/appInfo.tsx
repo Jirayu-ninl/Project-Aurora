@@ -7,15 +7,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useOnClickOutside } from '@aurora/libs/hooks/events'
 import { UI } from '@global/store'
 import { app } from '@global/config/defineConfig'
-import MainLogo from '@components/logo/IceJi'
-import RealMotionLogo from '@components/logo/RealMotion'
-import IceJiTriangleLogo from '@components/logo/IceJiTriangle'
-import ArtScapeLogo from '@components/logo/ArtScape'
+import { IceJiLogo } from '@components/logo/IceJi'
+import { RealMotionLogo } from '@components/logo/RealMotion'
+import { IceJiTriangleLogo } from '@components/logo/IceJiTriangle'
+import { ArtScapeLogo } from '@components/logo/ArtScape'
 
 export default function AppInfo() {
   const _modalAppInfo = UI((state) => state.modalAppInfo)
   const _setModalAppInfo = UI((state) => state.setModalAppInfo)
-  const _dark = UI((state) => state.dark)
 
   const OutsideRef = useRef(null)
   useOnClickOutside(OutsideRef, () => _setModalAppInfo(false))
@@ -51,7 +50,7 @@ export default function AppInfo() {
               <div className='flex h-full flex-grow flex-col items-start justify-between p-1 md:p-4'>
                 <div className='flex h-9 w-full items-center md:h-[57px]'>
                   <div className='mr-2 h-full w-[38px] rounded-lg bg-primary-0 p-1 md:w-[57px] md:p-2.5'>
-                    <MainLogo dark={false} />
+                    <IceJiLogo dark={false} />
                   </div>
                   <div>
                     <h2 className='text-xs font-semibold md:text-xl'>
@@ -91,14 +90,23 @@ export default function AppInfo() {
                   </p>
                 </div>
                 <div className='flex h-3 w-[90px] space-x-2 md:h-6 md:w-[180px]'>
-                  <Link href='https://realmotion.co/' className='h-full w-full'>
-                    <RealMotionLogo darkmode={_dark} />
+                  <Link
+                    href='https://realmotion.co/'
+                    className='h-full w-full fill-black dark:fill-white'
+                  >
+                    <RealMotionLogo />
                   </Link>
-                  <Link href='https://theiceji.com/' className='h-full w-full'>
-                    <IceJiTriangleLogo darkmode={_dark} />
+                  <Link
+                    href='https://theiceji.com/'
+                    className='h-full w-full fill-black dark:fill-white'
+                  >
+                    <IceJiTriangleLogo />
                   </Link>
-                  <Link href='https://artscape.day/' className='h-full w-full'>
-                    <ArtScapeLogo darkmode={_dark} />
+                  <Link
+                    href='https://artscape.day/'
+                    className='h-full w-full fill-black dark:fill-white'
+                  >
+                    <ArtScapeLogo />
                   </Link>
                 </div>
               </div>

@@ -10,7 +10,7 @@ import { useAudio } from '@aurora/libs/hooks/audio'
 import { State, UI } from '@global/store'
 import { eNavDropdownState } from '@global/store/ui.store'
 import { aNav, aNavChildren } from '@global/config/defineAnimationConfig'
-import IceJiLogo from '@components/logo/IceJi'
+import { IceJiLogo } from '@components/logo/IceJi'
 
 import UserBlock from './components/user'
 import CartBlock from './components/cart'

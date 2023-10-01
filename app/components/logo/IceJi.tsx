@@ -1,4 +1,4 @@
-const Logo = (props: { type?: string; dark?: boolean; style?: JSON }) => {
+const IceJiLogo = (props: { type?: string; dark?: boolean; style?: JSON }) => {
   if (props.type === 'stroke') {
     const solid = { fill: props.dark ? '#FFF' : '#262626', opacity: 0.1 }
     const stroke = { stroke: props.dark ? '#FFF' : '#262626' }
@@ -99,4 +99,4 @@ const Logo = (props: { type?: string; dark?: boolean; style?: JSON }) => {
   }
 }
 
-export default Logo
+export { IceJiLogo }

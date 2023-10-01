@@ -1,17 +1,12 @@
-function ArtScapeLogo(props: {
-  type?: string
-  darkmode?: boolean
-  style?: JSON
-}) {
+import clsx from 'clsx'
+
+function ArtScapeLogo({ brandColor }: { brandColor?: boolean }) {
   return (
     <>
-      <svg
-        viewBox='0 0 57.324 24.19'
-        style={{ fill: props.darkmode ? '#FFF' : '#000', ...props.style }}
-        className='h-full w-full'
-      >
+      <svg viewBox='0 0 57.324 24.19' className='h-full w-full fill-inherit'>
         <g transform='translate(0 0.005)'>
           <path
+            className={clsx(brandColor && 'fill-[#07ebb5]')}
             d='M1109.241,8.2h-17.217a4.1,4.1,0,1,1,0-8.207h17.217a4.1,4.1,0,1,1,0,8.207Z'
             transform='translate(-1062.17)'
           />
@@ -28,6 +23,7 @@ function ArtScapeLogo(props: {
             cy='4.189'
             r='4.189'
             transform='translate(0 15.807)'
+            className={clsx(brandColor && 'fill-[#07ebb5]')}
           />
         </g>
       </svg>
@@ -35,4 +31,4 @@ function ArtScapeLogo(props: {
   )
 }
 
-export default ArtScapeLogo
+export { ArtScapeLogo }
