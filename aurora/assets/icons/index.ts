@@ -1,5 +1,6 @@
 export { Home } from './home'
 export { Menu } from './menu'
+export { MenuDotsBlur } from './menuDotsBlur'
 export { Close } from './close'
 export { Settings } from './settings'
 export { SoundOn } from './soundOn'
