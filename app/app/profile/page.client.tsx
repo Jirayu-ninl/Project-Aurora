@@ -64,7 +64,7 @@ const Header = ({ user }: any) => {
             animate={{ y: 0, opacity: 1 }}
             className='relative mb-2 text-3xl font-bold md:mt-0 md:text-7xl xxl:text-8xl'
           >
-            {user.name}
+            {user?.name}
             <Link
               className='Anim AnimOpacity-40 absolute -right-8 bottom-2 h-6 w-6 cursor-pointer rounded-full bg-white p-1'
               href='/app/profile/edit'
@@ -72,11 +72,9 @@ const Header = ({ user }: any) => {
               <EditIcon />
             </Link>
           </motion.h1>
-          {user?.metadata.profile.bio && (
-            <p className='text-xl opacity-80'>
-              {user.metadata.profile.bio ?? `Hi, I'm ${user.name}`}
-            </p>
-          )}
+          <p className='text-xl opacity-80'>
+            {user?.metadata?.profile?.bio ?? `Hi, I'm ${user.name}`}
+          </p>
         </div>
       </div>
     </>
