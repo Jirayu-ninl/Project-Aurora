@@ -62,7 +62,7 @@ export type tStoreState = {
   setNavDropdown: (dropdown: eNavDropdownState) => void
   modalAppInfo: boolean
   setModalAppInfo: (toggle: boolean) => void
-  cursor: boolean
+  cursor: boolean | string
   setCursor: (cursor: string | boolean) => void
   audio: boolean
   setAudio: (audio: boolean) => void

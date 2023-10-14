@@ -1,15 +1,15 @@
 'use server'
-import Prisma from '@aurora/libs/database/prisma'
+import { prisma } from '@aurora/libs/database/prisma'
 
 const subscribeCall = async (data: { email: string }) => {
   try {
-    const subscribeList: any = await Prisma.iceJiVerse.findUnique({
+    const subscribeList: any = await prisma.iceJiVerse.findUnique({
       where: { title: 'newsletter' },
     })
 
     if (subscribeList) {
       if (subscribeList.content) {
-        await Prisma.iceJiVerse.update({
+        await prisma.iceJiVerse.update({
           where: { title: 'newsletter' },
           data: {
             content: {
@@ -19,7 +19,7 @@ const subscribeCall = async (data: { email: string }) => {
         })
       }
     } else {
-      await Prisma.iceJiVerse.create({
+      await prisma.iceJiVerse.create({
         data: {
           title: 'newsletter',
           content: {
