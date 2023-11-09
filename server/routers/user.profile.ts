@@ -1,9 +1,18 @@
 import { createTRPCRouter, p } from '@server/trpc'
-import { updateUserProfileSchema } from '@server/schema/user.schema'
-import { updateUserProfileHandler } from '@server/controller/user.update'
+import {
+  usernameSchema,
+  updateUserProfileSchema,
+} from '../schema/user.profile.schema'
+import {
+  getProfileByUsername,
+  updateUserProfile,
+} from '../controller/user.profile.controller'
 
 export const userProfileRouter = createTRPCRouter({
-  update: p.protectedProcedure
+  getProfileByUsername: p.publicProcedure
+    .input(usernameSchema)
+    .query(getProfileByUsername),
+  updateUserProfile: p.protectedProcedure
     .input(updateUserProfileSchema)
-    .mutation(updateUserProfileHandler),
+    .mutation(updateUserProfile),
 })

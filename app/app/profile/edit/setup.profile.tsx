@@ -26,7 +26,7 @@ const SetupProfile = () => {
   const [coverImageUrls, setCoverImageUrls] = useState<string[] | []>([])
 
   const { mutate: updateProfile, data: updateProfileResponse } =
-    trpc.user.profile.update.useMutation({})
+    trpc.user.profile.updateUserProfile.useMutation({})
 
   useEffect(() => {
     if (!updateProfileResponse?.success) {

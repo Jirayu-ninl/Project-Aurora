@@ -1,7 +1,33 @@
-import type { updateUserProfileInput } from '@server/schema/user.schema'
+import type {
+  usernameInput,
+  updateUserProfileInput,
+} from '@server/schema/user.profile.schema'
 import type { Context } from '@server/trpc/trpc.context'
 
-export const updateUserProfileHandler = async ({
+export const getProfileByUsername = async ({
+  ctx,
+  input,
+}: {
+  ctx: Context
+  input: usernameInput
+}) => {
+  const user = await ctx.prisma.user.findUnique({
+    where: {
+      username: input.username,
+    },
+  })
+  if (!user)
+    return {
+      success: false,
+      message: 'No username that requested',
+    }
+  return {
+    success: true,
+    user,
+  }
+}
+
+export const updateUserProfile = async ({
   ctx,
   input,
 }: {
