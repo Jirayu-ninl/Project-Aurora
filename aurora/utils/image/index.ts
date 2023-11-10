@@ -1,1 +1,1 @@
-export * as Optimize from './optimize'
+export * as optimize from './optimize'
