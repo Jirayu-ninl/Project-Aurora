@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { app as appConfig } from '@global/config/defineConfig'
 
 const UserBanner = ({
   session,
@@ -41,7 +42,7 @@ const UserBanner = ({
         <Image
           src={
             avatarImg
-              ? `https://s3.theiceji.com/icejiverse-profiles/${avatarImg}`
+              ? `${appConfig.s3.endpoint}/icejiverse-profiles/${avatarImg}`
               : user.image
           }
           alt='Profile'

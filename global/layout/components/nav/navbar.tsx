@@ -53,10 +53,10 @@ const NavBar = ({ session }: any) => {
             className='fixed left-0 top-0 z-[400] hidden w-screen px-5 py-4 sm:block'
             ref={NavRef}
           >
-            <div className='bg-back/[0.05] flex h-12 rounded-md shadow-md backdrop-blur-md dark:shadow-xl el:h-16'>
-              <div className='flex h-full w-12 items-center rounded-l-md bg-black/[0.07] dark:bg-white/[0.07] md:w-1/2 xl:w-[320px] el:w-[468px]'>
+            <div className='bg-back/[0.05] flex h-12 rounded-md shadow-md backdrop-blur-md el:h-16 dark:shadow-xl'>
+              <div className='flex h-full w-12 items-center rounded-l-md bg-black/[0.07] md:w-1/2 xl:w-[320px] el:w-[468px] dark:bg-white/[0.07]'>
                 <div
-                  className='Anim flex h-full w-16 cursor-pointer items-center rounded-l-md bg-quaternary-2 p-2 dark:bg-primary-0 lg:p-2 el:p-3'
+                  className='Anim flex h-full w-16 cursor-pointer items-center rounded-l-md bg-quaternary-2 p-2 lg:p-2 el:p-3 dark:bg-primary-0'
                   onMouseEnter={() => {
                     _setCursor('logo')
                   }}
@@ -72,9 +72,9 @@ const NavBar = ({ session }: any) => {
                 </div>
                 <h6 className='hidden px-5 font-medium md:block'>{_page}</h6>
               </div>
-              <div className='relative flex grow items-center justify-end rounded-r-md border border-black/[0.07] px-6 dark:border-white/[0.07] xl:justify-between'>
+              <div className='relative flex grow items-center justify-end rounded-r-md border border-black/[0.07] px-6 xl:justify-between dark:border-white/[0.07]'>
                 <Link
-                  className='Anim absolute -left-2 hidden h-5 w-5 cursor-pointer rounded-full bg-black stroke-white p-1.5 hover:bg-quaternary-3 dark:bg-white dark:stroke-black dark:hover:bg-primary-0 xl:block'
+                  className='Anim absolute -left-2 hidden h-5 w-5 cursor-pointer rounded-full bg-black stroke-white p-1.5 hover:bg-quaternary-3 xl:block dark:bg-white dark:stroke-black dark:hover:bg-primary-0'
                   href={_backRoute}
                 >
                   <Icon.ArrowMinimal />

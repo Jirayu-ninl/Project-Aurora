@@ -19,6 +19,8 @@ export const app = {
   },
   s3: {
     bucketName: process.env.S3_UPLOAD_BUCKET ?? 'icejiverse',
+    // endpoint: 'https://s3.theiceji.com',
+    endpoint: 'http://129.213.124.156:9000',
   },
 }
 

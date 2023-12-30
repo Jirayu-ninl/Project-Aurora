@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import type { Session } from 'next-auth'
+import { app as appConfig } from '@global/config/defineConfig'
 import { CoverImage } from '../components/profile'
 import { Edit as EditIcon } from '@aurora/assets/icons'
 
@@ -18,12 +19,12 @@ const Client = ({ session }: { session: Session | null }) => {
         Title={session?.user.name as string}
         Img={
           coverImg
-            ? `https://s3.theiceji.com/icejiverse-profiles/${coverImg}`
+            ? `${appConfig.s3.endpoint}/icejiverse-profiles/${coverImg}`
             : '/user/default/cover.png'
         }
         Tags={[]}
       />
-      <div className='w-dvw flex'>
+      <div className='flex w-dvw'>
         <div className='container px-4 xl:w-[1024px] xl:px-0'>
           <Header user={user} />
         </div>
@@ -43,7 +44,7 @@ const Header = ({ user }: any) => {
             <Image
               src={
                 avatarImg
-                  ? `https://s3.theiceji.com/icejiverse-profiles/${avatarImg}`
+                  ? `${appConfig.s3.endpoint}/icejiverse-profiles/${avatarImg}`
                   : user.image
               }
               alt={user.name + ' profile'}

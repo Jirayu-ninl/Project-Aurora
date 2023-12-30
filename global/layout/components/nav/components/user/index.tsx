@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { eNavDropdownState } from '@global/store/ui'
+import { eNavDropdownState } from '@global/store/ui.store'
 import { Icon } from '@aurora/assets'
 import { aNavChildren } from '@global/config/defineAnimationConfig'
 import { User } from './user'
@@ -45,7 +45,7 @@ const Block = ({
           </>
         ) : (
           <>
-            <div className='flex h-4 fill-black dark:fill-white xxl:mr-4'>
+            <div className='flex h-4 fill-black xxl:mr-4 dark:fill-white'>
               <Icon.SeparatorLine />
             </div>
             <Wallet

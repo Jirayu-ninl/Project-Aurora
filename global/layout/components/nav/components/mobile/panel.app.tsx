@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type Dispatch } from 'react'
 import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 
@@ -12,10 +12,12 @@ const AppPanel = ({
   session,
   _dark,
   _setDark,
+  setShowPanel,
 }: {
   session: any
   _dark: boolean
   _setDark: (d: boolean) => void
+  setShowPanel: Dispatch<boolean>
 }) => {
   const router = useRouter()
   const _cart = User((state) => state.cart)
@@ -49,7 +51,9 @@ const AppPanel = ({
         ))}
       </div>
       <div className='h-[calc(100%-1.5rem)] overflow-hidden px-px py-2'>
-        {section === 0 && <UserPanel session={session} />}
+        {section === 0 && (
+          <UserPanel session={session} setShowPanel={setShowPanel} />
+        )}
         {section === 1 && (
           <SubPanel
             items={_cart}

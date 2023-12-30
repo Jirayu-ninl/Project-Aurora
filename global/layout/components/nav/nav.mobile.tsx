@@ -30,7 +30,7 @@ const NavMobile = ({
 
   return (
     <>
-      <nav className='h-dvh pointer-events-none fixed z-30 flex w-screen items-end'>
+      <nav className='pointer-events-none fixed z-30 flex h-dvh w-screen items-end'>
         <div className='Anim h-20 w-full bg-quaternary-2 px-16 pt-10 dark:bg-primary-0'>
           <motion.div
             initial={aNavChildren.initial}

@@ -35,7 +35,12 @@ function Panel({
           </div>
           <div className='h-[calc(100%-2.5rem)] p-3'>
             {panelState === 'app' ? (
-              <AppPanel session={session} _dark={_dark} _setDark={_setDark} />
+              <AppPanel
+                session={session}
+                _dark={_dark}
+                _setDark={_setDark}
+                setShowPanel={setShowPanel}
+              />
             ) : (
               <NavigationPanel />
             )}

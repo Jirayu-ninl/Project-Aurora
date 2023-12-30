@@ -101,6 +101,7 @@ const nextConfig = {
       'platform-lookaside.fbsbx.com',
       'lh3.googleusercontent.com',
       's3.theiceji.com',
+      '129.213.124.156',
       'assets.theiceji.com',
       'scontent.fbkk28-1.fna.fbcdn.net',
     ],

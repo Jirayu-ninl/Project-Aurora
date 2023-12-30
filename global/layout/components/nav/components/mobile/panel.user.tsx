@@ -1,12 +1,20 @@
+import type { Dispatch } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { signIn, signOut } from 'next-auth/react'
+import { app as appConfig } from '@global/config/defineConfig'
 import Items from '../listPopupDropdown/items'
 import { Graph, LogOut } from '@aurora/assets/icons'
 
 import { User } from '@global/store'
 
-const UserPanel = ({ session }: { session: any }) => {
+const UserPanel = ({
+  session,
+  setShowPanel,
+}: {
+  session: any
+  setShowPanel: Dispatch<boolean>
+}) => {
   const _notifications = User((state) => state.notifications)
   const _setNotification = User((state) => state.setNotifications)
 
@@ -27,6 +35,8 @@ const UserPanel = ({ session }: { session: any }) => {
   }
 
   const displayUser = session && getDisplayUser(user.name)
+  const avatarImg: string | undefined =
+    user?.metadata?.profile?.image?.avatar?.name ?? undefined
 
   return (
     <>
@@ -48,7 +58,11 @@ const UserPanel = ({ session }: { session: any }) => {
             <div className='relative mb-4 flex w-full cursor-pointer items-center'>
               <div className='relative h-10 w-10'>
                 <Image
-                  src={user.image}
+                  src={
+                    avatarImg
+                      ? `${appConfig.s3.endpoint}/icejiverse-profiles/${avatarImg}`
+                      : user.image
+                  }
                   alt='Profile'
                   fill
                   objectFit='cover'
@@ -61,18 +75,23 @@ const UserPanel = ({ session }: { session: any }) => {
                   </span>
                 )}
               </div>
-              <div className='ml-4 grow'>
+              <Link
+                href='/app/profile'
+                className='ml-4 grow'
+                onClick={() => setShowPanel(false)}
+              >
                 {displayUser && (
                   <h5 className='text-xl font-bold'>{displayUser}</h5>
                 )}
                 <p className='-mt-1 text-xs lowercase opacity-80'>
                   {user.role === 'SUPER_ADMIN' ? 'SUPER ADMIN' : user.role}
                 </p>
-              </div>
+              </Link>
               <div className='flex h-8 space-x-1 fill-black dark:fill-white'>
                 <Link
                   href='/app/dashboard'
                   className='h-8 w-8 rounded-md border border-black/20 p-2 dark:border-white/20'
+                  onClick={() => setShowPanel(false)}
                 >
                   <Graph />
                 </Link>
