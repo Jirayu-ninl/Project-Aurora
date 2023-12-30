@@ -43,9 +43,9 @@ const optimizeAndConvertToPng = async (
 ): Promise<ArrayBuffer> => {
   try {
     const jpegBuffer = await sharp(inputArray)
-      .toFormat('jpeg')
+      .toFormat('png')
       .resize(option.maxWidth, option.maxHeight)
-      .jpeg({ quality })
+      .png({ quality })
       .toBuffer()
 
     return jpegBuffer

@@ -4,7 +4,7 @@ const ProfileSubmit = ({ loading }: { loading: boolean }) => {
     <>
       <button
         className={clsx(
-          'ml-auto rounded-md border border-black px-2 py-1 text-sm dark:border-white md:text-base',
+          'ml-auto rounded-md border border-black px-2 py-1 text-sm md:text-base dark:border-white',
           !loading ? 'Anim AnimOpacity-60' : 'opacity-20',
         )}
         type='submit'
