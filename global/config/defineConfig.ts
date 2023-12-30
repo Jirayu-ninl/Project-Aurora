@@ -1,12 +1,12 @@
 export const app = {
   NAME: 'IceJiVerse',
-  VERSION: '2023.10.1401',
-  UPDATE_DATE: 'Oct 14, 2023',
+  VERSION: '2023.12.3001',
+  UPDATE_DATE: 'Dec 30, 2023',
   Dependencies: {
     Aurora: '1.2',
     React: '18.2.0',
-    NextJs: '14.0.2',
-    ThreeJs: '158.0',
+    NextJs: '14.0.4',
+    ThreeJs: '160.0',
   },
   Functions: {
     useThree: true,
