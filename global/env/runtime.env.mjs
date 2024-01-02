@@ -33,6 +33,7 @@ export const runtimeEnv = {
   S3_UPLOAD_SECRET: process.env.S3_UPLOAD_SECRET,
   S3_UPLOAD_REGION: process.env.S3_UPLOAD_REGION,
   S3_UPLOAD_BUCKET: process.env.S3_UPLOAD_BUCKET,
+  S3_DOWNLOAD_ENDPOINT: process.env.S3_DOWNLOAD_ENDPOINT,
   // ** EMAIL
   EMAIL_HOST: process.env.EMAIL_HOST,
   EMAIL_PORT: process.env.EMAIL_PORT,

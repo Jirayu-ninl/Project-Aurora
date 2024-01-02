@@ -92,27 +92,38 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: [
-      'media.graphcms.com',
-      'media.hygraph.com',
-      'media.graphassets.com',
-      'images.prismic.io',
-      'avatars.githubusercontent.com',
-      'platform-lookaside.fbsbx.com',
-      'lh3.googleusercontent.com',
-      's3.theiceji.com',
-      '129.213.124.156',
-      'assets.theiceji.com',
-      'scontent.fbkk28-1.fna.fbcdn.net',
+    // domains: [
+    //   'media.graphcms.com',
+    //   'media.hygraph.com',
+    //   'media.graphassets.com',
+    //   'images.prismic.io',
+    //   'avatars.githubusercontent.com',
+    //   'platform-lookaside.fbsbx.com',
+    //   'lh3.googleusercontent.com',
+    //   's3.theiceji.com',
+    //   '129.213.124.156',
+    //   'assets.theiceji.com',
+    //   'scontent.fbkk28-1.fna.fbcdn.net',
+    // ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '129.213.124.156',
+      },
     ],
   },
   pwa: {
     dest: 'public',
     register: true,
     runtimeCaching,
-  },
-  experimental: {
-    serverActions: true,
   },
   sentry: {
     hideSourceMaps: true,

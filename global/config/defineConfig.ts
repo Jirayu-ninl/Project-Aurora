@@ -1,7 +1,9 @@
+import { env } from '../env.mjs'
+
 export const app = {
   NAME: 'IceJiVerse',
-  VERSION: '2023.12.3001',
-  UPDATE_DATE: 'Dec 30, 2023',
+  VERSION: '2024.1.201',
+  UPDATE_DATE: 'Jan 2, 2024',
   Dependencies: {
     Aurora: '1.2',
     React: '18.2.0',
@@ -18,9 +20,8 @@ export const app = {
     rateSwap: 59.2,
   },
   s3: {
-    bucketName: process.env.S3_UPLOAD_BUCKET ?? 'icejiverse',
-    // endpoint: 'https://s3.theiceji.com',
-    endpoint: 'http://129.213.124.156:9000',
+    bucketName: env.S3_UPLOAD_BUCKET ?? 'icejiverse',
+    endpoint: env.S3_DOWNLOAD_ENDPOINT,
   },
 }
 
