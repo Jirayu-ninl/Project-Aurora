@@ -20,8 +20,8 @@ export const app = {
     rateSwap: 59.2,
   },
   s3: {
-    bucketName: env.S3_UPLOAD_BUCKET ?? 'icejiverse',
-    endpoint: env.S3_DOWNLOAD_ENDPOINT,
+    bucketName: process.env.S3_UPLOAD_BUCKET ?? 'icejiverse',
+    endpoint: env.NEXT_PUBLIC_S3_DOWNLOAD_ENDPOINT,
   },
 }
 

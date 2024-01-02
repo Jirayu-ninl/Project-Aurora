@@ -47,7 +47,6 @@ export const serverSchema = {
   S3_UPLOAD_SECRET: z.string(),
   S3_UPLOAD_REGION: z.string(),
   S3_UPLOAD_BUCKET: z.string(),
-  S3_DOWNLOAD_ENDPOINT: z.string(),
   // ** EMAIL
   EMAIL_HOST: z.string(),
   EMAIL_PORT: z.preprocess((x) => parseInt(String(x)), z.number()),
