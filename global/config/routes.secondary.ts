@@ -46,7 +46,8 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       },
       {
         title: 'Skills',
-        path: '/home?id=skills',
+        // path: '/home?id=skills',
+        path: '/about/skills',
       },
       {
         title: 'Projects',
