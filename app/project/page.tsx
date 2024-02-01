@@ -19,7 +19,7 @@ const getProjects = async () => {
   try {
     const requestQL = gql`
       {
-        projects {
+        projects_old {
           title
           slug
           featured
@@ -34,7 +34,7 @@ const getProjects = async () => {
       }
     `
 
-    const { projects } = await useFetchQL(
+    const { projects_old: projects } = await useFetchQL(
       endpointURL,
       { query: requestQL },
       180,

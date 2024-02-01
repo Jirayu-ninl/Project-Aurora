@@ -23,7 +23,7 @@ export const generateMetadata = async ({
   try {
     const requestQL = gql`
       query Project($slug: String!) {
-        project_old(where: { slug: $slug }) {
+        project(where: { slug: $slug }) {
           title
           excerpt
           coverImage {
@@ -34,7 +34,7 @@ export const generateMetadata = async ({
         }
       }
     `
-    const { project_old: project } = await useFetchQL(
+    const { project } = await useFetchQL(
       endpointURL,
       { query: requestQL, variables: { slug } },
       180,
@@ -65,7 +65,7 @@ const getProject = async (slug: string) => {
   try {
     const requestQL = gql`
       query Project($slug: String!) {
-        project_old(where: { slug: $slug }) {
+        project(where: { slug: $slug }) {
           title
           projectType
           featured
@@ -139,7 +139,7 @@ const getProject = async (slug: string) => {
       }
     `
 
-    const { project_old: project } = await useFetchQL(
+    const { project } = await useFetchQL(
       endpointURL,
       { query: requestQL, variables: { slug } },
       180,
