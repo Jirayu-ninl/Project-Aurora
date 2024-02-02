@@ -14,7 +14,7 @@ const Page = () => {
 
   return (
     <>
-      <div className='flex h-dvh w-dvw items-center justify-center'>
+      <div className='flex h-dvh w-dvw items-center justify-center bg-black'>
         <p>Maintenance</p>
       </div>
     </>

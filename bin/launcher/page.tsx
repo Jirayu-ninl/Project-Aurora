@@ -6,7 +6,7 @@ function Page() {
   return (
     <>
       <Client />
-      <div className='md:h-dvh w-dvw flex flex-col items-center justify-center'>
+      <div className='flex w-dvw flex-col items-center justify-center md:h-dvh'>
         <div className='w-full px-8 pb-48 pt-8 md:pb-0 md:pt-0 xl:w-[900px] xl:px-0 xxl:w-[1000px]'>
           <Cards />
           <Project />
