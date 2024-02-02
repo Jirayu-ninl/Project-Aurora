@@ -1,4 +1,4 @@
-import { env } from '../env.mjs'
+// import { env } from '../env.mjs'
 
 export const app = {
   NAME: 'IceJiVerse',
@@ -21,7 +21,7 @@ export const app = {
   },
   s3: {
     bucketName: process.env.S3_UPLOAD_BUCKET ?? 'icejiverse',
-    endpoint: env.NEXT_PUBLIC_S3_DOWNLOAD_ENDPOINT,
+    endpoint: process.env.NEXT_PUBLIC_S3_DOWNLOAD_ENDPOINT,
   },
 }
 

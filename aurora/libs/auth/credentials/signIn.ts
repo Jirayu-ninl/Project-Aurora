@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { compare } from 'bcrypt'
+import { compare } from 'bcryptjs'
 import { prisma } from '@aurora/libs/database/prisma'
 import { getErrorMessage } from '@aurora/utils/server/error'
 import { ErrorHandler } from '@server/services/monitoring'

@@ -16,6 +16,7 @@ import 'nprogress/nprogress.css'
 import './globals.css'
 
 export const metadata = { ...Config.metaData }
+export const viewport = { ...Config.viewport }
 
 const fInter = Inter({
   subsets: ['latin'],

@@ -4,7 +4,7 @@ import type {
 } from '@server/schema/user.portal.schema'
 import type { Context } from '@server/trpc/trpc.context'
 
-import { compare, hash } from 'bcrypt'
+import { compare, hash } from 'bcryptjs'
 import { getErrorMessage } from '@aurora/utils/server/error'
 
 export const signin = async ({

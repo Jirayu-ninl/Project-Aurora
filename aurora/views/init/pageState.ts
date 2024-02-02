@@ -1,5 +1,5 @@
 import type { tNavSecondaryRoute } from '@global/config/routes'
-import type { tNavRoute } from '@global/store/state.e'
+import type { tNavRoute } from '@global/store/state.extend'
 
 const InitPageState = (
   _setPage: (p: string) => void,

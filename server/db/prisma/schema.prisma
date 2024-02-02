@@ -2,10 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-  output   = "../dbml"
-}
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+//   output   = "../dbml"
+// }
 
 datasource db {
   provider = "mongodb"

@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { prisma } from '@aurora/libs/database/prisma'
 import { getErrorMessage } from '@aurora/utils/server/error'
 import { ErrorHandler } from '@server/services/monitoring'

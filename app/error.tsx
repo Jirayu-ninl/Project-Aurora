@@ -1,30 +1,31 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { useEffect } from 'react'
+import Link from 'next/link'
 import * as Sentry from '@sentry/nextjs'
-import type { NextPage } from 'next'
-// import type { ErrorProps } from 'next/error'
-import NextErrorComponent from 'next/error'
 
-const MyError: NextPage<any> = ({ statusCode, hasGetInitialPropsRun, err }) => {
-  if (!hasGetInitialPropsRun && err) {
-    // getInitialProps is not called in case of
-    // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
-    // err via _app.js so it can be captured
-    Sentry.captureException(err)
-    // Flushing is not required in this case as it only happens on the client
-  }
+export default function ErrorPage({
+  error,
+}: {
+  error: Error & { digest?: string }
+}) {
+  useEffect(() => {
+    Sentry.captureException(error)
+  }, [error])
 
-  return <NextErrorComponent statusCode={statusCode} />
+  return (
+    <>
+      <div className='flex h-screen w-screen flex-col items-center justify-center'>
+        <h4 className='-mb-8 text-10xl font-thin text-primary-0'>404</h4>
+        <h2 className='text-5xl font-bold uppercase'>Something went wrong!</h2>
+        <p className='font-light'>Internal Error has occurred</p>
+        <Link
+          className='Anim mt-8 rounded-md border border-primary-0 bg-primary-0/20 px-3 py-1 text-xs hover:bg-primary-0 hover:text-black'
+          href='/home'
+        >
+          Comeback home
+        </Link>
+      </div>
+    </>
+  )
 }
-
-MyError.getInitialProps = async (contextData) => {
-  // In case this is running in a serverless function, await this in order to give Sentry
-  // time to send the error before the lambda exits
-  await Sentry.captureUnderscoreErrorException(contextData)
-
-  // This will contain the status code of the response
-  return NextErrorComponent.getInitialProps(contextData)
-}
-
-export default MyError

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import { useEffect, useState /*, Suspense*/ } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { StatsGl, Html, useProgress } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
@@ -48,31 +48,10 @@ function CanvasApp() {
         linear={true}
         shadows
       >
-        {/* <Suspense fallback={<LoaderComp />}> */}
         <Scene _dark={_dark} isMobile={isMobile} />
         {debug && <StatsGl />}
-        {/* </Suspense> */}
       </Canvas>
     </>
-  )
-}
-
-const LoaderComp = () => {
-  const { progress /*, active, errors, item, loaded, total*/ } = useProgress()
-  return (
-    <Html center>
-      <div className='flex w-48 flex-col items-center'>
-        <h6 className=''>Compiling WebGL</h6>
-        <div className='relative mb-3 mt-5 h-[10px] w-full rounded-md'>
-          <div
-            className='absolute m-0.5 h-[4px] rounded-md bg-primary-0'
-            style={{ width: progress.toFixed(2) + '%' }}
-          />
-          <div className='absolute m-0.5 h-[4px] w-full rounded-md bg-primary-0/10' />
-        </div>
-        <p className='w-full text-center text-xs'>{progress.toFixed(2)} %</p>
-      </div>
-    </Html>
   )
 }
 

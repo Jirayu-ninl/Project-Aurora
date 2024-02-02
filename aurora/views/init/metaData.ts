@@ -18,13 +18,13 @@ const Init = (metaData: {
   description: metaData.description,
   applicationName: metaData.appName,
   keywords: metaData.keywords,
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-    viewportFit: 'cover',
-  },
+  // viewport: {
+  //   width: 'device-width',
+  //   initialScale: 1,
+  //   maximumScale: 1,
+  //   userScalable: false,
+  //   viewportFit: 'cover',
+  // },
   authors: { name: metaData.author },
   creator: metaData.author,
   publisher: metaData.author,
@@ -33,10 +33,10 @@ const Init = (metaData: {
     language: 'english',
     distribution: 'web',
   },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FFC900' },
-    { media: '(prefers-color-scheme: dark)', color: '#1A1A1A' },
-  ],
+  // themeColor: [
+  //   { media: '(prefers-color-scheme: light)', color: '#FFC900' },
+  //   { media: '(prefers-color-scheme: dark)', color: '#1A1A1A' },
+  // ],
   manifest: '/manifest.json',
   openGraph: {
     title: {

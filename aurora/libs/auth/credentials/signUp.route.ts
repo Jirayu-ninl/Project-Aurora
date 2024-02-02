@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { prisma } from '@aurora/libs/database/prisma'
 import { setResponse as setRes } from '@aurora/utils/server/response.status'
 
