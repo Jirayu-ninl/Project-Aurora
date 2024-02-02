@@ -15,6 +15,8 @@ import { createRequire } from 'node:module'
 import withPWA from 'next-pwa'
 import runtimeCaching from 'next-pwa/cache.js'
 import plugins from 'next-compose-plugins'
+import { withSentryConfig } from '@sentry/nextjs'
+import { withAxiom } from 'next-axiom'
 import bundleAnalyzer from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -90,16 +92,32 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: [
-      // social network provider
-      'avatars.githubusercontent.com',
-      'platform-lookaside.fbsbx.com',
-      'lh3.googleusercontent.com',
-      // Your CMS provider
-      'media.hygraph.com',
-      'media.graphassets.com',
-      'images.prismic.io',
-      'skillicons.dev',
+    // domains: [
+    //   'media.graphcms.com',
+    //   'media.hygraph.com',
+    //   'media.graphassets.com',
+    //   'images.prismic.io',
+    //   'avatars.githubusercontent.com',
+    //   'platform-lookaside.fbsbx.com',
+    //   'lh3.googleusercontent.com',
+    //   's3.theiceji.com',
+    //   '129.213.124.156',
+    //   'assets.theiceji.com',
+    //   'scontent.fbkk28-1.fna.fbcdn.net',
+    // ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '129.213.124.156',
+      },
     ],
   },
   pwa: {
@@ -112,4 +130,24 @@ const nextConfig = {
   },
 }
 
-export default plugins([withBundleAnalyzer, withPWA], nextConfig)
+const sentryWebpackPluginOptions = {
+  silent: true,
+}
+
+// manage i18n
+// if (process.env.EXPORT !== 'true') {
+//   nextConfig.i18n = {
+//     locales: ['en-US'],
+//     defaultLocale: 'en-US',
+//   }
+// }
+
+export default plugins(
+  [
+    withAxiom,
+    [withSentryConfig, sentryWebpackPluginOptions],
+    withBundleAnalyzer,
+    withPWA,
+  ],
+  nextConfig,
+)
