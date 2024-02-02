@@ -2,14 +2,14 @@
 import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
-// import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
-// import { AxiomWebVitals } from 'next-axiom'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
+import { AxiomWebVitals } from 'next-axiom'
 import clsx from 'clsx'
 
-// import { GoogleAnalytics } from '@aurora/libs/analytics'
-// import { Toast } from '@aurora/views/module.toast'
+import { GoogleAnalytics } from '@aurora/libs/analytics'
+import { Toast } from '@aurora/views/module.toast'
 import Config from '@global/config'
-// import Wrapper from '@global/layout/wrapper'
+import Wrapper from '@global/layout/wrapper'
 
 import 'react-toastify/dist/ReactToastify.css'
 import 'nprogress/nprogress.css'
@@ -45,14 +45,14 @@ const App = ({ children }: AppPropsWithLayout) => {
         `${fInter.variable} ${fPrompt.variable}`,
       )}
     >
-      {/* <AxiomWebVitals /> */}
+      <AxiomWebVitals />
       <body suppressHydrationWarning={true}>
-        {/* <GoogleAnalytics /> */}
-        {/* <Wrapper> */}
+        <GoogleAnalytics />
+        <Wrapper>
           {children}
-          {/* <Toast /> */}
-        {/* </Wrapper> */}
-        {/* <VercelAnalytics /> */}
+          <Toast />
+        </Wrapper>
+        <VercelAnalytics />
       </body>
     </html>
   )
