@@ -32,11 +32,17 @@
       "bufferView": 3,
       "componentType": 5126,
       "count": 684,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 684,
       "type": "VEC2"
     }
   ],
   "asset": {
-    "generator": "Adobe Substance 3D Painter 7.4.1",
+    "generator": "Adobe Substance 3D Painter 8.2.0",
     "version": "2.0"
   },
   "bufferViews": [
@@ -59,14 +65,20 @@
     },
     {
       "buffer": 0,
-      "byteLength": 5472,
+      "byteLength": 10944,
       "byteOffset": 24672,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 5472,
+      "byteOffset": 35616,
       "target": 34962
     }
   ],
   "buffers": [
     {
-      "byteLength": 30144,
+      "byteLength": 41088,
       "uri": "Scene.bin"
     }
   ],
@@ -120,7 +132,8 @@
           "attributes": {
             "NORMAL": 2,
             "POSITION": 1,
-            "TEXCOORD_0": 3
+            "TANGENT": 3,
+            "TEXCOORD_0": 4
           },
           "indices": 0,
           "material": 0,

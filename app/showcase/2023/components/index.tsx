@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { StatsGl, Html, useProgress } from '@react-three/drei'
+import { StatsGl } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { UI } from '@global/store'
 import { useOptimization } from '@aurora/libs/hooks/three'

@@ -9,8 +9,8 @@ export const Lens = () => {
   const { aspect } = useThree(({ viewport }) => viewport)
 
   const target = new THREE.Vector3()
-  useFrame(({ mouse }) => {
-    target.set(mouse.x * 1.36 * aspect, mouse.y * 1.36, 0.1)
+  useFrame(({ pointer }) => {
+    target.set(pointer.x * 1.36 * aspect, pointer.y * 1.36, 0.1)
     ref.current!.position.lerp(target, 0.1)
   })
 

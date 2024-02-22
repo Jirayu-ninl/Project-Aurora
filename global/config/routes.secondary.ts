@@ -22,6 +22,7 @@ type routeKeys =
   | 'about'
   | 'tools'
   | 'status'
+  | 'showcase'
   | 'help'
   | 'example'
 
@@ -204,6 +205,21 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       {
         title: 'PKGs',
         path: '/status/packages',
+      },
+    ],
+  },
+  showcase: {
+    id: 70,
+    title: 'Showcase',
+    setBackRoute: '/showcase',
+    route: [
+      {
+        title: '2022',
+        path: '/showcase/2022',
+      },
+      {
+        title: '2023',
+        path: '/showcase/2023',
       },
     ],
   },

@@ -105,4 +105,4 @@ const useExplode = (
   })
 }
 
-export default useExplode
+export { useExplode }

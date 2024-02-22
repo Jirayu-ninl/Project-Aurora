@@ -13,7 +13,7 @@ const DestructionCube = ({
 }) => {
   const { nodes /*, materials*/ } = useGLTF(
     '/three/model/desCube/model-f.glb',
-  ) as GLTFResult
+  ) as unknown as GLTFResult
 
   return (
     <>

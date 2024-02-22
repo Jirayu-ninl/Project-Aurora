@@ -70,7 +70,7 @@ const R3F = ({
   )
   const image = useTexture(ProjectsData.map((v) => v.image))
 
-  useFrame(({ mouse }) => {
+  useFrame(({ pointer }) => {
     shader.uniforms.u_time.value += 0.01
     shader.uniforms.u_texture.value = image[projectHover - 1]
     if ($projectImg.current) {
@@ -93,8 +93,8 @@ const R3F = ({
 
       const target = new Vector3()
       target.set(
-        mouse.x * 1.7 + 1,
-        mouse.y - $scroll.current.position.y - 0.2,
+        pointer.x * 1.7 + 1,
+        pointer.y - $scroll.current.position.y - 0.2,
         -1,
       )
       ref.position.lerp(target, 0.1)

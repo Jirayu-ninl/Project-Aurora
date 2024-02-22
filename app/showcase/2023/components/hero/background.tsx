@@ -11,7 +11,7 @@ import backgroundFragShader from './shaders/background.f.glsl'
 import cpNoise21 from 'auroraGL/noise/cpNoise21.glsl'
 
 const Background = ({ _dark }: { _dark: boolean }) => {
-  const shader: THREE.Shader = useMemo(
+  const shader: THREE.ShaderMaterialParameters = useMemo(
     () => ({
       uniforms: {
         u_time: { value: 0 },
@@ -28,10 +28,12 @@ const Background = ({ _dark }: { _dark: boolean }) => {
   )
 
   const target = new THREE.Vector2()
-  useFrame(({ mouse }) => {
-    shader.uniforms.u_time.value += 0.005
-    target.set((mouse.x + 1) * 0.5, (mouse.y + 1) * 0.5)
-    shader.uniforms.u_mouse.value.lerp(target, 0.2)
+  useFrame(({ pointer }) => {
+    if (shader.uniforms) {
+      shader.uniforms.u_time.value += 0.005
+      target.set((pointer.x + 1) * 0.5, (pointer.y + 1) * 0.5)
+      shader.uniforms.u_mouse.value.lerp(target, 0.2)
+    }
   })
 
   return (

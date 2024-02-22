@@ -16,7 +16,7 @@ export const TextPlane = (props: TextPlaneProps) => {
   const drawer = new DrawerText2d(text, 1024)
   drawer.draw(180, 140, _dark)
 
-  const shader: THREE.Shader = {
+  const shader: THREE.ShaderMaterialParameters = {
     uniforms: {
       u_texture: { value: drawer.texture },
       u_mouse: { value: new THREE.Vector2() },
@@ -29,7 +29,9 @@ export const TextPlane = (props: TextPlaneProps) => {
 
   const target = new THREE.Vector2()
   useFrame(() => {
-    shader.uniforms.u_mouse.value.lerp(target, 0.1)
+    if (shader.uniforms) {
+      shader.uniforms.u_mouse.value.lerp(target, 0.1)
+    }
   })
 
   const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
@@ -37,12 +39,16 @@ export const TextPlane = (props: TextPlaneProps) => {
   }
 
   const handlePointerEnter = (e: ThreeEvent<PointerEvent>) => {
-    shader.uniforms.u_mouse.value.copy(e.uv!)
-    shader.uniforms.u_enable.value = true
+    if (shader.uniforms) {
+      shader.uniforms.u_mouse.value.copy(e.uv!)
+      shader.uniforms.u_enable.value = true
+    }
   }
 
   const handlePointerLeave = () => {
-    shader.uniforms.u_enable.value = false
+    if (shader.uniforms) {
+      shader.uniforms.u_enable.value = false
+    }
   }
 
   // return (
