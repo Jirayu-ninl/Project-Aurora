@@ -1,5 +1,20 @@
 import Canvas from './components'
 
+export const metadata = {
+  title: 'TheIceJi | WebGL Showcase 2023',
+  description: 'WebGL, ThreeJs, Immersive Web Design',
+  openGraph: {
+    title: 'TheIceJi | WebGL Showcase 2023',
+    images: ['/page/launcher/bg_showcase_2023.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TheIceJi | WebGL Showcase 2023',
+    description: 'WebGL, ThreeJs, Immersive Web Design',
+    images: ['/page/launcher/bg_showcase_2023.png'],
+  },
+}
+
 function Page() {
   return (
     <>

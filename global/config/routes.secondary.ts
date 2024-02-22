@@ -214,12 +214,12 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
     setBackRoute: '/showcase',
     route: [
       {
-        title: '2022',
-        path: '/showcase/2022',
-      },
-      {
         title: '2023',
         path: '/showcase/2023',
+      },
+      {
+        title: '2022',
+        path: '/showcase/2022',
       },
     ],
   },
