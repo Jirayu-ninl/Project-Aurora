@@ -16,7 +16,7 @@ export default function ErrorPage({
   return (
     <>
       <div className='flex h-screen w-screen flex-col items-center justify-center'>
-        <h4 className='-mb-8 text-10xl font-thin text-primary-0'>404</h4>
+        <h4 className='-mb-8 text-10xl font-thin text-primary-0'>500</h4>
         <h2 className='text-5xl font-bold uppercase'>Something went wrong!</h2>
         <p className='font-light'>Internal Error has occurred</p>
         <Link
