@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://theiceji.com
-
-# Sitemaps
-Sitemap: https://theiceji.com/sitemap.xml

@@ -7,6 +7,9 @@ function Page() {
     <>
       <Client />
       <div className='flex w-dvw flex-col items-center justify-center md:h-dvh'>
+        <h1 className='absolute opacity-0'>
+          TheIceJi | IceJiVerse | Jirayu Ninlapun
+        </h1>
         <div className='w-full px-8 pb-48 pt-8 md:pb-0 md:pt-0 xl:w-[900px] xl:px-0 xxl:w-[1000px]'>
           <Cards />
           <Project />

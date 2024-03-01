@@ -15,6 +15,7 @@ export const Cards = () => {
           <Link
             href={`/?routerOn=true&target=` + v.target}
             className={clsx('Anim AnimTranslate-4', v.className)}
+            aria-label={v.title}
             key={i}
           >
             <Card

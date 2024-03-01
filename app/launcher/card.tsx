@@ -44,8 +44,8 @@ export const Card = ({
           >
             <div className='relative h-full w-full xl:hover:[&>img]:opacity-100 xl:hover:[&>img]:saturate-100'>
               <div className='pointer-events-none absolute bottom-2 left-2 z-10 rounded-sm bg-black/20 px-2 py-1 text-white backdrop-blur-lg md:bottom-4 md:left-4 md:rounded-md md:px-6 md:py-2 xl:bottom-6 xl:left-6'>
-                <h1 className='font-bold uppercase md:text-xl'>{title}</h1>
-                <h2 className='text-2xs md:text-xs'>{description}</h2>
+                <h2 className='font-bold uppercase md:text-xl'>{title}</h2>
+                <h3 className='text-2xs md:text-xs'>{description}</h3>
               </div>
               {imageBg && (
                 <Image

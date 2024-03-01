@@ -20,6 +20,9 @@ function Page() {
     <>
       <main className='m-container relative w-svw overflow-hidden bg-white dark:bg-[#101010]'>
         <Canvas />
+        <h1 className='absolute opacity-0'>
+          TheIceJi | IceJiVerse | Jirayu Ninlapun | 3D Creative Website Showcase
+        </h1>
       </main>
     </>
   )
