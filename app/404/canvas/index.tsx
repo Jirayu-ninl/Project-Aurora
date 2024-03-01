@@ -13,8 +13,6 @@ const Canvas = () => {
   const [antialias, setAntialias] = useState(true)
   const debug = useSearchParams().get('debug')
 
-  const isMobile = _gpuTier?.isMobile ? _gpuTier.isMobile : false
-
   useEffect(() => {
     const pixelRatio = window.devicePixelRatio
     if (pixelRatio > 1) {
@@ -45,7 +43,7 @@ const Canvas = () => {
         linear
         shadows
       >
-        <Scene isMobile={isMobile} />
+        <Scene />
         {debug && <StatsGl />}
       </ThreeCanvas>
     </div>

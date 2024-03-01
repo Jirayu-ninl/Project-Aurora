@@ -92,19 +92,6 @@ const nextConfig = {
   },
   images: {
     formats: ['image/avif', 'image/webp'],
-    // domains: [
-    //   'media.graphcms.com',
-    //   'media.hygraph.com',
-    //   'media.graphassets.com',
-    //   'images.prismic.io',
-    //   'avatars.githubusercontent.com',
-    //   'platform-lookaside.fbsbx.com',
-    //   'lh3.googleusercontent.com',
-    //   's3.theiceji.com',
-    //   '129.213.124.156',
-    //   'assets.theiceji.com',
-    //   'scontent.fbkk28-1.fna.fbcdn.net',
-    // ],
     remotePatterns: [
       {
         protocol: 'https',
@@ -133,14 +120,6 @@ const nextConfig = {
 const sentryWebpackPluginOptions = {
   silent: true,
 }
-
-// manage i18n
-// if (process.env.EXPORT !== 'true') {
-//   nextConfig.i18n = {
-//     locales: ['en-US'],
-//     defaultLocale: 'en-US',
-//   }
-// }
 
 export default plugins(
   [

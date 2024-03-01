@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { AxiomWebVitals } from 'next-axiom'
 import clsx from 'clsx'
 
@@ -36,7 +37,6 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const App = ({ children }: AppPropsWithLayout) => {
-
   return (
     <html
       lang='en'
@@ -52,6 +52,7 @@ const App = ({ children }: AppPropsWithLayout) => {
           {children}
           <Toast />
         </Wrapper>
+        <SpeedInsights />
         <VercelAnalytics />
       </body>
     </html>

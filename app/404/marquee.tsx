@@ -32,7 +32,7 @@ export const Marquee = () => {
       <div
         className={clsx(
           marquee,
-          'pointer-events-none absolute top-1/2 z-20 h-48 w-full -translate-y-1/2 -rotate-[15deg]',
+          'pointer-events-none absolute top-1/2 z-20 h-32 w-full -translate-y-1/2 -rotate-[15deg] xl:h-48',
         )}
       >
         <div className='border border-white/0 border-y-quaternary-2 bg-black/[0.02] text-[6vh] font-bold uppercase backdrop-blur-lg dark:border-y-primary-0 dark:bg-white/[0.02] xl:text-[6vw] [&>span]:px-6 md:[&>span]:px-8 xl:[&>span]:px-12 el:[&>span]:px-16'>
