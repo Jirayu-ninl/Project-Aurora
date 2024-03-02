@@ -14,10 +14,12 @@ export const updateUserProfileSchema = z.object({
     avatar: z.object({
       name: z.string(),
       imageId: z.string(),
+      url: z.string(),
     }),
     cover: z.object({
       name: z.string(),
       imageId: z.string(),
+      url: z.string(),
     }),
   }),
 })

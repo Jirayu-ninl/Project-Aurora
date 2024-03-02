@@ -1,6 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { toast } from 'react-toastify'
+import { AnimatePresence } from 'framer-motion'
 import { eNavDropdownState } from '@global/store/ui.store'
+import { app as appConfig } from '@global/config/defineConfig'
+import { formatNumber } from '@aurora/utils/math'
 
 import { WalletBanner } from './wallet.banner'
 import { WalletDropdown } from './wallet.dropdown'
@@ -14,9 +15,18 @@ const Wallet = ({
   _navDropdown: eNavDropdownState
   session: any
 }) => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
+
   const wallet = session.user && {
     Address: '0x' + session.user.id,
-    Balance: session.user.balance,
+    Balance: {
+      formatted: formatNumber.letter(session.user.balance, 2),
+      raw: session.user.balance,
+      value: formatter.format(session.user.balance * appConfig.user.rateSwap),
+    },
   }
 
   return (
@@ -34,7 +44,7 @@ const Wallet = ({
         <WalletBanner wallet={wallet} />
         <AnimatePresence>
           {_navDropdown === eNavDropdownState.WALLET && (
-            <WalletDropdown key='NAV_User' session={session} wallet={wallet} />
+            <WalletDropdown key='NAV_User' wallet={wallet} />
           )}
         </AnimatePresence>
       </div>

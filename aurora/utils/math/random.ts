@@ -1,4 +1,4 @@
-const Rand: {
+const random: {
   str?: (
     length: number,
     multiply: { numbers: number; characters: number; alts: number },
@@ -7,7 +7,7 @@ const Rand: {
   newArr?: (arr: any[], newArrLength: number, duplicate: boolean) => any[]
 } = new Object()
 
-Rand.str = (
+random.str = (
   length,
   multiply = { numbers: 1, characters: 1, alts: 0 },
   includeAlts = false,
@@ -36,7 +36,7 @@ Rand.str = (
   return result
 }
 
-Rand.newArr = (arr, newArrLength = 1, duplicate = false) => {
+random.newArr = (arr, newArrLength = 1, duplicate = false) => {
   const arrLength = arr.length
   const randNum = Math.random()
   const getRandNum = (arrLength: number) =>
@@ -58,4 +58,4 @@ Rand.newArr = (arr, newArrLength = 1, duplicate = false) => {
   return newArr
 }
 
-export default Rand
+export { random }

@@ -36,7 +36,7 @@ const UserPanel = ({
 
   const displayUser = session && getDisplayUser(user.name)
   const avatarImg: string | undefined =
-    user?.metadata?.profile?.image?.avatar?.name ?? undefined
+    user?.metadata?.profile?.image?.avatar?.url ?? undefined
 
   return (
     <>
@@ -58,11 +58,7 @@ const UserPanel = ({
             <div className='relative mb-4 flex w-full cursor-pointer items-center'>
               <div className='relative h-10 w-10'>
                 <Image
-                  src={
-                    avatarImg
-                      ? `${appConfig.s3.endpoint}/icejiverse-profiles/${avatarImg}`
-                      : user.image
-                  }
+                  src={avatarImg ? avatarImg : user.image}
                   alt='Profile'
                   fill
                   objectFit='cover'

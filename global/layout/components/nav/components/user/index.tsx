@@ -45,7 +45,7 @@ const Block = ({
           </>
         ) : (
           <>
-            <div className='flex h-4 fill-black xxl:mr-4 dark:fill-white'>
+            <div className='flex h-4 fill-black dark:fill-white xxl:mr-4'>
               <Icon.SeparatorLine />
             </div>
             <Wallet

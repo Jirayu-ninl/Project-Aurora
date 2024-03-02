@@ -1,1 +1,1 @@
-export { CoverImage } from './coverImage'
+export { UserProfilePage } from './profile.page'

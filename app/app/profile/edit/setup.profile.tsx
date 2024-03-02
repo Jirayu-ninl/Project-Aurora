@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { trpc } from '@server/trpc/client'
+import { app as appConfig } from '@global/config/defineConfig'
 import { SetProfileImage } from './setup.profile.profileImage'
 import { SetCoverImage } from './setup.profile.coverImage'
 import { SetProfileInfo } from './setup.profile.userInfo'
@@ -76,16 +77,20 @@ const SetupProfile = () => {
       const avatarImageData = await uploadImage(profileImage[0], 'avatar')
       const coverImageData = await uploadImage(coverImage[0], 'cover')
 
+      const ImgPath =
+        appConfig.s3.endpoint + '/' + appConfig.s3.bucketName + '-profiles/'
       const body = {
         ...userInfo,
         image: {
           avatar: {
             name: avatarImageData.name,
             imageId: avatarImageData.id,
+            url: ImgPath + avatarImageData.name,
           },
           cover: {
             name: coverImageData.name,
             imageId: coverImageData.id,
+            url: ImgPath + coverImageData.name,
           },
         },
       }

@@ -18,8 +18,8 @@ const SetProfileImage = ({
 }) => {
   useEffect(() => {
     if (ImageFile.length < 1) return
-    if (ImageFile[0].size >= 3 * 1024 * 1024) {
-      toast.warn('Image much less that 3MB')
+    if (ImageFile[0].size >= 0.5 * 1024 * 1024) {
+      toast.warn('Image much less that 512KB')
       return
     }
     const newImageUrls: string[] = []
@@ -58,7 +58,7 @@ const SetProfileImage = ({
                 <p className='pl-1'>Profile photo</p>
               </div>
               <p className='text-2xs text-gray-600 dark:text-gray-200 md:text-xs md:leading-5'>
-                PNG / JPG, up to 3MB
+                PNG / JPG, up to 512KB
               </p>
             </div>
           </>

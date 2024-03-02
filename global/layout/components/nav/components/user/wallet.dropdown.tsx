@@ -5,24 +5,18 @@ import { toast } from 'react-toastify'
 import { Icon } from '@aurora/assets'
 import { signOut } from 'next-auth/react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { app as appConfig } from '@global/config/defineConfig'
 // import Items from '../listPopupDropdown/items'
 
 const WalletDropdown = ({
-  session,
   wallet,
 }: {
-  session: any
-  wallet: { Address: string; Balance: number }
+  wallet: {
+    Address: string
+    Balance: { formatted: number; raw: number; value: number }
+  }
 }) => {
-  const user = session ? session.user : null
   const [showTooltip, setShowTooltip] = useState(0)
   const tooltipText = ['Wallet', 'Analytics', 'Transfer', 'Top-up']
-
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  })
 
   return (
     <motion.div
@@ -39,12 +33,12 @@ const WalletDropdown = ({
             toast('Copy address to clipboard')
           }}
         >
-          <p className='text-3xl font-semibold'>{wallet.Balance.toFixed(2)}</p>
+          <p className='text-3xl font-semibold'>{wallet.Balance.formatted}</p>
           <p className='rounded-sm px-2 text-xs opacity-60 el:rounded-md el:text-sm'>
             {wallet.Address.slice(0, 5) + '...' + wallet.Address.slice(-4)}
           </p>
           <p className='rounded-sm px-2 py-1 text-xs el:rounded-md el:text-sm'>
-            ~{formatter.format(wallet.Balance * appConfig.user.rateSwap)}
+            ~{wallet.Balance.value}
           </p>
           <Image
             className='opacity-[0.07] invert dark:invert-0'

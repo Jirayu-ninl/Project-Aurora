@@ -2,12 +2,12 @@
 
 export const app = {
   NAME: 'IceJiVerse',
-  VERSION: '2024.2.201',
-  UPDATE_DATE: 'Feb 2, 2024',
+  VERSION: '2024.3.301',
+  UPDATE_DATE: 'Mar 3, 2024',
   Dependencies: {
-    Aurora: '1.2',
+    Aurora: '1.2.1',
     React: '18.2.0',
-    NextJs: '14.1.1',
+    NextJs: '14.0.4',
     ThreeJs: 'r161',
   },
   Functions: {
@@ -20,7 +20,7 @@ export const app = {
     rateSwap: 59.2,
   },
   s3: {
-    bucketName: process.env.S3_UPLOAD_BUCKET ?? 'icejiverse',
+    bucketName: process.env.NEXT_PUBLIC_S3_UPLOAD_ENDPOINT ?? 'icejiverse',
     endpoint: process.env.NEXT_PUBLIC_S3_DOWNLOAD_ENDPOINT,
   },
 }

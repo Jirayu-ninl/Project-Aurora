@@ -17,7 +17,6 @@ import Cursor from './components/cursor'
 import { NavBar, NavCanvas /* NavMobile */ } from './components/nav'
 import { Footer } from './components/footer'
 import AppInfo from './components/appInfo'
-// import Beta from './components/modal.beta'
 
 const Wrapper = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions)
@@ -27,7 +26,6 @@ const Wrapper = async ({ children }: { children: React.ReactNode }) => {
       <Providers>
         <CreateProgress />
         <SetPageState />
-        {/* <Beta /> */}
         <AppInfo />
         <Setup />
         <NavBar session={session} />

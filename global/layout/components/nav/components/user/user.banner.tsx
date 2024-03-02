@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { app as appConfig } from '@global/config/defineConfig'
 
 const UserBanner = ({
   session,
@@ -26,7 +25,7 @@ const UserBanner = ({
 
   const displayUser = getDisplayUser(user.name)
   const avatarImg: string | undefined =
-    user?.metadata?.profile?.image?.avatar?.name ?? undefined
+    user?.metadata?.profile?.image?.avatar?.url ?? undefined
 
   return (
     <>
@@ -40,11 +39,7 @@ const UserBanner = ({
       </div>
       <div className='relative h-7 w-7 el:h-9 el:w-9'>
         <Image
-          src={
-            avatarImg
-              ? `${appConfig.s3.endpoint}/icejiverse-profiles/${avatarImg}`
-              : user.image
-          }
+          src={avatarImg ? avatarImg : user.image}
           alt='Profile'
           fill
           objectFit='cover'

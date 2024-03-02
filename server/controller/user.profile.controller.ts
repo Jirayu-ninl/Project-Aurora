@@ -61,10 +61,12 @@ export const updateUserProfile = async ({
               avatar: {
                 name: input.image.avatar.name,
                 imageId: input.image.avatar.imageId,
+                url: input.image.avatar.url,
               },
               cover: {
                 name: input.image.cover.name,
                 imageId: input.image.cover.imageId,
+                url: input.image.cover.url,
               },
             },
           },

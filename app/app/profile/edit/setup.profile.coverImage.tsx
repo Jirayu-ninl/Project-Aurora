@@ -19,8 +19,8 @@ const SetCoverImage = ({
 }) => {
   useEffect(() => {
     if (ImageFile.length < 1) return
-    if (ImageFile[0].size >= 5 * 1024 * 1024) {
-      toast.warn('Image much less that 5MB')
+    if (ImageFile[0].size >= 2 * 1024 * 1024) {
+      toast.warn('Image much less that 2MB')
       return
     }
     const newImageUrls: string[] = []
@@ -58,7 +58,7 @@ const SetCoverImage = ({
             <p className='pl-1'>Cover image file</p>
           </div>
           <p className='text-2xs text-gray-600 dark:text-gray-200 md:text-xs md:leading-5'>
-            PNG / JPG, up to 5MB
+            PNG / JPG, up to 2MB
           </p>
         </div>
         {ImageUrls.length > 0 && (
