@@ -4,10 +4,12 @@ import { Inter } from 'next/font/google'
 import { Prompt } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { GoogleTagManager } from '@next/third-parties/google'
 import { AxiomWebVitals } from 'next-axiom'
 import clsx from 'clsx'
 
-import { GoogleAnalytics } from '@aurora/libs/analytics'
+import { env } from '@global/env.mjs'
+// import { GoogleAnalytics } from '@aurora/libs/analytics'
 import { Toast } from '@aurora/views/module.toast'
 import Config from '@global/config'
 import Wrapper from '@global/layout/wrapper'
@@ -47,11 +49,11 @@ const App = ({ children }: AppPropsWithLayout) => {
     >
       <AxiomWebVitals />
       <body suppressHydrationWarning={true}>
-        <GoogleAnalytics />
         <Wrapper>
           {children}
           <Toast />
         </Wrapper>
+        <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM} />
         <SpeedInsights />
         <VercelAnalytics />
       </body>

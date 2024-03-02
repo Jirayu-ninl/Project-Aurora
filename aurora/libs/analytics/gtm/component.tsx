@@ -1,6 +1,6 @@
 'use client'
 
-import { pageview } from './functions'
+import { pageviewEvent } from './functions'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from 'react'
@@ -12,7 +12,7 @@ export default function Analytics() {
 
   useEffect(() => {
     if (pathname) {
-      pageview(pathname)
+      pageviewEvent(pathname)
     }
   }, [pathname, searchParams])
 

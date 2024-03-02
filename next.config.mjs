@@ -115,6 +115,9 @@ const nextConfig = {
   sentry: {
     hideSourceMaps: true,
   },
+  // experimental: {
+  //   missingSuspenseWithCSRBailout: false,
+  // },
 }
 
 const sentryWebpackPluginOptions = {
