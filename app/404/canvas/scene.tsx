@@ -11,7 +11,6 @@ import {
 } from '@react-three/drei'
 
 import { Environments } from './environments'
-import { Loading } from '@app/components/templates/loading'
 
 export default function App() {
   // const config = {

@@ -7,8 +7,8 @@ export const app = {
   Dependencies: {
     Aurora: '1.2',
     React: '18.2.0',
-    NextJs: '14.0.4',
-    ThreeJs: '161.0',
+    NextJs: '14.1.1',
+    ThreeJs: 'r161',
   },
   Functions: {
     useThree: true,
@@ -27,12 +27,12 @@ export const app = {
 
 export const metaData = {
   appName: 'IceJiVerse',
-  title: 'IceJiVerse | Where the dream begins',
+  title: 'IceJiVerse | Where the dream begins (by TheIceJi)',
   url: 'https://TheIceJI.com',
   description:
-    "I'm Jirayu Ninlapun, a Creative Developer with a passion for pushing the boundaries of web technology. My expertise lies in WebGL, GLSL, and 3D development, and I thrive on creating immersive and visually stunning experiences. With a strong background in front-end development and NextJS, I excel at crafting engaging web animations that captivate users.",
+    "I'm Jirayu Ninlapun (TheIceJi), a Creative Developer with a passion for pushing the boundaries of web technology. My expertise lies in WebGL, GLSL, and 3D development, and I thrive on creating immersive and visually stunning experiences. With a strong background in front-end development and NextJS, I excel at crafting engaging web animations that captivate users.",
   coverImg: '/og.jpg',
-  author: 'Jirayu Ninlapun',
+  author: 'Jirayu Ninlapun (TheIceJi)',
   keywords: [
     'IceJiVerse',
     'TheIceJi',
@@ -40,6 +40,9 @@ export const metaData = {
     'Web Developer',
     'Creative Developer',
     'NextJs Developer',
+    'ThreeJs',
+    'GLSL',
+    'Professional',
     'DimensionsAI',
     'Artscape',
     'Graphics Designer',
