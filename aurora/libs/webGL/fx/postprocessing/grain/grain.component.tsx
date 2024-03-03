@@ -3,12 +3,20 @@ import { forwardRef, useMemo } from 'react'
 import { ShaderMaterial } from 'three'
 import { ShaderPass } from 'postprocessing'
 
-export const GrainPass = forwardRef(() => {
-  const passMaterial = useMemo(
-    () =>
-      new ShaderMaterial({
+type tFxConfig = {
+  grainSize: number
+}
+
+const initialFxConfig: tFxConfig = {
+  grainSize: 2.0,
+}
+
+export const GrainComponent = forwardRef(
+  ({ fxConfig = initialFxConfig }: { fxConfig?: tFxConfig }, ref) => {
+    const [grainPass, grainMaterial] = useMemo(() => {
+      const grainMaterial = new ShaderMaterial({
         uniforms: {
-          u_grainSize: { value: 2.0 },
+          u_grainSize: { value: fxConfig.grainSize },
         },
         vertexShader: /*glsl*/ `
         void main() {
@@ -26,11 +34,11 @@ export const GrainPass = forwardRef(() => {
             gl_FragColor = vec4(color, 1.0);
         }
         `,
-      }),
-    [],
-  )
+      })
+      const grainPass = new ShaderPass(grainMaterial, 'tDiffuse')
+      return [grainPass, grainMaterial]
+    }, [fxConfig])
 
-  const grainPass = new ShaderPass(passMaterial, 'tDiffuse')
-
-  return <primitive object={grainPass} dispose={null} />
-})
+    return <primitive object={grainPass} dispose={null} ref={ref} />
+  },
+)

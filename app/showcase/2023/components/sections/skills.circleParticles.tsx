@@ -63,8 +63,8 @@ export const CircleParticles = ({
 
   const textColor = _dark
     ? radius > 3
-      ? ColorUtils.HEXtoThree('#a8f1ff', 2, THREE.Color)
-      : ColorUtils.HEXtoThree('#fff1a8', 3, THREE.Color)
+      ? ColorUtils.HEXtoThree('#a8f1ff', 1.2, THREE.Color)
+      : ColorUtils.HEXtoThree('#fff1a8', 1.2, THREE.Color)
     : '#000'
 
   return (
