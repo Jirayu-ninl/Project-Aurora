@@ -2,10 +2,10 @@
 
 export const app = {
   NAME: 'TheIceJi',
-  VERSION: '2024.3.302',
-  UPDATE_DATE: 'Mar 3, 2024',
+  VERSION: '2024.3.401',
+  UPDATE_DATE: 'Mar 4, 2024',
   Dependencies: {
-    Aurora: '1.2.1',
+    Aurora: '1.3',
     React: '18.2.0',
     NextJs: '14.1.1',
     ThreeJs: 'r161',
