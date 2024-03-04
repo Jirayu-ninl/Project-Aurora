@@ -10,7 +10,7 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
 
   if (!session) {
     return (
-      <main className='m-container w-dvw relative flex flex-col items-center justify-center overflow-hidden'>
+      <main className='m-container relative flex w-dvw flex-col items-center justify-center overflow-hidden'>
         <h4 className='pb-3 text-xl font-light uppercase md:text-2xl xl:text-4xl'>
           You're <span className='font-bold'>not</span> login
         </h4>

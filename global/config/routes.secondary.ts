@@ -16,6 +16,7 @@ type routeKeys =
   | 'project'
   | 'post'
   | 'app'
+  | 'profile'
   | 'portal'
   | 'shop'
   | 'portfolio'
@@ -166,6 +167,26 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       {
         title: 'Settings',
         path: '/app/settings',
+      },
+    ],
+  },
+  profile: {
+    id: 22,
+    title: 'Profile',
+    setBackRoute: '/profile',
+    showFooter: true,
+    route: [
+      {
+        title: 'Profile',
+        path: '/profile',
+      },
+      {
+        title: 'Dashboard',
+        path: '/profile/post',
+      },
+      {
+        title: 'Settings',
+        path: '/profile/gallery',
       },
     ],
   },
