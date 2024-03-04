@@ -73,3 +73,8 @@ export type tProject = {
     }
   }
 }
+
+export enum FETCH {
+  SUCCESS,
+  ERROR,
+}

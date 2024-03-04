@@ -26,3 +26,8 @@ export type tPost = {
     }
   }[]
 }
+
+export enum FETCH {
+  SUCCESS,
+  ERROR,
+}

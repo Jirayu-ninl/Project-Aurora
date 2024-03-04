@@ -25,7 +25,6 @@ type routeKeys =
   | 'status'
   | 'showcase'
   | 'help'
-  | 'example'
 
 export type tNavSecondaryRoutes = {
   [Key in routeKeys]: tNavSecondaryRoute
@@ -256,21 +255,6 @@ export const navSecondaryRoutes: tNavSecondaryRoutes = {
       {
         title: 'Terms of Service',
         path: '/help/terms-of-service',
-      },
-    ],
-  },
-  example: {
-    id: 99,
-    title: 'Example',
-    setBackRoute: '/example',
-    route: [
-      {
-        title: 'PAGE A',
-        path: '/example/page-a',
-      },
-      {
-        title: 'PAGE B',
-        path: '/example/page-b',
       },
     ],
   },

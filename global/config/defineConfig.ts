@@ -1,7 +1,7 @@
 // import { env } from '../env.mjs'
 
 export const app = {
-  NAME: 'IceJiVerse',
+  NAME: 'TheIceJi',
   VERSION: '2024.3.302',
   UPDATE_DATE: 'Mar 3, 2024',
   Dependencies: {
@@ -26,8 +26,8 @@ export const app = {
 }
 
 export const metaData = {
-  appName: 'IceJiVerse',
-  title: 'IceJiVerse | Where the dream begins (by TheIceJi)',
+  appName: 'TheIceJI',
+  title: 'TheIceJI | Where the dream begins (IceJiVerse)',
   url: 'https://TheIceJI.com',
   description:
     "I'm Jirayu Ninlapun (TheIceJi), a Creative Developer with a passion for pushing the boundaries of web technology. My expertise lies in WebGL, GLSL, and 3D development, and I thrive on creating immersive and visually stunning experiences. With a strong background in front-end development and NextJS, I excel at crafting engaging web animations that captivate users.",

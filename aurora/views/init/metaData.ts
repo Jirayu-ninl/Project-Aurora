@@ -18,13 +18,6 @@ const Init = (metaData: {
   description: metaData.description,
   applicationName: metaData.appName,
   keywords: metaData.keywords,
-  // viewport: {
-  //   width: 'device-width',
-  //   initialScale: 1,
-  //   maximumScale: 1,
-  //   userScalable: false,
-  //   viewportFit: 'cover',
-  // },
   authors: { name: metaData.author },
   creator: metaData.author,
   publisher: metaData.author,
@@ -33,10 +26,6 @@ const Init = (metaData: {
     language: 'english',
     distribution: 'web',
   },
-  // themeColor: [
-  //   { media: '(prefers-color-scheme: light)', color: '#FFC900' },
-  //   { media: '(prefers-color-scheme: dark)', color: '#1A1A1A' },
-  // ],
   manifest: '/manifest.json',
   openGraph: {
     title: {
@@ -77,19 +66,19 @@ const Init = (metaData: {
       url: '/logo_white.svg',
     },
   },
-  robots: {
-    index: false,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: false,
-      noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  // robots: {
+  //   index: false,
+  //   follow: true,
+  //   nocache: true,
+  //   googleBot: {
+  //     index: true,
+  //     follow: false,
+  //     noimageindex: true,
+  //     'max-video-preview': -1,
+  //     'max-image-preview': 'large',
+  //     'max-snippet': -1,
+  //   },
+  // },
   appleWebApp: {
     title: metaData.appName,
     statusBarStyle: 'black-translucent',
