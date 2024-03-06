@@ -19,6 +19,7 @@ export const serverSchema = {
     // VERCEL_URL doesn't include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string().min(1) : z.string().url(),
   ),
+  TOKEN: z.string().min(1),
   // ** DATABASE
   GRAPHQL_CONTENT_URL: z.string().url(),
   GRAPHQL_PROJECT_URL: z.string().url(),

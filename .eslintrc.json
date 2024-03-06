@@ -48,7 +48,7 @@
             "warn",
             {
                 "parser": "typescript",
-                "endOfLine": "auto",
+                "endOfLine": "off",
                 "singleQuote": true
             }
         ]

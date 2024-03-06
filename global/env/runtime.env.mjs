@@ -8,6 +8,7 @@ export const runtimeEnv = {
   NODE_ENV: process.env.NODE_ENV,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  TOKEN: process.env.TOKEN,
   // ** DATABASE
   GRAPHQL_CONTENT_URL: process.env.GRAPHQL_CONTENT_URL,
   GRAPHQL_PROJECT_URL: process.env.GRAPHQL_PROJECT_URL,
