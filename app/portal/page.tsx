@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { serverLog } from 'aurora/libs/log/log.server'
 
 import { getProviders } from 'next-auth/react'
 import { getServerSession } from 'next-auth'
@@ -9,9 +8,6 @@ import { SetErrorToast } from '@components/toast'
 import { SetNavState } from '@aurora/views/state'
 
 const Page = async () => {
-  const log = serverLog()
-  log.info('Page request', { page: 'Auth portal' })
-
   const providers = await getProviders()
   const session = await getServerSession(authOptions)
 
