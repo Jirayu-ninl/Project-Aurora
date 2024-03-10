@@ -13,13 +13,8 @@ const Toast = () => {
     // dark: 'bg-white-600 font-gray-300',
   }
 
-  type tToastType =
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
-    | 'default'
-    // | 'dark'
+  type tToastType = 'success' | 'error' | 'info' | 'warning' | 'default'
+  // | 'dark'
 
   return (
     <ToastContainer

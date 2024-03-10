@@ -52,8 +52,8 @@ export const Header = ({
         >
           I work as an Interactive Web Developer and Designer.
           <br />
-          To build the website, I mostly use ReactJS and NextJS.
-          <br />I specialize in GSAP and WebGL to make websites come to life.
+          To build the website, I mostly use NextJS, Prisma, and tRPC.
+          <br />I specialize in Motion and WebGL to make websites come to life.
         </motion.p>
       </motion.div>
       <motion.div
