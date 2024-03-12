@@ -68,6 +68,7 @@ COPY --chown=node:node --from=build /app/public ./public
 COPY --chown=node:node --from=build /app/.next/standalone ./
 COPY --chown=node:node --from=build /app/.next/static  ./.next/static
 # Set production environment
+ENV HOSTNAME "0.0.0.0"
 ENV NODE_ENV=production
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
