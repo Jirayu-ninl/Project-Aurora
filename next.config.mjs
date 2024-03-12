@@ -16,7 +16,7 @@ import withPWA from 'next-pwa'
 import runtimeCaching from 'next-pwa/cache.js'
 import plugins from 'next-compose-plugins'
 import { withSentryConfig } from '@sentry/nextjs'
-import { withAxiom } from 'next-axiom'
+// import { withAxiom } from 'next-axiom'
 import bundleAnalyzer from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -146,7 +146,7 @@ const sentryWebpackPluginOptions = {
 
 export default plugins(
   [
-    withAxiom,
+    // withAxiom,
     [withSentryConfig, sentryWebpackPluginOptions],
     withBundleAnalyzer,
     withPWA,

@@ -5,7 +5,7 @@ import { Prompt } from 'next/font/google'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GoogleTagManager } from '@next/third-parties/google'
-import { AxiomWebVitals } from 'next-axiom'
+// import { AxiomWebVitals } from 'next-axiom'
 import clsx from 'clsx'
 
 import { env } from '@global/env.mjs'
@@ -47,7 +47,7 @@ const App = ({ children }: AppPropsWithLayout) => {
         `${fInter.variable} ${fPrompt.variable}`,
       )}
     >
-      <AxiomWebVitals />
+      {/* <AxiomWebVitals /> */}
       <body suppressHydrationWarning={true}>
         <Wrapper>
           {children}
