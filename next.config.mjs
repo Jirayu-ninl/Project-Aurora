@@ -27,6 +27,10 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const require = createRequire(import.meta.url)
 
+const standaloneExport = process.env.EXPORT === 'standalone' && {
+  output: 'standalone',
+}
+
 const nextConfig = {
   webpack: (config, { webpack, /*dev ,*/ isServer }) => {
     config.plugins.push(
@@ -107,6 +111,7 @@ const nextConfig = {
       },
     ],
   },
+  ...standaloneExport,
   pwa: {
     dest: 'public',
     register: true,

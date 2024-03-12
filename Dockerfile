@@ -15,6 +15,7 @@ RUN yarn
 COPY . .
 # Specify the variable you need
 ARG NODE_ENV
+ARG EXPORT
 ARG NEXTAUTH_SECRET
 ARG NEXTAUTH_URL
 ARG TOKEN
@@ -59,18 +60,15 @@ RUN yarn db
 # Build application
 RUN yarn build
 
-FROM node:${NODE_VERSION}
+FROM node:${NODE_VERSION}-alpine
 # NestJS app lives here
 WORKDIR /app
 # Copy application code
-COPY --chown=node:node --from=build /app/.next ./.next
 COPY --chown=node:node --from=build /app/public ./public
-COPY --chown=node:node --from=build /app/package.json .
-COPY --chown=node:node --from=build /app/yarn.lock .
-RUN yarn
-COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
+COPY --chown=node:node --from=build /app/.next/standalone ./
+COPY --chown=node:node --from=build /app/.next/static  ./.next/static
 # Set production environment
 ENV NODE_ENV=production
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["yarn","start"]
+CMD ["node", "server.js"]
