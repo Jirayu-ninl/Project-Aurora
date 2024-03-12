@@ -59,7 +59,7 @@ RUN yarn db
 # Build application
 RUN yarn build
 
-FROM node:${NODE_VERSION}-slim
+FROM node:${NODE_VERSION}
 # NestJS app lives here
 WORKDIR /app
 # Copy application code
