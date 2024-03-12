@@ -15,7 +15,7 @@ export const serverSchema = {
   NEXTAUTH_URL: z.preprocess(
     // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
     // Since NextAuth.js automatically uses the VERCEL_URL if present.
-    (str) => process.env.VERCEL_URL ?? str,
+    (str) => process.env.VERCEL_URL ?? process.env.RAILWAY_PUBLIC_DOMAIN ?? str,
     // VERCEL_URL doesn't include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string().min(1) : z.string().url(),
   ),
@@ -27,7 +27,6 @@ export const serverSchema = {
   MONGODB_URI: z.string().url(),
   ACCELERATE_URI: z.string().url(),
   SQL_URL: z.string().url(),
-  SQL_PSC_URL: z.string().url(),
   REDIS_URL: z.string().url(),
   // ** API
   AUTH_FB_APP_ID: z.string(),

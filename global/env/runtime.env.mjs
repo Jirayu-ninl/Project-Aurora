@@ -16,7 +16,6 @@ export const runtimeEnv = {
   MONGODB_URI: process.env.MONGODB_URI,
   ACCELERATE_URI: process.env.ACCELERATE_URI,
   SQL_URL: process.env.SQL_URL,
-  SQL_PSC_URL: process.env.SQL_PSC_URL,
   REDIS_URL: process.env.REDIS_URL,
   // ** API
   AUTH_FB_APP_ID: process.env.AUTH_FB_APP_ID,
