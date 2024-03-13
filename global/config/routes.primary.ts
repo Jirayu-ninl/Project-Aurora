@@ -9,6 +9,10 @@ export const navPrimaryRoutes: tNavPrimaryRoutes[] = [
     path: '/home',
   },
   {
+    title: 'ABOUT',
+    path: '/about',
+  },
+  {
     title: 'PROJECTS',
     path: '/project',
   },
@@ -19,9 +23,5 @@ export const navPrimaryRoutes: tNavPrimaryRoutes[] = [
   {
     title: 'APP',
     path: '/app',
-  },
-  {
-    title: 'SHOP',
-    path: '/shop',
   },
 ]
